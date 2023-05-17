@@ -6,7 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    .one{
+      font-size: 15px;
+    }
+    button{
+      width:20%;
+    }
+  </style>
   <body>
-    <p>Add Bus page</p>
+    <h2 class="text-center">Add Bus</h2>
+    <form>
+      <select class="custom-select custom-select-lg mb-3 mt-3 one">
+        <option selected>Select Station</option>
+        <option value="1">Beirut</option>
+        <option value="2">Saida</option>
+        <option value="3">tyre</option>
+      </select>
+      <select class="custom-select custom-select-lg mb-3 mt-3  one">
+        <option selected>Select Driver</option>
+        <option value="1">Mohamad Yassin</option>
+        <option value="2">Hassan Barada</option>
+        <option value="3">Khodor Hajj Hassan</option>
+      </select>
+      <div class="form-group">
+        <label for="">Capacity</label>
+        <input type="number" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter Origin Trip">
+      </div>
+      <div class="form-group">
+        <label for="">Mechanic due</label>
+        <input type="date" class="form-control" id="" placeholder="Enter the Destination">
+      </div>
+      <div class="form-group">
+        <label for="">Insurance number</label>
+        <input type="number" class="form-control" id="" placeholder="Enter the Destination">
+      </div>  
+      <div class="form-group">
+        <label for="">Plate number</label>
+        <input type="text" class="form-control" id="" placeholder="Enter the Destination">
+      </div>  
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      </div>
+     
+    </form>
   </body>
 </html>
