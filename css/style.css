@@ -1,0 +1,713 @@
+*{
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #0A3B5F;
+    box-sizing: border-box;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.flexSb{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gridT3{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.marginT{
+  margin: 40px;
+}
+
+.padding20{
+  padding: 20px;
+}
+
+
+:root {
+    --mainColor: #0A3B5F;
+    --backColor: #E5F6FF;
+    --white: #ffffff;
+  }
+
+  h2 {
+	font-weight: 500;
+	font-size: 34px;
+	text-transform: uppercase;
+}
+h3 {
+	font-size: 22px;
+	font-weight: 500;
+}
+h4 {
+	font-size: 24px;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+h5 {
+	text-transform: uppercase;
+	font-weight: 700;
+	line-height: 20px;
+}
+p {
+	font-size: 12px;
+}
+ul, ol {
+	list-style: none;
+}
+a{
+    text-decoration: none !important;
+
+}
+@media (max-width: 768px) {
+    h1 {
+      font-size: 22px !important;
+    }
+  
+    h2 {
+      font-size: 20px !important;
+    }
+  
+    h3 {
+      font-size: 18px !important;
+    }
+  
+    h4 {
+      font-size: 14px !important;
+    }
+  
+    h5 {
+      font-size: 12px !important;
+    }
+  
+    p {
+      font-size: 12px !important;
+    }
+  }
+  @media (max-width: 468px) {
+    h1 {
+      font-size: 20px !important;
+    }
+  
+    h2 {
+      font-size: 18px !important;
+    }
+  
+    h3 {
+      font-size: 16px !important;
+    }
+  
+    h4 {
+      font-size: 12px !important;
+    }
+  
+    h5 {
+      font-size: 10px !important;
+    }
+  
+    p {
+      font-size: 10px !important;
+    }
+  }
+/*  Navbar start here !!!!! */
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+h2 {
+  vertical-align: center;
+  text-align: center;
+}
+
+.top-nav {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+background-color: var(--backColor);
+  color: #FFF;
+  height: 30px;
+  padding: 1em;
+  z-index: 999;
+  position: relative;
+}
+.logo{
+    margin-left: 100px;
+  margin-top: 20px;
+
+}
+.logo img{
+    width: 150px;
+}
+a.signup {
+    text-align: center;
+    display: block;
+    width: 55px;
+    height: 27px;
+    border: 1px solid var(--mainColor) !important;
+    color: var(--white) !important;
+    background-color: var(--mainColor) !important;
+    border-radius: 10px;
+}
+.menu {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin-right: 100px;
+  padding: 0;
+  margin-top: 25px;
+}
+
+.menu > li {
+  margin: 0 1rem;
+  overflow: hidden;
+  margin-top: 45px ;
+}
+.menu > li a {
+    font-weight: 500;
+    margin-right: 10px;
+    color: var(--mainColor) ;
+  }
+ a.login {
+    text-align: center;
+    display: block;
+    width: 50px;
+    height: 27px;
+    border: 1px solid var(--mainColor);
+    border-radius: 10px;
+}
+a.login:hover {
+    color: var(--white);
+    background-color: var(--mainColor);
+    transition: all 0.3s;
+}
+a.signup:hover {
+    color: var(--mainColor) !important;
+    background-color: var(--backColor) !important;
+    transition: all 0.3s;
+
+}
+
+.menu li a.line:after {
+    content: "";
+    display: block;
+    height: 3px;
+    margin-top: 3px;
+    width: 0;
+    background-color:var(--mainColor);
+    transition: width 0.5s;
+}
+.menu li a.line:hover::after{
+    width: 100%;
+}
+.menu li a .line.active:after {
+    width: 100%;
+}
+.menu-button-container {
+  display: none;
+  height: 100%;
+  width: 30px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.menu-button,
+.menu-button::before,
+.menu-button::after {
+  display: block;
+  background-color: #0A3B5F;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+}
+
+.menu-button::before {
+  content: '';
+  margin-top: -8px;
+}
+
+.menu-button::after {
+  content: '';
+  margin-top: 8px;
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::before {
+  margin-top: 0px;
+  transform: rotate(405deg);
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button {
+  background: rgba(255, 255, 255, 0);
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::after {
+  margin-top: 0px;
+  transform: rotate(-405deg);
+}
+
+@media (max-width: 800px) {
+    .logo{
+        width: 120px;
+        margin: 30px 0px;
+    }
+    .logo img {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+  .menu-button-container {
+    display: flex;
+  }
+  .menu {
+    position: absolute;
+    top: 0;
+    margin-top: 50px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  #menu-toggle ~ .menu li {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  #menu-toggle:checked ~ .menu li {
+    border: 0.5px solid var(--backColor);
+    height: 2.5em;
+    padding: 0.5em;
+    transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .menu > li {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0.5em 0;
+    width: 100%;
+    color: white;
+    background-color: var(--mainColor);
+  }
+  .menu > li a {
+    color: white;
+  }
+  .menu > li:not(:last-child) {
+    border-bottom: 1px solid #444;
+  }
+}
+
+/*  Navbar end here !!!!! */
+
+/* Section Background */
+.background {
+    background-image: url("../img/background.PNG");
+    width: 100%;
+    height: 450px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+@media  (max-width:768px) {
+    .background{
+        background-size:100% 100% !important;
+        background-position: center ;
+    }
+
+    .main h2,p{
+      margin-left: 15px;
+    }
+    
+}
+@media  (max-width:468px) {
+    .background{
+        background-size:cover !important;
+        background-position: center ;
+    }
+    
+}
+.main{
+    position: relative;
+}
+
+.title {
+    width: 40%;
+    color: var(--mainColor);
+    position: absolute;
+    top: 100px;
+    left: 0;
+}
+.title h2{
+    text-align: left;
+    font-size: 1.8rem;
+}
+.title p{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Section Background */
+
+/* Filter section */
+
+.filter{
+    background-color: var(--backColor);
+    padding: 20px 0;
+}
+.form{
+    display: flex;
+    width: 100%;
+}
+.form1{
+    display: flex;
+    align-items: center;
+    padding: 5px 15px 5px 15px;
+    border: 0.2px solid grey;
+    border-radius: 10px 0 0 10px;
+    background-color: white;
+    width: 42%;
+}
+.origin{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+
+}
+input{
+    border: none;
+    padding: 3px;
+    outline: none;
+}
+input::placeholder{
+    font-weight: 300;
+    font-size: 12px;
+
+}
+label{
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.switch{
+    width: 20%;
+
+}
+.switch button{
+background-color: white;
+border: 0 solid;
+font-size: 20px;
+cursor: pointer;
+}
+
+.switch button:hover i{
+    transform: rotate(360deg);
+    transition: all 0.5s;
+}
+
+.form22{
+    border-radius: 0px ;
+}
+
+
+
+.form2{
+    border: 1px solid grey;
+    width: 15%;
+}
+.dest{
+    margin-left: 40px;
+}
+input[type="date"]{
+    color: grey;
+    font-size: 12px;
+}
+.custom-date-input {
+    position: relative;
+  }
+
+  /* Style for the date picker icon */
+  .custom-date-input::after {
+    content: "\f073"; /* FontAwesome calendar icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 75%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 1;
+    color:var(--mainColor);
+  }
+
+  /* Style for the date picker popup */
+  .custom-date-input input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .form2{
+    border-radius: 0px 15px 15px 0;
+  }
+
+  .form2 button{
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 15px 15px 0;
+    border: none;
+    background-color: var(--mainColor);
+    color: var(--white);
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .form2 button i{
+    color: var(--white);
+    margin-left: 10px;
+  
+}
+.form2 button:hover{
+    background-color: #072a43;
+    transition: all 0.5s;
+}
+
+@media (max-width: 800px) {
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.custom-date-input{
+    width: 50%;
+}
+.form1{
+    width: 100%;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+.form2{
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+}
+.form2 button{
+    border-radius: 10px;
+    height: 40px;
+
+}
+}
+.service{
+    margin-top: 30px !important;
+
+}
+.service p{
+    text-transform: capitalize;
+}
+.s1{
+    width: 20%;
+}
+
+
+/* Filter section */
+
+/* why choose skyline User start */
+
+.whySkyline{
+  margin: 20px 0;
+}
+.why-content{
+  display: flex;
+  background-color: #E6FEF2 ;
+  padding: 20px ;
+  border-radius: 20px;
+  text-transform: capitalize;
+}
+
+.why-left {
+  width: 50%;
+}
+.why-left h3{
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.why-left h5 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.why-left ul{
+  list-style: disc;
+  font-size: 12px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+.why-left a{
+  display: block;
+  width: 150px;
+  height: 40px;
+  font-size: 18px;
+  color: white;
+  background-color: var(--mainColor);
+  border-radius: 10px;
+  text-align: center;
+  line-height: 40px;
+}
+.why-left a:hover{
+  background-color: #092f4a;
+  transition: all 0.5s;
+}
+.why-right{
+  width: 50%;
+}
+.why-right img {
+  width: 100%;
+  height: 100%;
+}
+.why-right .imgbus{
+  height: 100%;
+}
+.why-driver{
+  background-color:#FFBC97 ;
+  height: 400px;
+}
+@media (max-width:768px) {
+  .why-content{
+    flex-direction: column;
+    width: 90% !important;
+  }
+  .why-left{
+    width: 100%;
+    text-align: center;
+  }
+  .why-left h3{
+    font-size: 2.5rem !important;
+  }
+
+  .why-left ul{
+    list-style: none;
+  }
+  .why-left a{
+    margin: auto;
+    width: 80%;
+  }
+  .why-right{
+    width: 100%;
+  }
+  .why-driver{
+    background-color:#FFBC97 ;
+    height: auto;
+  }
+  
+}
+
+
+
+/* why choose skyline User end */
+
+
+/* section tcket start */
+.busimg{
+  width: 15%;
+  margin: auto;
+}
+.busimg img{
+  width: 100%;
+}
+.ticket h3{
+  text-align: center;
+}
+
+.omt img {
+  width: 25%;
+  cursor: pointer;
+}
+
+.omt .img2{
+  height: 200px;
+
+}
+
+
+
+/* section tcket end */
+
+/* Top Travel Start */
+.top-travel h2{
+  text-align: center;
+  font-size: 2rem;
+}
+.top-img{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+}
+.top-img img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.top-img::before{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: black;
+  opacity: 0.4;
+  border-radius: 10px;
+
+
+}
+.top-img:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 0.5s;
+
+}
+
+.top-img h5{
+  position: absolute;
+  top: 80%;
+  left: 5%;
+  color: var(--white);
+  z-index: 99;
+}
+
+@media (max-width:600px) {
+  .top-img h5{
+    font-size: 8px !important;
+    top: 60%;
+    font-weight: 400;
+
+  }
+}
+
+/* Top Travel Start */
+
+/* Footer */
