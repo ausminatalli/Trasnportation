@@ -1,0 +1,26 @@
+[
+    {
+        "PIN Number": "24634",
+        "From": "Beirut",
+        "To": "Saida",
+        "Date":"2023-05-15",
+        "Time":"8:00 AM",
+        "Bus Number":"ABC123"
+    },
+    {
+        "PIN Number": "78935",
+        "From": "Beirut",
+        "To": "Tripoli",
+        "Date":"2023-08-27",
+        "Time":"7:00 AM",
+        "Bus Number":"ABC826"
+    },
+    {
+        "PIN Number": "90843",
+        "From": "Beirut",
+        "To": "jounieh",
+        "Date":"2023-02-15",
+        "Time":"9:00 AM",
+        "Bus Number":"ABC111"
+    }
+]
