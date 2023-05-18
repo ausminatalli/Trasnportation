@@ -1,0 +1,27 @@
+[
+    {
+        "PaymentID": "9876611",
+        "Userid": "7655222",
+        "Tripid": "81653405",
+         "Firstname":"Mohammad",
+         "LastName":"Yassine",
+         "AmountPaid":"100000"
+  
+      },
+      {
+        "PaymentID": "7627282",
+        "Userid": "8282888",
+        "Tripid": "6526722",
+         "Firstname":"Test",
+         "LastName":"Name",
+         "AmountPaid":"200000"
+      },
+      {
+        "PaymentID": "8762722",
+        "Userid": "6527265",
+        "Tripid": "81653405",
+         "Firstname":"YARD",
+         "LastName":"MARD",
+         "AmountPaid":"300000"
+      }
+]
