@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <link rel="stylesheet" href="searchresult.css">
     <title>Skyline Main Search Page</title>
 </head>
 <body>
@@ -60,7 +61,42 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Result:</h5>
-                        <?php include('searchresult.php') ?>
+                        <div class="resultcontainer">
+    <?php
+    
+    $data = json_decode(file_get_contents("user.json"), true);
+
+    
+    foreach ($data as $item) {
+    ?>
+    <div class="box">
+      <div class="leftsection">
+        <div class="firstrow">
+          <i class="fa-solid fa-location-dot fa-xs" id="uppericon"></i>
+          <h5 class="from"><?php echo $item['from']; ?></h5>
+          <h5 class="origin"><?php echo $item['origin']; ?></h5>
+        </div>
+        <div class="secondrow">
+          <i class="fa-solid fa-location-dot fa-xs" id="bottomicon"></i>
+          <h5 class="to"><?php echo $item['to']; ?></h5>
+          <h5 class="destination"><?php echo $item['destination']; ?></h5>
+        </div>
+        <div class="thirdrow">
+          <i class="fa-sharp fa-solid fa-bus fa-sm"></i>
+          <h5 class="totaltime"><?php echo $item['totaltime']; ?></h5>
+        </div>
+      </div>
+      <div class="rightsection">
+        <h5><?php echo $item['price']; ?></h5>
+        <a href="#">
+          Select
+        </a>
+      </div>
+    </div>
+    <?php
+    }
+    ?>
+  </div>
                     </div>
                 </div>
             </div>
