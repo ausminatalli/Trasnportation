@@ -14,6 +14,7 @@
     }
   </style>
   <div>
+  <h2 class="text-center">Dashboard</h2>
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>
@@ -48,4 +49,3 @@
   
 </body>
 </html>
-
