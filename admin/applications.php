@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="admin.css">
-
+<link rel="stylesheet" href="css/modal.css" />
 </head>
 <body>
   <h2 class="text-center text-primary mt-5 mb-5">Manage Applications</h2>
@@ -62,13 +62,44 @@
             echo '<td colspan="">
             <button data-toggle="tooltip" data-placement="right" title="Show Licenset" class="icon-trash"><i class="fa-solid fa-id-card"></i></button><br> 
             <button data-toggle="tooltip" data-placement="right" title="Accept Driver" class="icon-trash"><i class="fa-solid fa-circle-check"></i></button><br>
-            <button  data-toggle="tooltip" data-placement="right" title="Reject Driver" class="icon-trash"><i class="fa-solid fa-trash"></i></button>
+            <button  data-toggle="tooltip" data-placement="right" title="Reject Driver" class="icon-trash btn-delete4"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";
           }
         ?>
       </tbody>
     </table>
+  </div>
+  <div class="modal-container" id="myModal">
+      <div class="modal-wrapper bg-white">
+        <div class="modall">
+          <header>
+            <h2>Confirmation</h2>
+          </header>
+          <main>
+            <div class="icon-wrapper">
+              <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <div class="text-wrapper">
+              <span>Are you sure you want to Reject the driver?</span>
+            </div>
+          </main>
+          <footer>
+            <div class="btn-container">
+              <div class="cancel-wrapper">
+                <button class="btn btn-cancel">Cancel</button>
+              </div>
+              <div class="delete-confirm-wrapper">
+                <button class="btn btn-confirm">
+                  <i class="fa-solid fa-trash"></i>
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
   </div>
 
  
