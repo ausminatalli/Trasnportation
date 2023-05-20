@@ -4,51 +4,87 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./admin.css">
     <title>Document</title>
   </head>
-  <style>
-    .one{
-      font-size: 15px;
-    }
-    button{
-      width:20%;
-    }
-  </style>
+
   <body>
-    <h2 class="text-center">Add Bus</h2>
-    <form>
-      <select class="custom-select custom-select-lg mb-3 mt-3 one">
-        <option selected>Select Station</option>
-        <option value="1">Beirut</option>
-        <option value="2">Saida</option>
-        <option value="3">tyre</option>
-      </select>
-      <select class="custom-select custom-select-lg mb-3 mt-3  one">
-        <option selected>Select Driver</option>
-        <option value="1">Mohamad Yassin</option>
-        <option value="2">Hassan Barada</option>
-        <option value="3">Khodor Hajj Hassan</option>
-      </select>
-      <div class="form-group">
-        <label for="">Capacity</label>
-        <input type="number" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter Origin Trip">
-      </div>
-      <div class="form-group">
-        <label for="">Mechanic due</label>
-        <input type="date" class="form-control" id="" placeholder="Enter the Destination">
-      </div>
-      <div class="form-group">
-        <label for="">Insurance number</label>
-        <input type="number" class="form-control" id="" placeholder="Enter the Destination">
-      </div>  
-      <div class="form-group">
-        <label for="">Plate number</label>
-        <input type="text" class="form-control" id="" placeholder="Enter the Destination">
-      </div>  
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
-      </div>
-     
-    </form>
+    <h2 class="text-center text-primary mt-5 mb-5 title">Add Bus</h2>
+    <div class="card-body content">
+      <h5>Add Bus Information Capacity and Mechanic</h5>
+      <hr class="hr">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <h4>Select Station</h4>
+            <select  class="form-control " style="width: 100%;">
+
+              <option selected="selected">Start Location</option>
+              <option>Beirut</option>
+              <option>Saida</option>
+              <option>Tyre</option>
+              <option>Baalbek</option>
+              <option>Byblos</option>
+              <option>Nabatieh</option>
+            </select>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+          <div class="form-group">
+          <h4>Select Driver</h4>
+            <select class="form-control"  style="width: 100%;">
+              <option selected="selected">Driver Name</option>
+                <option>Ta3an</option>
+                <option>Jahjeh</option>
+                <option>2afas</option>
+                <option>Tokle</option>
+            </select>
+          </div>
+        </div>
+          <!-- /.form-group -->
+          <!-- /.form-group -->
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Capacity</h4>
+            <input type="number" class="form-control"  style="width: 100%;">
+            </div>
+           
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Plate Number</h4>
+               <input type="Number" class="form-control">
+            </div>
+           
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <h4>Mechanic due</h4>
+              <input type="date" class="form-control">
+
+             
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-md-6">
+            <div class="form-group">
+            <h4>Insurance Number</h4>
+            <input type="Number" class="form-control">
+             
+            </div>
+          </div>
+
+      
+    </div>
+    <hr class="hr">
+    <div class="bottom">
+      <button class="btn btn-primary " >Submit</button>
   </body>
 </html>
