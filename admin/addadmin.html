@@ -4,49 +4,92 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./admin.css">
   
     <title>Add Trip</title>
   </head>
   <body>
-    <h2 class="text-center text-primary mt-5 mb-5">Add Admin</h2>
-    <form>
-      <div class="row mb-2">
-        <div class="col">
-        <label for="">First Name</label>
-          <input type="text" class="form-control" required>
+    <h2 class="text-center text-primary mt-5 mb-5 title">Add Admin</h2>
+    <div class="card-body content">
+      <h5>Add Admin Information</h5>
+      <hr class="hr">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <h4>First Name</h4>
+         <input type="text" class="form-control" style="width: 100%;">
+          </div>
         </div>
-        <div class="col">
-        <label for="">Last Name</label>
-          <input type="text" class="form-control" required>
+        <!-- /.col -->
+        <div class="col-md-6">
+          <div class="form-group">
+          <h4>Last Name</h4>
+           <input type="text" class="form-control" style="width: 100%;">
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="">Date of birthday</label>
-        <input type="date" class="form-control" id="" required >
-      </div> 
-      <div class="form-group">
-        <label for="">Phone Number</label>
-        <input type="text" class="form-control" id="" required>
-      </div>  
-      <div class="form-group">
-        <label for="">Email Address</label>
-        <input type="email" class="form-control" id="" required>
-      </div> 
-      <div class="row mb-2">
-        <div class="col">
-        <label for="">City</label>
-          <input type="text" class="form-control" required>
+          <!-- /.form-group -->
+          <!-- /.form-group -->
         </div>
-        <div class="col">
-        <label for="">Address</label>
-          <input type="text" class="form-control" required>
-        </div>
-      </div>
- 
-      <div class="text-center">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Phone Number</h4>
+            <input type="number" class="form-control"  style="width: 100%;">
+            </div>
+           
 
-        <button type="submit" class="btn btn-primary mt-4 ">Submit</button>
-      </div>
-    </form>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Email</h4>
+               <input type="email" class="form-control" style="width: 100%;">
+            </div>
+           
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Date of Birthday</h4>
+            <input type="date" class="form-control"  style="width: 100%;">
+            </div>
+           
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Gender</h4>
+               <select  class="form-control " style="width: 100%;">
+                <option selected="selected">Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                </select>
+            </div>
+           
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>City</h4>
+            <input type="text" class="form-control"  style="width: 100%;">
+            </div>
+           
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Address</h4>
+            <input type="text" class="form-control"  style="width: 100%;">
+            </div>
+          </div>
+        </div>
+      
+    <hr class="hr">
+    <div class="bottom">
+      <button class="btn btn-primary " >Submit</button>
+    </div>
   </body>
 </html>

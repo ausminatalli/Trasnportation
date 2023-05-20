@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="admin.css">
 
 </head>
 <body>
@@ -59,10 +60,9 @@
             echo "<td>".$row['about']."</td>";
             echo "<td>".$row['applyDate']."</td>";
             echo '<td colspan="">
-            <button class="  btn btn-secondary w-100 mb-1">License</button>
-            <button class="btn btn-primary w-100 mb-1">Accept</button>
-            <button class="  btn btn-danger w-100">Reject</button>
-            
+            <button data-toggle="tooltip" data-placement="right" title="Show Licenset" class="icon-trash"><i class="fa-solid fa-id-card"></i></button><br> 
+            <button data-toggle="tooltip" data-placement="right" title="Accept Driver" class="icon-trash"><i class="fa-solid fa-circle-check"></i></button><br>
+            <button  data-toggle="tooltip" data-placement="right" title="Reject Driver" class="icon-trash"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";
           }

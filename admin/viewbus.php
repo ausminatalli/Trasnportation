@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+<link rel="stylesheet" href="admin.css">
    
   </head>
   <style>
@@ -42,7 +43,9 @@
             echo "<td>".$row['Mechanicdue date']."</td>";
             echo "<td>".$row['Insurance number']."</td>";
             echo "<td>".$row['Accidents number']."</td>";
-            echo '<td><button class="btn btn-warning mr-2">Edit</button><button class="btn btn-danger">Delete</button></td>';
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash"><i class="fa-solid fa-user-pen"></i></button> | 
+            <button data-toggle="tooltip" data-placement="right" title="View Bus" class="icon-trash"><i class="fa-solid fa-trash"></i></button>
+            </td>';
             echo "</tr>";
           }
         ?>

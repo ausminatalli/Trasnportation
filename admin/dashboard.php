@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="admin.css">
 
 </head>
 <body>
@@ -14,7 +15,8 @@
     }
   </style>
   <div>
-  <h2 class="text-center">Dashboard</h2>
+  <h2 class="text-center text-primary mt-5 mb-5 title">Dashboard</h2>
+
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>
@@ -37,7 +39,7 @@
             echo "<td>".$row['Lastname']."</td>";
             echo "<td>".$row['MobileNumber']."</td>";
             echo "<td>".$row['Number of trips']."</td>";
-            echo '<td><button class="btn btn-danger">Block</button></td>';
+            echo ' <td><button class="icon-trash"><i class="fa-solid fa-ban"></i></button></td>';
             echo "</tr>";
           }
         ?>

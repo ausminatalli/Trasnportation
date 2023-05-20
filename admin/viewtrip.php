@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="admin.css">
 
 </head>
 <body>
@@ -10,7 +11,7 @@
     .btn {
       font-size: 17px;
     }
-   
+
 
     #myTable {
       margin-bottom: 0px;
@@ -44,8 +45,8 @@
             echo "<td>".$row['startTime']."  ------>></td>";
             echo "<td>".$row['arriveTime']."</td>";
             echo "<td><h6>".$row['DriverName']."</h6></td>";
-            echo '<td colspan=""><button class="mr-2  btn btn-danger">Delete</button>
-            <button class="btn btn-warning">Edit</button>
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash"><i class="fa-solid fa-user-pen"></i></button> | 
+            <button data-toggle="tooltip" data-placement="right" title="Remove Trip" class="icon-trash"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";
           }

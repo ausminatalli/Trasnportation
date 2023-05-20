@@ -4,39 +4,102 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="admin.css">
   
     <title>Add Trip</title>
   </head>
   <body>
-    <h2 class="text-center text-primary mt-5 mb-5">Add Trip</h2>
-    <form>
-      <div class="form-group">
-        <label for="">From</label>
-        <input type="text" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter Origin Trip">
-      </div>
-      <div class="form-group">
-        <label for="">To</label>
-        <input type="text" class="form-control" id="" placeholder="Enter the Destination">
-      </div>
-      <div class="form-group">
-        <label for="">Date</label>
-        <input type="date" class="form-control" id="" placeholder="Date">
-      </div> 
-      <div class="form-group">
-        <label for="">Time</label>
-        <input type="time" class="form-control" id="" placeholder="Enter the Destination">
-      </div>  <div class="form-group">
-        <label for=""> Arrive Time</label>
-        <input type="time" class="form-control" id="" placeholder="Enter the Destination">
-      </div>
-      <select class="custom-select custom-select-lg mb-3 mt-3">
-        <option selected>Select Driver</option>
-        <option value="1">Mohamad Yassin</option>
-        <option value="2">Hassan Barada</option>
-        <option value="3">Khodor Hajj Hassan</option>
-      </select>
+    <h2 class="text-center text-primary mt-5 mb-5 title">Add Trip</h2>
+    <div class="card-body content">
+      <h5>Add Trip Origin Destination Time and Driver</h5>
+      <hr class="hr">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <h4>From</h4>
+            <select  class="form-control " style="width: 100%;">
+
+              <option selected="selected">Start Location</option>
+              <option>Beirut</option>
+              <option>Saida</option>
+              <option>Tyre</option>
+              <option>Baalbek</option>
+              <option>Byblos</option>
+              <option>Nabatieh</option>
+            </select>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+          <div class="form-group">
+          <h4>To</h4>
+            <select class="form-control"  style="width: 100%;">
+              <option selected="selected">Select Location</option>
+              <option>Beirut</option>
+              <option>Saida</option>
+              <option>Tyre</option>
+              <option>Baalbek</option>
+              <option>Byblos</option>
+              <option>Nabatieh</option>
+            </select>
+          </div>
+        </div>
+          <!-- /.form-group -->
+          <!-- /.form-group -->
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Select Date</h4>
+            <input type="date" class="form-control"  style="width: 100%;">
+            </div>
+           
+
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+               <h4>Select Time</h4>
+               <input type="time" class="form-control">
+            </div>
+           
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <h4>Select Bus</h4>
+              <select  class="form-control " style="width: 100%;">
   
-      <button type="submit" class="btn btn-primary mt-4 ">Submit</button>
-    </form>
+                <option selected="selected">Bus Number</option>
+                <option>1</option>
+                <option>2</option>
+                <option>4</option>
+                <option>3</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-md-6">
+            <div class="form-group">
+            <h4>Select Driver</h4>
+              <select class="form-control"  style="width: 100%;">
+                <option selected="selected">Driver Name</option>
+                <option>Ta3an</option>
+                <option>Jahjeh</option>
+                <option>2afas</option>
+                <option>Tokle</option>
+              </select>
+            </div>
+          </div>
+
+      
+    </div>
+    <hr class="hr">
+    <div class="bottom">
+      <button class="btn btn-primary " >Submit</button>
+    </div>
   </body>
 </html>

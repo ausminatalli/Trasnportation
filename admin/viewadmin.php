@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="admin.css">
 
 </head>
 <body>
@@ -47,7 +48,7 @@
             echo "<td>".$row['date']."</td>";
             echo "<td>".$row['city']."</td>";
             echo "<td>".$row['address']."</td>";
-            echo '<td colspan=""><button class=" btn btn-danger">Delete</button>
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Remove Admin"  class="icon-trash"><i class="fa-solid fa-trash"></i></button>
             
             </td>';
             echo "</tr>";
