@@ -1,4 +1,5 @@
 
+
 const dashboard = document.getElementById("dashboard");
 const addtrip = document.getElementById("addtrip");
 const viewtrip = document.getElementById("viewtrip");
@@ -22,6 +23,131 @@ function initializeDataTable() {
   });
 }
 
+function DriverDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete");
+ 
+  let closeBtn = $(".btn");
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
+}
+function BusDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete2");
+ 
+  let closeBtn = $(".btn");
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
+}
+function TripDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete1");
+ 
+  let closeBtn = $(".btn");
+  
+
+  
+  // EventListener
+  btn.on("click", function() {
+
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
+}
+function AdminDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete3");
+ 
+  let closeBtn = $(".btn");
+  
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
+}
+function ApplicationDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete4");
+ 
+  let closeBtn = $(".btn");
+  
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
+}
 // Use a single function to load content and initialize DataTable
 function loadContent(url) {
   let xhr = new XMLHttpRequest();
@@ -30,6 +156,21 @@ function loadContent(url) {
       document.getElementById("content").innerHTML = this.responseText;
       initializeDataTable(); // Call the DataTable initialization function after loading content
     }
+   if(url==='viewdriver.php'){
+    DriverDelete();
+   }
+   else if(url==='viewtrip.php'){
+      TripDelete();
+   }
+   else if(url==='viewbus.php'){
+    BusDelete();
+ }
+ else if(url==='viewadmin.php'){
+  AdminDelete();
+}
+else if(url==='applications.php'){
+  ApplicationDelete();
+}
   };
   xhr.open("GET", url, true);
   xhr.send();

@@ -2,7 +2,7 @@
 <html>
   <head>
 <link rel="stylesheet" href="admin.css">
-   
+<link rel="stylesheet" href="css/modal.css" />
   </head>
   <style>
     .btn {
@@ -44,13 +44,44 @@
             echo "<td>".$row['Insurance number']."</td>";
             echo "<td>".$row['Accidents number']."</td>";
             echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash"><i class="fa-solid fa-user-pen"></i></button> | 
-            <button data-toggle="tooltip" data-placement="right" title="View Bus" class="icon-trash"><i class="fa-solid fa-trash"></i></button>
+            <button data-toggle="tooltip" data-placement="right" title="View Bus" class="icon-trash btn-delete2"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";
           }
         ?>
       </tbody>
     </table>
+    <!-- Modal -->
+    <div class="modal-container" id="myModal">
+      <div class="modal-wrapper bg-white">
+        <div class="modall">
+          <header>
+            <h2>Confirmation</h2>
+          </header>
+          <main>
+            <div class="icon-wrapper">
+              <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <div class="text-wrapper">
+              <span>Are you sure you want to delete?</span>
+            </div>
+          </main>
+          <footer>
+            <div class="btn-container">
+              <div class="cancel-wrapper">
+                <button class="btn btn-cancel">Cancel</button>
+              </div>
+              <div class="delete-confirm-wrapper">
+                <button class="btn btn-confirm">
+                  <i class="fa-solid fa-trash"></i>
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
   </div>
 
   </body>
