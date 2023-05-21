@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-<link rel="stylesheet" href="admin.css">
+  <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/modal.css" />
   </head>
   <style>
@@ -16,6 +18,7 @@
   <body>
   
   <div>
+  <h2 class="text-center text-primary mt-5 mb-5">View Bus</h2>
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>
@@ -37,11 +40,31 @@
 
           foreach ($data as $row) {
             echo "<tr>";
-            echo "<td>".$row['Driver name']."</td>";
-            echo "<td>".$row['capacity']."</td>";
-            echo "<td>".$row['Station']."</td>";
-            echo "<td>".$row['Mechanicdue date']."</td>";
-            echo "<td>".$row['Insurance number']."</td>";
+            echo '<td>';
+              echo '<select class="station-dropdown">';
+
+              $stationData = ['Mohammad Yassine', 'Khodor haj hassan', 'Hassan Barada','Razan'];
+              foreach ($stationData as $station) {
+                $selected = $station == $row['Driver name'] ? 'selected' : '';
+                echo '<option value="'.$station.'" '.$selected.'>'.$station.'</option>';
+              }
+
+              echo '</select>';
+              echo '</td>';
+              echo "<td>".$row['capacity']."</td>";
+            echo '<td>';
+              echo '<select class="station-dropdown">';
+
+              $stationData = ['Tripoli', 'Beirut', 'Saida'];
+              foreach ($stationData as $station) {
+                $selected = $station == $row['Station'] ? 'selected' : '';
+                echo '<option value="'.$station.'" '.$selected.'>'.$station.'</option>';
+              }
+
+              echo '</select>';
+              echo '</td>';
+            echo '<td><input type="date" value="'.$row['Mechanicdue date'].'"></td>';
+            echo '<td><input type="text" value="'.$row['Insurance number'].'"></td>';
             echo "<td>".$row['Accidents number']."</td>";
             echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash"><i class="fa-solid fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="View Bus" class="icon-trash btn-delete2"><i class="fa-solid fa-trash"></i></button>
