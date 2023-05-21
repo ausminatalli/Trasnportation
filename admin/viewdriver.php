@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="admin.css" />
     <link rel="stylesheet" href="css/modal.css" />
     <title>Skyline View Drivers</title>
   </head>
@@ -18,25 +17,29 @@
         margin-bottom: 0px;
       }
 
-      .green {
-        background-color: green !important;
-        border: 1px solid;
-        width: 30px;
-      }
+      .active {
+  color: green !important;
+}
 
-      .red {
-        background-color: red !important;
-        border: 1px solid;
-        width: 30px;
-      }
+.inactive {
+  color: red !important;
+}
+.valid {
+  color: green !important;
+}
+
+.expired {
+  color: red !important;
+}
 
       .action-buttons {
         display: flex;
         gap: 10px;
       }
+    
     </style>
     <div>
-      <h2 class="text-center">View Driver</h2>
+    <h2 class="text-center text-primary mt-5 mb-5">View Driver</h2>
       <table id="myTable" class="table table-striped" style="width: 100%">
         <thead>
           <tr>
@@ -49,7 +52,6 @@
             <th>LicenseEx</th>
             <th>Online</th>
             <th>Action</th>
-            <!-- Added column for the block button -->
           </tr>
         </thead>
         <tbody>
@@ -58,8 +60,8 @@
             $data = json_decode($jsonData, true);
 
             foreach ($data as $row) {
-              $onlineClass = $row['Online'] == 1 ? 'green' : 'red';
-              $licenseClass = $row['LicenseExpired'] == 1 ? 'green' : 'red';
+              $onlineClass = $row['Online'] == 1 ? 'Active' : 'Inactive';
+              $licenseClass = $row['LicenseExpired'] == 1 ? 'Valid' : 'Expired';
               echo "<tr>";
               echo "<td>".$row['Firstname']."</td>";
               echo "<td>".$row['Lastname']."</td>";
@@ -77,8 +79,8 @@
               echo '</select>';
               echo '</td>';
               echo '<td><input type="date" value="'.$row['Licensedate'].'"></td>';
-              echo '<td class="'.$licenseClass.'"></td>';
-              echo '<td class="'.$onlineClass.'"></td>';
+              echo '<td class="' . strtolower($licenseClass) . '">' . $licenseClass . '</td>';
+              echo '<td class="' . strtolower($onlineClass) . '">' . $onlineClass . '</td>';
               echo '<td>';
               echo '<div class="action-buttons">';
               echo '<button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash"><i class="fa-solid fa-user-pen"></i></button> | ';

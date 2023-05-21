@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="admin.css">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/modal.css" />
 </head>
 <body>
-  <h2 class="text-center text-primary mt-5 mb-5">Manage Admins</h2>
   
   <style>
     .btn {
@@ -18,7 +19,7 @@
     }
   </style>
   <div>
-    
+  <h2 class="text-center text-primary mt-5 mb-5">View Admin</h2>
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>

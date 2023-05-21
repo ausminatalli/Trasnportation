@@ -83,3 +83,6 @@ input[type=number] {
     transform: scale(1.5);
     transition: all 0.3s;
    }
+   .btn-primary{
+    padding: 10px 68px
+   }
