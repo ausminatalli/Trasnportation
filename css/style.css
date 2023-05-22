@@ -21,9 +21,17 @@
   grid-template-columns: repeat(3,1fr);
   gap: 20px;
 }
+.gridT2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
 
 .marginT{
   margin: 40px;
+}
+.marginTop{
+  margin: 40px 0px;
 }
 
 .padding20{
@@ -402,6 +410,27 @@ input::placeholder{
     font-size: 12px;
 
 }
+
+.select {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 5px;
+  color: grey;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"></svg>') no-repeat right center;
+  background-size: 14px 14px;
+  padding-right: 16px; /* Adjust this value to create space for the arrow */
+}
+
+.select:first-child {
+  /* Add your custom styles here */
+  font-weight: bold;
+  color: red ;
+}
 label{
     font-weight: 500;
     font-size: 14px;
@@ -536,7 +565,60 @@ input[type="date"]{
 
 
 /* Filter section */
+/* About-us */
+.about-img{
+  width: 100%;
+}
 
+.about-img img{
+  width: 100%;
+}
+.about-inf ul li{
+
+  margin-bottom: 20px;
+
+}
+.about-inf ul li span{
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.about-inf ul li a{
+  display: block;
+  width: 150px;
+  height: 50px;
+  background-color: var(--mainColor);
+  border-radius: 5px;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+
+}
+.about-inf ul li a:hover{
+  background-color: #072a43;
+  transition: all 0.4s;
+  cursor: pointer;
+
+}
+
+
+@media (max-width:768px) {
+  .gridT2{
+    grid-template-columns: 1fr;
+  }
+  .about-us h2{
+    font-size: 32px !important;
+    font-weight: 400 !important;
+  }
+.about-inf ul li a{
+margin: 0 auto;
+  
+}
+}
+
+/* About-us */
 /* why choose skyline User start */
 
 .whySkyline{
@@ -545,11 +627,13 @@ input[type="date"]{
 .why-content{
   display: flex;
   background-color: #E6FEF2 ;
-  padding: 20px ;
   border-radius: 20px;
   text-transform: capitalize;
 }
-
+.container.why-content{
+  padding: 20px 40px;
+  
+}
 .why-left {
   width: 50%;
 }
@@ -569,14 +653,14 @@ input[type="date"]{
 }
 .why-left a{
   display: block;
-  width: 150px;
-  height: 40px;
-  font-size: 18px;
+  width: 180px;
+  height: 50px;
+  font-size: 22px;
   color: white;
   background-color: var(--mainColor);
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
-  line-height: 40px;
+  line-height: 50px;
 }
 .why-left a:hover{
   background-color: #092f4a;

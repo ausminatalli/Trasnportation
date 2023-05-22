@@ -31,14 +31,26 @@
           <div class="form1">
             <div class="origin">
               <label for="from">From</label>
-              <input type="text" placeholder="Leaving Form" />
+              <select class="select" name="" id="">
+                      <option selected value="">Leaving From</option>
+                      <option value="Beirut">Beirut</option>
+                      <option value="Baalbek">Baalbek</option>
+                      <option value="Saida">Saida</option>
+                      <option value="Nabatieh">Nabatieh</option>
+                    </select>
             </div>
             <div class="switch">
               <button><i class="fa-solid fa-arrows-rotate"></i></button>
             </div>
             <div class="origin">
               <label for="from">Destination</label>
-              <input type="text" placeholder="Going To" />
+              <select class="select" name="" id="">
+                      <option selected value="">Going To</option>
+                      <option value="Beirut">Beirut</option>
+                      <option value="Baalbek">Baalbek</option>
+                      <option value="Saida">Saida</option>
+                      <option value="Nabatieh">Nabatieh</option>
+                    </select>
             </div>
           </div>
           <div class="form1 form22">
@@ -49,7 +61,7 @@
 
             <div class="origin dest">
               <label for="from">Time</label>
-              <input type="text" placeholder="Select Time" />
+              <input type="time" placeholder="Select Time" />
             </div>
           </div>
           <div class="form2">
