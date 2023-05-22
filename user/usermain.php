@@ -27,11 +27,11 @@
     <div class="usermain">
     <section class="filter" style="padding-top: 60px">
       <div class="filter-contant container">
-        <form class="form" action="">
+        <form class="form" action="#">
           <div class="form1">
             <div class="origin">
-              <label for="from">From</label>
-              <select class="select" name="" id="">
+              <label for="origin">From</label>
+              <select class="select" name="" id="origin">
                       <option selected value="">Leaving From</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -43,8 +43,8 @@
               <button><i class="fa-solid fa-arrows-rotate"></i></button>
             </div>
             <div class="origin">
-              <label for="from">Destination</label>
-              <select class="select" name="" id="">
+              <label for="destination">Destination</label>
+              <select class="select" name="" id="destination">
                       <option selected value="">Going To</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -55,7 +55,7 @@
           </div>
           <div class="form1 form22">
             <div class="origin custom-date-input">
-              <label for="from">Date</label>
+              <label for="date">Date</label>
               <input type="date" placeholder="Choose Date" />
             </div>
 
@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="form2">
-            <button>
+            <button onclick="calculateDistance()">
               Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
@@ -146,16 +146,6 @@
 
     ?>
     </div>
-    <script>
-      var map = L.map("map").setView([33.8938, 35.5018], 8);
-
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      }).addTo(map);
-
-     
-
-    </script>
+   <script src='js/usermain.js'></script>
   </body>
 </html>
