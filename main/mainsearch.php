@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="form2">
-                <button id='submit' c>Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                <button id='submit' onclick="calculateDistance()">Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
             </div>
             </form>
         </div>
