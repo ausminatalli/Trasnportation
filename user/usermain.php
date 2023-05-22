@@ -135,14 +135,15 @@
     ?>
     </div>
     <script>
-      var map = L.map("map").setView([33.8938, 37.5018], 8);
+      var map = L.map("map").setView([33.8938, 35.5018], 8);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.openOn(map);
+     
+
     </script>
   </body>
 </html>
