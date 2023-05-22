@@ -21,12 +21,14 @@
     opacity: 1;
   }
   .modall {
+    padding-bottom: 30px;
     width: 500px;
     min-height: 275px;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 15px rgba(34, 34, 53, 0.1);
   }
+ 
   header {
     padding: 25px 0;
     display: flex;
@@ -56,12 +58,14 @@
     color: #32324d;
   }
   /* Footer */
-  footer {
+  /* footer {
     padding: 17px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
+
+  
   .btn-container {
     display: flex;
     justify-content: center;
