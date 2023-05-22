@@ -18,7 +18,8 @@
   <script>
   new WOW().init();
   </script>
-</body>
+  <script src="./main/js/mainsearch.js"></script>
+
    
     <section class="top-nav">
         <div class="logo wow slideInRight" data-wow-duration="2s" data-wow-delay="" >
@@ -52,9 +53,9 @@
         <div class="filter-contant container">
             <form class="form" action="">
                 <div class="form1">
-                <div class="origin">
+                <div  class="origin">
                     <label for="from">From</label>
-                    <select class="select" name="" id="">
+                    <select  class="select" name="" id="location1">
                       <option selected value="">Leaving From</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -63,11 +64,12 @@
                     </select>
                 </div>
                 <div class="switch">
-                    <button><i class="fa-solid fa-arrows-rotate"></i></button>
+                    <button onclick="toggleLocation(event)"><i class="fa-solid fa-arrows-rotate"></i></button>
                 </div>
+                
                 <div class="origin">
                     <label for="from">Destination</label>
-                    <select class="select" name="" id="">
+                    <select class="select" name="" id="location2">
                       <option selected value="">Going To</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -114,9 +116,9 @@
             <div  class="busimg ">
               <img src="https://i.ibb.co/HCzS3bq/bus.png" alt="">
             </div >
-            <h2 class="mb-4">About us</h2>
+            <h2 class="mb-5">About us</h2>
             <div class="gridT2">
-              <div class="about-inf">
+              <div class="about-inf mt-5">
               <ul>
                 <li><span>Welcome to Skyline</span> , your go-to platform for convenient and reliable bus transportation services. Whether you're commuting, planning a weekend getaway, or visiting loved ones, we provide a seamless travel experience.
 
@@ -202,7 +204,7 @@ Thank you for choosing Skyline. We look forward to serving you and providing you
               
             </div>
             <div class="why-right wow slideInRight" data-wow-duration="1s">
-                <img class="imgbus" src="./img/busback.png" alt="">
+                <img class="imgbus2" src="./img/busback.png" alt="">
             </div>
 
         </div>
@@ -368,6 +370,9 @@ Thank you for choosing Skyline. We look forward to serving you and providing you
   <script src="js/demo.js"></script>
   <script>
   new WOW().init();
+  </script>
+  <script>
+
   </script>
 </body>
 </html>

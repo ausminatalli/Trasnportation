@@ -122,3 +122,19 @@ L.popup()
 })
 
 }
+
+// Switch
+
+function toggleLocation(event){
+
+  event.preventDefault();
+
+  let select1 = document.getElementById("location1");
+  let select2 = document.getElementById("location2");
+
+  let swich= select1.value;
+  select1.value=select2.value;
+  select2.value=swich;
+}
+
+// Switch

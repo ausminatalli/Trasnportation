@@ -31,7 +31,7 @@
           <div class="form1">
             <div class="origin">
               <label for="origin">From</label>
-              <select class="select" name="" id="origin">
+              <select class="select" name="" id="location1">
                       <option selected value="">Leaving From</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -40,11 +40,11 @@
                     </select>
             </div>
             <div class="switch">
-              <button><i class="fa-solid fa-arrows-rotate"></i></button>
+            <button onclick="toggleLocation(event)"><i class="fa-solid fa-arrows-rotate"></i></button>
             </div>
             <div class="origin">
               <label for="destination">Destination</label>
-              <select class="select" name="" id="destination">
+              <select class="select" name="" id="location2">
                       <option selected value="">Going To</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -146,6 +146,23 @@
 
     ?>
     </div>
-   <script src='js/usermain.js'></script>
+   <script src='./js/usermain.js'></script>
+   <script>
+    // Switch
+
+function toggleLocation(event){
+
+event.preventDefault();
+
+let select1 = document.getElementById("location1");
+let select2 = document.getElementById("location2");
+
+let swich= select1.value;
+select1.value=select2.value;
+select2.value=swich;
+}
+
+// Switch
+   </script>
   </body>
 </html>
