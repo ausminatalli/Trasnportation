@@ -98,6 +98,10 @@ a{
   p {
     font-size: 12px !important;
   }
+
+  .gridT3 {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media (max-width: 468px) {
   h1 {
@@ -122,6 +126,9 @@ a{
 
   p {
     font-size: 10px !important;
+  }
+  .gridT3 {
+    grid-template-columns: 1fr;
   }
 }
 /*  Navbar start here !!!!! */
@@ -438,8 +445,8 @@ label{
 
 .switch{
   width: 20%;
-
 }
+
 .switch button{
 background-color: white;
 border: 0 solid;
@@ -625,17 +632,21 @@ margin: 0 auto;
 margin: 20px 0;
 }
 .why-content{
-display: flex;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
 background-color: #E6FEF2 ;
 border-radius: 20px;
 text-transform: capitalize;
+padding: 20px;
 }
-.container.why-content{
-padding: 20px 40px;
 
+.container.why-content{
+padding: 25px;
 }
+
 .why-left {
-width: 50%;
+width: 100%;
 }
 .why-left h3{
 font-size: 2rem;
@@ -650,6 +661,7 @@ list-style: disc;
 font-size: 12px;
 margin-bottom: 30px;
 margin-left: 10px;
+padding: 0;
 }
 .why-left a{
 display: block;
@@ -667,38 +679,50 @@ background-color: #092f4a;
 transition: all 0.5s;
 }
 .why-right{
-width: 50%;
+width: 100%;
+height: 100%;
 }
 .why-right img {
 width: 100%;
 height: 100%;
 }
-.why-right .imgbus{
-height: 100%;
+.why-right .imgbus2 {
+width:100%;
+height: 80%;
 }
 .why-driver{
 background-color:#FFBC97 ;
 height: 400px;
 }
 @media (max-width:768px) {
-.why-content{
-  flex-direction: column;
-  width: 90% !important;
+.container.why-content{
+width: 90%;
+grid-template-columns: 1fr;
+text-align: center;
 }
 .why-left{
   width: 100%;
   text-align: center;
 }
+.why-left ul {
+  text-align: center;
+  margin: 0 !important;
+}
 .why-left h3{
   font-size: 2.5rem !important;
+  text-align: center;
 }
 
 .why-left ul{
   list-style: none;
 }
 .why-left a{
-  margin: auto;
+  margin: 20px auto;
   width: 80%;
+}
+.why-left h5 {
+  text-align: center;
+  font-weight: 700;
 }
 .why-right{
   width: 100%;
@@ -784,12 +808,17 @@ z-index: 99;
 }
 
 @media (max-width:600px) {
+.top-img {
+height: 150px;
+}
+
 .top-img h5{
-  font-size: 8px !important;
-  top: 60%;
+  font-size: 18px !important;
+  top: 80%;
   font-weight: 400;
 
 }
+
 }
 
 /* Top Travel Start */

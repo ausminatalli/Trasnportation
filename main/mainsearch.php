@@ -27,14 +27,26 @@
                 <div class="form1">
                 <div class="origin">
                     <label for="origin">From</label>
-                    <input id="origin" type="text" placeholder="Leaving Form">
+                    <select class="select" name="" id="location1">
+                      <option selected value="">Leaving From</option>
+                      <option value="Beirut">Beirut</option>
+                      <option value="Baalbek">Baalbek</option>
+                      <option value="Saida">Saida</option>
+                      <option value="Nabatieh">Nabatieh</option>
+                    </select>
                 </div>
                 <div class="switch">
-                    <button><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button onclick="toggleLocation(event)"><i class="fa-solid fa-arrows-rotate"></i></button>
                 </div>
                 <div class="destination">
-                    <label for="destination">Destination</label>
-                    <input id="destination" type="text" placeholder="Going To">
+                    <label for="destination">Destination</label><br>
+                    <select class="select" name="" id="location2">
+                      <option selected value="">Leaving From</option>
+                      <option value="Beirut">Beirut</option>
+                      <option value="Baalbek">Baalbek</option>
+                      <option value="Saida">Saida</option>
+                      <option value="Nabatieh">Nabatieh</option>
+                    </select>
                 </div>
             </div>
             <div class="form1 form22">
