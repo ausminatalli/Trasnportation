@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../admin/css/modal.css">
   <title>Booking Management</title>
+  </head>
   <style>
     body {
       background-color: var(--backColor) !important;
@@ -17,7 +18,9 @@
       margin-top: 5rem;
       margin-bottom: 5rem;
     }
-
+    .send{
+      margin-bottom:30px;
+    }
     .one {
       font-weight: bold;
     }
@@ -31,8 +34,22 @@
   padding: 0;
   cursor: pointer;
 }
+footer{
+  margin-top:40px;
+}
+.comment-area {
+  padding:10px;
+}
+.comment-area textarea{
+  border:none;
+  border-bottom:1px solid #ddd;
+  padding:10px;
+  outline: red;
+
+
+}
+
   </style>
-</head>
 
 <body>
   <?php include('header.html'); ?>
@@ -147,7 +164,7 @@
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  Send message <i class="fa fa-long-arrow-right ml-1"></i>
+                  Send message
                 </button>
               </div>
             </div>
@@ -187,10 +204,10 @@
       </div>
     </div>
       
+    <?php include('../main/footer.html'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="bookingmodal.js"></script>
-    <?php include('../main/footer.html'); ?>
 </body>
 
 </html>
