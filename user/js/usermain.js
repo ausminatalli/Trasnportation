@@ -123,3 +123,16 @@ L.popup()
 })
 
 }
+
+
+function toggleLocation(event){
+
+  event.preventDefault();
+  
+  let select1 = document.getElementById("origin");
+  let select2 = document.getElementById("destination");
+  
+  let switching= select1.value;
+  select1.value=select2.value;
+  select2.value=switching;
+  }

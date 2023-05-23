@@ -129,8 +129,8 @@ function toggleLocation(event){
 
   event.preventDefault();
 
-  let select1 = document.getElementById("location1");
-  let select2 = document.getElementById("location2");
+  let select1 = document.getElementById("origin");
+  let select2 = document.getElementById("destination");
 
   let swich= select1.value;
   select1.value=select2.value;

@@ -27,7 +27,7 @@
                 <div class="form1">
                 <div class="origin">
                     <label for="origin">From</label>
-                    <select class="select" name="" id="location1">
+                    <select class="select" name="" id="origin">
                       <option selected value="">Leaving From</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="destination">
                     <label for="destination">Destination</label><br>
-                    <select class="select" name="" id="location2">
+                    <select class="select" name="" id="destination">
                       <option selected value="">Leaving From</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>

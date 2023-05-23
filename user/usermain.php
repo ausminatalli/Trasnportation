@@ -31,7 +31,7 @@
           <div class="form1">
             <div class="origin">
               <label for="origin">From</label>
-              <select class="select" name="" id="location1">
+              <select class="select" name="" id="origin">
                       <option selected value="">Leaving From</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -44,7 +44,7 @@
             </div>
             <div class="origin">
               <label for="destination">Destination</label>
-              <select class="select" name="" id="location2">
+              <select class="select" name="" id="destination">
                       <option selected value="">Going To</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -154,8 +154,8 @@ function toggleLocation(event){
 
 event.preventDefault();
 
-let select1 = document.getElementById("location1");
-let select2 = document.getElementById("location2");
+let select1 = document.getElementById("origin");
+let select2 = document.getElementById("destination");
 
 let swich= select1.value;
 select1.value=select2.value;
