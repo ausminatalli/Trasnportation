@@ -89,7 +89,7 @@
     color: #20415b;
     font-weight: 700;
   }
-  @media (max-width:768px) {
+  @media (max-width:1100px) {
 
     .con2{
       width: 90%;
