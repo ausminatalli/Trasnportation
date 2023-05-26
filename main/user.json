@@ -19,4 +19,18 @@
 "destination": "Saida",
 "totaltime": "1h 20m",
 "price": "120000 L.L"     
- } ]
+ },
+ {"from": "09:00 Am",
+ "origin": "Sour",
+ "to": "10:20 AM",
+ "destination": "Saida",
+ "totaltime": "1h 20m",
+ "price": "120000 L.L"     
+  } ,
+  {"from": "09:00 Am",
+  "origin": "Sour",
+  "to": "10:20 AM",
+  "destination": "Saida",
+  "totaltime": "1h 20m",
+  "price": "120000 L.L"     
+   }  ]

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="searchresult.css">
     <title>Skyline Main Search Page</title>
 </head>
@@ -14,72 +15,63 @@
     <style>
       #map {
         width: 100%;
-        height: 320px;
+        height: 400px;
       }
+      .scrollable-container {
+            height: 400px;
+            overflow: auto;
+            padding: 0 10px;
+        }
+        /*       ScrollBar 1        */
+        
+        .scrollable-container::-webkit-scrollbar {
+            width: 16px;
+        }
+        
+        .scrollable-container::-webkit-scrollbar-track {
+            border-radius: 8px;
+            background-color: #e7e7e7;
+            border: 1px solid #cacaca;
+        }
+        
+        .scrollable-container::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+          border: 3px solid transparent;
+           background-clip: content-box;
+            background-color: #d55959;
+        }
+        #result-container{
+          margin-left:-15px;
+        }
+        @media (max-width: 767px) {
+        .row.flex-column-reverse-sm {
+          flex-direction: column-reverse !important;
+        }
+      }
+      
+      
     </style>
     <?php   
    include('header.html');
     ?>
   
     <section class="filter" style='padding-top:60px'>
-        <div class="filter-contant container">
-            <form class="form" action="#">
-                <div class="form1">
-                <div class="origin">
-                    <label for="origin">From</label>
-                    <select class="select" name="" id="origin">
-                      <option selected value="">Leaving From</option>
-                      <option value="Beirut">Beirut</option>
-                      <option value="Baalbek">Baalbek</option>
-                      <option value="Saida">Saida</option>
-                      <option value="Nabatieh">Nabatieh</option>
-                    </select>
-                </div>
-                <div class="switch">
-                <button onclick="toggleLocation(event)"><i class="fa-solid fa-arrows-rotate"></i></button>
-                </div>
-                <div class="destination">
-                    <label for="destination">Destination</label><br>
-                    <select class="select" name="" id="destination">
-                      <option selected value="">Leaving From</option>
-                      <option value="Beirut">Beirut</option>
-                      <option value="Baalbek">Baalbek</option>
-                      <option value="Saida">Saida</option>
-                      <option value="Nabatieh">Nabatieh</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form1 form22">
-                <div class="origin custom-date-input">
-                    <label for="date">Date</label>
-                    <input id="date" type="date" placeholder="Choose Date">
-                </div>
-              
-                <div class="origin dest">
-                    <label for="time">Time</label>
-                    <input id="time" type="text" placeholder="Select Time">
-                </div>
-            </div>
-            <div class="form2">
-                <button id='submit' onclick="calculateDistance()">Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-            </div>
-            </form>
-        </div>
+        <!-- Filter section code here -->
     </section>
 
     <div class="container mt-4">
-        <div class="row">
+        <div class="row flex-column-reverse-sm">
+            <h5 class="card-title mb-2 mt-lg-0 mt-sm-4">Result: 6</h5>
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Result:</h5>
-                        <div class="resultcontainer">
+                <div class="card mt-lg-0 mt-sm-4">
+                    <div class="card-body scrollable-container " >
+                        <div id="result-container" >
                             <?php
                             $data = json_decode(file_get_contents("user.json"), true);
 
                             foreach ($data as $item) {
                                 ?>
-                                <div class="box">
+                                 <div class="box">
                                     <div class="leftsection">
                                         <div class="firstrow">
                                             <i class="fa-solid fa-location-dot fa-xs" id="uppericon"></i>
@@ -119,6 +111,7 @@
     <?php include('footer.html'); ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="js/mainsearch.js"></script>
 </body>
 </html>
