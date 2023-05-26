@@ -58,11 +58,11 @@ footer{
       <div class="col-md-12">
         <div class="text mt-5 mb-5">
           <h1 class="mb-5">Manage Your Bookings</h1>
-          <div class="ms-5">
-            <p>View and manage your booked bus tickets below. To <span class="one">cancel</span> a booking, simply
-              click the "Cancel" button. Please note that cancellations must be made at least <span class="one">2
+          <div class="">
+            <p class>View and manage your booked bus tickets below. To <span class="one text-danger">cancel</span> a booking, simply
+              click the "Cancel" button. Please note that cancellations must be made at least <span class="one text-warning">2
                 hours</span> prior to the scheduled departure time.</p>
-            <p>We recommend that you arrive at the bus stop at least <span class="two">15 minutes</span> before the
+            <p>We recommend that you arrive at the bus stop at least <span class="two text-primary">15 minutes</span> before the
               scheduled departure time to ensure a timely departure.</p>
             <p>After your trip has ended, we welcome your feedback to help us improve our service.</p>
           </div>
