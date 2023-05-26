@@ -22,7 +22,7 @@ input[type=number] {
         background-position: center;
         background-size: cover;
         padding: 100px 0px;
-        height: 100vh;
+        height: 1000px;
         position: relative;
     }
     .Profile{
@@ -138,10 +138,20 @@ input[type=number] {
             position: relative;
         }
             .fa-eye{
-            position: absolute;
-            right: 20px;
-            cursor: pointer;
-        }
+                position: absolute;
+                right: 30px !important;
+                cursor: pointer;
+                top: 15px !important;
+                font-size: 20px !important;
+            }
+            .fa-eye-slash{
+                position: absolute;
+                right: 30px !important;
+                cursor: pointer;
+                top: 15px !important;
+                font-size: 20px !important;
+
+            }
 
         .check{
             display: flex;
@@ -180,6 +190,21 @@ input[type=number] {
             color: #0A3B5F;
             font-weight: 400;
         }
+        @media (max-width:1130px) {
+            
+            .login-content{
+                width: 70%;
+
+            }
+        }
+        @media (max-width:930px) {
+            
+            .login-content{
+                width: 80%;
+
+            }
+        }
+           
 
         @media (max-width:768px) {
             
