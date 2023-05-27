@@ -43,6 +43,7 @@
             echo "<tr>";
             echo "<td>".$row['Bus ID']."</td>";
             echo '<td>';
+            
               echo '<select class="station-dropdown">';
 
               $stationData = ['Mohammad Yassine', 'Khodor haj hassan', 'Hassan Barada','Razan'];

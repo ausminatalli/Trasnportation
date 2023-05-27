@@ -27,9 +27,8 @@
           
       </section>
     
-    
-    <section class="container p-5 ">
-        <h2 class="mb-5 h1">Day Off History</h2>
+      <section class="container p-5 ">
+        <h2 class="mb-5"></h2>
         <div class="row">
             <div class="col">
                 <form class="d-flex">
@@ -43,49 +42,65 @@
       <table id="trip-table" class="table mt-5 ">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" class="h5 p-3">Full Name</th>
-                <th scope="col" class="h5 p-3">Email</th>
-                <th scope="col" class="h5 p-3">Phone Number</th>
-                <th scope="col" class="h5 p-3">Start Date</th>
-                <th scope="col" class="h5 p-3">End Date</th>
-                <th scope="col" class="h5 p-3">Reason</th>
-                <th scope="col" class="h5 p-3">Response</th>
+                <th scope="col">#Vacation req</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Response</th>
             </tr>
 
         </thead>
         <tbody>
             <tr>
-                <td scope="row" class="h6 p-3">Razan AlBitar</td>
-                <td class="h6 p-3">razanbittar57@gmail.com</td>
-                <td class="h6 p-3">+961 81768974</td>
-                <td class="h6 p-3">05/05/2023</td>
-                <td class="h6 p-3">21/05/2023</td>
-                <td class="h6 p-3">Vacation</td>
-                <td class="text-danger font-weight-bold h6 p-3">Declined</td>
+                <th scope="row">1</th>
+                <td>12/07/2023</td>
+                <td>30/07/2023</td>
+                <td>Death</td>
+                <td class="text-success font-weight-bold">Accept</td>
             </tr>
             <tr>
-                <td scope="row" class="h6 p-3" >Razan AlBitar</td>
-                <td class="h6 p-3">razanbittar57@gmail.com</td>
-                <td class="h6 p-3">+961 81768974</td>
-                <td class="h6 p-3">07/09/2023</td>
-                <td class="h6 p-3">10/09/2023</td>
-                <td class="h6 p-3">Illness</td>
-                <td class="text-success font-weight-bold h6 p-3">Accepted</td>
+                <th scope="row">2</th>
+                <td>05/05/2023</td>
+                <td>22/05/2023</td>
+                <td>Vacation</td>
+                <td class="text-danger font-weight-bold">Reject</td>
             </tr>
             <tr>
-                <td scope="row" class="h6 p-3">Razan AlBitar</td>
-                <td class="h6 p-3">razanbittar57@gmail.com</td>
-                <td class="h6 p-3">+961 81768974</td>
-                <td class="h6 p-3">07/09/2023</td>
-                <td class="h6 p-3">08/09/2023</td>
-                <td class="h6 p-3">Death</td>
-                <td class="text-success font-weight-bold h6 p-3">Accepted</td>
+                <th scope="row">3</th>
+                <td>16/09/2023</td>
+                <td>18/09/2023</td>
+                <td>Vacation</td>
+                <td class="text-warning font-weight-bold">In Progress</td>
             </tr>
         </tbody>
       </table>
       </section>
+    
+   
       <?php
       include('../main/footer.html')
       ?>
+       <script>
+    const searchInput = document.getElementById('search-input');
+    const tripTable = document.getElementById('trip-table');
+    const tableRows = tripTable.getElementsByTagName('tr');
+
+    searchInput.addEventListener('input', function() {
+      const searchQuery = searchInput.value.toLowerCase();
+
+      for (let i = 1; i < tableRows.length; i++) {
+        const row = tableRows[i];
+        const rowData = row.innerText.toLowerCase();
+
+        if (rowData.includes(searchQuery)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 </body>
 </html>

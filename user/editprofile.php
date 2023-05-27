@@ -26,8 +26,8 @@
                 <p>PLEASE ENTER YOUR NEW INFORMATION</p>
                 <form action="">
                     <div class="flexSb gap-2">
-                        <input type="text" name="" placeholder="Name" id="">
-                        <input type="text" name="" placeholder="Last Name" id="">
+                        <input type="text" name="" placeholder="Name" id="" value="hassan">
+                        <input type="text" name="" placeholder="Last Name" id="" value="barada">
                     </div>
                     <input type="number" required placeholder="Your Phone Number">
                     <div class="flexSb password">

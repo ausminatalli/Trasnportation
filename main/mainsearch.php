@@ -52,11 +52,55 @@
       
     </style>
     <?php   
-   include('header.html');
+   include('headersearch.html');
     ?>
   
     <section class="filter" style='padding-top:60px'>
-        <!-- Filter section code here -->
+    <div class="filter-contant container">
+        <form class="form" action="#">
+          <div class="form1">
+            <div class="origin">
+              <label for="origin">From</label>
+              <select class="select" name="" id="origin">
+                      <option selected value="">Leaving From</option>
+                      <option value="Beirut">Beirut</option>
+                      <option value="Baalbek">Baalbek</option>
+                      <option value="Saida">Saida</option>
+                      <option value="Nabatieh">Nabatieh</option>
+                    </select>
+            </div>
+            <div class="switch">
+            <button onclick="toggleLocation(event)"><i class="fa-solid fa-arrows-rotate"></i></button>
+            </div>
+            <div class="origin">
+              <label for="destination">Destination</label>
+              <select class="select" name="" id="destination">
+                      <option selected value="">Going To</option>
+                      <option value="Beirut">Beirut</option>
+                      <option value="Baalbek">Baalbek</option>
+                      <option value="Saida">Saida</option>
+                      <option value="Nabatieh">Nabatieh</option>
+                    </select>
+            </div>
+          </div>
+          <div class="form1 form22">
+            <div class="origin custom-date-input">
+              <label for="date">Date</label>
+              <input type="date" placeholder="Choose Date" />
+            </div>
+
+            <div class="origin dest">
+              <label for="from">Time</label>
+              <input type="time" placeholder="Select Time" />
+            </div>
+          </div>
+          <div class="form2">
+            <button onclick="calculateDistance()">
+              Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
 
     <div class="container mt-4">
