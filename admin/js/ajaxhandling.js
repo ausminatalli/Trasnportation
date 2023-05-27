@@ -148,6 +148,15 @@ function ApplicationDelete() {
   });
   
 }
+function content(){
+  console.log('Loaded')
+}
+function loadScript(url) {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = url;
+  document.head.appendChild(script);
+}
 // Use a single function to load content and initialize DataTable
 function loadContent(url) {
   let xhr = new XMLHttpRequest();
@@ -171,6 +180,7 @@ function loadContent(url) {
 else if(url==='applications.php'){
   ApplicationDelete();
 }
+
   };
   xhr.open("GET", url, true);
   xhr.send();
@@ -193,8 +203,10 @@ addtrip.addEventListener("click", function () {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("content").innerHTML = this.responseText;
+      loadScript('js/validation/tripvalidation.js');
     }
   };
+ 
   xhr.open("GET", "addtrip.html", true);
   xhr.send();
 });
@@ -211,6 +223,7 @@ adddriver.addEventListener("click", function () {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("content").innerHTML = this.responseText;
+      loadScript('js/validation/drivervalidation.js');
     }
   };
   xhr.open("GET", "adddriver.html", true);
@@ -229,6 +242,7 @@ addbus.addEventListener("click", function () {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("content").innerHTML = this.responseText;
+      loadScript('js/validation/busvalidation.js');
     }
   };
   xhr.open("GET", "addbus.html", true);
@@ -269,6 +283,7 @@ addadmin.addEventListener("click", function () {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("content").innerHTML = this.responseText;
+      loadScript('js/validation/adminvalidation.js');
     }
   };
   xhr.open("GET", "addadmin.html", true);
