@@ -16,6 +16,23 @@
     #myTable {
       margin-bottom: 0px;
     }
+    .refund{
+      color:blue;
+    }
+    .refund:hover
+    {
+      color:red;
+      cursor: pointer;
+      font-size:42px
+    }
+    .review{
+      color:#9FA909;
+    }
+    .review:hover{
+      color:gold;
+      cursor: pointer;
+      font-size:42px
+    }
   </style>
   <div>
   <h2 class="text-center text-primary mt-5 mb-5">Payments</h2>
@@ -29,7 +46,7 @@
           <th>LastName</th>
           <th>AmountPaid</th>
           <th>Review</th>
-          <th>Action</th>
+          <th>Refund</th>
           <!-- Added column for the block button -->
         </tr>
       </thead>
@@ -46,8 +63,8 @@
             echo "<td>".$row['Firstname']."</td>";
             echo "<td>".$row['LastName']."</td>";
             echo "<td>".$row['AmountPaid']."</td>";
-            echo '<td><button class="btn btn-primary">Review</button></td>';
-            echo '<td><button class="btn btn-danger">Refund</button></td>';
+            echo '<td><i class="fa-solid fa-star fa-xl review"></i></td>';
+            echo '<td><i class="fa-regular fa-credit-card fa-xl refund"></i></td>';
             echo "</tr>";
           }
         ?>
