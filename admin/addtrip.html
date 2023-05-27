@@ -12,15 +12,16 @@
     
     <h2 class="text-center text-primary mt-5 mb-5">Add Trip</h2>
     <div class="card-body content">
-      <h5>Add Trip Origin Destination Time and Driver</h5>
+      <form action="">
+      <h5 class="text-primary ">Add Trip Origin Destination Time and Driver</h5>
       <hr class="hr">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <h4>From</h4>
-            <select  class="form-control " style="width: 100%;">
+            <h5>From</h5>
+            <select  class="form-control " style="width: 100%;" id="startLocation">
 
-              <option selected="selected">Start Location</option>
+              <option selected="selected" >Start Location</option>
               <option>Beirut</option>
               <option>Saida</option>
               <option>Tyre</option>
@@ -33,9 +34,9 @@
         <!-- /.col -->
         <div class="col-md-6">
           <div class="form-group">
-          <h4>To</h4>
-            <select class="form-control"  style="width: 100%;">
-              <option selected="selected">Select Location</option>
+          <h5>To</h5>
+            <select class="form-control"  style="width: 100%;" id="destinationLocation">
+              <option selected="selected" >Select Location</option>
               <option>Beirut</option>
               <option>Saida</option>
               <option>Tyre</option>
@@ -51,16 +52,16 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-               <h4>Select Date</h4>
-            <input type="date" class="form-control"  style="width: 100%;">
+               <h5>Select Date</h5>
+            <input type="date" class="form-control"  style="width: 100%;" id="date">
             </div>
            
 
           </div>
           <div class="col-md-6">
             <div class="form-group">
-               <h4>Select Time</h4>
-               <input type="time" class="form-control">
+               <h5>Select Time</h5>
+               <input type="time" class="form-control" id="time">
             </div>
            
 
@@ -69,8 +70,8 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <h4>Select Bus</h4>
-              <select  class="form-control " style="width: 100%;">
+              <h5>Select Bus</h5>
+              <select  class="form-control " style="width: 100%;" id="busNumber">
   
                 <option selected="selected">Bus Number</option>
                 <option>1</option>
@@ -85,8 +86,8 @@
           <!-- /.col -->
           <div class="col-md-6">
             <div class="form-group">
-            <h4>Select Driver</h4>
-              <select class="form-control"  style="width: 100%;">
+            <h5>Select Driver</h5>
+              <select class="form-control"  style="width: 100%;" id="driverName">
                 <option selected="selected">Driver Name</option>
                 <option>Ta3an</option>
                 <option>Jahjeh</option>
@@ -97,10 +98,100 @@
           </div>
 
       
+     </div>
+     <hr class="hr">
+     <div class="bottom text-center">
+      <button class="btn btn-primary" >Submit</button>
+    </form>
     </div>
-    <hr class="hr">
-    <div class="bottom">
-      <button class="btn btn-primary " >Submit</button>
-    </div>
+  
+
+    <script>
+      const form = document.querySelector('form');
+      const startLocation = document.querySelector('#startLocation');
+      const destinationLocation = document.querySelector('#destinationLocation');
+      const date = document.querySelector('#date');
+      const time = document.querySelector('#time');
+      const busNumber = document.querySelector('#busNumber');
+      const driverName = document.querySelector('#driverName');
+
+      function showErrorMessage(input,message){
+
+        input.style.border = '1px solid red';
+
+        const errorMessage = document.createElement('span');
+        errorMessage.className = 'error-message';
+        errorMessage.style.color ='red';
+        errorMessage.style.fontSize = '13px';
+        errorMessage.textContent = `${message} *`;
+
+        input.parentNode.insertBefore(errorMessage, input);
+      }
+
+      function removeErrorMessage(input){
+
+        input.style.border ='1px solid initial';
+
+        const errorMessage = input.parentNode.querySelector('.error-message');
+        if(errorMessage){
+          errorMessage.remove();
+        }
+      }
+
+      function validationForm(event){
+        event.preventDefault();
+        
+        let isValid = true;
+
+        if(startLocation.value === 'Start Location'){
+          showErrorMessage(startLocation,'Please select the origin location')
+          isValid = false;
+        } else{
+          removeErrorMessage(startLocation);
+        }
+        if (destinationLocation.value === 'Select Location') {
+         showErrorMessage(destinationLocation, 'Please select the destination location');
+          isValid = false;
+         } else if (startLocation.value === destinationLocation.value) {
+          showErrorMessage(destinationLocation, 'Please enter a valid location');
+          isValid = false;
+           } else {
+                removeErrorMessage(destinationLocation);
+          }
+        if(date.value === ''){
+          showErrorMessage(date,'Please enter the date')
+          isValid = false;
+        }else{
+          removeErrorMessage(date);
+        }
+        if(time.value === ''){
+          showErrorMessage(time,'Please enter the time')
+          isValid = false;
+        }else{
+          removeErrorMessage(time);
+        }
+
+        if(busNumber.value === 'Bus Number'){
+          showErrorMessage(busNumber,'Please select the bus')
+          isValid = false;
+        }else{
+          removeErrorMessage(busNumber);
+        }
+                                
+        if(driverName === 'Driver Name'){
+          showErrorMessage(driverName,'Please select the driver')
+          isValid = false;
+        }else{
+          removeErrorMessage(driverName);
+        }
+
+        if(isValid){
+          form.submit();
+        }
+      }
+
+      form.addEventListener('submit', validationForm);
+
+    </script>
   </body>
 </html>

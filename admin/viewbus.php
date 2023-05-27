@@ -22,6 +22,7 @@
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>
+          <th>Bus ID</th>
           <th>Driver name</th>
           <th>capacity</th>
           <th>Station</th>
@@ -40,6 +41,7 @@
 
           foreach ($data as $row) {
             echo "<tr>";
+            echo "<td>".$row['Bus ID']."</td>";
             echo '<td>';
             
               echo '<select class="station-dropdown">';
