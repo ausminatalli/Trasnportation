@@ -26,18 +26,27 @@
                 <p>PLEASE ENTER YOUR NEW INFORMATION</p>
                 <form action="">
                     <div class="flexSb gap-2">
-                        <input type="text" name="" placeholder="Name" id="" value="hassan">
-                        <input type="text" name="" placeholder="Last Name" id="" value="barada">
+                        <input type="text" name="" placeholder="Name" id="name" value="hassan">
+                        <input type="text" name="" placeholder="Last Name" id="last name" value="barada">
                     </div>
-                    <input type="number" required placeholder="Your Phone Number">
+                    <div class="flexSb gap-2">
+                      <h6 class="text-danger ml-2" id="vname"></h6>
+                      <h6 class="text-danger" id="vlastName"></h6>
+                    </div>
+
+                    <input type="number" required placeholder="Your Phone Number" id="number">
+                    <h6 class="text-danger" id="vnumber"></h6>
+
                     <div class="flexSb password">
-                        <input type="password" required placeholder="password">
-                        <i class="fa-solid fa-eye"></i>
+                        <input type="password" required placeholder="password" id="password">
+                        <i class="fa-solid fa-eye" onclick="showpassword(event)"></i>
                     </div>
+                    <h6 class="text-danger" id="vpassword"></h6>
                     <div class="flexSb password">
-                        <input type="password" required placeholder="confirm password">
-                        <i class="fa-solid fa-eye"></i>
+                        <input type="password" required placeholder="confirm password" id="cpassword">
+                        <i class="fa-solid confirmpass fa-eye" onclick="showcpassword(event)"></i>
                     </div>
+                    <h6 class="text-danger" id="vcpassword"></h6>
 
                     <div class="flexSb ">
                         <div class="check">
@@ -45,7 +54,7 @@
                             <p>I agree to change my personal information</p>
                         </div>
                     </div>
-                    <button class="btn-blue" type="submit">Save</button>
+                    <button class="btn-blue" onclick="validation(event)" type="submit">Save</button>
                     
                 </form>
             </div>
@@ -53,6 +62,6 @@
         </section>
       <?php include('../main/footer.html')   ?>
      
-        
+      <script src="editprofilevalidate.js"></script>
 </body>
 </html>
