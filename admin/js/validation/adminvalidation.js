@@ -1,11 +1,4 @@
 
-let btn=document.querySelector('#addingadmin');
-
-console.log(btn)
-btn.addEventListener('click',()=>{
-    validateadmin();
-})
-
 
 function validateadmin(){
 
