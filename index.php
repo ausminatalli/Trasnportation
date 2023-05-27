@@ -31,8 +31,8 @@
       </label>
         <ul class="menu">
             <li><a class="line" href="#about-us">About</a></li>
-            <li><a class="line" href="#">Services</a></li>
-            <li><a class="line" href="#">Help</a></li>
+            <li><a class="line" href="#footer">Services</a></li>
+            <li><a class="line" href="./main/contact.php">Contact</a></li>
             <li><a class="login" href="./main/login.html">Login</a></li>
             <li><a class="signup" href="./main/signup.html">Sign up</a></li>
           
@@ -52,7 +52,7 @@
       <section class="filter">
         <div class="filter-contant container">
             <form class="form" action="">
-                <div class="form1">
+                <div class="form1" id="validateform">
                 <div  class="origin">
                     <label for="from">From</label>
                     <select  class="select" name="" id="location1">
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="form2">
-                <button>Search<i class="fa-sharp fa-solid fa-magnifying-glass" id="Search"></i></button>
+                <button onclick="toggleLocation(event)" id="validatesearch">Search<i class="fa-sharp fa-solid fa-magnifying-glass" id="Search"></i></button>
             </div>
             </form>
         </div>
@@ -255,11 +255,12 @@ include('./main/footer.html')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/demo.js"></script>
+  <script src="./main/js/mainvalidate.js"></script>
   <script>
   new WOW().init();
   </script>
   <script>
-
+     
   </script>
 </body>
 </html>

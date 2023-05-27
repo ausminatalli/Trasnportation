@@ -8,7 +8,19 @@
     text-decoration: none;
     text-transform: capitalize;
 }
-
+p{
+    font-size: 13px;
+    margin-top: 8px;
+    color: gray;
+}
+a:link {
+    text-decoration: none;
+}
+a{
+    font-size: 13px;
+    color:#0A3B5F;
+    font-weight: bold;
+}
 .container{
     min-height: 100vh;
     background:#E7F7FE;
