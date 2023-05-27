@@ -41,6 +41,7 @@
           foreach ($data as $row) {
             echo "<tr>";
             echo '<td>';
+            
               echo '<select class="station-dropdown">';
 
               $stationData = ['Mohammad Yassine', 'Khodor haj hassan', 'Hassan Barada','Razan'];

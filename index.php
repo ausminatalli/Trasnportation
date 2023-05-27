@@ -132,7 +132,7 @@ You can contact us via email or give us a call at Phone Number. We strive to res
 
 Thank you for choosing Skyline. We look forward to serving you and providing you with a reliable and convenient bus transportation experience.
                   </li> 
-                  <li><a href="#">Contact us</a></li>
+                  <li><a href="./main/contact.php">Contact us</a></li>
                 </ul>
               </div>
             
