@@ -48,6 +48,6 @@ if(Mechanic.value === ''){
     isvalid=false;
 }
 if(isvalid){
-    alert('the bus has been aded');
+    alert('the bus has been added');
 }
 }

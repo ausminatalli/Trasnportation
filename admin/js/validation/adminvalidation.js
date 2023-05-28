@@ -3,12 +3,12 @@
 function validateadmin(){
 
 
-    let first=document.getElementById('first');
+    let fname=document.getElementById('fname');
     let last=document.getElementById('last');
     let phone=document.getElementById('phone');
     let email=document.getElementById('email');
     let birth=document.getElementById('birth');
-    let gender=document.getElementById('gender');
+    let Gender=document.getElementById('Gender');
     let city=document.getElementById('city');
     let address=document.getElementById('address');
     let vfirst=document.getElementById('vfirst');
@@ -16,7 +16,7 @@ function validateadmin(){
     let vphone=document.getElementById('vphone');
     let vemail=document.getElementById('vemail');
     let vbirth=document.getElementById('vbirth');
-    let vgender=document.getElementById('gender');
+    let vGender=document.getElementById('vGender');
     let vcity=document.getElementById('vcity');
     let vaddress=document.getElementById('vaddress');
 
@@ -25,18 +25,18 @@ function validateadmin(){
     vphone.innerHTML='';
     vemail.innerHTML='';
     vbirth.innerHTML='';
-    vgender.innerHTML='';
+    vGender.innerHTML='';
     vcity.innerHTML='';
     vaddress.innerHTML='';
     
     
     let isvalid=true;
     
-    if(first.value === ''){
+    if(fname.value === ''){
         vfirst.innerHTML="Please enter the name";
         isvalid=false;
     }
-    if(last.value === 'Driver Name'){
+    if(last.value === ''){
         vlast.innerHTML="Please enter the last name";
         isvalid=false;
     }
@@ -45,7 +45,7 @@ function validateadmin(){
         isvalid=false;
     }
     if (email.value === "") {
-        vemail.innerHTML = "Please Enter Your Email Address";
+        vemail.innerHTML = "Please Enter the Email Address";
         isvalid = false;
       } else if (!validateEmail(email.value)) {
         vemail.innerHTML = "Please Enter a Valid Email Address";
@@ -55,8 +55,8 @@ function validateadmin(){
         vbirth.innerHTML="Please enter the date of birth";
         isvalid=false;
     }
-    if(gender.value === 'Gender'){
-        vgender.innerHTML="Please select the gender";
+    if(Gender.value === 'Gender'){
+        vGender.innerHTML="Please select the gender";
         isvalid=false;
     }
     if(city.value === ''){
@@ -68,7 +68,7 @@ function validateadmin(){
         isvalid=false;
     }
     if(isvalid){
-        alert('the bus has been aded');
+        alert('the admin has been added');
     }
 
     function validateEmail(email) {
