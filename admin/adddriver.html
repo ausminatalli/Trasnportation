@@ -10,20 +10,21 @@
   <body>
     <h2 class="text-center text-primary mt-5 mb-5">Add Driver</h2>
     <div class="card-body content">
+      <form action="">
       <h5 class="text-primary">Add Driver Information and License</h5>
       <hr class="hr">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <h5>First Name</h5>
-         <input type="text" class="form-control" style="width: 100%;">
+         <input type="text" class="form-control" style="width: 100%;" id="firstName">
           </div>
         </div>
         <!-- /.col -->
         <div class="col-md-6">
           <div class="form-group">
           <h5>Last Name</h5>
-           <input type="text" class="form-control" style="width: 100%;">
+           <input type="text" class="form-control" style="width: 100%;" id="lastName">
           </div>
         </div>
           <!-- /.form-group -->
@@ -33,7 +34,7 @@
           <div class="col-md-6">
             <div class="form-group">
                <h5>Phone Number</h5>
-            <input type="number" class="form-control"  style="width: 100%;">
+            <input type="number" class="form-control"  style="width: 100%;" id="phoneNumber">
             </div>
            
 
@@ -41,7 +42,7 @@
           <div class="col-md-6">
             <div class="form-group">
                <h5>Email</h5>
-               <input type="email" class="form-control" style="width: 100%;">
+               <input type="email" class="form-control" style="width: 100%;" id="email">
             </div>
            
 
@@ -51,7 +52,7 @@
           <div class="col-md-6">
             <div class="form-group">
                <h5>License Number</h5>
-            <input type="text" class="form-control"  style="width: 100%;">
+            <input type="text" class="form-control"  style="width: 100%;" id="licenseNumber">
             </div>
            
 
@@ -59,7 +60,7 @@
           <div class="col-md-6">
             <div class="form-group">
                <h5>License Date</h5>
-               <input type="date" class="form-control" style="width: 100%;">
+               <input type="date" class="form-control" style="width: 100%;" id="licenseDate">
             </div>
            
 
@@ -69,6 +70,9 @@
     <hr class="hr">
     <div class="bottom text-center">
       <button class="btn btn-primary " >Submit</button>
+    </form>
     </div>
+
+    <script src="./js/validation/drivervalidation.js"></script>
   </body>
 </html>

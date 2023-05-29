@@ -5,18 +5,28 @@ const date = document.querySelector('#date');
 const time = document.querySelector('#time');
 const busNumber = document.querySelector('#busNumber');
 const driverName = document.querySelector('#driverName');
-function showErrorMessage(input,message){
+
+function showErrorMessage(input, message) {
+  const parentContainer = input.parentNode;
+  parentContainer.style.position = 'relative';
 
   input.style.border = '1px solid red';
 
-  const errorMessage = document.createElement('span');
-  errorMessage.className = 'error-message';
-  errorMessage.style.color ='red';
-  errorMessage.style.fontSize = '13px';
-  errorMessage.textContent = `${message} *`;
+  const errorMessage = parentContainer.querySelector('.error-message');
 
-  input.parentNode.insertBefore(errorMessage, input);
+  if (errorMessage) {
+    errorMessage.textContent = `${message} *`;
+  } else {
+    const newErrorMessage = document.createElement('span');
+    newErrorMessage.className = 'error-message';
+    newErrorMessage.style.color = 'red';
+    newErrorMessage.style.fontSize = '12px';
+    newErrorMessage.textContent = `${message} *`;
+
+    parentContainer.appendChild(newErrorMessage);
+  }
 }
+
 
 function removeErrorMessage(input){
 
@@ -68,7 +78,7 @@ function validationForm(event){
     removeErrorMessage(busNumber);
   }
                           
-  if(driverName === 'Driver Name'){
+  if(driverName.value === 'Driver Name'){
     showErrorMessage(driverName,'Please select the driver')
     isValid = false;
   }else{
