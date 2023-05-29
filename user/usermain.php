@@ -152,22 +152,20 @@
                 <div id="map" class="card"></div>
             </div>
       </div>
-      <div class="row">
-      <div class="card shadow-lg rounded-lg">
-        <div class="card-body text-center">
-          <p class="card-text">Wherever you need to go, we'll take you there in comfort and style. Whether it's a business trip, vacation, or a special occasion, our experienced drivers will get you to your destination safely and on time. Book your ride today and experience the ultimate in luxury transportation.</p>
-        </div>
-      </div>
-        </div>
+      
         <div class="row d-flex justify-content-center align-items-center">
   <div class="col-md-6">
     <div class="card mb-3">
-      <img src="https://i.ibb.co/rc4qGTM/pexels-aysegul-alp-12133976.jpg" alt="" class="card-img-top">
+    <div class="card shadow-lg rounded-lg">
+        <div class="card-body text-center">
+          <p class="card-text h3">Wherever you need to go, we'll take you there in comfort and style. Whether it's a business trip, vacation, or a special occasion, our experienced drivers will get you to your destination safely and on time. Book your ride today and experience the ultimate in luxury transportation.</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="card mb-3">
-      <img src="https://i.ibb.co/rc4qGTM/pexels-aysegul-alp-12133976.jpg" alt="" class="card-img-top">
+      <img src="https://i.ibb.co/v4m0Wzb/bus-on-bus-stop-public-urban-transport-of-cityscape-vector.jpg" alt="" class="card-img-top">
     </div>
   </div>
 </div>

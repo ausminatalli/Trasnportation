@@ -16,7 +16,7 @@
     <div class="Contact mb-5">
       <div class="image">
         <img
-          src="../img/email-support-outsourcing-service-in-australia-v3os-australia - Copy.png" />
+          src="https://i.ibb.co/Fx3XNsG/email-support-outsourcing-service-in-australia-v3os-australia-Copy.png" />
       </div>
       <div class="con2">
         <h2>Contact us</h2>
