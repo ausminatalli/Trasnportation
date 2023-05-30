@@ -7,72 +7,72 @@
     
   
     <title>Add Trip</title>
+    <style>
+      .vspan {
+        color: red !important;
+      }
+    </style>
   </head>
   <body>
     
     <h2 class="text-center text-primary mt-5 mb-5">Add Trip</h2>
     <div class="card-body content">
       <form action="">
-      <h5 class="text-primary ">Add Trip Origin Destination Time and Driver</h5>
-      <hr class="hr">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <h5>From</h5>
-            <select  class="form-control " style="width: 100%;" id="startLocation">
-
-              <option selected="selected" >Start Location</option>
-              <option>Beirut</option>
-              <option>Saida</option>
-              <option>Tyre</option>
-              <option>Baalbek</option>
-              <option>Byblos</option>
-              <option>Nabatieh</option>
-            </select>
+        <h5 class="text-primary">Add Trip Origin Destination Time and Driver</h5>
+        <hr class="hr">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <h5>From</h5>
+              <select class="form-control" style="width: 100%;" id="startLocation">
+                <option selected="selected">Start Location</option>
+                <option>Beirut</option>
+                <option>Saida</option>
+                <option>Tyre</option>
+                <option>Baalbek</option>
+                <option>Byblos</option>
+                <option>Nabatieh</option>
+              </select>
+              <span id="vStartLocation" class="vspan"></span>
+            </div>
           </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-md-6">
-          <div class="form-group">
-          <h5>To</h5>
-            <select class="form-control"  style="width: 100%;" id="destinationLocation">
-              <option selected="selected" >Select Location</option>
-              <option>Beirut</option>
-              <option>Saida</option>
-              <option>Tyre</option>
-              <option>Baalbek</option>
-              <option>Byblos</option>
-              <option>Nabatieh</option>
-            </select>
+          <div class="col-md-6">
+            <div class="form-group">
+              <h5>To</h5>
+              <select class="form-control" style="width: 100%;" id="destinationLocation">
+                <option selected="selected">Select Location</option>
+                <option>Beirut</option>
+                <option>Saida</option>
+                <option>Tyre</option>
+                <option>Baalbek</option>
+                <option>Byblos</option>
+                <option>Nabatieh</option>
+              </select>
+              <span id="vDestinationLocation" class="vspan"></span>
+            </div>
           </div>
-        </div>
-          <!-- /.form-group -->
-          <!-- /.form-group -->
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-               <h5>Select Date</h5>
-            <input type="date" class="form-control"  style="width: 100%;" id="date">
+              <h5>Select Date</h5>
+              <input type="date" class="form-control" style="width: 100%;" id="date">
+              <span id="vDate" class="vspan"></span>
             </div>
-           
-
           </div>
           <div class="col-md-6">
             <div class="form-group">
-               <h5>Select Time</h5>
-               <input type="time" class="form-control" id="time">
+              <h5>Select Time</h5>
+              <input type="time" class="form-control" id="time">
+              <span id="vTime" class="vspan"></span>
             </div>
-           
-
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <h5>Select Bus</h5>
-              <select  class="form-control " style="width: 100%;" id="busNumber">
-  
+              <select class="form-control" style="width: 100%;" id="busNumber">
                 <option selected="selected">Bus Number</option>
                 <option>1</option>
                 <option>2</option>
@@ -81,29 +81,29 @@
                 <option>5</option>
                 <option>6</option>
               </select>
+              <span id="vBusNumber" class="vspan"></span>
             </div>
           </div>
-          <!-- /.col -->
           <div class="col-md-6">
             <div class="form-group">
-            <h5>Select Driver</h5>
-              <select class="form-control"  style="width: 100%;" id="driverName">
+              <h5>Select Driver</h5>
+              <select class="form-control" style="width: 100%;" id="driverName">
                 <option selected="selected">Driver Name</option>
                 <option>Ta3an</option>
                 <option>Jahjeh</option>
                 <option>2afas</option>
                 <option>Tokle</option>
               </select>
+              <span id="vDriverName" class="vspan"></span>
             </div>
           </div>
-
-      
-     </div>
-     <hr class="hr">
-     <div class="bottom text-center">
-      <button class="btn btn-primary" >Submit</button>
-    </form>
+        </div>
+        <hr class="hr">
+        <div class="bottom text-center">
+          <button class="btn btn-primary" onclick="validateTrip()" id="submit">Submit</button>
+        </div>
+      </form>
     </div>
-   <script src="./js/validation/tripvalidation.js"></script>
+    <script src="./js/validation/tripvalidation.js"></script>
   </body>
 </html>

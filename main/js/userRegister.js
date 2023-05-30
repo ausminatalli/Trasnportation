@@ -23,14 +23,20 @@ function validation(event) {
   
     let isValid = true;
   
-    if (name.value === "") {
-      vname.innerHTML = "Please Enter Your Name";
-      isValid = false;
-    }
-    if (lastName.value === "") {
-      vlastName.innerHTML = "Please Enter Your Last Name";
-      isValid = false;
-    }
+    if (name.value === '') {
+      vname.innerHTML="Please Enter Your First Name";
+      isValid=false;
+  }else if (name.value.length < 3 || /\d|\W/.test(name.value)){
+    vname.innerHTML="Please Enter a Valid Name";
+    isValid=false;
+  }
+  if (lastName.value === '') {
+    vlastName.innerHTML="Please Enter Your Last Name";
+    isValid=false;
+}else if (lastName.value.length < 3 || /\d|\W/.test(lastName.value)){
+  vlastName.innerHTML="Please Enter a Valid Name";
+  isValid=false;
+}
     if (number.value === "") {
       vnumber.innerHTML = "Please Enter Your Phone Number";
       isValid = false;

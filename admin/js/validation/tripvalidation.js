@@ -1,93 +1,60 @@
-const form = document.querySelector('form');
-const startLocation = document.querySelector('#startLocation');
-const destinationLocation = document.querySelector('#destinationLocation');
-const date = document.querySelector('#date');
-const time = document.querySelector('#time');
-const busNumber = document.querySelector('#busNumber');
-const driverName = document.querySelector('#driverName');
+function validateTrip() {
+  let startLocation = document.getElementById('startLocation');
+  let destinationLocation = document.getElementById('destinationLocation');
+  let date = document.getElementById('date');
+  let time = document.getElementById('time');
+  let busNumber = document.getElementById('busNumber');
+  let driverName = document.getElementById('driverName');
+  let submit = document.getElementById('submit');
+  let vStartLocation = document.getElementById('vStartLocation');
+  let vDestinationLocation = document.getElementById('vDestinationLocation');
+  let vDate = document.getElementById('vDate');
+  let vTime = document.getElementById('vTime');
+  let vBusNumber = document.getElementById('vBusNumber');
+  let vDriverName = document.getElementById('vDriverName');
+  vStartLocation.innerHTML = '';
+  vDestinationLocation.innerHTML = '';
+  vDate.innerHTML = '';
+  vTime.innerHTML = '';
+  vBusNumber.innerHTML = '';
+  vDriverName.innerHTML = '';
 
-function showErrorMessage(input, message) {
-  const parentContainer = input.parentNode;
-  parentContainer.style.position = 'relative';
-
-  input.style.border = '1px solid red';
-
-  const errorMessage = parentContainer.querySelector('.error-message');
-
-  if (errorMessage) {
-    errorMessage.textContent = `${message} *`;
-  } else {
-    const newErrorMessage = document.createElement('span');
-    newErrorMessage.className = 'error-message';
-    newErrorMessage.style.color = 'red';
-    newErrorMessage.style.fontSize = '12px';
-    newErrorMessage.textContent = `${message} *`;
-
-    parentContainer.appendChild(newErrorMessage);
-  }
-}
-
-
-function removeErrorMessage(input){
-
-  input.style.border ='1px solid initial';
-
-  const errorMessage = input.parentNode.querySelector('.error-message');
-  if(errorMessage){
-    errorMessage.remove();
-  }
-}
-
-function validationForm(event){
-  event.preventDefault();
-  
   let isValid = true;
 
-  if(startLocation.value === 'Start Location'){
-    showErrorMessage(startLocation,'Please select the origin location')
+  if (startLocation.value === 'Start Location') {
+    vStartLocation.innerHTML = 'Please select the origin location.*';
     isValid = false;
-  } else{
-    removeErrorMessage(startLocation);
   }
+
   if (destinationLocation.value === 'Select Location') {
-   showErrorMessage(destinationLocation, 'Please select the destination location');
+    vDestinationLocation.innerHTML = 'Please select the destination location.*';
     isValid = false;
-   } else if (startLocation.value === destinationLocation.value) {
-    showErrorMessage(destinationLocation, 'Please enter a valid location');
+  } else if (startLocation.value === destinationLocation.value) {
+    vDestinationLocation.innerHTML = 'Please select a valid location.*';
     isValid = false;
-     } else {
-          removeErrorMessage(destinationLocation);
-    }
-  if(date.value === ''){
-    showErrorMessage(date,'Please enter the date')
-    isValid = false;
-  }else{
-    removeErrorMessage(date);
-  }
-  if(time.value === ''){
-    showErrorMessage(time,'Please enter the time')
-    isValid = false;
-  }else{
-    removeErrorMessage(time);
   }
 
-  if(busNumber.value === 'Bus Number'){
-    showErrorMessage(busNumber,'Please select the bus')
+  if (date.value === '') {
+    vDate.innerHTML = 'Please enter the date.*';
     isValid = false;
-  }else{
-    removeErrorMessage(busNumber);
-  }
-                          
-  if(driverName.value === 'Driver Name'){
-    showErrorMessage(driverName,'Please select the driver')
-    isValid = false;
-  }else{
-    removeErrorMessage(driverName);
   }
 
-  if(isValid){
-    form.submit();
+  if (time.value === '') {
+    vTime.innerHTML = 'Please enter the time.*';
+    isValid = false;
+  }
+
+  if (busNumber.value === 'Bus Number') {
+    vBusNumber.innerHTML = 'Please select the bus number.*';
+    isValid = false;
+  }
+
+  if (driverName.value === 'Driver Name') {
+    vDriverName.innerHTML = 'Please select the driver name.*';
+    isValid = false;
+  }
+
+  if (isValid) {
+    alert('The trip has been added.');
   }
 }
-
-form.addEventListener('submit', validationForm);
