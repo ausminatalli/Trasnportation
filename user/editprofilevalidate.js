@@ -1,10 +1,13 @@
 function validation(event) {
     event.preventDefault();
   
-    
+    let name = document.getElementById("name");
+    let lastname = document.getElementById("lastname"); 
     let number = document.getElementById("number");
     let password = document.getElementById("password");
     let cpassword = document.getElementById("cpassword");
+    let vname = document.getElementById("vname");
+    let vlastName = document.getElementById("vlastName"); 
     let vnumber = document.getElementById("vnumber");
     let vpassword = document.getElementById("vpassword");
     let vcpassword = document.getElementById("vcpassword");
@@ -16,7 +19,15 @@ function validation(event) {
     vcpassword.innerHTML = "";
   
     let isValid = true;
-  
+    
+    if (name.value === "") {
+      vname.innerHTML = "Please Enter Your Name";
+      isValid = false;
+    }
+    if (lastname.value === "") {
+      vlastName.innerHTML = "Please Enter Your Last Name";
+      isValid = false;
+    }
     if (number.value === "") {
       vnumber.innerHTML = "Please Enter Your Phone Number";
       isValid = false;

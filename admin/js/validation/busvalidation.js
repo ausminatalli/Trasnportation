@@ -13,6 +13,8 @@ let vmechanic=document.getElementById('vmechanic');
 let vinsurance=document.getElementById('vinsurance');
 let vselectstation=document.getElementById('vselectstation');
 let vselectdriver=document.getElementById('vselectdriver');
+let input=document.getElementById('platenumber').value;
+let input1=document.getElementById('Insurance').value;
 vselectstation.innerHTML='';
 vselectdriver.innerHTML='';
 vcapacity.innerHTML='';
@@ -31,16 +33,32 @@ if(selectdriver.value === 'Driver Name'){
     vselectdriver.innerHTML="Please select the driver";
     isvalid=false;
 }
-if(capacity.value === ''){
+if((capacity.value) ==""  || parseInt(capacity.value) > 30){
+
+    if(capacity.value ==""){
     vcapacity.innerHTML="Please enter the capacity";
     isvalid=false;
+    }
+else if(parseInt(capacity.value) >= 30){
+    vcapacity.innerHTML="the max capacity should be 30";
+    isvalid=false;
+}
+
 }
 if(platenumber.value === ''){
     vplate.innerHTML="Please enter the platenumber";
     isvalid=false;
 }
+if(input.length > 20){
+    vplate.innerHTML="The maximum number should be 20 integer and characters. ";
+    isvalid=false;
+}
 if(Insurance.value === ''){
     vinsurance.innerHTML="Please enter the insurance number";
+    isvalid=false;
+}
+if(input1.length > 20 ){
+    vinsurance.innerHTML="The maximum number should be 20 integer";
     isvalid=false;
 }
 if(Mechanic.value === ''){
