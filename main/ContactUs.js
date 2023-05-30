@@ -24,7 +24,7 @@ function validationForm(event) {
       const error = errorMessage.cloneNode(true);
       error.textContent = '* Please enter your name.';
       fullName.parentNode.insertBefore(error, fullName);
-    } else if (fullName.value.length < 3 || /\d|\W/.test(fullName.value)) {
+    } else if (fullName.value.length < 3 || /\d/.test(fullName.value)) {
       isValid = false;
       const error = errorMessage.cloneNode(true);
       error.textContent = '* Please enter a valid name.';
