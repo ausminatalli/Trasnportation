@@ -11,8 +11,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
     />
+    
     <title>Skyline User Page</title>
   </head>
+  
   <body style=''>
     <style>
   #map{
@@ -102,7 +104,20 @@
         </form>
       </div>
     </section>
-
+    <?php
+    $currency = $_POST['currency'];
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      
+      $currency = $_POST['currency'];
+      if (empty($currency)) {
+        echo "currency not found";
+      } else {
+        echo $currency;
+      }
+    }
+    echo $currency;
+    ?>
     <div class="container mt-4">
         <div class="row flex-column-reverse-sm">
             <h5 class="card-title mb-2 mt-lg-0 mt-sm-4">Result: 6</h5>

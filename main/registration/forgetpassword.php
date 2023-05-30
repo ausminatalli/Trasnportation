@@ -33,9 +33,11 @@
         <div class="login-content">
           <h2>Forgot Password</h2>
           <p>PLEASE ENTER YOUR EMAIL ADDRESS TO RESET YOUR PASSWORD.</p>
-          <form action="">
-            <input type="email" required placeholder="Email address" />
-            <button class="btn-blue" type="submit">Reset Password</button>
+          <form id="forgetform" action="">
+          
+            <input id='email' type="email"  placeholder="Email address" />
+            <div class="error" id="email-error"></div>
+            <button id='submit' class="btn-blue" type="submit">Reset Password</button>
             <p class="dont">
               Remembered your password? <a href="#">Sign in</a>
             </p>
@@ -44,5 +46,6 @@
       </div>
     </section>
     <?php include('../footer.html') ?>
+    <script src="../js/forgetvalidation.js"></script>
   </body>
 </html>
