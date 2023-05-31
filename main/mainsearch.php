@@ -103,7 +103,7 @@
       </div>
     </section>
 
-    <div class="container mt-4">
+    <div class="container mt-4 mb-4">
         <div class="row flex-column-reverse-sm">
             <h5 class="card-title mb-2 mt-lg-0 mt-sm-4">Result: 6</h5>
             <div class="col-md-6">
