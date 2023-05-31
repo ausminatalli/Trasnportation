@@ -580,6 +580,10 @@ width: 100%;
 .about-img img{
 width: 100%;
 }
+.about-inf {
+  text-align: justify;
+
+}
 .about-inf ul li{
 
 margin-bottom: 20px;

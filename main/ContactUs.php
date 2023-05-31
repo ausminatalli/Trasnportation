@@ -20,17 +20,18 @@
       </div>
       <div class="con2">
         <h2>Contact us</h2>
-        <form action="" class="contact-input">
-          <input type="text" id="fullName" placeholder="Full Name" />
-          <input type="text" id="email" placeholder="Email" />
-          <input type="text" id="phoneNumber" placeholder="phone" />
+        <form action="../api/contactApi.php" method="POST" class="contact-input">
+          <input type="text" id="fullName" name="name" placeholder="Full Name" />
+          <input type="text" id="email" name="email" placeholder="Email" />
+          <input type="text" id="phoneNumber" name="phone" placeholder="phone" />
           <textarea
-            name=""
+            name="text"
             placeholder="message..."
             id="message"
             cols="30"
             rows="10"></textarea>
-          <button>Submit</button>
+          <button type="submit" name="send">Submit</button>
+          <h6 class="text-success" id="success"></h6>
         </form>
       </div>
     </div>

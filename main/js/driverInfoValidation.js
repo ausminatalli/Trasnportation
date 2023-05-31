@@ -8,6 +8,8 @@ function validation(event){
     let lnum =document.getElementById("lnum");
     let ledate =document.getElementById("ledate");
     let file =document.getElementById("file");
+    let info =document.getElementById("info");
+
 
     let vcity =document.getElementById("vcity");
     let vaddress =document.getElementById("vaddress");
@@ -16,6 +18,8 @@ function validation(event){
     let vlnum =document.getElementById("vlnum");
     let vledate =document.getElementById("vledate");
     let vfile =document.getElementById("vfile");
+    let vinfo =document.getElementById("vinfo");
+
 
     vcity.innerHTML="";
     vaddress.innerHTML="";
@@ -24,6 +28,7 @@ function validation(event){
     vlnum.innerHTML="";
     vledate.innerHTML="";
     vfile.innerHTML="";
+    vinfo.innerHTML="";
 
     let isValid=true;
 
@@ -55,6 +60,10 @@ function validation(event){
     }
     if(file.value === ""){
         vfile.innerHTML="Enter Your License file";
+        isValid=false;
+    }
+    if(info.value === ""){
+        vinfo.innerHTML="Please Describe YourSelf !";
         isValid=false;
     }
     if (isValid) {

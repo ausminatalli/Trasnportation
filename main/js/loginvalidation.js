@@ -43,7 +43,7 @@ function handlePasswordInput() {
   if (validatePassword(password)) {
     updateErrorMessage('password', ''); // Clear error message
   } else {
-    updateErrorMessage('password', 'Password must be at least 8 characters'); // Display error message
+    updateErrorMessage('password', 'Password should be at least 8 characters contain at least one digit, one lowercase letter, and one uppercase letter'); // Display error message
   }
 }
 
