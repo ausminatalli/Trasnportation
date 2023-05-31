@@ -61,7 +61,11 @@
         </div>
         </section>
       <?php include('../main/footer.html')   ?>
-     
+     <script>
+        const currency = document.querySelector('.currencycontainer');
+        console.log(currency);
+        currency.style.display='none';
+     </script>
       <script src="editprofilevalidate.js"></script>
 </body>
 </html>
