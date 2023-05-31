@@ -20,6 +20,7 @@
   #map{
     width: 100%;
         height: 400px;
+        margin-top:34px;
       }
       .scrollable-container {
             height: 400px;
@@ -120,8 +121,9 @@
     ?>
     <div class="container mt-4">
         <div class="row flex-column-reverse-sm">
-            <h5 class="card-title mb-2 mt-lg-0 mt-sm-4">Result: 6</h5>
+            
             <div class="col-md-6">
+            <h5 class="card-title mb-2 mt-lg-0 mt-sm-4 ">Result: 6</h5>
                 <div class="card mt-lg-0 mt-sm-4">
                     <div class="card-body scrollable-container " >
                       <div id="mydiv"></div>
@@ -169,17 +171,17 @@
       </div>
       
         <div class="row d-flex justify-content-center align-items-center">
-  <div class="col-md-6">
-    <div class="card mb-3">
+  <div class="col-md-6 mt-sm-2">
+    <div class="card mb-3 border-0">
     <div class="card shadow-lg rounded-lg">
-        <div class="card-body text-center">
+        <div class="card-body text-center ">
           <p class="card-text h3">Wherever you need to go, we'll take you there in comfort and style. Whether it's a business trip, vacation, or a special occasion, our experienced drivers will get you to your destination safely and on time. Book your ride today and experience the ultimate in luxury transportation.</p>
         </div>
       </div>
     </div>
   </div>
   <div class="col-md-6">
-    <div class="card mb-3">
+    <div class="card mb-3 border-0">
       <img src="https://i.ibb.co/v4m0Wzb/bus-on-bus-stop-public-urban-transport-of-cityscape-vector.jpg" alt="" class="card-img-top">
     </div>
   </div>
