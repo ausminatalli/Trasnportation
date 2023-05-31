@@ -1,5 +1,5 @@
 const currencyLink = document.getElementById("currency");
-
+const content= document.getElementById('mydiv');
       currencyLink.addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -11,7 +11,7 @@ const currencyLink = document.getElementById("currency");
           currencyLink.style.setProperty("--currency-content", '" USD"');
         }
         const xhr = new XMLHttpRequest();
-        const url = "http://localhost/transportation/user/usermain.php";
+        const url = "http://localhost/transportation/user/test11.php";
         const currency = currencyLink.textContent;
       
         xhr.open("POST", url, true);
@@ -19,7 +19,11 @@ const currencyLink = document.getElementById("currency");
       
         xhr.onreadystatechange = function() {
           if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
+            const res = this.responseText;
+            // alert(res);
+            content.innerHTML=res;
+            // console.log(content.textContent);
+            
           }
         };
       
