@@ -61,7 +61,7 @@
     <section class="filter" style='padding-top:100px'>
     <div class="filter-contant container">
         <form class="form" action="#">
-          <div class="form1">
+          <div class="form1" id="validateform">
             <div class="origin">
               <label for="origin">From</label>
               <select class="select" name="" id="origin">
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="form2">
-            <button onclick="calculateDistance()">
+            <button onclick="calculateDistance()" id="validatesearch">
               Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
@@ -210,6 +210,21 @@ select2.value=swich;
 }
 
 // Switch
+let origin=document.getElementById('origin');
+     let destination=document.getElementById('destination');
+     let form=document.querySelector('.form1');
+     let validateform=document.querySelector('#validateform');
+     let validatesearch=document.getElementById('validatesearch');
+     console.log(validateform);
+     validatesearch.onclick=function vvv(){
+      
+      if(origin.value=='' || destination.value=='' ){
+        validateform.style.border='3px solid red';
+      }
+      else{
+        validateform.style.border='';
+      }
+     }
 
    </script>
    <script src="./js/header.js"></script>
