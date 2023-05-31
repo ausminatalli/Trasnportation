@@ -274,7 +274,7 @@ include('./main/footer.html')
      validatesearch.onclick=function vvv(){
       
       if(location1.value=='' || location2.value=='' ){
-        validateform.style.border='1px solid red';
+        validateform.style.border='3px solid red';
       }
       else{
         validateform.style.border='';
