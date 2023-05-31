@@ -23,7 +23,8 @@
     {
       color:red;
       cursor: pointer;
-      font-size:42px
+      transition:.3s all ease;
+      transform :scale(1.2)
     }
     .review{
       color:#9FA909;
@@ -31,7 +32,8 @@
     .review:hover{
       color:gold;
       cursor: pointer;
-      font-size:42px
+      transition:.3s all ease;
+      transform :scale(1.2)
     }
   </style>
   <div>
@@ -64,7 +66,7 @@
             echo "<td>".$row['LastName']."</td>";
             echo "<td>".$row['AmountPaid']."</td>";
             echo '<td><i class="fa-solid fa-star fa-xl review"></i></td>';
-            echo '<td><i class="fa-regular fa-credit-card fa-xl refund"></i></td>';
+            echo '<td><i class="fa-regular fa-credit-card fa-xl refund btn-delete5"></i></td>';
             echo "</tr>";
           }
         ?>
@@ -82,7 +84,7 @@
               <i class="fa-solid fa-circle-exclamation"></i>
             </div>
             <div class="text-wrapper">
-              <span>Are you sure you want to Reject the driver?</span>
+              <span>Are you sure you want to Refund this Client?</span>
             </div>
           </main>
           <footer>
