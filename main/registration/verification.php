@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="../../css/style.css">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,9 +17,11 @@
     body {
       margin: 0px;
       padding: 0px;
+      background-color:#e5f6ff !important;
     }
+   
     .card {
-      margin: 0 auto;
+      margin: 40px auto;
     }
     input {
       background-color: rgb(64, 64, 251);
@@ -41,6 +44,10 @@
     }
   </style>
   <body>
+  <?php   
+   include('../headersearch.html');
+    ?>
+  <div class="container">
     <div class="card" style="width: 35rem; height: 35rem">
       <img
         src="https://i.ibb.co/3YpB4pH/veri.jpg"
@@ -58,5 +65,7 @@
         </div>
       </div>
     </div>
+  </div>
+    <?php include('../footer.html'); ?>
   </body>
 </html>
