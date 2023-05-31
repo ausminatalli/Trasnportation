@@ -56,7 +56,7 @@
     <?php   
    include('header.html');
     ?>
-    <div class="usermain">
+    <div id="usermain" class="usermain">
     <section class="filter" style='padding-top:100px'>
     <div class="filter-contant container">
         <form class="form" action="#">
@@ -105,7 +105,7 @@
       </div>
     </section>
     <?php
-    $currency = $_POST['currency'];
+   // $currency = $_POST['currency'];
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
@@ -113,10 +113,10 @@
       if (empty($currency)) {
         echo "currency not found";
       } else {
-        echo $currency;
+        print($currency);
       }
     }
-    echo $currency;
+    //echo $currency;
     ?>
     <div class="container mt-4">
         <div class="row flex-column-reverse-sm">
@@ -124,7 +124,7 @@
             <div class="col-md-6">
                 <div class="card mt-lg-0 mt-sm-4">
                     <div class="card-body scrollable-container " >
-                      
+                      <div id="mydiv"></div>
                         <div id="result-container" >
                             <?php
                             $data = json_decode(file_get_contents("../main/user.json"), true);
@@ -208,6 +208,8 @@ select2.value=swich;
 }
 
 // Switch
+
    </script>
+   <script src="./js/header.js"></script>
   </body>
 </html>
