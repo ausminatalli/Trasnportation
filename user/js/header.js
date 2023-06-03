@@ -1,5 +1,6 @@
 const currencyLink = document.getElementById("currency");
 const content= document.getElementById('mydiv');
+const result_container= document.getElementById('result-container');
       currencyLink.addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -21,7 +22,7 @@ const content= document.getElementById('mydiv');
           if (xhr.readyState === 4 && xhr.status === 200) {
             const res = this.responseText;
             // alert(res);
-            content.innerHTML=res;
+            result_container.innerHTML=res;
             // console.log(content.textContent);
             
           }
