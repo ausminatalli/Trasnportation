@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php
-$data = json_decode(file_get_contents("../main/user.json"), true);
+$data = json_decode(file_get_contents("../../main/user.json"), true);
 
 foreach ($data as $item) {
     $price = $currency === 'USD' ?'$' . number_format((int)$item['price'] / 94000,2 ): $item['price'];
@@ -35,11 +35,12 @@ foreach ($data as $item) {
             </div>
         </div>
         <div class="rightsection">
-            <h5><?php echo $price; ?></h5>
+        <h5><?php echo $price; ?></h5>
             <a href="#">
-                Select
-            </a>
-        </div>
+              Book
+           </a>
+          <i class="fa-solid fa-arrow-right fa-lg mt-2"></i>
+           </div>
     </div>
     <?php
 }

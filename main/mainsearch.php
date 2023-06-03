@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="searchresult.css">
+    <link rel="stylesheet" href="../css/currency.css" />
     <title>Skyline Main Search Page</title>
 </head>
 <body>
@@ -16,6 +17,7 @@
       #map {
         width: 100%;
         height: 400px;
+        margin-top:34px
       }
       .scrollable-container {
             height: 400px;
@@ -51,9 +53,23 @@
       
       
     </style>
-    <?php   
-   include('headersearch.html');
-    ?>
+     <section class="top-nav">
+        <div class="logo">
+            <a href="index.html"><img src="../img/Transportation_Logo.png" alt=""></a>
+        </div>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+      </label>
+        <ul class="menu">
+            <li><a class="line" href="../index.html">Home</a></li>
+            <li>
+                <a class="line" href="#" id="currency">Lira</a>
+              </li>
+            <li><a class="line" href="../#about-us">About</a></li>
+            <li><a class="line" href="#">Contact</a></li>
+            <li><a class="signup" href="login.html">Login</a></li>
+      </section>
   
     <section class="filter" style='padding-top:60px'>
     <div class="filter-contant container">
@@ -105,8 +121,9 @@
 
     <div class="container mt-4 mb-4">
         <div class="row flex-column-reverse-sm">
+        <div class="col-md-6 mt-1">
             <h5 class="card-title mb-2 mt-lg-0 mt-sm-4">Result: 6</h5>
-            <div class="col-md-6">
+            
                 <div class="card mt-lg-0 mt-sm-4">
                     <div class="card-body scrollable-container " >
                         <div id="result-container" >
@@ -137,6 +154,7 @@
                                         <a href="#">
                                             Select
                                         </a>
+                                        <i class="fa-solid fa-arrow-right fa-lg mt-2"></i>
                                     </div>
                                 </div>
                                 <?php
