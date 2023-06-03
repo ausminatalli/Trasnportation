@@ -12,7 +12,7 @@ const result_container= document.getElementById('result-container');
           currencyLink.style.setProperty("--currency-content", '" USD"');
         }
         const xhr = new XMLHttpRequest();
-        const url = "http://localhost/transportation/user/test11.php";
+        const url = "http://localhost/transportation/api/user/loggedSearch.php";
         const currency = currencyLink.textContent;
       
         xhr.open("POST", url, true);
