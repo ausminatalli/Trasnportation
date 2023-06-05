@@ -1,69 +1,84 @@
-const form = document.querySelector('form');
-const fullName = document.querySelector('#fullName');
-const email = document.querySelector('#email');
-const phoneNumber = document.querySelector('#phoneNumber');
-const message = document.querySelector('#message');
-
-const errorMessage = document.createElement('span');
-errorMessage.classList.add('error-message');
-errorMessage.style.color ='red';
-errorMessage.style.fontSize = '13px';
-
-function validationForm(event) {
+$(document).ready(function(){
+  $('#submit-btn').click(function(event){
     event.preventDefault();
-  
-    const existingErrorMessages = form.querySelectorAll('.error-message');
-    existingErrorMessages.forEach((errorMsg) => {
-      errorMsg.remove();
-    });
-  
+
+    $('.error').remove();
+
+    let name = $('#fullName').val();
+    let email = $('#email').val();
+    let phone = $('#phoneNumber').val();
+    let message = $('#message').val();
+
     let isValid = true;
-  
-    if (fullName.value === '') {
+
+    if (name.trim() === '') {
       isValid = false;
-      const error = errorMessage.cloneNode(true);
-      error.textContent = '* Please enter your name.';
-      fullName.parentNode.insertBefore(error, fullName);
-    } else if (fullName.value.length < 3 || /\d/.test(fullName.value)) {
+      $('#fullName').after('<h6 class="error text-danger mb-2">Please enter your name</h6>');
+    } else if (!isValidName(name)){
       isValid = false;
-      const error = errorMessage.cloneNode(true);
-      error.textContent = '* Please enter a valid name.';
-      fullName.parentNode.insertBefore(error, fullName);
+      $('#fullName').after('<h6 class="error text-danger mb-2">Please enter a valid name</h6>');
     }
-  
-    if (email.value === '') {
+
+    if (email.trim() === '') {
       isValid = false;
-      const error = errorMessage.cloneNode(true);
-      error.textContent = '* Please enter your email address.';
-      email.parentNode.insertBefore(error, email);
-    } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+      $('#email').after('<h6 class="error text-danger mb-2">Please enter your email</h6>');
+    } else if (!isValidEmail(email)) {
       isValid = false;
-      const error = errorMessage.cloneNode(true);
-      error.textContent = '* Please enter a valid email address.';
-      email.parentNode.insertBefore(error, email);
+      $('#email').after('<h6 class="error text-danger mb-2">Please enter a valid email</h6>');
     }
-  
-    if (phoneNumber.value === '') {
+
+    if (phone.trim() === '') {
       isValid = false;
-      const error = errorMessage.cloneNode(true);
-      error.textContent = '* Please enter your phone number.';
-      phoneNumber.parentNode.insertBefore(error, phoneNumber);
-    } else if (isNaN(phoneNumber.value)) {
+      $('#phoneNumber').after('<h6 class="error text-danger mb-2">Please enter your phone number</h6>');
+    } else if (!isValidPhone(phone)) {
       isValid = false;
-      const error = errorMessage.cloneNode(true);
-      error.textContent = '* Please enter a valid phone number.';
-      phoneNumber.parentNode.insertBefore(error, phoneNumber);
+      $('#phoneNumber').after('<h6 class="error text-danger mb-2">Please enter a valid phone number</h6>');
     }
-  
-    if (message.value === '') {
+
+    if (message.trim() === '') {
       isValid = false;
-      const error = errorMessage.cloneNode(true);
-      error.textContent = '* Please enter a message.';
-      message.parentNode.insertBefore(error, message);
+      $('#message').after('<h6 class="error text-danger mb-2">Please enter your message</h6>');
     }
-  
+
     if (isValid) {
-      form.submit();
+      $.ajax({
+        url: "../api/contactApi.php",
+        type: "POST",
+        data: $('#contact').serialize(),
+        beforeSend: function(xhr) {
+          $('#submit-btn').html('SENDING...');
+        },
+        success: function(response) {
+          if (response) {
+            $('#success').html('<h5 class="text-success text-center">Thank For Contact Us</h5>');
+          } else {
+            $('#success').html('<h5 class="text-warning">' + response + '</h5>');
+          }
+
+          $('#contact')[0].reset();
+        },
+        error: function() {
+          $('#success').html('<h5 class="text-danger">Error occurs. Please try again later</h5>');
+        },
+        complete: function() {
+          $('#submit-btn').html('Submit');
+        }
+      });
     }
-  }
-  form.addEventListener('submit',validationForm);  
+  });
+});
+
+function isValidEmail(email) {
+  let emailRegex = /\S+@\S+\.\S+/;
+  return emailRegex.test(email);
+}
+
+function isValidPhone(phone) {
+  let phoneRegex = /^[0-9]{8}$/;
+  return phoneRegex.test(phone);
+}
+
+function isValidName(name) {
+  let nameRegex = /^[a-zA-Z]{4,}$/;
+  return nameRegex.test(name);
+}
