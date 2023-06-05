@@ -12,6 +12,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">   
 <title>Skyline</title>
+<style>
+  .color{
+    border:1px solid red;
+  }
+</style>
 </head>
 <body>
   <script src="js/wow.min.js"></script>
@@ -51,7 +56,7 @@
       </section >
       <section class="filter">
         <div class="filter-contant container">
-            <form class="form" action="">
+            <form class="form" action="#">
                 <div class="form1" id="validateform">
                 <div  class="origin">
                     <label for="from">From</label>
@@ -260,7 +265,21 @@ include('./main/footer.html')
   new WOW().init();
   </script>
   <script>
-     
+     let location1=document.getElementById('location1');
+     let location2=document.getElementById('location2');
+     let form=document.querySelector('.form1');
+     let validateform=document.querySelector('#validateform');
+     let validatesearch=document.getElementById('validatesearch');
+     console.log(validateform);
+     validatesearch.onclick=function vvv(){
+      
+      if(location1.value=='' || location2.value=='' ){
+        validateform.style.border='3px solid red';
+      }
+      else{
+        validateform.style.border='';
+      }
+     }
   </script>
 </body>
 </html>

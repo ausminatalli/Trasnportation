@@ -11,13 +11,16 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
     />
+    
     <title>Skyline User Page</title>
   </head>
+  
   <body style=''>
     <style>
   #map{
     width: 100%;
         height: 400px;
+        margin-top:34px;
       }
       .scrollable-container {
             height: 400px;
@@ -54,11 +57,11 @@
     <?php   
    include('header.html');
     ?>
-    <div class="usermain">
+    <div id="usermain" class="usermain">
     <section class="filter" style='padding-top:100px'>
     <div class="filter-contant container">
         <form class="form" action="#">
-          <div class="form1">
+          <div class="form1" id="validateform">
             <div class="origin">
               <label for="origin">From</label>
               <select class="select" name="" id="origin">
@@ -95,21 +98,35 @@
             </div>
           </div>
           <div class="form2">
-            <button onclick="calculateDistance()">
+            <button onclick="calculateDistance()" id="validatesearch">
               Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
         </form>
       </div>
     </section>
-
+    <?php
+   // $currency = $_POST['currency'];
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      
+      $currency = $_POST['currency'];
+      if (empty($currency)) {
+        echo "currency not found";
+      } else {
+        print($currency);
+      }
+    }
+    //echo $currency;
+    ?>
     <div class="container mt-4">
         <div class="row flex-column-reverse-sm">
-            <h5 class="card-title mb-2 mt-lg-0 mt-sm-4">Result: 6</h5>
+            
             <div class="col-md-6">
+            <h5 class="card-title mb-2 mt-lg-0 mt-sm-4 ">Result: 6</h5>
                 <div class="card mt-lg-0 mt-sm-4">
                     <div class="card-body scrollable-container " >
-                      
+                      <div id="mydiv"></div>
                         <div id="result-container" >
                             <?php
                             $data = json_decode(file_get_contents("../main/user.json"), true);
@@ -154,17 +171,17 @@
       </div>
       
         <div class="row d-flex justify-content-center align-items-center">
-  <div class="col-md-6">
-    <div class="card mb-3">
+  <div class="col-md-6 mt-sm-2">
+    <div class="card mb-3 border-0">
     <div class="card shadow-lg rounded-lg">
-        <div class="card-body text-center">
+        <div class="card-body text-center ">
           <p class="card-text h3">Wherever you need to go, we'll take you there in comfort and style. Whether it's a business trip, vacation, or a special occasion, our experienced drivers will get you to your destination safely and on time. Book your ride today and experience the ultimate in luxury transportation.</p>
         </div>
       </div>
     </div>
   </div>
   <div class="col-md-6">
-    <div class="card mb-3">
+    <div class="card mb-3 border-0">
       <img src="https://i.ibb.co/v4m0Wzb/bus-on-bus-stop-public-urban-transport-of-cityscape-vector.jpg" alt="" class="card-img-top">
     </div>
   </div>
@@ -193,6 +210,23 @@ select2.value=swich;
 }
 
 // Switch
+let origin=document.getElementById('origin');
+     let destination=document.getElementById('destination');
+     let form=document.querySelector('.form1');
+     let validateform=document.querySelector('#validateform');
+     let validatesearch=document.getElementById('validatesearch');
+     console.log(validateform);
+     validatesearch.onclick=function vvv(){
+      
+      if(origin.value=='' || destination.value=='' ){
+        validateform.style.border='3px solid red';
+      }
+      else{
+        validateform.style.border='';
+      }
+     }
+
    </script>
+   <script src="./js/header.js"></script>
   </body>
 </html>

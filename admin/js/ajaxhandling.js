@@ -148,9 +148,33 @@ function ApplicationDelete() {
   });
   
 }
-function content(){
-  console.log('Loaded')
+
+function Paymentrefund() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete5");
+ 
+  let closeBtn = $(".btn");
+  
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
 }
+
 function loadScript(url) {
   var script = document.createElement("script");
   script.type = "text/javascript";
@@ -158,43 +182,48 @@ function loadScript(url) {
   document.head.appendChild(script);
 }
 // Use a single function to load content and initialize DataTable
+window.onload = function () {
+  // Check if the last visited URL is stored in localStorage
+  const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
+  if (lastVisitedUrl) {
+    loadContent(lastVisitedUrl);
+  } else {
+    loadContent('dashboard.php');
+  }
+};
+
+// Use the loadContent function for all the sidebar buttons
+dashboard.addEventListener('click', function () {
+  loadContent('dashboard.php');
+});
+
+// Update the loadContent function to store the last visited URL in localStorage
 function loadContent(url) {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("content").innerHTML = this.responseText;
+      document.getElementById('content').innerHTML = this.responseText;
       initializeDataTable(); // Call the DataTable initialization function after loading content
+      localStorage.setItem('lastVisitedUrl', url); // Store the last visited URL in localStorage
     }
-   if(url==='viewdriver.php'){
-    DriverDelete();
-   }
-   else if(url==='viewtrip.php'){
-      TripDelete();
-   }
-   else if(url==='viewbus.php'){
-    BusDelete();
- }
- else if(url==='viewadmin.php'){
-  AdminDelete();
-}
-else if(url==='applications.php'){
-  ApplicationDelete();
-}
 
+    if (url === 'viewdriver.php') {
+      DriverDelete();
+    } else if (url === 'viewtrip.php') {
+      TripDelete();
+    } else if (url === 'viewbus.php') {
+      BusDelete();
+    } else if (url === 'viewadmin.php') {
+      AdminDelete();
+    } else if (url === 'applications.php') {
+      ApplicationDelete();
+    }else if (url === 'payments.php') {
+    Paymentrefund();
+    }
   };
-  xhr.open("GET", url, true);
+  xhr.open('GET', url, true);
   xhr.send();
 }
-
-// Use the loadContent function to load dashboard.html initially
-window.onload = function() {
-  loadContent("dashboard.php");
-};
-
-// Use the loadContent function for all the sidebar buttons
-dashboard.addEventListener("click", function () {
-  loadContent("dashboard.php");
-});
 
 
 addtrip.addEventListener("click", function () {

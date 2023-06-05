@@ -27,7 +27,7 @@
                 <form action="">
                     <div class="flexSb gap-2">
                         <input type="text" name="" placeholder="Name" id="name" value="hassan">
-                        <input type="text" name="" placeholder="Last Name" id="last name" value="barada">
+                        <input type="text" name="" placeholder="Last Name" id="lastname" value="barada">
                     </div>
                     <div class="flexSb gap-2">
                       <h6 class="text-danger ml-2" id="vname"></h6>
@@ -61,7 +61,11 @@
         </div>
         </section>
       <?php include('../main/footer.html')   ?>
-     
+     <script>
+        const currency = document.querySelector('.currencycontainer');
+        console.log(currency);
+        currency.style.display='none';
+     </script>
       <script src="editprofilevalidate.js"></script>
 </body>
 </html>
