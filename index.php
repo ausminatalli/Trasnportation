@@ -261,25 +261,8 @@ include('./main/footer.html')
   <script src="js/wow.min.js"></script>
   <script src="js/demo.js"></script>
   <script src="./main/js/mainvalidate.js"></script>
-  <script>
-  new WOW().init();
-  </script>
-  <script>
-     let location1=document.getElementById('location1');
-     let location2=document.getElementById('location2');
-     let form=document.querySelector('.form1');
-     let validateform=document.querySelector('#validateform');
-     let validatesearch=document.getElementById('validatesearch');
-     console.log(validateform);
-     validatesearch.onclick=function vvv(e){
-      e.preventDefault();
-      if(location1.value=='' || location2.value=='' ){
-        validateform.style.border='3px solid red';
-      }
-      else{
-        validateform.style.border='';
-      }
-     }
-  </script>
+
+ <script src="js/index.js"></script>
+
 </body>
 </html>
