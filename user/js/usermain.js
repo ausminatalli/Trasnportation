@@ -1,4 +1,22 @@
+     
+     function userSearchValidation(e){
+     let origin=document.getElementById('origin');
+     let destination=document.getElementById('destination');
+     let validateform=document.querySelector('#validateform');
+      e.preventDefault();
+      if(origin.value=='' || destination.value=='' ){
+        validateform.style.border='3px solid red';
+      }
+      else{
+        validateform.style.border='';
+      }
+     
+    }
+    
 
+
+
+/* <----> Map code  <----> */
 //Global variables
 let map;
 let originMarker;
@@ -123,6 +141,8 @@ L.popup()
 })
 
 }
+
+/* <----> Map code end <----> */
 
 
 function toggleLocation(event){

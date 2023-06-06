@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/verification.css">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,39 +14,9 @@
       crossorigin="anonymous"
     />
   </head>
-  <style>
-    body {
-      margin: 0px;
-      padding: 0px;
-      background-color:#e5f6ff !important;
-    }
-   
-    .card {
-      margin: 40px auto;
-    }
-    input {
-      background-color: rgb(64, 64, 251);
-      color: white;
-      padding: 5px;
-      border-radius: 5px;
-      width: 250px;
-      margin-top: 5px;
-    }
-    .flex {
-      display: flex;
-      justify-content: center;
-    }
-    .card-body {
-      background-color: rgb(245, 245, 245);
-      font-weight: 400;
-    }
-    p {
-      font-size: 14px;
-    }
-  </style>
   <body>
   <?php   
-   include('../headersearch.html');
+   include('../../include/header.html');
     ?>
   <div class="container">
     <div class="card" style="width: 35rem; height: 35rem">
@@ -66,6 +37,6 @@
       </div>
     </div>
   </div>
-    <?php include('../footer.html'); ?>
+    <?php include('../../include/footer.html'); ?>
   </body>
 </html>

@@ -1,14 +1,10 @@
 
     let modal = $(".modal-container");
     let  btn = $(".btn-refund");
-   
     let closeBtn = $(".btn");
-    
-  
     
     // EventListener
     btn.on("click", function() {
-  
       modal.addClass("show");
     });
     
@@ -23,4 +19,5 @@
         modal.removeClass("show");
       }
     });
-    
+    const currency = document.querySelector('.currencycontainer');
+       currency.style.display='none';
