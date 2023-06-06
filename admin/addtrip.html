@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-  
+
     <title>Add Trip</title>
     <style>
       .vspan {
@@ -14,17 +13,22 @@
     </style>
   </head>
   <body>
-    
     <h2 class="text-center text-primary mt-5 mb-5">Add Trip</h2>
     <div class="card-body content">
       <form action="">
-        <h5 class="text-primary">Add Trip Origin Destination Time and Driver</h5>
-        <hr class="hr">
+        <h5 class="text-primary">
+          Add Trip Origin Destination Time and Driver
+        </h5>
+        <hr class="hr" />
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <h5>From</h5>
-              <select class="form-control" style="width: 100%;" id="startLocation">
+              <select
+                class="form-control"
+                style="width: 100%"
+                id="startLocation"
+              >
                 <option selected="selected">Start Location</option>
                 <option>Beirut</option>
                 <option>Saida</option>
@@ -39,7 +43,11 @@
           <div class="col-md-6">
             <div class="form-group">
               <h5>To</h5>
-              <select class="form-control" style="width: 100%;" id="destinationLocation">
+              <select
+                class="form-control"
+                style="width: 100%"
+                id="destinationLocation"
+              >
                 <option selected="selected">Select Location</option>
                 <option>Beirut</option>
                 <option>Saida</option>
@@ -56,14 +64,19 @@
           <div class="col-md-6">
             <div class="form-group">
               <h5>Select Date</h5>
-              <input type="date" class="form-control" style="width: 100%;" id="date">
+              <input
+                type="date"
+                class="form-control"
+                style="width: 100%"
+                id="date"
+              />
               <span id="vDate" class="vspan"></span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <h5>Select Time</h5>
-              <input type="time" class="form-control" id="time">
+              <input type="time" class="form-control" id="time" />
               <span id="vTime" class="vspan"></span>
             </div>
           </div>
@@ -72,7 +85,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <h5>Select Bus</h5>
-              <select class="form-control" style="width: 100%;" id="busNumber">
+              <select class="form-control" style="width: 100%" id="busNumber">
                 <option selected="selected">Bus Number</option>
                 <option>1</option>
                 <option>2</option>
@@ -87,7 +100,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <h5>Select Driver</h5>
-              <select class="form-control" style="width: 100%;" id="driverName">
+              <select class="form-control" style="width: 100%" id="driverName">
                 <option selected="selected">Driver Name</option>
                 <option>Ta3an</option>
                 <option>Jahjeh</option>
@@ -98,9 +111,11 @@
             </div>
           </div>
         </div>
-        <hr class="hr">
+        <hr class="hr" />
         <div class="bottom text-center">
-          <button class="btn btn-primary" onclick="validateTrip()" id="submit">Submit</button>
+          <button class="btn btn-primary" onclick="validateTrip()" id="submit">
+            Submit
+          </button>
         </div>
       </form>
     </div>
