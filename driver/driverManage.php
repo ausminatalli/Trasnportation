@@ -14,7 +14,7 @@
 <body>
 <section class="top-nav  driver-nav">
         <div class="logo">
-            <a href="index.html"><img src="../img/Transportation_Logo.png" alt=""></a>
+            <a href="../index.php"><img src="../img/Transportation_Logo.png" alt=""></a>
         </div>
         <input id="menu-toggle" type="checkbox" />
         <label class='menu-button-container' for="menu-toggle">
@@ -23,7 +23,7 @@
         <ul class="menu">
             <li><a class="line" href="#">Driver Name</a></li>
             <li><a class="line" href="#">Profile</a></li>
-            <li><a class="signup" href="../index.html">Logout</a></li>
+            <li><a class="signup" href="../index.php">Logout</a></li>
           
       </section>
     
