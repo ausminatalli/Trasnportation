@@ -65,6 +65,7 @@ function validation(event) {
   
     if (isValid) {
       alert("Registration successful");
+      window.location.href=("../login.html");
     }
   }
   

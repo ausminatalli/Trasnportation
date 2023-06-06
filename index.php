@@ -28,7 +28,7 @@
    
     <section class="top-nav">
         <div class="logo wow slideInRight" data-wow-duration="2s" data-wow-delay="" >
-            <a href="index.html"><img src="./img/Transportation_Logo.png" alt=""></a>
+            <a href="index.php"><img src="./img/Transportation_Logo.png" alt=""></a>
         </div>
         <input id="menu-toggle" type="checkbox" />
         <label class='menu-button-container' for="menu-toggle">
@@ -37,7 +37,7 @@
         <ul class="menu">
             <li><a class="line" href="#about-us">About</a></li>
             <li><a class="line" href="#footer">Services</a></li>
-            <li><a class="line" href="./main/contact.php">Contact</a></li>
+            <li><a class="line" href="./main/ContactUs.php">Contact</a></li>
             <li><a class="login" href="./main/login.html">Login</a></li>
             <li><a class="signup" href="./main/signup.html">Sign up</a></li>
           
@@ -137,7 +137,7 @@ You can contact us via email or give us a call at Phone Number. We strive to res
 
 Thank you for choosing Skyline. We look forward to serving you and providing you with a reliable and convenient bus transportation experience.
                   </li> 
-                  <li><a href="./main/contact.php">Contact us</a></li>
+                  <li><a href="./main/ContactUs.php">Contact us</a></li>
                 </ul>
               </div>
             
@@ -261,6 +261,8 @@ include('./main/footer.html')
   <script src="js/wow.min.js"></script>
   <script src="js/demo.js"></script>
   <script src="./main/js/mainvalidate.js"></script>
+
  <script src="js/index.js"></script>
+
 </body>
 </html>
