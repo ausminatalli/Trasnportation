@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/userbooking.css" />
   <link rel="stylesheet" href="../admin/css/modal.css">
   <title>Booking Management</title>
   </head>
@@ -13,46 +14,10 @@
     body {
       background-color: var(--backColor) !important;
     }
-
-    .text {
-      margin-top: 5rem;
-      margin-bottom: 5rem;
-    }
-    .send{
-      margin-bottom:30px;
-    }
-    .one {
-      font-weight: bold;
-    }
-
-    .two {
-      font-weight: bold;
-    }
-    .star-button {
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-}
-footer{
-  margin-top:40px;
-}
-.comment-area {
-  padding:10px;
-}
-.comment-area textarea{
-  border:none;
-  border-bottom:1px solid #ddd;
-  padding:10px;
-  outline: red;
-
-
-}
-
   </style>
 
 <body>
-  <?php include('header.html'); ?>
+  <?php include('../include/userheader.html'); ?>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -203,7 +168,6 @@ footer{
         </div>
       </div>
     </div>
-      
     <?php include('../main/footer.html'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>

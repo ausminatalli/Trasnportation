@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Day Off Form</title>
-    <link rel="stylesheet" href="./DayOff.css">
+    <link rel="stylesheet" href="../css/DayOff.css">
     <link rel="stylesheet" href="../css/driver.css">
 
     <link rel="stylesheet" href="../css/style.css">
@@ -14,20 +14,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"> 
   </head>
   <body>
-  <section class="top-nav  driver-nav">
-        <div class="logo">
-            <a href="../index.php"><img src="../img/Transportation_Logo.png" alt=""></a>
-        </div>
-        <input id="menu-toggle" type="checkbox" />
-        <label class='menu-button-container' for="menu-toggle">
-        <div class='menu-button'></div>
-      </label>
-        <ul class="menu">
-            <li><a class="line" href="#">Driver Name</a></li>
-            <li><a class="line" href="#">Profile</a></li>
-            <li><a class="signup" href="../index.php">Logout</a></li>
-          
-      </section>
+  <?php include('../include/driverheader.html')  ?>
     <div class="DayOff">
       <h1>Day Off Request Form</h1>
       <form action="" class="Input">
@@ -63,7 +50,7 @@
     </div>
   
     <?php 
-    include('../main/footer.html')
+    include('../include/footer.html');
     ?>
   </body>
   <script src='js/dayofvalidation.js'></script>

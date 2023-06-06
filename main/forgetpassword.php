@@ -7,8 +7,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="../../css/login.css" />
-    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -27,17 +27,17 @@
     <title>Forgot Password</title>
   </head>
   <body>
-  <?php include('../header.html')  ?>
+  <?php include('../include/header.html')  ?>
     <section class="login">
       <div class="container">
         <div class="login-content">
           <h2>Forgot Password</h2>
           <p>PLEASE ENTER YOUR EMAIL ADDRESS TO RESET YOUR PASSWORD.</p>
-          <form id="forgetform" action="">
+          <form id="forgetform" action="#">
           
-            <input id='email' type="email"  placeholder="Email address" />
-            <div class="error" id="email-error"></div>
-            <button id='submit' class="btn-blue" type="submit">Reset Password</button>
+            <input oninput='handleEmailInput()' id='email' type="email"  placeholder="Email address" />
+            <div class="error text-danger" id="email-error"></div>
+            <button onclick='handleSubmit(event,"forget")' id='submit' class="btn-blue" type="submit">Reset Password</button>
             <p class="dont">
               Remembered your password? <a href="#">Sign in</a>
             </p>
@@ -45,7 +45,7 @@
         </div>
       </div>
     </section>
-    <?php include('../footer.html') ?>
-    <script src="../js/forgetvalidation.js"></script>
+    <?php include('../include/footer.html') ?>
+    <script src="js/validation.js"></script>
   </body>
 </html>

@@ -96,4 +96,6 @@ function validation(event) {
 
 
   }
-  
+  const currency = document.querySelector('.currencycontainer');
+        
+        currency.style.display='none';

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="searchresult.css">
+    <link rel="stylesheet" href="../css/searchresult.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <link
       rel="stylesheet"
@@ -15,47 +15,9 @@
     <title>Skyline User Page</title>
   </head>
   
-  <body style=''>
-    <style>
-  #map{
-    width: 100%;
-        height: 400px;
-        margin-top:34px;
-      }
-      .scrollable-container {
-            height: 400px;
-            overflow: auto;
-            padding: 0 10px;
-        }
-        /*       ScrollBar 1        */
-        
-        .scrollable-container::-webkit-scrollbar {
-            width: 16px;
-        }
-        
-        .scrollable-container::-webkit-scrollbar-track {
-            border-radius: 8px;
-            background-color: #e7e7e7;
-            border: 1px solid #cacaca;
-        }
-        
-        .scrollable-container::-webkit-scrollbar-thumb {
-            border-radius: 8px;
-          border: 3px solid transparent;
-           background-clip: content-box;
-            background-color: #d55959;
-        }
-        #result-container{
-          margin-left:-15px;
-        }
-        @media (max-width: 767px) {
-        .row.flex-column-reverse-sm {
-          flex-direction: column-reverse !important;
-        }
-      }
-      </style>
+  <body>
     <?php   
-   include('header.html');
+   include('../include/userheader.html');
     ?>
     <div id="usermain" class="usermain">
     <section class="filter" style='padding-top:100px'>
@@ -98,27 +60,14 @@
             </div>
           </div>
           <div class="form2">
-            <button onclick="calculateDistance()" id="validatesearch">
+            <button onclick="calculateDistance(); userSearchValidation(event);" id="validatesearch">
               Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
         </form>
       </div>
     </section>
-    <?php
-   // $currency = $_POST['currency'];
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      
-      $currency = $_POST['currency'];
-      if (empty($currency)) {
-        echo "currency not found";
-      } else {
-        print($currency);
-      }
-    }
-    //echo $currency;
-    ?>
+  
     <div class="container mt-4">
         <div class="row flex-column-reverse-sm">
             
@@ -191,43 +140,10 @@
     </div>
     <?php   
    include('../main/footer.html');
-
     ?>
     </div>
    <script src='./js/usermain.js'></script>
-   <script>
-    // Switch
-
-function toggleLocation(event){
-
-event.preventDefault();
-
-let select1 = document.getElementById("origin");
-let select2 = document.getElementById("destination");
-
-let swich= select1.value;
-select1.value=select2.value;
-select2.value=swich;
-}
-
-// Switch
-let origin=document.getElementById('origin');
-     let destination=document.getElementById('destination');
-     let form=document.querySelector('.form1');
-     let validateform=document.querySelector('#validateform');
-     let validatesearch=document.getElementById('validatesearch');
-     console.log(validateform);
-     validatesearch.onclick=function vvv(e){
-      e.preventDefault();
-      if(origin.value=='' || destination.value=='' ){
-        validateform.style.border='3px solid red';
-      }
-      else{
-        validateform.style.border='';
-      }
-     }
-
-   </script>
+   
    <script src="./js/header.js"></script>
   </body>
 </html>

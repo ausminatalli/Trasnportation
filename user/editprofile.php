@@ -13,12 +13,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"> 
     <title>login</title>
 </head>
-<style>
-
-</style>
 <body>
 
-   <?php  include('header.html') ?>
+   <?php  include('../include/userheader.html') ?>
       <section class="Profile" >
         <div class="container">
             <div class="login-content">
@@ -34,16 +31,16 @@
                       <h6 class="text-danger" id="vlastName"></h6>
                     </div>
 
-                    <input type="number" required placeholder="Your Phone Number" id="number">
+                    <input type="number"  placeholder="Your Phone Number" id="number">
                     <h6 class="text-danger" id="vnumber"></h6>
 
                     <div class="flexSb password">
-                        <input type="password" required placeholder="password" id="password">
+                        <input type="password"  placeholder="password" id="password">
                         <i class="fa-solid fa-eye" onclick="showpassword(event)"></i>
                     </div>
                     <h6 class="text-danger" id="vpassword"></h6>
                     <div class="flexSb password">
-                        <input type="password" required placeholder="confirm password" id="cpassword">
+                        <input type="password"  placeholder="confirm password" id="cpassword">
                         <i class="fa-solid confirmpass fa-eye" onclick="showcpassword(event)"></i>
                     </div>
                     <h6 class="text-danger" id="vcpassword"></h6>
@@ -61,11 +58,7 @@
         </div>
         </section>
       <?php include('../main/footer.html')   ?>
-     <script>
-        const currency = document.querySelector('.currencycontainer');
-        console.log(currency);
-        currency.style.display='none';
-     </script>
-      <script src="editprofilevalidate.js"></script>
+     
+      <script src="js/editprofile.js"></script>
 </body>
 </html>

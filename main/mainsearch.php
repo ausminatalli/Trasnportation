@@ -8,68 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="searchresult.css">
+    <link rel="stylesheet" href="../css/searchresult.css">
     <link rel="stylesheet" href="../css/currency.css" />
     <title>Skyline Main Search Page</title>
 </head>
-<body>
-    <style>
-      #map {
-        width: 100%;
-        height: 400px;
-        margin-top:34px
-      }
-      .scrollable-container {
-            height: 400px;
-            overflow: auto;
-            padding: 0 10px;
-        }
-        /*       ScrollBar 1        */
-        
-        .scrollable-container::-webkit-scrollbar {
-            width: 16px;
-        }
-        
-        .scrollable-container::-webkit-scrollbar-track {
-            border-radius: 8px;
-            background-color: #e7e7e7;
-            border: 1px solid #cacaca;
-        }
-        
-        .scrollable-container::-webkit-scrollbar-thumb {
-            border-radius: 8px;
-          border: 3px solid transparent;
-           background-clip: content-box;
-            background-color: #d55959;
-        }
-        #result-container{
-          margin-left:-15px;
-        }
-        @media (max-width: 767px) {
-        .row.flex-column-reverse-sm {
-          flex-direction: column-reverse !important;
-        }
-      }
+  <body>
       
-      
-    </style>
-     <section class="top-nav">
-        <div class="logo">
-            <a href="index.html"><img src="../img/Transportation_Logo.png" alt=""></a>
-        </div>
-        <input id="menu-toggle" type="checkbox" />
-        <label class='menu-button-container' for="menu-toggle">
-        <div class='menu-button'></div>
-      </label>
-        <ul class="menu">
-            <li><a class="line" href="../index.html">Home</a></li>
-            <li>
-                <a class="line" href="#" id="currency">Lira</a>
-              </li>
-            <li><a class="line" href="../#about-us">About</a></li>
-            <li><a class="line" href="#">Contact</a></li>
-            <li><a class="signup" href="login.html">Login</a></li>
-      </section>
+     <?php  include('../include/mainheader.html')    ?>
   
     <section class="filter" style='padding-top:60px'>
     <div class="filter-contant container">
@@ -111,7 +56,7 @@
             </div>
           </div>
           <div class="form2">
-            <button onclick="calculateDistance()" id="validatesearch">
+            <button onclick="calculateDistance();userSearchValidation(event)" id="validatesearch">
               Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
@@ -170,27 +115,12 @@
         </div>
     </div>
 
-    <?php include('footer.html'); ?>
+    <?php include('../include/footer.html'); ?>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="js/mainsearch.js"></script>
-    <script>
-     let origin=document.getElementById('origin');
-     let destination=document.getElementById('destination');
-     let form=document.querySelector('.form1');
-     let validateform=document.querySelector('#validateform');
-     let validatesearch=document.getElementById('validatesearch');
-     console.log(validateform);
-     validatesearch.onclick=function vvv(e){
-      e.preventDefault();
-      if(origin.value=='' || destination.value=='' ){
-        validateform.style.border='3px solid red';
-      }
-      else{
-        validateform.style.border='';
-      }
-     }
-    </script>
+    <script src="js/validation.js"></script>
+    <script src="../user/js/header.js"></script>
 </body>
 </html>

@@ -60,7 +60,7 @@
                 <div class="form1" id="validateform">
                 <div  class="origin">
                     <label for="from">From</label>
-                    <select  class="select" name="" id="location1">
+                    <select  class="select" name="" id="origin">
                       <option selected value="">Leaving From</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -74,7 +74,7 @@
                 
                 <div class="origin">
                     <label for="from">Destination</label>
-                    <select class="select" name="" id="location2">
+                    <select class="select" name="" id="destination">
                       <option selected value="">Going To</option>
                       <option value="Beirut">Beirut</option>
                       <option value="Baalbek">Baalbek</option>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="form2">
-                <button onclick="toggleLocation(event)" id="validatesearch">Search<i class="fa-sharp fa-solid fa-magnifying-glass" id="Search"></i></button>
+                <button  id="validatesearch">Search<i class="fa-sharp fa-solid fa-magnifying-glass" id="Search"></i></button>
             </div>
             </form>
         </div>

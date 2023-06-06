@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
-    <link rel="stylesheet" href="ContactStyle.css" />
+    <link rel="stylesheet" href="../css/contactstyle.css" />
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/style.css">
   </head>
   
   <body>
-    <?php include('header.html'); ?>
+    <?php include('../include/header.html'); ?>
     <div class="Contact">
       <div class="image">
         <img
-        src="email-support-outsourcing-service-in-australia-v3os-australia - Copy.png"
+        src="https://i.ibb.co/nRGYVyM/email-support-outsourcing-service-in-australia-v3os-australia-Copy.png"
           alt="ContactUs illustration" />
         </div>
         <div class="con2">
@@ -36,9 +36,9 @@
         </form>
       </div>
     </div>
-    <?php include('footer.html'); ?>
+    <?php include('../include/footer.html'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./ContactUs.js"></script>
+    <script src="js/ContactUs.js"></script>
   </body>
 
 </html>
