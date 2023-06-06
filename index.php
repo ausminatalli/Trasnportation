@@ -271,8 +271,8 @@ include('./main/footer.html')
      let validateform=document.querySelector('#validateform');
      let validatesearch=document.getElementById('validatesearch');
      console.log(validateform);
-     validatesearch.onclick=function vvv(){
-      
+     validatesearch.onclick=function vvv(e){
+      e.preventDefault();
       if(location1.value=='' || location2.value=='' ){
         validateform.style.border='3px solid red';
       }
