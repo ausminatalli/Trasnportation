@@ -154,8 +154,9 @@
                                     <div class="rightsection">
                                         <h5><?php echo $item['price']; ?></h5>
                                         <a href="#">
-                                            Select
+                                            Book
                                         </a>
+                                        <i class="fa-solid fa-arrow-right fa-lg mt-2"></i>
                                     </div>
                                 </div>
                                 <?php

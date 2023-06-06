@@ -7,6 +7,10 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
+require_once 'env.php';
+loadEnv(__DIR__ . '/.env');
+
+
 function sendEmailWithCC($to, $cc, $subject, $message) {
     $mail = new PHPMailer(true);
 
@@ -14,8 +18,8 @@ function sendEmailWithCC($to, $cc, $subject, $message) {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP server address
         $mail->SMTPAuth = true;
-        $mail->Username = 'teamesamailer@gmail.com'; // Replace with your email address
-        $mail->Password = 'mcfqxajraglumnbo'; // Replace with your email password
+        $mail->Username = $_ENV['email']; // Replace with your email address
+        $mail->Password = $_ENV['email_password']; // Replace with your email password
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 

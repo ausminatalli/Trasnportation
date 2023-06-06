@@ -72,16 +72,22 @@ width: 100%;
     color: #0771F2;
     font-weight: bold;
 }
+.rightsection i{
+    display: none;
+    
+    }
 .rightsection a{
     border:2px solid ;
-    width: 100%;
-    
+    width: 100px;
     background-color: #FF6E1A;
     border-radius: 10px;
     color: white;
     text-decoration: none;
     text-align: center;
     }
+
+
+
 .rightsection a:hover{
     opacity: 0.5;
 }
@@ -99,6 +105,13 @@ width: 100%;
     .rightsection a{
         display: none;
         }
+
+        .rightsection i{
+            
+            display: inline-block;
+            cursor: pointer;
+            }
+
         .rightsection p{
             font-family: sans-serif;
             margin-bottom: -23px;

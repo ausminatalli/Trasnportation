@@ -34,11 +34,12 @@
         </div>
       </div>
       <div class="rightsection">
-        <h5><?php echo $item['price']; ?></h5>
-        <a href="#">
-          Book
-        </a>
-      </div>
+            <h5><?php echo $price; ?></h5>
+            <a href="#">
+                Book
+            </a>
+            <i class="fa-solid fa-arrow-right fa-lg mt-2"></i>
+        </div>
     </div>
     <?php
     }
