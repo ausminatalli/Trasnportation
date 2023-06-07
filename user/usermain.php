@@ -139,7 +139,7 @@
       </div>
     </div>
     <?php   
-   include('../main/footer.html');
+   include('../include/footer.html');
     ?>
     </div>
    <script src='./js/usermain.js'></script>
