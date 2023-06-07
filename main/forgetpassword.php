@@ -39,7 +39,7 @@
             <div class="error text-danger" id="email-error"></div>
             <button onclick='handleSubmit(event,"forget")' id='submit' class="btn-blue" type="submit">Reset Password</button>
             <p class="dont">
-              Remembered your password? <a href="#">Sign in</a>
+              Remembered your password? <a href="./login.php">Login</a>
             </p>
           </form>
         </div>

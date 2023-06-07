@@ -132,7 +132,9 @@ function UserRegValid(event) {
   
   // Function to validate the password length
   function validatePassword(password) {
-    return password.length >= 8;
+    // Password validation criteria
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    return passwordRegex.test(password);
   }
   
   // Function to update the error message for a field
@@ -174,11 +176,13 @@ function UserRegValid(event) {
   }
   
   // Function to handle form submission
-  function handleSubmit(event,page) {
-    event.preventDefault(); // Prevent form submission
+  function handleSubmit(page) {
+     // Prevent form submission
   
     // Perform additional checks or actions before submitting the form
     const email = document.getElementById('email').value;
+    var response = grecaptcha.getResponse();
+    
 
     if(page == 'login'){
     const password = document.getElementById('password').value;
@@ -187,7 +191,7 @@ function UserRegValid(event) {
       // If there are validation errors, update error messages and return
       handleEmailInput();
       handlePasswordInput();
-      return;
+      return false;
     }
 }
 else
@@ -195,10 +199,21 @@ else
     if (!validateEmail(email)) {
         // If there are validation errors, update error messages and return
         handleEmailInput();
-        return;
+        return true;
       }
 }
+
+if(response.length==0){
+  document.getElementById('recaptcha-error').innerHTML = '<span style="color:red;">Please click to verify that you are human</span>';
+
+  return false;
+}
+return true;
+
     // Add your code here to handle the form submission, e.g., AJAX request, page redirection, etc.
+  }
+  function verifyCaptcha(){
+    document.getElementById('recaptcha-error').innerHTML = "";
   }
   
   /* ---- end login/forget validation -----*/

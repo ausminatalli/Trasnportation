@@ -38,8 +38,8 @@
             <li><a class="line" href="#about-us">About</a></li>
             <li><a class="line" href="#footer">Services</a></li>
             <li><a class="line" href="./main/ContactUs.php">Contact</a></li>
-            <li><a class="login" href="./main/login.html">Login</a></li>
-            <li><a class="signup" href="./main/signup.html">Sign up</a></li>
+            <li><a class="login" href="./main/login.php">Login</a></li>
+            <li><a class="signup" href="./main/signup.php">Sign up</a></li>
           
       </section>
       <section class="background">
