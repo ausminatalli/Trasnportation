@@ -181,6 +181,8 @@ function UserRegValid(event) {
   
     // Perform additional checks or actions before submitting the form
     const email = document.getElementById('email').value;
+    var response = grecaptcha.getResponse();
+    
 
     if(page == 'login'){
     const password = document.getElementById('password').value;
@@ -200,7 +202,18 @@ else
         return true;
       }
 }
+
+if(response.length==0){
+  document.getElementById('recaptcha-error').innerHTML = '<span style="color:red;">Please click to verify that you are human</span>';
+
+  return false;
+}
+return true;
+
     // Add your code here to handle the form submission, e.g., AJAX request, page redirection, etc.
+  }
+  function verifyCaptcha(){
+    document.getElementById('recaptcha-error').innerHTML = "";
   }
   
   /* ---- end login/forget validation -----*/
