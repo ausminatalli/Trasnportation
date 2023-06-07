@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/modal.css" />
 </head>
 <body>
   <style>
@@ -41,12 +42,43 @@
             echo "<td>".$row['Lastname']."</td>";
             echo "<td>".$row['MobileNumber']."</td>";
             echo "<td>".$row['Number of trips']."</td>";
-            echo ' <td><button class="icon-trash"><i class="fa-solid fa-ban"></i></button></td>';
+            echo ' <td><button class="icon-trash blockuser"><i class="fa-solid fa-ban"></i></button></td>';
             echo "</tr>";
           }
         ?>
       </tbody>
     </table>
+  </div>
+  <div class="modal-container" id="myModal">
+      <div class="modal-wrapper bg-white">
+        <div class="modall">
+          <header>
+            <h2>Confirmation</h2>
+          </header>
+          <main>
+            <div class="icon-wrapper">
+              <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <div class="text-wrapper">
+              <span>Are you sure you want to Block this User?</span>
+            </div>
+          </main>
+          <footer>
+            <div class="btn-container">
+              <div class="cancel-wrapper">
+                <button class="btn btn-cancel">Cancel</button>
+              </div>
+              <div class="delete-confirm-wrapper">
+                <button class="btn btn-confirm">
+                  <i class="fa-solid fa-trash"></i>
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

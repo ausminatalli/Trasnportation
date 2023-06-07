@@ -62,7 +62,7 @@
             echo "<td>".$row['about']."</td>";
             echo "<td>".$row['applyDate']."</td>";
             echo '<td colspan="">
-            <button data-toggle="tooltip" data-placement="right" title="Show Licenset" class="icon-trash"><i class="fa-solid fa-id-card"></i></button><br> 
+            <button data-toggle="tooltip" data-placement="right" title="Show License" class="icon-trash showlicense" onclick="window.open(\''.$row['licenseLink'].'\', \'_blank\')"><i class="fa-solid fa-id-card"></i></button><br>
             <button data-toggle="tooltip" data-placement="right" title="Accept Driver" class="icon-trash"><i class="fa-solid fa-circle-check"></i></button><br>
             <button  data-toggle="tooltip" data-placement="right" title="Reject Driver" class="icon-trash btn-delete4"><i class="fa-solid fa-trash"></i></button>
             </td>';
@@ -103,9 +103,9 @@
       </div>
     </div>
   </div>
-
- 
+  <script>
   
+</script> 
 </body>
 </html>
 

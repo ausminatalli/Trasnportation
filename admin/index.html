@@ -37,6 +37,9 @@
       body {
         background-color: #f4f6f9;
       }
+      .gold-star {
+        color: gold;
+      }
     </style>
     <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="menu">
@@ -143,6 +146,27 @@
       $(document).ready(function () {
         $(".dropdown-toggle").dropdown();
       });
+      function showReview(stars, comment) {
+        var reviewStars = document.getElementById("reviewStars");
+        var reviewComment = document.getElementById("reviewComment");
+
+        // Clear previous content
+        reviewStars.innerHTML = "";
+        reviewComment.innerHTML = "";
+
+        // Display stars
+        for (var i = 0; i < stars; i++) {
+          var star = document.createElement("i");
+          star.classList.add("fa", "fa-solid", "fa-star", "gold-star");
+          reviewStars.appendChild(star);
+        }
+
+        // Display comment
+        reviewComment.innerHTML = comment;
+
+        // Show the modal
+        $("#reviewModal").modal("show");
+      }
     </script>
   </body>
 </html>
