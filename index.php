@@ -252,7 +252,7 @@ Thank you for choosing Skyline. We look forward to serving you and providing you
       <!-- Footer -->
 
 <?php 
-include('./main/footer.html')
+include('include/footer.html')
 ?>
 
   <!-- Footer -->
