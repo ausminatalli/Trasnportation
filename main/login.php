@@ -49,10 +49,12 @@
                       <input type="checkbox">
                       <p>Keep me logged in</p>
                     </div>
-                    <h5 class="forget"><a href="#">Forgot password?</a></h5>
+                    <h5 class="forget"><a href="./forgetpassword.php">Forgot password?</a></h5>
                   </div>
+                  <div class="g-recaptcha p-2" data-sitekey="6LdrHHgmAAAAAHWg_T5C8-aQ4yMrm3e5iWFnpjXu" data-callback="verifyCaptcha"></div>
+                  <div id="recaptcha-error" class="error"></div> <!-- reCAPTCHA v2 checkbox -->
                   <button onsubmit="handleSubmit('login')" class="btn-blue" type="submit">Login</button>
-                  <p class="dont">Don't have an account? <a href="signup.html">Sign up</a></p>
+                  <p class="dont">Don't have an account? <a href="./signup.php">Sign up</a></p>
                 </form>
                 <div class="text-center">
                 <span class="text-danger text-center" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
@@ -67,7 +69,12 @@
            <!-- Footer -->
              
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="js/validation.js"></script>
-    
+    <script>
+        setTimeout(function() {
+            document.getElementById("err").style.display = "none";
+        }, 4000);
+    </script>
 </body>
 </html>

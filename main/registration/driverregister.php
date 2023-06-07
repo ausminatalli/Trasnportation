@@ -91,7 +91,7 @@
             >
 
             <p class="dont">
-              Already a member? <a href="../login.html">Login</a>
+              Already a member? <a href="../login.php">Login</a>
             </p>
           </form>
         </div>
