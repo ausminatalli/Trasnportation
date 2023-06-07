@@ -27,7 +27,7 @@
           <th>Origin</th>
           <th>Destination</th>
           <th>Date</th>
-          <th>Strat Time</th>
+          <th>Start Time</th>
           <th>Arrive Time</th>
           <th>Driver</th>
           <th>Action</th>
@@ -44,10 +44,10 @@
             echo "<td>".$row['origin']."</td>";
             echo "<td>".$row['destination']."</td>";
             echo "<td>".$row['date']."</td>";
-            echo "<td>".$row['startTime']."  ------>></td>";
+            echo "<td>".$row['startTime']."</td>";
             echo "<td>".$row['arriveTime']."</td>";
             echo "<td><h6>".$row['DriverName']."</h6></td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash"><i class="fa-solid fa-user-pen"></i></button> | 
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Trip" class="icon-trash btn-delete1"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";
@@ -87,6 +87,72 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="editForm" method="post" action="edit.php">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit Trip</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <div class="form-group">
+            <label for="origin">Origin:</label>
+            <select class="form-control" id="origin" name="origin">
+              <!-- Add dropdown options here -->
+              <option value="Beirut">Beirut</option>
+              <option value="Saida">Saida</option>
+              <option value="Tyre">Tyre</option>
+              <option value="Nabatieh">Nabatieh</option>
+              <option value="Baalbek">Baalbek</option>
+              <option value="Byblos">Byblos</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="destination">Destination:</label>
+            <select class="form-control" id="destination" name="destination">
+              <!-- Add dropdown options here -->
+              <option value="Beirut">Beirut</option>
+              <option value="Saida">Saida</option>
+              <option value="Tyre">Tyre</option>
+              <option value="Nabatieh">Nabatieh</option>
+              <option value="Baalbek">Baalbek</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" name="date">
+          </div>
+          <div class="form-group">
+            <label for="startTime">Start Time:</label>
+            <input type="time" class="form-control" id="startTime" name="startTime">
+          </div>
+          <div class="form-group">
+            <label for="arriveTime">Arrive Time:</label>
+            <input type="time" class="form-control" id="arriveTime" name="arriveTime">
+          </div>
+          <div class="form-group">
+            <label for="driver">Driver:</label>
+            <select class="form-control" id="driver" name="driver">
+              <!-- Add dropdown options here -->
+              <option value="Ali Mantach">Ali Mantach</option>
+              <option value="Mohamad Yassin">Mohamad Yassin</option>
+              <option value="Khodor Hajj Hassan">Khodor Hajj Hassan</option>
+              <option value="Hassan Barada">Hassan Barada</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
  
   
 </body>

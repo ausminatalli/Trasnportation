@@ -5,7 +5,9 @@
         "Tripid": "81653405",
          "Firstname":"Mohammad",
          "LastName":"Yassine",
-         "AmountPaid":"100000"
+         "AmountPaid":"100000",
+         "Review":"Sometimes the best adventures are the ones that take us to places we never planned to go, but ultimately redefine who we are,In the chaos of existence, I find solace in the beauty of fleeting moments and the power of human connections.",
+         "stars":"5"
   
       },
       {
@@ -14,7 +16,9 @@
         "Tripid": "6526722",
          "Firstname":"Test",
          "LastName":"Name",
-         "AmountPaid":"200000"
+         "AmountPaid":"200000",
+         "Review":"In the chaos of existence, I find solace in the beauty of fleeting moments and the power of human connections.",
+         "stars":"3"
       },
       {
         "PaymentID": "8762722",
@@ -22,6 +26,8 @@
         "Tripid": "81653405",
          "Firstname":"YARD",
          "LastName":"MARD",
-         "AmountPaid":"300000"
+         "AmountPaid":"300000",
+         "Review":"Sometimes the best adventures are the ones that take us to places we never planned to go, but ultimately redefine who we are",
+         "stars":"4"
       }
 ]

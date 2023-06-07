@@ -67,23 +67,13 @@
               echo "<td>".$row['Lastname']."</td>";
               echo "<td>".$row['MobileNumber']."</td>";
               echo "<td>".$row['Email']."</td>";
-              echo '<td>';
-              echo '<select class="station-dropdown">';
-
-              $stationData = ['Tripoli', 'Beirut', 'Saida'];
-              foreach ($stationData as $station) {
-                $selected = $station == $row['Station'] ? 'selected' : '';
-                echo '<option value="'.$station.'" '.$selected.'>'.$station.'</option>';
-              }
-
-              echo '</select>';
-              echo '</td>';
-              echo '<td><input type="date" value="'.$row['Licensedate'].'"></td>';
+              echo "<td>".$row['Station']."</td>";
+              echo "<td>".$row['Licensedate']."</td>";
               echo '<td class="' . strtolower($licenseClass) . '">' . $licenseClass . '</td>';
               echo '<td class="' . strtolower($onlineClass) . '">' . $onlineClass . '</td>';
               echo '<td>';
               echo '<div class="action-buttons">';
-              echo '<button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash"><i class="fa-solid fa-user-pen"></i></button> | ';
+              echo '<button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid fa-user-pen"></i></button> | ';
               echo '<button data-toggle="tooltip" data-placement="right" title="Delete Driver" class="icon-trash btn-delete"><i class="fa-solid fa-trash"></i></button>';
               echo '</div>';
               echo '</td>';
@@ -125,6 +115,43 @@
         </div>
       </div>
     </div>
+
+
+    
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="editForm" method="post" action="edit.php">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit driver</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="Licensedate">LicenseDate:</label>
+            <input type="date" class="form-control" id="Licensedate" name="Licensedate">
+          </div>
+          <div class="form-group">
+            <label for="Station">Station:</label>
+            <select class="form-control" id="Station" name="Station">
+              <!-- Add dropdown options here -->
+              <option value="Beirut">Beirut</option>
+              <option value="Saida">Saida</option>
+              <option value="Tyre">Tyre</option>
+              <option value="Tripoli">Tripoli</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
   </body>
 </html>
 

@@ -38,40 +38,40 @@
   </style>
   <div>
   <h2 class="text-center text-primary mt-5 mb-5">Payments</h2>
-    <table id="myTable" class="table table-striped" style="width: 100%">
-      <thead>
-        <tr>
-          <th>PaymentID</th>
-          <th>Userid</th>
-          <th>Tripid</th>
-          <th>Firstname</th>
-          <th>LastName</th>
-          <th>AmountPaid</th>
-          <th>Review</th>
-          <th>Refund</th>
-          <!-- Added column for the block button -->
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-          $jsonData = file_get_contents('./demodata/payment.json');
-          $data = json_decode($jsonData, true);
+  <table id="myTable" class="table table-striped" style="width: 100%">
+  <thead>
+    <tr>
+      <th>PaymentID</th>
+      <th>Userid</th>
+      <th>Tripid</th>
+      <th>Firstname</th>
+      <th>LastName</th>
+      <th>AmountPaid</th>
+      <th>Review</th>
+      <th>Refund</th>
+      <!-- Added column for the block button -->
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+      $jsonData = file_get_contents('./demodata/payment.json');
+      $data = json_decode($jsonData, true);
 
-          foreach ($data as $row) {
-            echo "<tr>";
-            echo "<td>".$row['PaymentID']."</td>";
-            echo "<td>".$row['Userid']."</td>";
-            echo "<td>".$row['Tripid']."</td>";
-            echo "<td>".$row['Firstname']."</td>";
-            echo "<td>".$row['LastName']."</td>";
-            echo "<td>".$row['AmountPaid']."</td>";
-            echo '<td><i class="fa-solid fa-star fa-xl review"></i></td>';
-            echo '<td><i class="fa-regular fa-credit-card fa-xl refund btn-delete5"></i></td>';
-            echo "</tr>";
-          }
-        ?>
-      </tbody>
-    </table>
+      foreach ($data as $row) {
+        echo "<tr>";
+        echo "<td>".$row['PaymentID']."</td>";
+        echo "<td>".$row['Userid']."</td>";
+        echo "<td>".$row['Tripid']."</td>";
+        echo "<td>".$row['Firstname']."</td>";
+        echo "<td>".$row['LastName']."</td>";
+        echo "<td>".$row['AmountPaid']."</td>";
+        echo '<td><i class="fa-solid fa-star fa-xl review" onclick="showReview('.$row['stars'].', \''.$row['Review'].'\')"></i></td>';
+        echo '<td><i class="fa-regular fa-credit-card fa-xl refund btn-delete5"></i></td>';
+        echo "</tr>";
+      }
+    ?>
+  </tbody>
+</table>
   </div>
   <div class="modal-container" id="myModal">
       <div class="modal-wrapper bg-white">
@@ -105,5 +105,24 @@
     </div>
   </div>
  
+  <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title text-center" id="reviewModalLabel">Review Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div id="reviewStars"></div>
+        <p id="reviewComment"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>
