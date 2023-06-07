@@ -24,17 +24,22 @@
 </style>
 <body>
     <?php  include('../include/header.html')   ?>
+    <?php 
+     if (isset($_GET['msg']) && ($_GET['msg'] == "failed")) {
+      $errorMessage = "Login Failed: Invalid Email or Password!";
+     }
+    ?>
       <section class="login ">
         <div class="container">
             <div class="login-content">
                 <h2>login</h2>
                 <p>PLEASE ENTER YOUR LOGIN DETAILS TO SIGN IN.</p>
-                <form id="loginform" action="#">
-                  <input oninput="handleEmailInput()" id="email" type="text" required placeholder="Email address">
+                <form id="loginform" action="processLogin.php" method="POST" onsubmit="return handleSubmit('login')">
+                  <input oninput="handleEmailInput()" name="email" id="email" type="text"  placeholder="Email address">
                   <div class="error" id="email-error"></div> <!-- Error message for email -->
                   
                   <div class="flexSb password">
-                    <input oninput="handlePasswordInput()" id="password" type="password" required placeholder="Password">
+                    <input oninput="handlePasswordInput()" name="password" id="password" type="password"  placeholder="Password">
                     <i class="fa-solid fa-eye"onclick="showpassword(event)" ></i>
                   </div>
                   <div class="error" id="password-error"></div> <!-- Error message for password -->
@@ -46,10 +51,12 @@
                     </div>
                     <h5 class="forget"><a href="#">Forgot password?</a></h5>
                   </div>
-                  <button onsubmit="handleSubmit(event,'login')" class="btn-blue" type="submit">Login</button>
+                  <button onsubmit="handleSubmit('login')" class="btn-blue" type="submit">Login</button>
                   <p class="dont">Don't have an account? <a href="signup.html">Sign up</a></p>
                 </form>
-                
+                <div class="text-center">
+                <span class="text-danger text-center" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+            </div>
             </div>
         </div>
 
@@ -61,5 +68,6 @@
              
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/validation.js"></script>
+    
 </body>
 </html>
