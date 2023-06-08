@@ -32,6 +32,11 @@ if ($row) {
         $_SESSION["id"] = $row['userid'];
         $_SESSION["type"] = $row['role'];
         header('location:../admin?msg=welcome-admin');
+    }  else if ($row['role'] == 9) {
+        session_start();
+        $_SESSION["id"] = $row['userid'];
+        $_SESSION["type"] = $row['role'];
+        header('location:./registration/driverwaiting.php?msg=welcome-new-driver');
     }
 } else {
     header('location:login.php?msg=failed');
