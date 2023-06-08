@@ -27,14 +27,14 @@
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Last name</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
           <th>Email</th>
           <th>Phone</th>
           <th>City</th>
           <th>Address</th>
           <th>Date of Birthday</th>
-          <th>License nb</th>
+          <th>License date</th>
           <th>License Exp</th>
           <th class="about">About</th>
           <th>Apply Date</th>
@@ -46,23 +46,25 @@
       <tbody>
         <?php
           $jsonData = file_get_contents('demodata/application.json');
+          $host = $_SERVER['HTTP_HOST'];
+          $jsonData = file_get_contents("http://$host/transportation/api/admin/allapplications.php");
           $data = json_decode($jsonData, true);
 
           foreach ($data as $row) {
             echo "<tr>";
-            echo "<td>".$row['name']."</td>";
-            echo "<td>".$row['lastName']."</td>";
-            echo "<td>".$row['Email']."</td>";
-            echo "<td>".$row['Phone']." </td>";
+            echo "<td>".$row['firstname']."</td>";
+            echo "<td>".$row['lastname']."</td>";
+            echo "<td>".$row['email']."</td>";
+            echo "<td>".$row['mobilenumber']." </td>";
             echo "<td>".$row['city']."</td>";
             echo "<td>".$row['address']."</td>";
-            echo "<td>".$row['dob']."</td>";
-            echo "<td>".$row['licenseNb']."</td>";
-            echo "<td>".$row['licenseExp']."</td>";
+            echo "<td>".$row['birthdate']."</td>";
+            echo "<td>".$row['licensedate']."</td>";
+            echo "<td>".$row['licenseexpiry']."</td>";
             echo "<td>".$row['about']."</td>";
-            echo "<td>".$row['applyDate']."</td>";
+            echo "<td>".$row['applydate']."</td>";
             echo '<td colspan="">
-            <button data-toggle="tooltip" data-placement="right" title="Show License" class="icon-trash showlicense" onclick="window.open(\''.$row['licenseLink'].'\', \'_blank\')"><i class="fa-solid fa-id-card"></i></button><br>
+            <button data-toggle="tooltip" data-placement="right" title="Show License" class="icon-trash showlicense" onclick="window.open(\''.$row['LicenseUrl'].'\', \'_blank\')"><i class="fa-solid fa-id-card"></i></button><br>
             <button data-toggle="tooltip" data-placement="right" title="Accept Driver" class="icon-trash"><i class="fa-solid fa-circle-check"></i></button><br>
             <button  data-toggle="tooltip" data-placement="right" title="Reject Driver" class="icon-trash btn-delete4"><i class="fa-solid fa-trash"></i></button>
             </td>';
