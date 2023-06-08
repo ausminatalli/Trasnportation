@@ -23,8 +23,10 @@
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>
+          <th>Userid</th>
           <th>Firstname</th>
           <th>Lastname</th>
+          <th>email</th>
           <th>MobileNumber</th>
           <th>Number of trips</th>
           <th>Action</th>
@@ -33,15 +35,17 @@
       </thead>
       <tbody>
         <?php
-          $jsonData = file_get_contents('demodata/users.json');
+        $host = $_SERVER['HTTP_HOST'];
+          $jsonData = file_get_contents("http://$host/transportation/api/admin/allusers.php");
           $data = json_decode($jsonData, true);
-
           foreach ($data as $row) {
             echo "<tr>";
-            echo "<td>".$row['Firstname']."</td>";
-            echo "<td>".$row['Lastname']."</td>";
-            echo "<td>".$row['MobileNumber']."</td>";
-            echo "<td>".$row['Number of trips']."</td>";
+            echo "<td>".$row['userid']."</td>";
+            echo "<td>".$row['firstname']."</td>";
+            echo "<td>".$row['lastname']."</td>";
+            echo "<td>".$row['email']."</td>";
+            echo "<td>".$row['mobilenumber']."</td>";
+            echo "<td>".$row['nboftrips']."</td>";
             echo ' <td><button class="icon-trash blockuser"><i class="fa-solid fa-ban"></i></button></td>';
             echo "</tr>";
           }
