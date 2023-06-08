@@ -37,13 +37,14 @@
         <div class="menu-button"></div>
       </label>
       <ul class="menu">
-        <li><a class="line" href="../index.php">Username</a></li>
+        <li><a class="line text-danger" href="../index.php"><?php echo $row['firstname'] ,' ', $row['lastname'] ?>
+</a></li>
         <li><a class="line" href="./editprofile.php">Profile</a></li>
         <li class="currencycontainer">
           <a class="line" href="#" id="currency">Lira</a>
         </li>
         <li><a class="line" href="./userbooking.php">Manage</a></li>
-        <li><a class="signup" href="../index.php">Logout</a></li>
+        <li><a class="signup" href="logout.php">Logout</a></li>
       </ul>
     </section>
     <div id="ajaxtest"></div>
