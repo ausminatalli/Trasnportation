@@ -41,7 +41,6 @@ else
     <?php   
    include('../include/userheader.php');
     ?>
-    <!-- <h2>welcome <?php echo $row['firstname'] ,' ', $row['lastname'] ?> -->
     <div id="usermain" class="usermain">
     <section class="filter" style='padding-top:100px'>
     <div class="filter-contant container">

@@ -44,6 +44,7 @@
             echo "<tr>";
             echo "<td>".$row['origin']."</td>";
             echo "<td>".$row['destination']."</td>";
+
             echo "<td>".$row['schedule']."</td>";
             echo "<td>".$row['starttime']."</td>";
             echo "<td>".$row['arrivetime']."</td>";
