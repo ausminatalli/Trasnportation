@@ -384,7 +384,7 @@ addtrip.addEventListener("click", function () {
     }
   };
  
-  xhr.open("GET", "addtrip.html", true);
+  xhr.open("GET", "addtrip.php", true);
   xhr.send();
 });
 
