@@ -13,6 +13,12 @@
     </style>
   </head>
   <body>
+  <?php
+        $apiUrl = 'http://localhost/transportation/api/admin/dropdown.php';
+        $data = file_get_contents($apiUrl);
+        $dropdown = json_decode($data, true);
+      
+      ?>
     <h2 class="text-center text-primary mt-5 mb-5">Add Trip</h2>
     <div class="card-body content">
       <form action="">
@@ -30,35 +36,36 @@
                 id="startLocation"
               >
                 <option selected="selected">Start Location</option>
-                <option>Beirut</option>
-                <option>Saida</option>
-                <option>Tyre</option>
-                <option>Baalbek</option>
-                <option>Byblos</option>
-                <option>Nabatieh</option>
+                <?php
+        
+        foreach ($dropdown['station'] as $station) {
+          $stationname = $station['stationname'];
+          $provincename = $station['provincename'];
+          echo '<option>'. $provincename.',' . $stationname . '</option>';
+        }
+      ?>
               </select>
               <span id="vStartLocation" class="vspan"></span>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <h5>To</h5>
-              <select
-                class="form-control"
-                style="width: 100%"
-                id="destinationLocation"
-              >
-                <option selected="selected">Select Location</option>
-                <option>Beirut</option>
-                <option>Saida</option>
-                <option>Tyre</option>
-                <option>Baalbek</option>
-                <option>Byblos</option>
-                <option>Nabatieh</option>
-              </select>
-              <span id="vDestinationLocation" class="vspan"></span>
-            </div>
-          </div>
+  <div class="form-group">
+    <h5>From</h5>
+    <select class="form-control" style="width: 100%" id="startLocation">
+      <option selected="selected">Start Location</option>
+      <?php
+        
+        foreach ($dropdown['station'] as $station) {
+          $stationname = $station['stationname'];
+          $provincename = $station['provincename'];
+          echo '<option>'. $provincename.',' . $stationname . '</option>';
+        }
+      ?>
+    </select>
+    <span id="vStartLocation" class="vspan"></span>
+  </div>
+</div>
+
         </div>
         <div class="row">
           <div class="col-md-6">
@@ -86,13 +93,13 @@
             <div class="form-group">
               <h5>Select Bus</h5>
               <select class="form-control" style="width: 100%" id="busNumber">
-                <option selected="selected">Bus Number</option>
-                <option>1</option>
-                <option>2</option>
-                <option>4</option>
-                <option>3</option>
-                <option>5</option>
-                <option>6</option>
+              <option selected="selected">Bus ID</option>
+              <?php  foreach ($dropdown['bus'] as $busses) {
+                
+          $busid = $busses['busid'];
+          echo '<option>' . $busid . '</option>';
+        }
+        ?>
               </select>
               <span id="vBusNumber" class="vspan"></span>
             </div>
@@ -102,10 +109,13 @@
               <h5>Select Driver</h5>
               <select class="form-control" style="width: 100%" id="driverName">
                 <option selected="selected">Driver Name</option>
-                <option>Ta3an</option>
-                <option>Jahjeh</option>
-                <option>2afas</option>
-                <option>Tokle</option>
+                <?php
+        
+        foreach ($dropdown['driver'] as $drivers) {
+          $drivername = $drivers['Drivers'];
+          echo '<option>'. $drivername. '</option>';
+        }
+      ?>
               </select>
               <span id="vDriverName" class="vspan"></span>
             </div>
