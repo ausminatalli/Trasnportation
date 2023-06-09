@@ -5,7 +5,7 @@ require('../../config.php')
 <?php
 // Fetch data from MySQL table
 $stations = "SELECT * FROM station";
-$drivers = "SELECT CONCAT(users.firstname,' ',users.lastname) as Drivers FROM project.driver 
+$drivers = "SELECT CONCAT(users.firstname,' ',users.lastname) as Drivers FROM driver 
 join users on users.userid=driver.driverid;";
 $busses = "SELECT busid FROM bus";
 
