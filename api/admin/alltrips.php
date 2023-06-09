@@ -1,10 +1,11 @@
+
 <?php
 // Connect to MySQL database
 require('../../config.php')
 ?>
 <?php
 // Fetch data from MySQL table
-$sql = "SELECT * FROM applicationview";
+$sql = "SELECT * FROM tripview";
 $result = $conn->query($sql);
 
 $users = array();
