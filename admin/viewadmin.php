@@ -37,16 +37,17 @@
       </thead>
       <tbody>
         <?php
-          $jsonData = file_get_contents('demodata/admin.json');
-          $data = json_decode($jsonData, true);
+           $host = $_SERVER['HTTP_HOST'];
+           $jsonData = file_get_contents("http://$host/transportation/api/admin/allusers.php");
+           $data = json_decode($jsonData, true);
 
           foreach ($data as $row) {
             echo "<tr>";
-            echo "<td>".$row['name']."</td>";
+            echo "<td>".$row['firstname']."</td>";
             echo "<td>".$row['lastname']."</td>";
-            echo "<td>".$row['phone']."</td>";
+            echo "<td>".$row['mobilenumber']."</td>";
             echo "<td>".$row['email']."  </td>";
-            echo "<td>".$row['date']."</td>";
+            echo "<td>".$row['birthdate']."</td>";
             echo "<td>".$row['city']."</td>";
             echo "<td>".$row['address']."</td>";
             echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Remove Admin"  class="icon-trash btn-delete3"><i class="fa-solid fa-trash"></i></button>

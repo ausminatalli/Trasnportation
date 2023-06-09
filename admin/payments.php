@@ -54,18 +54,19 @@
   </thead>
   <tbody>
     <?php
-      $jsonData = file_get_contents('./demodata/payment.json');
+      $host = $_SERVER['HTTP_HOST'];
+      $jsonData = file_get_contents("http://$host/transportation/api/admin/allpayments.php");
       $data = json_decode($jsonData, true);
 
       foreach ($data as $row) {
         echo "<tr>";
-        echo "<td>".$row['PaymentID']."</td>";
-        echo "<td>".$row['Userid']."</td>";
-        echo "<td>".$row['Tripid']."</td>";
-        echo "<td>".$row['Firstname']."</td>";
-        echo "<td>".$row['LastName']."</td>";
-        echo "<td>".$row['AmountPaid']."</td>";
-        echo '<td><i class="fa-solid fa-star fa-xl review" onclick="showReview('.$row['stars'].', \''.$row['Review'].'\')"></i></td>';
+        echo "<td>".$row['paymentid']."</td>";
+        echo "<td>".$row['UserID']."</td>";
+        echo "<td>".$row['tripid']."</td>";
+        echo "<td>".$row['firstname']."</td>";
+        echo "<td>".$row['lastname']."</td>";
+        echo "<td>".$row['amountpaid']."</td>";
+        echo '<td><i class="fa-solid fa-star fa-xl review" onclick="showReview('.$row['rating'].', \''.$row['comments'].'\')"></i></td>';
         echo '<td><i class="fa-regular fa-credit-card fa-xl refund btn-delete5"></i></td>';
         echo "</tr>";
       }
