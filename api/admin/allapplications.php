@@ -4,7 +4,7 @@ require('../../config.php')
 ?>
 <?php
 // Fetch data from MySQL table
-$sql = "SELECT * FROM driverview";
+$sql = "SELECT * FROM applicationview";
 $result = $conn->query($sql);
 
 $users = array();
