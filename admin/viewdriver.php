@@ -44,10 +44,12 @@
         <thead>
           <tr>
             <th>Firstname</th>
-            <th>Lastname</th>
+            <th>Location</th>
             <th>MobileNumber</th>
             <th>Email</th>
+            <th>Birthday</th>
             <th>Station</th>
+            <th>Apply Date</th>
             <th>Licensedate</th>
             <th>LicenseEx</th>
             <th>Online</th>
@@ -57,23 +59,29 @@
         <tbody>
           <?php
             $jsonData = file_get_contents('demodata/driver.json');
+        $host = $_SERVER['HTTP_HOST'];
+
+          $jsonData = file_get_contents("http://$host/Transportation/api/admin/alldriver.php");
+
             $data = json_decode($jsonData, true);
 
             foreach ($data as $row) {
-              $onlineClass = $row['Online'] == 1 ? 'Active' : 'Inactive';
-              $licenseClass = $row['LicenseExpired'] == 1 ? 'Valid' : 'Expired';
+              $onlineClass = $row['isOnline'] == 1 ? 'Active' : 'Inactive';
+              $licenseClass = $row['licenseexpiry'] == 1 ? 'Valid' : 'Expired';
               echo "<tr>";
-              echo "<td>".$row['Firstname']."</td>";
-              echo "<td>".$row['Lastname']."</td>";
-              echo "<td>".$row['MobileNumber']."</td>";
-              echo "<td>".$row['Email']."</td>";
-              echo "<td>".$row['Station']."</td>";
-              echo "<td>".$row['Licensedate']."</td>";
+              echo "<td>".$row['firstname'].' '.$row['lastname']."</td>";
+              echo "<td>".$row['city'].' '.$row['address']."</td>";
+              echo "<td>".$row['mobilenumber']."</td>";
+              echo "<td>".$row['email']."</td>";
+              echo "<td>".$row['birthdate']."</td>";
+              echo "<td>".$row['workstation']."</td>";
+              echo "<td>".$row['applydate']."</td>";
+              echo "<td>".$row['licensedate']."</td>";
               echo '<td class="' . strtolower($licenseClass) . '">' . $licenseClass . '</td>';
               echo '<td class="' . strtolower($onlineClass) . '">' . $onlineClass . '</td>';
               echo '<td>';
               echo '<div class="action-buttons">';
-              echo '<button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid fa-user-pen"></i></button> | ';
+              echo '<button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | ';
               echo '<button data-toggle="tooltip" data-placement="right" title="Delete Driver" class="icon-trash btn-delete"><i class="fa-solid fa-trash"></i></button>';
               echo '</div>';
               echo '</td>';

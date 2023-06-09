@@ -47,7 +47,7 @@
             echo "<td>".$row['startTime']."</td>";
             echo "<td>".$row['arriveTime']."</td>";
             echo "<td><h6>".$row['DriverName']."</h6></td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid fa-user-pen"></i></button> | 
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Trip" class="icon-trash btn-delete1"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";

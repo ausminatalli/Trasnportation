@@ -20,7 +20,7 @@ include('../path.php')
   </style>
 
 <body>
-  <?php include('../include/userheader.html'); ?>
+  <?php include('../include/userheader.php'); ?>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
