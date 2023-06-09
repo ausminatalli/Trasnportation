@@ -26,9 +26,9 @@
           <th>Driver name</th>
           <th>capacity</th>
           <th>Station</th>
-          <th>Mechanicdue date</th>
+          <th>Mechanic Date</th>
           <th>Insurance number</th>
-          <th>Accidents number</th>
+          <th>Mechanic Due</th>
           <th>Action</th>
         
           <!-- Added column for the block button -->
@@ -36,19 +36,21 @@
       </thead>
       <tbody>
         <?php
-          $jsonData = file_get_contents('demodata/bus.json');
+          // $jsonData = file_get_contents('demodata/bus.json');
+        $host = $_SERVER['HTTP_HOST'];
+          $jsonData = file_get_contents("http://$host/Transportation/api/admin/allbus.php");
           $data = json_decode($jsonData, true);
 
           foreach ($data as $row) {
             echo "<tr>";
-            echo "<td>".$row['Bus ID']."</td>";
-            echo "<td>".$row['Driver name']."</td>";
+            echo "<td>".$row['busid']."</td>";
+            echo "<td>".$row['firstname'].' '.$row['lastname']."</td>";
             echo "<td>".$row['capacity']."</td>";
-            echo "<td>".$row['Station']."</td>";
-            echo "<td>".$row['Mechanicdue date']."</td>";
-            echo "<td>".$row['Insurance number']."</td>";
-            echo "<td>".$row['Accidents number']."</td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid fa-user-pen"></i></button> | 
+            echo "<td>".$row['station']."</td>";
+            echo "<td>".$row['mechanicdate']."</td>";
+            echo "<td>".$row['insurancenb']."</td>";
+            echo "<td>".$row['mechanicdue']."</td>";
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="View Bus" class="icon-trash btn-delete2"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";

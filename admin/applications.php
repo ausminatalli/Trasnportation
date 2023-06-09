@@ -47,7 +47,7 @@
         <?php
           $jsonData = file_get_contents('demodata/application.json');
           $host = $_SERVER['HTTP_HOST'];
-          $jsonData = file_get_contents("http://$host/transportation/api/admin/allapplications.php");
+          $jsonData = file_get_contents("http://$host/Transportation/api/admin/allapplications.php");
           $data = json_decode($jsonData, true);
 
           foreach ($data as $row) {

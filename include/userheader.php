@@ -37,8 +37,8 @@
         <div class="menu-button"></div>
       </label>
       <ul class="menu">
-        <li><a class="line text-danger" href="../index.php"><?php echo $row['firstname'] ,' ', $row['lastname'] ?>
-</a></li>
+        <li><h5 class="line text-danger"><?php echo $row['firstname'] ,' ', $row['lastname'] ?>
+</h5></li>
         <li><a class="line" href="./editprofile.php">Profile</a></li>
         <li class="currencycontainer">
           <a class="line" href="#" id="currency">Lira</a>
