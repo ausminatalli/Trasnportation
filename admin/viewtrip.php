@@ -36,17 +36,18 @@
       </thead>
       <tbody>
         <?php
-          $jsonData = file_get_contents('demodata/trip.json');
+        $host = $_SERVER['HTTP_HOST'];
+          $jsonData = file_get_contents("http://$host/transportation/api/admin/alltrips.php");
           $data = json_decode($jsonData, true);
 
           foreach ($data as $row) {
             echo "<tr>";
             echo "<td>".$row['origin']."</td>";
             echo "<td>".$row['destination']."</td>";
-            echo "<td>".$row['date']."</td>";
-            echo "<td>".$row['startTime']."</td>";
-            echo "<td>".$row['arriveTime']."</td>";
-            echo "<td><h6>".$row['DriverName']."</h6></td>";
+            echo "<td>".$row['schedule']."</td>";
+            echo "<td>".$row['starttime']."</td>";
+            echo "<td>".$row['arrivetime']."</td>";
+            echo "<td><h6>".$row['firstname'].' '.$row['lastname']."</h6></td>";
             echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Trip" class="icon-trash btn-delete1"><i class="fa-solid fa-trash"></i></button>
             </td>';
