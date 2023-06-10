@@ -37,7 +37,8 @@ include('../../path.php')
             Please fill all the requerments information, we will contact with
             you after 48h.
           </p>
-          <form action="">
+    
+          <form id='registerBus' method="POST" enctype="multipart/form-data" action="../../upload.php" onsubmit="return driverInfovalidation(event)">
             <div class="flexSb gap-2">
               <input type="text" name="" placeholder="City" id="city" />
               <input type="text" name="" placeholder="Address" id="address" />
@@ -48,7 +49,7 @@ include('../../path.php')
             </div>
             <input
               type="number"
-              required
+              
               placeholder="Phone number"
               id="number"
             />
@@ -58,7 +59,7 @@ include('../../path.php')
               >Date of birthday <span class="text-danger">*</span></label
             >
             <div class="flexSb password">
-              <input type="date" required id="date" />
+              <input type="date"  id="date" />
             </div>
             <h6 class="text-danger" id="vdate"></h6>
 
@@ -89,6 +90,7 @@ include('../../path.php')
                 id="file"
                 class="custom-file-input"
                 placeholder=""
+                name="file"
                 type="file"
               />
             </div>
@@ -102,12 +104,7 @@ include('../../path.php')
               class="w-100"
             ></textarea>
             <h6 class="text-danger" id="vinfo"></h6>
-            <a
-              class="btn-blue"
-              onclick="driverInfovalidation(event)"
-              style="display: block; text-align: center; line-height: 50px"
-              >Submit</a
-            >
+            <button type="submit" class="btn-blue" style="display: block; text-align: center; line-height: 50px">Submit</button>
           </form>
         </div>
       </div>
