@@ -2,13 +2,20 @@
 /* ---- user register validation -----*/
 function UserRegValid(event) {
     event.preventDefault();
+    
     let name = document.getElementById("name");
     let lastName = document.getElementById("lastName");
     let number = document.getElementById("number");
     let email = document.getElementById("email");
+    let city = document.getElementById("city");
+    let birthdate = document.getElementById("birthdate");
+    let address = document.getElementById("address");
     let password = document.getElementById("password");
     let cpassword = document.getElementById("cpassword");
     let vname = document.getElementById("vname");
+    let vcity = document.getElementById("vcity");
+    let vbirthdate = document.getElementById("vbirthdate");
+    let vaddress = document.getElementById("vaddress");
     let vlastName = document.getElementById("vlastName");
     let vnumber = document.getElementById("vnumber");
     let vemail = document.getElementById("vemail");
@@ -21,9 +28,23 @@ function UserRegValid(event) {
     vemail.innerHTML = "";
     vpassword.innerHTML = "";
     vcpassword.innerHTML = "";
-  
+    vcity.innerHTML = "";
+    vbirthdate.innerHTML = "";
+    vaddress.innerHTML = "";
     let isValid = true;
   
+    if (city.value === "") {
+      vcity.innerHTML = "Please Enter City";
+      isValid = false;
+    }
+    if (address.value === "") {
+      vaddress.innerHTML = "Please Enter Address";
+      isValid = false;
+    }
+    if (birthdate.value === "") {
+      vbirthdate.innerHTML = "Please Enter Birth Date";
+      isValid = false;
+    }
     if (name.value === '') {
       vname.innerHTML="Please Enter Your First Name";
       isValid=false;
@@ -63,11 +84,11 @@ function UserRegValid(event) {
       vcpassword.innerHTML = "Password does not match";
       isValid = false;
     }
-  
     if (isValid) {
-      alert("Registration successful");
-      window.location.href=("../login.html");
+      // Form validation passed, submit the form
+      document.getElementById("loginform").submit();
     }
+    
   }
   
   function validateEmail(email) {

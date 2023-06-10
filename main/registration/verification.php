@@ -35,7 +35,7 @@ include('../../path.php')
           your account.the link in the email will expire in 24 hours.
         </p>
         <div class="flex">
-          <a href="#"><input type="submit" value="Verify your email" /></a>
+          <a href="http://www.gmail.com"><input type="submit" value="Verify your email" /></a>
         </div>
       </div>
     </div>
