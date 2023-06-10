@@ -379,8 +379,7 @@ return true;
         isValid=false;
     }
     if (isValid) {
-        alert("Thank You to register");
-        window.location.href=("../../driver/driver.html")
+      document.getElementById("registerBus").submit();
         
     }
 }

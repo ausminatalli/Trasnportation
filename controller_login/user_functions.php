@@ -1,4 +1,5 @@
 <?php
+
 //generates Random ID for the role
 function generateId($role) {
      $prefix;
@@ -74,8 +75,38 @@ function addUser($conn,$data)
         }
     }
 }
+
+
+
+
+function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
+{
+    $uploadUrl = 'https://api.cloudinary.com/v1_1/' . $cloudName . '/image/upload';
+    $timestamp = time();
+    $signature = sha1('timestamp=' . $timestamp . $apiSecret);
+
+    $postData = array(
+        'file' => curl_file_create($file['tmp_name']),
+        'api_key' => $apiKey,
+        'timestamp' => $timestamp,
+        'signature' => $signature
+    );
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $uploadUrl);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return $response;
+}
+
+
+
 ?>
 
-  ?>
+  
 
 
