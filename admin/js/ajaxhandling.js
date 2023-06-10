@@ -403,7 +403,7 @@ adddriver.addEventListener("click", function () {
       loadScript('js/validation/drivervalidation.js');
     }
   };
-  xhr.open("GET", "adddriver.html", true);
+  xhr.open("GET", "adddriver.php", true);
   xhr.send();
 });
 
@@ -422,7 +422,7 @@ addbus.addEventListener("click", function () {
       loadScript('js/validation/busvalidation.js');
     }
   };
-  xhr.open("GET", "addbus.html", true);
+  xhr.open("GET", "addbus.php", true);
   xhr.send();
 });
 
@@ -444,7 +444,7 @@ stats.addEventListener("click", function () {
       document.getElementById("content").innerHTML = this.responseText;
     }
   };
-  xhr.open("GET", "stats.html", true);
+  xhr.open("GET", "stats.php", true);
   xhr.send();
 });
 
@@ -463,7 +463,7 @@ addadmin.addEventListener("click", function () {
       loadScript('js/validation/adminvalidation.js');
     }
   };
-  xhr.open("GET", "addadmin.html", true);
+  xhr.open("GET", "addadmin.php", true);
   xhr.send();
 });
 
