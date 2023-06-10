@@ -1,6 +1,4 @@
-<?php
-include('../../path.php')
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,39 +16,59 @@ include('../../path.php')
     <title>login</title>
 </head>
 <body>
-   
+<?php 
+     if (isset($_GET['msg']) && ($_GET['msg'] == "Mobilefailed")) {
+      $errorMessage = "Register Failed: Mobile Number Already Exists";
+     }
+     else if(isset($_GET['msg']) && ($_GET['msg'] == "emailfailed"))
+     {
+        $errorMessage = "Register Failed: Email Already Exists";
+     }
+     else if(isset($_GET['msg']) && ($_GET['msg'] == "failed"))
+     {
+        $errorMessage = "Register Failed:Mobile and Email Already Exist";
+     }
+
+    ?>
       <section class="register ">
         <div class="container">
             <div class="login-content">
                 <h2>User Sign up</h2>
                 <p>PLEASE ENTER YOUR LOGIN TO SIGN UP.</p>
-                <form id="loginform" action="">
+                <form id="loginform" action="registeruser.php" method='POST' onsubmit="return UserRegValid(event)">
                     <div class="flexSb gap-2">
-                        <input type="text" name="" placeholder="Name" id="name">
-                        <input type="text" name="" placeholder="Last Name" id="lastName">
-
+                        <input type="text" name="firstname" placeholder="First Name" id="name" value="<?php echo isset($_GET['firstname']) ? $_GET['firstname'] : ''; ?>">
+                        <input type="text" name="lastName" placeholder="Last Name" id="lastName" value="<?php echo isset($_GET['lastName']) ? $_GET['lastName'] : ''; ?>">
+                      
                     </div>
                     <div class="flexSb gap-2">
                       <h6 class="text-danger ml-2" id="vname"></h6>
                       <h6 class="text-danger" id="vlastName"></h6>
                     </div>
-
-
                     
-                    <input type="number" required placeholder="Your Phone Number" id="number">
+                    <input type="number" name='number'  placeholder="Your Phone Number" id="number" value="<?php echo isset($_GET['number']) ? $_GET['number'] : ''; ?>">
                     <h6 class="text-danger" id="vnumber"></h6>
 
-                    <input type="email" required placeholder="Email Adress" id="email">
+                    <input type="email" name="email"  placeholder="Email Adress" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?>">
                     <h6 class="text-danger" id="vemail"></h6>
 
+                    <input type="text" name="city"  placeholder="city" id="city" value="<?php echo isset($_GET['city']) ? $_GET['city'] : ''; ?>">
+                    <h6 class="text-danger" id="vcity"></h6>
+
+                    <input type="text" name="address"  placeholder="address" id="address" value="<?php echo isset($_GET['address']) ? $_GET['address'] : ''; ?>">
+                    <h6 class="text-danger" id="vaddress"></h6>
+
+                    <input type="date" name="birthdate"   id="birthdate" value="<?php echo isset($_GET['birthdate']) ? $_GET['birthdate'] : ''; ?>">
+                    <h6 class="text-danger" id="vbirthdate"></h6>
+
                     <div class="flexSb password">
-                        <input type="password" required placeholder="password" id="password">
+                        <input type="password" name="password"  placeholder="password" id="password">
                          <i class="fa-solid fa-eye" onclick="showpassword(event)"></i>
                     </div>
                     <h6 class="text-danger" id="vpassword"></h6>
 
                     <div class="flexSb password">
-                        <input type="password" required placeholder="confirm password" id="cpassword">
+                        <input type="password"  placeholder="confirm password" id="cpassword">
                         <i class="fa-solid confirmpass fa-eye" onclick="showcpassword(event)"></i>
                       </div>
                       <h6 class="text-danger" id="vcpassword"></h6>
@@ -61,8 +79,11 @@ include('../../path.php')
                             <p>I agree to the terms of service and privacy policy</p>
                         </div>
                     </div>
-                    <button class="btn-blue" onclick="UserRegValid(event)" type="submit">Sign up</button>
+                    <button class="btn-blue"  type="submit">Sign up</button>
                     <p class="dont">Already a member? <a href="../login.html">Login</a></p>
+                    <div class='text-center'>
+                    <span class="text-danger text-center h4" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+                    </div>
                 </form>
             </div>
         </div>
@@ -70,5 +91,6 @@ include('../../path.php')
 
       </section>
       <?php include('../../include/footer.html'); ?>
+      <script src="../js/validation.js"></script>
 </body>
 </html>
