@@ -56,7 +56,7 @@
                   <button onsubmit="handleSubmit('login')" class="btn-blue" type="submit">Login</button>
                   <p class="dont">Don't have an account? <a href="./signup.php">Sign up</a></p>
                 </form>
-                <div class="text-center">
+                <div class="text-center" style="height:30px">
                 <span class="text-danger text-center" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
             </div>
             </div>
@@ -72,9 +72,10 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="js/validation.js"></script>
     <script>
-        setTimeout(function() {
-            document.getElementById("err").style.display = "none";
-        }, 4000);
+      err=document.getElementById("err");
+      setTimeout(function() {
+        document.getElementById("err").style.display = "none";
+      }, 4000);
     </script>
 </body>
 </html>
