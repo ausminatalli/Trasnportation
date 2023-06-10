@@ -66,7 +66,9 @@
         echo "<td>".$row['firstname']."</td>";
         echo "<td>".$row['lastname']."</td>";
         echo "<td>".$row['amountpaid']."</td>";
-        echo '<td><i class="fa-solid fa-star fa-xl review" onclick="showReview('.$row['rating'].', \''.$row['comments'].'\')"></i></td>';
+        echo ($row['rating'] === null && $row['comments'] === null)
+              ? '<td>No Review</td>'
+              : '<td><i class="fa-solid fa-star fa-xl review" onclick="showReview('.$row['rating'].', \''.$row['comments'].'\')"></i></td>';
         echo '<td><i class="fa-regular fa-credit-card fa-xl refund btn-delete5"></i></td>';
         echo "</tr>";
       }
