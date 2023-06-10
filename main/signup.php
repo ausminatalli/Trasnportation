@@ -29,7 +29,7 @@ include('../path.php')
                 </div>
                 <p>"Wherever you need to be, we'll take you there with utmost care. Trust us to make your journey unforgettable, whether you're embarking on a solo adventure or traveling with loved ones."
                   </p>
-                    <a href="registration/userregister.html">User register</a>
+                    <a href="./registration/userregister.php">User register</a>
             </div>
             
             <div class="user-signup ltr-effect">
@@ -38,7 +38,7 @@ include('../path.php')
                     <img src="https://i.ibb.co/F4zDgMt/log2.jpg" alt="">
                 </div>
                 <p>"Join our team and drive your career forward. Experience the satisfaction of transporting people safely and be a part of a company that values professionalism, growth, and rewards your dedication."</p>
-                    <a href="registration/driverregister.html">Driver register</a>
+                    <a href="./registration/driverregister.php">Driver register</a>
 
             </div>
         </div>

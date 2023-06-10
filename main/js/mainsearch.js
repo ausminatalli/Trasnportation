@@ -155,7 +155,7 @@ const result_container= document.getElementById('result-container');
           currencyLink.style.setProperty("--currency-content", '" USD"');
         }
         const xhr = new XMLHttpRequest();
-        const url = "../api/user/loggedSearch.php";
+        const url = "../api/main/search.php";
         const currency = currencyLink.textContent;
       
         xhr.open("POST", url, true);

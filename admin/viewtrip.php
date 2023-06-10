@@ -49,7 +49,7 @@
             echo "<td>".$row['starttime']."</td>";
             echo "<td>".$row['arrivetime']."</td>";
             echo "<td><h6>".$row['firstname'].' '.$row['lastname']."</h6></td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid fa-user-pen"></i></button> | 
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Trip" class="icon-trash btn-delete1"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";
