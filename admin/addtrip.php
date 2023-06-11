@@ -42,7 +42,7 @@
         foreach ($dropdown['station'] as $station) {
           $stationname = $station['stationname'];
           $provincename = $station['provincename'];
-          echo '<option>'. $provincename.',' . $stationname . '</option>';
+          echo '<option>'. $provincename.', ' . $stationname . '</option>';
         }
       ?>
               </select>
@@ -59,7 +59,7 @@
         foreach ($dropdown['station'] as $station) {
           $stationname = $station['stationname'];
           $provincename = $station['provincename'];
-          echo '<option>'. $provincename.',' . $stationname . '</option>';
+          echo '<option>'. $provincename.', ' . $stationname . '</option>';
         }
       ?>
     </select>

@@ -2,7 +2,7 @@
 function SearchInMain()
 {
   const xhr = new XMLHttpRequest();
-        const url = "../api/user/stationsearch.php";
+        const url = "../api/main/stationsearch.php";
         let origin = document.getElementById('origin').value;
         let destination = document.getElementById('destination').value;
         let tripdate = document.getElementById('tripdate').value;
