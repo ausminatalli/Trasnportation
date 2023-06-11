@@ -7,6 +7,8 @@ function SearchInMain()
         let destination = document.getElementById('destination').value;
         let tripdate = document.getElementById('tripdate').value;
         let triptime = document.getElementById('triptime').value;
+
+
         let resultcount = document.getElementById('result-count');
         let spanValue;
        console.log(tripdate)
@@ -31,18 +33,19 @@ function SearchInMain()
         }
           }
         };
-        let requestBody; 
-        if(triptime){
-        requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination) + "&triptime=" + encodeURIComponent(triptime);
+        let requestBody="origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination); 
+        if(triptime && tripdate)
+        {
+        requestBody +="&triptime=" + encodeURIComponent(triptime) + "&tripdate=" + encodeURIComponent(tripdate);
+        }
+        else if(triptime){
+        requestBody +="&triptime=" + encodeURIComponent(triptime);
         }
         else if(tripdate)
         {
-          requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination) + "&tripdate=" + encodeURIComponent(tripdate);
+          requestBody +="&tripdate=" + encodeURIComponent(tripdate);
         }
-        else
-        {
-          requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination);  
-        }
+  
        xhr.send(requestBody);
 }
 
@@ -207,6 +210,8 @@ const result_container= document.getElementById('result-container');
         const currency = currencyLink.textContent;
         let origin = document.getElementById('origin').value;
         let destination = document.getElementById('destination').value;
+        let tripdate = document.getElementById('tripdate').value;
+        let triptime = document.getElementById('triptime').value;
         let resultcount = document.getElementById('result-count');
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -224,8 +229,20 @@ const result_container= document.getElementById('result-container');
             
           }
         };
-        const requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination) + "&currency=" + encodeURIComponent(currency);
-
+        let requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination) + "&currency=" + encodeURIComponent(currency);
+         
+        if(tripdate && triptime)
+        {
+          requestBody+="&tripdate=" + encodeURIComponent(tripdate) +"&triptime=" + encodeURIComponent(triptime)
+        }
+        else if(tripdate)
+        {
+          requestBody+="&tripdate=" + encodeURIComponent(tripdate);
+        }
+        else if(triptime)
+        {
+          requestBody+="&triptime=" + encodeURIComponent(triptime);
+        }
         xhr.send(requestBody);
        
       });
