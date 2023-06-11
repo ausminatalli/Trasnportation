@@ -5,9 +5,11 @@ function SearchInMain()
         const url = "../api/user/stationsearch.php";
         let origin = document.getElementById('origin').value;
         let destination = document.getElementById('destination').value;
+        let tripdate = document.getElementById('tripdate').value;
+        let triptime = document.getElementById('triptime').value;
         let resultcount = document.getElementById('result-count');
         let spanValue;
-
+       console.log(tripdate)
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       
@@ -29,8 +31,18 @@ function SearchInMain()
         }
           }
         };
-        const requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination);
-
+        let requestBody; 
+        if(triptime){
+        requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination) + "&triptime=" + encodeURIComponent(triptime);
+        }
+        else if(tripdate)
+        {
+          requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination) + "&tripdate=" + encodeURIComponent(tripdate);
+        }
+        else
+        {
+          requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination);  
+        }
        xhr.send(requestBody);
 }
 
