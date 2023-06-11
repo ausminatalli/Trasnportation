@@ -65,13 +65,13 @@ $dropdown = json_decode($data, true);
           </div>
           <div class="form1 form22">
             <div class="origin custom-date-input">
-              <label for="date">Date</label>
-              <input type="date" placeholder="Choose Date" />
+              <label for="tripdate">Date</label>
+              <input id="tripdate" type="date" placeholder="Choose Date" />
             </div>
 
             <div class="origin dest">
-              <label for="from">Time</label>
-              <input type="time" placeholder="Select Time" />
+              <label for="triptime">Time</label>
+              <input id="triptime" type="time" placeholder="Select Time" />
             </div>
           </div>
           <div class="form2">
