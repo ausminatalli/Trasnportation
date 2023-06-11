@@ -1,3 +1,11 @@
+<?php
+include('path.php');
+include_once('config.php');
+$host = $_SERVER['HTTP_HOST'];
+$apiUrl = "http://$host/transportation/api/admin/dropdown.php";
+$data = file_get_contents($apiUrl);
+$dropdown = json_decode($data, true);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,10 +70,11 @@
                     <label for="from">From</label>
                     <select  class="select" name="" id="origin">
                       <option selected value="">Leaving From</option>
-                      <option value="Beirut">Beirut</option>
-                      <option value="Baalbek">Baalbek</option>
-                      <option value="Saida">Saida</option>
-                      <option value="Nabatieh">Nabatieh</option>
+                      <?php foreach ($dropdown['station'] as $station) {
+                                $stationname = $station['stationname'];
+                                $provincename = $station['provincename'];
+                                echo '<option value="' . $provincename . '">' . $provincename.', ' . $stationname . '</option>';
+                            } ?>
                     </select>
                 </div>
                 <div class="switch">
@@ -76,10 +85,11 @@
                     <label for="from">Destination</label>
                     <select class="select" name="" id="destination">
                       <option selected value="">Going To</option>
-                      <option value="Beirut">Beirut</option>
-                      <option value="Baalbek">Baalbek</option>
-                      <option value="Saida">Saida</option>
-                      <option value="Nabatieh">Nabatieh</option>
+                      <?php foreach ($dropdown['station'] as $station) {
+                                $stationname = $station['stationname'];
+                                $provincename = $station['provincename'];
+                                echo '<option value="' . $provincename . '">' . $provincename.', ' . $stationname . '</option>';
+                            } ?>
                     </select>
                 </div>
             </div>
@@ -95,7 +105,7 @@
                 </div>
             </div>
             <div class="form2">
-                <button  id="validatesearch">Search<i class="fa-sharp fa-solid fa-magnifying-glass" id="Search"></i></button>
+                <button class="IndexSearch"  id="validatesearch" >Search<i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
             </div>
             </form>
         </div>
@@ -260,7 +270,8 @@ include('include/footer.html')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/demo.js"></script>
-  <script src="./main/js/mainvalidate.js"></script>
+  <script src="js/indexsearch.js"></script>
+  
 
  <script src="js/index.js"></script>
 
