@@ -1,4 +1,40 @@
 
+function SearchInMain()
+{
+  const xhr = new XMLHttpRequest();
+        const url = "../api/user/stationsearch.php";
+        let origin = document.getElementById('origin').value;
+        let destination = document.getElementById('destination').value;
+        let resultcount = document.getElementById('result-count');
+        let spanValue;
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const res = this.responseText;
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(res, 'text/html');
+            spanValue = htmlDoc.querySelector('span').getAttribute('value');
+            result_container.innerHTML=res;
+            resultcount.innerHTML=spanValue;
+            document.getElementById("currency").textContent = 'Lira';
+            if(parseInt(spanValue)<4)
+        {
+          document.querySelector('.resultborder').style.border = 0;
+        }else
+        {
+          document.querySelector('.resultborder').style.border = '1px solid #cacaca';
+        }
+          }
+        };
+        const requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination);
+
+       xhr.send(requestBody);
+}
+
+
 //Global variables
 let map;
 let originMarker;
@@ -157,19 +193,28 @@ const result_container= document.getElementById('result-container');
         const xhr = new XMLHttpRequest();
         const url = "../api/main/search.php";
         const currency = currencyLink.textContent;
-      
+        let origin = document.getElementById('origin').value;
+        let destination = document.getElementById('destination').value;
+        let resultcount = document.getElementById('result-count');
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       
         xhr.onreadystatechange = function() {
           if (xhr.readyState === 4 && xhr.status === 200) {
             const res = this.responseText;
-            // alert(res);
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(res, 'text/html');
+            spanValue = htmlDoc.querySelector('span').getAttribute('value');
+            
+            resultcount.innerHTML=spanValue;
             result_container.innerHTML=res;
             // console.log(content.textContent);
             
           }
         };
-      
-        xhr.send("currency=" + encodeURIComponent(currency));
+        const requestBody = "origin=" + encodeURIComponent(origin) + "&destination=" + encodeURIComponent(destination) + "&currency=" + encodeURIComponent(currency);
+
+        xhr.send(requestBody);
+       
       });
+      
