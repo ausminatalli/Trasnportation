@@ -1,11 +1,11 @@
 <?php
 include_once('../../config.php');
-include_once('../main/functions.php');
+require('../main/functions.php');
 $origin;
 $destination;
-$currency;
+$query;
+$searchResults;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $currency = $_POST['currency'];
     $origin = $_POST['origin'];
     $destination = $_POST['destination'];
     
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 if($searchResults){
 foreach ($searchResults as $item) {
-    $price = $currency === 'USD' ?'$' . number_format((int)$item['ticketprice'] / 94000,2 ): $item['ticketprice']. ' L.L';
+  
     ?>
     <div class="box">
         <div class="leftsection">
@@ -88,7 +88,7 @@ foreach ($searchResults as $item) {
             </div>
         </div>
         <div class="rightsection">
-            <h5><?php echo $price ?></h5>
+            <h5><?php echo $item['ticketprice'].' L.L'; ?></h5>
             <a href="#">
                 Book
             </a>

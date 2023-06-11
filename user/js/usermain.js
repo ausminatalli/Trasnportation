@@ -1,4 +1,6 @@
      
+     
+     
      function userSearchValidation(e){
      let origin=document.getElementById('origin');
      let destination=document.getElementById('destination');
