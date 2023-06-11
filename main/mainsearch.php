@@ -66,12 +66,12 @@ $dropdown = json_decode($data, true);
           <div class="form1 form22">
             <div class="origin custom-date-input">
               <label for="tripdate">Date</label>
-              <input id="tripdate" type="date" placeholder="Choose Date" />
+              <input id="tripdate" type="date" placeholder="Choose Date" value="<?php if(isset($_GET['tripdate'])) { echo $_GET['tripdate']; } ?>" />
             </div>
 
             <div class="origin dest">
               <label for="triptime">Time</label>
-              <input id="triptime" type="time" placeholder="Select Time" />
+              <input id="triptime" type="time" placeholder="Select Time" value="<?php if(isset($_GET['triptime'])) { echo $_GET['triptime']; } ?>"/>
             </div>
           </div>
           <div class="form2">
