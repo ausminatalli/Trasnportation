@@ -14,6 +14,12 @@
   </head>
 
   <body>
+  <?php 
+        $host=$_SERVER['HTTP_HOST'];
+        $Url="http://$host/transportation/api/admin/dropdown.php";
+        $data=file_get_contents($Url);
+        $dropdown=json_decode($data, true);
+    ?>
     <h2 class="text-center text-primary mt-5 mb-5">Add Bus</h2>
     <div class="card-body content">
       <h5 class="text-primary">Add Bus Information Capacity and Mechanic</h5>
@@ -25,12 +31,13 @@
             <span id="vselectstation" class="vspan"></span>
             <select  class="form-control " id="selectstation" style="width: 100%;">
               <option selected="selected">Start Location</option>
-              <option>Beirut</option>
-              <option>Saida</option>
-              <option>Tyre</option>
-              <option>Baalbek</option>
-              <option>Byblos</option>
-              <option>Nabatieh</option>
+              <?php
+              foreach($dropdown['station'] as $stations){
+                $stationname = $stations['stationname'];
+                $provincename = $stations['provincename'];
+                echo '<option>'. $provincename.',' . $stationname . '</option>';
+               }
+               ?>
             </select>
           </div>
         </div>
@@ -41,10 +48,12 @@
           <span id="vselectdriver" class="vspan"></span>
             <select class="form-control" id="selectdriver"  style="width: 100%;">
               <option selected="selected">Driver Name</option>
-                <option>Ta3an</option>
-                <option>Jahjeh</option>
-                <option>2afas</option>
-                <option>Tokle</option>
+              <?php
+              foreach ($dropdown['driver'] as $drivers) {
+               $drivername = $drivers['Drivers'];
+               echo '<option>'. $drivername. '</option>';
+             }
+        ?>
             </select>
           </div>
         </div>
