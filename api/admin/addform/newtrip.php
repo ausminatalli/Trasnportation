@@ -1,4 +1,7 @@
 <?php
+
+require_once('../../../config.php');
+require('../adminfunctions.php');
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve the values from the POST data
@@ -11,10 +14,18 @@ $arriveTime = isset($_POST["arrivetime"]) ? $_POST["arrivetime"] : '';
 $ticketprice = isset($_POST["ticketprice"]) ? $_POST["ticketprice"] : '';
 $details = isset($_POST["details"]) ? $_POST["details"] : '';
 
-  
+$data = [
+  'startLocation' => mysqli_real_escape_string($conn, $startLocation),
+  'destinationLocation' => mysqli_real_escape_string($conn, $destinationLocation),
+  'date' => mysqli_real_escape_string($conn, $date ),
+  'time' => mysqli_real_escape_string($conn, $time),
+  'busNumber' => mysqli_real_escape_string($conn, $busNumber),
+  'arriveTime' => mysqli_real_escape_string($conn, $arriveTime),
+  'ticketprice' => mysqli_real_escape_string($conn, $ticketprice ),
+  'details' => mysqli_real_escape_string($conn, $details),
+]; 
 
-  echo $startLocation;
-  
-  exit();
+AddTrip($conn,$data);
+header('location:../../../admin/addtrip.php?msg=newtripadded');
 }
 ?>

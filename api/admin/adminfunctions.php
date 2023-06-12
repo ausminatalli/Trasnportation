@@ -1,13 +1,32 @@
 <?php
 
 function AddTrip($conn,$data)
-{
-$query = "INSERT INTO skyline.trips (tripid,busid,tripfrom,tripto,status,schedule,movetime,arrivetime,ticketprice,details)
-values (2323,'9191','2','1','onset','2023-06-13','10:00:00','13:00:00','20000','sddsssdds')"
+ {
+        $busNumber = $data['busNumber'];
+        $startLocation = $data['startLocation'];
+        $destinationLocation = $data['destinationLocation'];
+        $date = $data['date'];
+        $time = $data['time'];
+        $arriveTime = $data['arriveTime'];
+        $ticketprice = $data['ticketprice'];
+        $details= $data['details'];
 
+        $sql = "INSERT INTO skyline.trips (busid,tripfrom,tripto,schedule,movetime,arrivetime,ticketprice,details) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "ssssssss",$busNumber, $startLocation, $destinationLocation, $date, $time, $arriveTime, $ticketprice, $details);
 
+        if (mysqli_stmt_execute($stmt)) {
+            echo "Trip added successfully.";
+            
+        } else {
+            echo "Error: " . mysqli_stmt_error($stmt);
+        }
+        
+        mysqli_stmt_close($stmt);
+    }
     
-}
+
 
 
 
