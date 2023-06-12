@@ -1,10 +1,10 @@
 <?php
 // Connect to MySQL database
-require('../../config.php')
+require('../../../config.php')
 ?>
 <?php
 // Fetch data from MySQL table
-$sql = "SELECT * FROM applicationview";
+$sql = "SELECT * FROM busview";
 $result = $conn->query($sql);
 
 $users = array();
