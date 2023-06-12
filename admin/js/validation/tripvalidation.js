@@ -67,7 +67,7 @@ function validateTrip() {
   }
 
   if (isValid) {
-    alert('The trip has been added.');
+    return true;
   }
   else 
   return false;
