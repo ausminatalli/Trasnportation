@@ -61,8 +61,7 @@ function existingEmail($conn, $email)
 
 function addUser($conn, $data)
 {
-    if ($data['role'] == 0) {
-        $generatedId = $data['generatedID'];
+    $generatedId = $data['generatedID'];
         $firstname = $data['firstname'];
         $lastname = $data['lastName'];
         $mobilenumber = $data['mobilenumber'];
@@ -71,6 +70,7 @@ function addUser($conn, $data)
         $useraddress = $data['useraddress'];
         $birthdate = $data['birthdate'];
         $hashedPassword = $data['hashedPassword'];
+    if ($data['role'] == 0) {
 
         $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
@@ -84,6 +84,39 @@ function addUser($conn, $data)
         }
         
         mysqli_stmt_close($stmt);
+    }
+    else if($data['role'] == 1)
+    {
+        $licensedate = $data['licensedate'];
+        $licenseUrl = $data['licenseUrl'];
+        $about = $data['about'];
+        $role = $data['role'];
+       // User insertion
+       $sqlUser = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password,role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+       $stmtUser = mysqli_prepare($conn, $sqlUser);
+       mysqli_stmt_bind_param($stmtUser, "sssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword,$role);
+
+       if (mysqli_stmt_execute($stmtUser)) {
+        echo "User added successfully.";
+       } else {
+        echo "Error: " . mysqli_stmt_error($stmtUser);
+      }
+
+       mysqli_stmt_close($stmtUser);
+
+      // Driver insertion
+      $sqlDriver = "INSERT INTO driver (driverid, licensedate, licenseexpiry, LicenseUrl, about) VALUES (?, ?, ?, ?, ?)";
+      $stmtDriver = mysqli_prepare($conn, $sqlDriver);
+      mysqli_stmt_bind_param($stmtDriver, "ssssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about);
+
+      if (mysqli_stmt_execute($stmtDriver)) {
+      echo "Driver added successfully.";
+      } else {
+       echo "Error: " . mysqli_stmt_error($stmtDriver);
+      }
+
+      mysqli_stmt_close($stmtDriver);
+
     }
 }
 

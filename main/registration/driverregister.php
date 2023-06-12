@@ -34,69 +34,43 @@ include('../../path.php')
         <div class="login-content">
           <h2>Driver Sign up</h2>
           <p>PLEASE ENTER YOUR LOGIN TO SIGN UP.</p>
-          <form action="">
-            <div class="flexSb gap-2">
-              <input type="text" name="" placeholder="Name" id="name" />
-              <input
-                type="text"
-                name=""
-                placeholder="Last Name"
-                id="lastName"
-              />
-            </div>
-            <div class="flexSb gap-2">
-              <h6 class="text-danger ml-2" id="vname"></h6>
-              <h6 class="text-danger" id="vlastName"></h6>
-            </div>
-            <input
-              type="email"
-              id="email"
-              required
-              placeholder="Email Adress"
-            />
-            <h6 class="text-danger" id="vemail"></h6>
+          <form id="driverregister" action="driverinfo.php" method="POST" onsubmit="return drivervalidation(event)">
+  <div class="flexSb gap-2">
+    <input type="text" name="name" placeholder="Name" id="name" />
+    <input type="text" name="lastName" placeholder="Last Name" id="lastName" />
+  </div>
+  <div class="flexSb gap-2">
+    <h6 class="text-danger ml-2" id="vname"></h6>
+    <h6 class="text-danger" id="vlastName"></h6>
+  </div>
+  <input type="email" name="email" id="email"  placeholder="Email Address" />
+  <h6 class="text-danger" id="vemail"></h6>
 
-            <div class="flexSb password">
-              <input
-                type="password"
-                id="password"
-                required
-                placeholder="password"
-              />
-              <i class="fa-solid fa-eye" onclick="showpassword(event)"></i>
-            </div>
-            <h6 class="text-danger" id="vpassword"></h6>
-            <div class="flexSb password">
-              <input
-                type="password"
-                id="cpassword"
-                required
-                placeholder="confirm password"
-              />
-              <i
-                class="fa-solid confirmpass fa-eye"
-                onclick="showcpassword(event)"
-              ></i>
-            </div>
-            <h6 class="text-danger" id="vcpassword"></h6>
+  <div class="flexSb password">
+    <input type="password" name="password" id="password"  placeholder="Password" />
+    <i class="fa-solid fa-eye" onclick="showpassword(event)"></i>
+  </div>
+  <h6 class="text-danger" id="vpassword"></h6>
 
-            <div class="flexSb">
-              <div class="check">
-                <input type="checkbox" />
-                <p>I agree to the terms of service and privacy policy</p>
-              </div>
-            </div>
-            <a
-              class="btn-blue"
-              onclick="drivervalidation(event)"
-              style="display: block; text-align: center; line-height: 50px"
-              >Sign up</a
-            >
+  <div class="flexSb password">
+    <input type="password" name="cpassword" id="cpassword"  placeholder="Confirm Password" />
+    <i class="fa-solid confirmpass fa-eye" onclick="showcpassword(event)"></i>
+  </div>
+  <h6 class="text-danger" id="vcpassword"></h6>
 
-            <p class="dont">
-              Already a member? <a href="../login.php">Login</a>
-            </p>
-          </form>
+  <div class="flexSb">
+    <div class="check">
+      <input type="checkbox" name="agree" />
+      <p>I agree to the terms of service and privacy policy</p>
+    </div>
+  </div>
+  <button class="btn-blue" type="submit" style="display: block; text-align: center; line-height: 50px">Sign up</button>
+
+  <p class="dont">
+    Already a member? <a href="../login.php">Login</a>
+  </p>
+</form>
+
         </div>
       </div>
     </section>

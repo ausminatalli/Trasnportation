@@ -38,10 +38,10 @@ include('../../path.php')
             you after 48h.
           </p>
     
-          <form id='registerBus' method="POST" enctype="multipart/form-data" action="../../upload.php" onsubmit="return driverInfovalidation(event)">
+          <form id='registerBus' method="POST" enctype="multipart/form-data" action="registerdriver.php" onsubmit="return driverInfovalidation(event)">
             <div class="flexSb gap-2">
-              <input type="text" name="" placeholder="City" id="city" />
-              <input type="text" name="" placeholder="Address" id="address" />
+              <input type="text" name="city" placeholder="City" id="city" />
+              <input type="text" name="address" placeholder="Address" id="address" />
             </div>
             <div class="flexSb gap-2">
               <h6 class="text-danger ml-2" id="vcity"></h6>
@@ -49,9 +49,9 @@ include('../../path.php')
             </div>
             <input
               type="number"
-              
+              name="mobilenumber"
               placeholder="Phone number"
-              id="number"
+              id="mobilenumber"
             />
             <h6 class="text-danger" id="vnumber"></h6>
 
@@ -59,25 +59,20 @@ include('../../path.php')
               >Date of birthday <span class="text-danger">*</span></label
             >
             <div class="flexSb password">
-              <input type="date"  id="date" />
+              <input id="birthdate" name="birthdate" type="date"  id="date" />
             </div>
             <h6 class="text-danger" id="vdate"></h6>
 
             <label for="license"
-              >License section <span class="text-danger">*</span></label
+              >License Expiry <span class="text-danger">*</span></label
             >
             <div class="flexSb gap-2">
-              <input
-                type="number"
-                name=""
-                placeholder="License Number"
-                id="lnum"
-              />
+            
               <input
                 type="date"
-                name=""
+                name="licensedate"
                 placeholder="Expiry Date"
-                id="ledate"
+                id="licensedate"
               />
             </div>
             <div class="flexSb gap-2">
@@ -98,8 +93,8 @@ include('../../path.php')
 
             <textarea
               placeholder="About Your Self..."
-              name=""
-              id="info"
+              name="about"
+              id="about"
               rows="5"
               class="w-100"
             ></textarea>

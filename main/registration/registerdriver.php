@@ -1,12 +1,15 @@
 <?php
 
-require('controller_login/user_functions.php');
+require('../../controller_login/user_functions.php');
 
-require_once 'env.php';
-loadEnv(__DIR__ . '/.env');
+require_once '../../env.php';
+
+$envFilePath = dirname(dirname(__DIR__)) . '/.env';
+loadEnv($envFilePath);
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     $file = $_FILES['file'];
     $cloudName = $_ENV['cloudName'];
     $apiKey = $_ENV['cloudapiKey'];
