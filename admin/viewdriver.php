@@ -61,7 +61,7 @@
             $jsonData = file_get_contents('demodata/driver.json');
         $host = $_SERVER['HTTP_HOST'];
 
-          $jsonData = file_get_contents("http://$host/Transportation/api/admin/alldriver.php");
+          $jsonData = file_get_contents("http://$host/Transportation/api/admin/view/alldriver.php");
 
             $data = json_decode($jsonData, true);
 

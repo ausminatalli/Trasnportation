@@ -375,7 +375,7 @@ function loadContent(url) {
 
 
 addtrip.addEventListener("click", function () {
- 
+  loadContent("addtrip.php");
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -395,7 +395,7 @@ viewtrip.addEventListener("click", function () {
 });
 
 adddriver.addEventListener("click", function () {
-  
+  loadContent("adddriver.php");
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -414,7 +414,7 @@ viewdriver.addEventListener("click", function () {
 });
 
 addbus.addEventListener("click", function () {
-  
+  loadContent("addbus.php");
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -455,7 +455,7 @@ payments.addEventListener("click", function () {
 });
 
 addadmin.addEventListener("click", function () {
-  
+  loadContent("addadmin.php");
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
