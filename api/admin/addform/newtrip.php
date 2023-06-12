@@ -26,6 +26,6 @@ $data = [
 ]; 
 
 AddTrip($conn,$data);
-header('location:../../../admin/addtrip.php?msg=newtripadded');
+header('location:../../../admin?msg=newtripadded');
 }
 ?>

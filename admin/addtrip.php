@@ -101,9 +101,9 @@
               <select class="form-control" style="width: 100%" id="busNumber" name="busNumber">
                 <option selected="selected">Bus Number</option>
                 <?php  foreach ($dropdown['bus'] as $busses) {
-                
+                $buslocation = $busses['buslocation'];
                 $busid = $busses['busid'];
-                echo '<option value="' . $busid . '">' . $busid . '</option>';
+                echo '<option value="' . $busid . '">' . $busid .'-'.$buslocation .  '</option>';
               }
               ?>
               </select>

@@ -28,13 +28,17 @@
             <h5>Select Station</h5>
             <span id="vselectstation" class="vspan"></span>
             <select  class="form-control " id="selectstation" style="width: 100%;">
-              <option selected="selected">Start Location</option>
-              <option>Beirut</option>
-              <option>Saida</option>
-              <option>Tyre</option>
-              <option>Baalbek</option>
-              <option>Byblos</option>
-              <option>Nabatieh</option>
+              <option selected="selected">Base Location</option>
+              
+              <?php
+        
+        foreach ($dropdown['station'] as $station) {
+          $stationid = $station['stationid'];
+          $stationname = $station['stationname'];
+          $provincename = $station['provincename'];
+          echo '<option value="' . $stationid . '">' . $provincename . ', ' . $stationname . '</option>';
+      }      
+      ?>
             </select>
           </div>
         </div>
