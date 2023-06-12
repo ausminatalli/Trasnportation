@@ -4,20 +4,19 @@ function validateDriver(){
   let lastName=document.getElementById('lastName');
   let phoneNumber=document.getElementById('phoneNumber');
   let email=document.getElementById('email');
-  let licenseNumber=document.getElementById('licenseNumber');
+  let address=document.getElementById('address');
   let licenseDate=document.getElementById('licenseDate');
-  let submit = document.getElementById('submit');
   let vFirstName=document.getElementById('vFirstName');
   let vLastName=document.getElementById('vLastName');
   let vPhoneNumber=document.getElementById('vPhoneNumber');
   let vEmail=document.getElementById('vEmail');
-  let vLicenseNumber=document.getElementById('vLicenseNumber');
+  let vAddress=document.getElementById('vAddress');
   let vLicenseDate=document.getElementById('vLicenseDate');
   vFirstName.innerHTML='';
   vLastName.innerHTML='';
   vPhoneNumber.innerHTML='';
   vEmail.innerHTML='';
-  vLicenseNumber.innerHTML='';
+  vAddress.innerHTML='';
   vLicenseDate.innerHTML='';
   
   
@@ -52,8 +51,8 @@ if (email.value === '') {
   vEmail.innerHTML="Please enter a valid email address.*";
   isvalid = false;
 }
-  if(licenseNumber.value === ''){
-      vLicenseNumber.innerHTML="Please enter the license number.*";
+  if(address.value === ''){
+      vAddress.innerHTML="Please enter the address.*";
       isvalid=false;
   }
   if(licenseDate.value === ''){
@@ -61,6 +60,8 @@ if (email.value === '') {
       isvalid=false;
   }
   if(isvalid){
-      alert('the driver has been added');
+      return true;
   }
+  else
+  return false;
   }

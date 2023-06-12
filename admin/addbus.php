@@ -1,3 +1,7 @@
+<?php $host = $_SERVER['HTTP_HOST'];
+        $apiUrl = "http://$host/transportation/api/admin/dropdown.php";
+        $data = file_get_contents($apiUrl);
+        $dropdown = json_decode($data, true); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
