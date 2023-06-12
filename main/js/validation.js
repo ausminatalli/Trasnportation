@@ -302,8 +302,7 @@ return true;
     }
   
     if (isValid) {
-      alert("successful");
-      window.location.href=('driverinfo.html');
+      document.getElementById("driverregister").submit();
     }
   }
 
@@ -315,19 +314,18 @@ return true;
 
     let city =document.getElementById("city");
     let address =document.getElementById("address");
-    let number =document.getElementById("number");
-    let date =document.getElementById("date");
-    let lnum =document.getElementById("lnum");
-    let ledate =document.getElementById("ledate");
+    let mobilenumber =document.getElementById("mobilenumber");
+    let date =document.getElementById("birthdate");
+    let ledate =document.getElementById("licensedate");
     let file =document.getElementById("file");
-    let info =document.getElementById("info");
+    let info =document.getElementById("about");
 
 
     let vcity =document.getElementById("vcity");
     let vaddress =document.getElementById("vaddress");
     let vnumber =document.getElementById("vnumber");
     let vdate =document.getElementById("vdate");
-    let vlnum =document.getElementById("vlnum");
+
     let vledate =document.getElementById("vledate");
     let vfile =document.getElementById("vfile");
     let vinfo =document.getElementById("vinfo");
@@ -352,7 +350,7 @@ return true;
         vaddress.innerHTML="Enter Your Address";
         isValid=false;
     }
-    if(number.value === ""){
+    if(mobilenumber.value === ""){
         vnumber.innerHTML="Enter Your Phone Number";
         isValid=false;
     }
@@ -361,11 +359,7 @@ return true;
         isValid=false;
 
     }
-    if(lnum.value === ""){
-        vlnum.innerHTML="Enter Your License Number";
-        isValid=false;
 
-    }
     if(ledate.value === ""){
         vledate.innerHTML="Enter Your License Expiry Date";
         isValid=false;

@@ -21,42 +21,47 @@ function generateId($role) {
 
 //Check if MobileNb exists
 
-function existingMobile($conn,$mobileNb)
+function existingMobile($conn, $mobileNb)
 {
-$query = "SELECT * FROM users WHERE mobilenumber='$mobileNb'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $query = "SELECT * FROM users WHERE mobilenumber=?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $mobileNb);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+    if ($row) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-if($row)
-{
-    return true;
-}
-else
-    return false;
-}
   
 //Check if Email exists
 
-function existingEmail($conn,$email)
+function existingEmail($conn, $email)
 {
-$query = "SELECT * FROM users WHERE email='$email'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $query = "SELECT * FROM users WHERE email=?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     
-if($row)
-{
-    return true;
+    if ($row) {
+        return true;
+    } else {
+        return false;
+    }
 }
-else
-    return false;
-}
+
 
 //add user according to rule
 
-function addUser($conn,$data)
+function addUser($conn, $data)
 {
-    if ($data['role'] == 0) {
-        $generatedId = $data['generatedID'];
+    $generatedId = $data['generatedID'];
         $firstname = $data['firstname'];
         $lastname = $data['lastName'];
         $mobilenumber = $data['mobilenumber'];
@@ -65,16 +70,56 @@ function addUser($conn,$data)
         $useraddress = $data['useraddress'];
         $birthdate = $data['birthdate'];
         $hashedPassword = $data['hashedPassword'];
+    if ($data['role'] == 0) {
 
-        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password) VALUES ('$generatedId', '$firstname', '$lastname', '$mobilenumber', '$email', '$city', '$useraddress', '$birthdate', '$hashedPassword')";
+        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "sssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword);
 
-        if ($conn->query($sql) === TRUE) {
+        if (mysqli_stmt_execute($stmt)) {
             echo "User added successfully.";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . mysqli_stmt_error($stmt);
         }
+        
+        mysqli_stmt_close($stmt);
+    }
+    else if($data['role'] == 1)
+    {
+        $licensedate = $data['licensedate'];
+        $licenseUrl = $data['licenseUrl'];
+        $about = $data['about'];
+        $role = $data['role'];
+       // User insertion
+       $sqlUser = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password,role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+       $stmtUser = mysqli_prepare($conn, $sqlUser);
+       mysqli_stmt_bind_param($stmtUser, "sssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword,$role);
+
+       if (mysqli_stmt_execute($stmtUser)) {
+        echo "User added successfully.";
+       } else {
+        echo "Error: " . mysqli_stmt_error($stmtUser);
+      }
+
+       mysqli_stmt_close($stmtUser);
+
+      // Driver insertion
+      $sqlDriver = "INSERT INTO driver (driverid, licensedate, licenseexpiry, LicenseUrl, about) VALUES (?, ?, ?, ?, ?)";
+      $stmtDriver = mysqli_prepare($conn, $sqlDriver);
+      mysqli_stmt_bind_param($stmtDriver, "ssssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about);
+
+      if (mysqli_stmt_execute($stmtDriver)) {
+      echo "Driver added successfully.";
+      } else {
+       echo "Error: " . mysqli_stmt_error($stmtDriver);
+      }
+
+      mysqli_stmt_close($stmtDriver);
+
     }
 }
+
 
 
 
