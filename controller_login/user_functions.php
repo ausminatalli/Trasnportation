@@ -21,39 +21,45 @@ function generateId($role) {
 
 //Check if MobileNb exists
 
-function existingMobile($conn,$mobileNb)
+function existingMobile($conn, $mobileNb)
 {
-$query = "SELECT * FROM users WHERE mobilenumber='$mobileNb'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $query = "SELECT * FROM users WHERE mobilenumber=?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $mobileNb);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+    if ($row) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-if($row)
-{
-    return true;
-}
-else
-    return false;
-}
   
 //Check if Email exists
 
-function existingEmail($conn,$email)
+function existingEmail($conn, $email)
 {
-$query = "SELECT * FROM users WHERE email='$email'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $query = "SELECT * FROM users WHERE email=?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     
-if($row)
-{
-    return true;
+    if ($row) {
+        return true;
+    } else {
+        return false;
+    }
 }
-else
-    return false;
-}
+
 
 //add user according to rule
 
-function addUser($conn,$data)
+function addUser($conn, $data)
 {
     if ($data['role'] == 0) {
         $generatedId = $data['generatedID'];
@@ -66,15 +72,21 @@ function addUser($conn,$data)
         $birthdate = $data['birthdate'];
         $hashedPassword = $data['hashedPassword'];
 
-        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password) VALUES ('$generatedId', '$firstname', '$lastname', '$mobilenumber', '$email', '$city', '$useraddress', '$birthdate', '$hashedPassword')";
+        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "sssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword);
 
-        if ($conn->query($sql) === TRUE) {
+        if (mysqli_stmt_execute($stmt)) {
             echo "User added successfully.";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . mysqli_stmt_error($stmt);
         }
+        
+        mysqli_stmt_close($stmt);
     }
 }
+
 
 
 
