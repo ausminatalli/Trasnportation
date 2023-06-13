@@ -7,7 +7,7 @@ require('../../config.php')
 $stations = "SELECT * FROM station";
 $drivers = "SELECT CONCAT(users.firstname,' ',users.lastname) as Drivers FROM driver 
 join users on users.userid=driver.driverid;";
-$busses = "SELECT busid FROM bus";
+$busses = "SELECT bus.busid,station.provincename AS buslocation FROM skyline.bus join skyline.station on (bus.stationid=station.stationid)";
 
 $resultstation = $conn->query($stations);
 $resultdriver = $conn->query($drivers);

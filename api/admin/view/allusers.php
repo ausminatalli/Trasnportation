@@ -1,7 +1,7 @@
 
 <?php
 // Connect to MySQL database
-require('../../config.php')
+require('../../../config.php')
 ?>
 <?php
 // Fetch data from MySQL table

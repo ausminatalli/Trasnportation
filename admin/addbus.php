@@ -1,3 +1,7 @@
+<?php $host = $_SERVER['HTTP_HOST'];
+        $apiUrl = "http://$host/transportation/api/admin/dropdown.php";
+        $data = file_get_contents($apiUrl);
+        $dropdown = json_decode($data, true); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,14 +34,19 @@
             <h5>Select Station</h5>
             <span id="vselectstation" class="vspan"></span>
             <select  class="form-control " id="selectstation" style="width: 100%;">
-              <option selected="selected">Start Location</option>
+
+              <option selected="selected">Base Location</option>
+              
               <?php
-              foreach($dropdown['station'] as $stations){
-                $stationname = $stations['stationname'];
-                $provincename = $stations['provincename'];
-                echo '<option>'. $provincename.',' . $stationname . '</option>';
-               }
-               ?>
+        
+        foreach ($dropdown['station'] as $station) {
+          $stationid = $station['stationid'];
+          $stationname = $station['stationname'];
+          $provincename = $station['provincename'];
+          echo '<option value="' . $stationid . '">' . $provincename . ', ' . $stationname . '</option>';
+      }      
+      ?>
+
             </select>
           </div>
         </div>

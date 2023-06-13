@@ -40,6 +40,7 @@
       .gold-star {
         color: gold;
       }
+      
     </style>
     <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="menu">
@@ -129,8 +130,16 @@
       </nav>
 
       <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5 pt-5"></div>
+      
+       
+      <div id="content" class="p-4 p-md-5 pt-5">
+        
+      </div>
+       
+      
+      
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
@@ -167,6 +176,7 @@
         // Show the modal
         $("#reviewModal").modal("show");
       }
+      
     </script>
   </body>
 </html>
