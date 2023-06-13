@@ -32,6 +32,6 @@ $data = [
 ]; 
 
 addUser($conn,$data);
-
+header('location:../../../admin?msg=newdriver');
 }
 ?>
