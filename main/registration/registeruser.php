@@ -48,7 +48,8 @@ else if(existingEmail($conn,$data['email'])){
 else
 {
     addUser($conn,$data);
-    header('location:../registration/verification.php');
+    header('location:../registration/verification.php?email=' . urlencode($data['email']));
+
 } 
 
 // Close the database connection

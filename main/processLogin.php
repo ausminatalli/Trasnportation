@@ -12,12 +12,17 @@ $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 if ($row && password_verify($password, $row['password'])) {
     // Password is correct
-    if ($row['role'] == 0) {
+    if ($row['role'] == 0 && $row['emailapproved']== 1) {
         session_start();
         $_SESSION["id"] = $row['userid'];
         $_SESSION["type"] = $row['role'];
         header('location:../user/usermain.php?msg=success');
-    } else if ($row['role'] == 1) {
+    }else if ($row['role'] == 0 && $row['emailapproved']== 0) {
+       
+        header('location:registration/verification.php?msg=enter-your-verefication-code');
+
+    }
+     else if ($row['role'] == 1) {
         session_start();
         $_SESSION["id"] = $row['userid'];
         $_SESSION["type"] = $row['role'];

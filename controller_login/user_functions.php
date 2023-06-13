@@ -1,4 +1,23 @@
 <?php
+function sendVerificationEmail($email, $verificationCode) {
+    // Include the sendmail.php file
+    require('../../sendmail.php');
+
+    // Prepare the email content
+    $to = $email;
+    $cc = "cc@example.com";
+    $subject = "Skyline Email Verification";
+    $message = "
+    <div style='width: 100%; background-color:#E5F6FF;padding:10px;border-radius:5px;'>
+        <h3 style='color: #0A3B5F;text-align: center;'>Here is the confirmation code to join Skyline:</h2>
+        <h1 style='color: black;text-align: center;'>" . $verificationCode . "</h1>
+        <h4 style='color: #0A3B5F; text-align: center;'>All you have to do is copy the confirmation code and paste it into your form to complete the email verification process.</h4>
+    </div>
+    ";
+
+    // Send the email
+    sendEmailWithCC($to, $cc, $subject, $message);
+}
 
 //generates Random ID for the role
 function generateId($role) {
@@ -70,18 +89,23 @@ function addUser($conn, $data)
         $useraddress = $data['useraddress'];
         $birthdate = $data['birthdate'];
         $hashedPassword = $data['hashedPassword'];
+        $verefication_code= substr(number_format(time() * rand(),0,'',''), 0, 6);
+
     if ($data['role'] == 0) {
 
-        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password, verefication_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "sssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword);
+        mysqli_stmt_bind_param($stmt, "sssssssssi", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword, $verefication_code);
 
-        if (mysqli_stmt_execute($stmt)) {
-            echo "User added successfully.";
-        } else {
-            echo "Error: " . mysqli_stmt_error($stmt);
-        }
+       if (mysqli_stmt_execute($stmt)) {
+    echo "<script>alert('User added successfully.');</script>";
+    sendVerificationEmail($email, $verefication_code);
+    header('Location: ../main/registration/verification.php');
+} else {
+    echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
+}
+
         
         mysqli_stmt_close($stmt);
     }
