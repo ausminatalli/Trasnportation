@@ -66,6 +66,7 @@ if(Mechanic.value === ''){
     isvalid=false;
 }
 if(isvalid){
-    alert('the bus has been added');
+    return true;
 }
+return false;
 }

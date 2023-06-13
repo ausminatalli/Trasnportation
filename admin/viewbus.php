@@ -36,7 +36,7 @@
       </thead>
       <tbody>
         <?php
-          // $jsonData = file_get_contents('demodata/bus.json');
+          
         $host = $_SERVER['HTTP_HOST'];
           $jsonData = file_get_contents("http://$host/Transportation/api/admin/view/allbus.php");
           $data = json_decode($jsonData, true);

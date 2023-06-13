@@ -368,6 +368,18 @@ function loadContent(url) {
       
       DashboardBlock();
     }
+    else if(url === 'addbus.php')
+    {
+      loadScript('js/validation/busvalidation.js');
+    }
+    else if(url === 'addtrip.php')
+    {
+      loadScript('js/validation/tripvalidation.js');
+    }
+    else if(url === 'adddriver.php')
+    {
+      loadScript('js/validation/drivervalidation.js');
+    }
   };
   xhr.open('GET', url, true);
   xhr.send();
@@ -380,7 +392,6 @@ addtrip.addEventListener("click", function () {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("content").innerHTML = this.responseText;
-      loadScript('js/validation/tripvalidation.js');
     }
   };
  
@@ -400,7 +411,6 @@ adddriver.addEventListener("click", function () {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("content").innerHTML = this.responseText;
-      loadScript('js/validation/drivervalidation.js');
     }
   };
   xhr.open("GET", "adddriver.php", true);
@@ -419,7 +429,6 @@ addbus.addEventListener("click", function () {
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("content").innerHTML = this.responseText;
-      loadScript('js/validation/busvalidation.js');
     }
   };
   xhr.open("GET", "addbus.php", true);
