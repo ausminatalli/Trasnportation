@@ -96,7 +96,7 @@ function addUser($conn, $data)
         $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password, verefication_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "sssssssssi", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword, $verefication_code);
+        mysqli_stmt_bind_param($stmt, "ssssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword, $verefication_code);
 
        if (mysqli_stmt_execute($stmt)) {
     echo "<script>alert('User added successfully.');</script>";
@@ -129,10 +129,17 @@ function addUser($conn, $data)
        mysqli_stmt_close($stmtUser);
 
       // Driver insertion
+      if(isset($data['isaccepted'])){
+      $isaccepted = $data['isaccepted']; 
+      $sqlDriver = "INSERT INTO driver (driverid, licensedate, licenseexpiry, LicenseUrl, about,accepted) VALUES (?, ?, ?, ?, ?,?)";
+      $stmtDriver = mysqli_prepare($conn, $sqlDriver);
+      mysqli_stmt_bind_param($stmtDriver, "ssssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about,$isaccepted);
+      }
+      else{
       $sqlDriver = "INSERT INTO driver (driverid, licensedate, licenseexpiry, LicenseUrl, about) VALUES (?, ?, ?, ?, ?)";
       $stmtDriver = mysqli_prepare($conn, $sqlDriver);
       mysqli_stmt_bind_param($stmtDriver, "sssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about);
-
+      }
       if (mysqli_stmt_execute($stmtDriver)) {
       echo "Driver added successfully.";
       } else {
