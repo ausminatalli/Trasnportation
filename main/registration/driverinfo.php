@@ -29,6 +29,7 @@ include('../../path.php')
     <title>DriverInfo page</title>
   </head>
   <body>
+    
     <section class="register">
       <div class="container">
         <div class="login-content">
@@ -99,6 +100,10 @@ include('../../path.php')
               class="w-100"
             ></textarea>
             <h6 class="text-danger" id="vinfo"></h6>
+            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+            <input type="hidden" name="email" value="<?php echo $_POST['email']; ?>">
+            <input type="hidden" name="lastName" value="<?php echo $_POST['lastName']; ?>">
+            <input type="hidden" name="password" value="<?php echo $_POST['password']; ?>">
             <button type="submit" class="btn-blue" style="display: block; text-align: center; line-height: 50px">Submit</button>
           </form>
         </div>

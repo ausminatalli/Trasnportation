@@ -94,7 +94,7 @@ function addUser($conn, $data)
        // User insertion
        $sqlUser = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password,role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
        $stmtUser = mysqli_prepare($conn, $sqlUser);
-       mysqli_stmt_bind_param($stmtUser, "sssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword,$role);
+       mysqli_stmt_bind_param($stmtUser, "ssssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword,$role);
 
        if (mysqli_stmt_execute($stmtUser)) {
         echo "User added successfully.";
@@ -107,7 +107,7 @@ function addUser($conn, $data)
       // Driver insertion
       $sqlDriver = "INSERT INTO driver (driverid, licensedate, licenseexpiry, LicenseUrl, about) VALUES (?, ?, ?, ?, ?)";
       $stmtDriver = mysqli_prepare($conn, $sqlDriver);
-      mysqli_stmt_bind_param($stmtDriver, "ssssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about);
+      mysqli_stmt_bind_param($stmtDriver, "sssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about);
 
       if (mysqli_stmt_execute($stmtDriver)) {
       echo "Driver added successfully.";
