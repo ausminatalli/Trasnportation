@@ -1,6 +1,6 @@
 <?php
 // Check if the requested page/resource exists
-if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
+/*if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
     // Check if query parameters exist
     if (!empty($_SERVER['QUERY_STRING'])) {
         // Set the HTTP response code to 200
@@ -16,4 +16,5 @@ if (!file_exists($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
         exit();
     }
 }
+*/
 ?>

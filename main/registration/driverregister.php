@@ -29,6 +29,20 @@ include('../../path.php')
     <title>Driver Register page</title>
   </head>
   <body>
+    <?php
+    if(isset($_GET['msg']) && ($_GET['msg'] == "emailfailed"))
+     {
+        $errorMessage = "Register Failed: Email Already Exists";
+     }
+     else if(isset($_GET['msg']) && ($_GET['msg'] == "failed"))
+     {
+        $errorMessage = "Register Failed:Mobile and Email Already Exist";
+     }
+     else if(isset($_GET['msg']) && ($_GET['msg'] == "Mobilefailed"))
+     {
+        $errorMessage = "Register Failed:Mobile Already Exist";
+     }
+     ?>
     <section class="register">
       <div class="container">
         <div class="login-content">
@@ -36,14 +50,14 @@ include('../../path.php')
           <p>PLEASE ENTER YOUR LOGIN TO SIGN UP.</p>
           <form id="driverregister" action="driverinfo.php" method="POST" onsubmit="return drivervalidation(event)">
   <div class="flexSb gap-2">
-    <input type="text" name="name" placeholder="Name" id="name" />
-    <input type="text" name="lastName" placeholder="Last Name" id="lastName" />
+    <input type="text" name="name" placeholder="Name" id="name" value="<?php echo isset($_GET['name']) ? $_GET['name'] : '';?>" />
+    <input type="text" name="lastName" placeholder="Last Name" id="lastName" value="<?php echo isset($_GET['lastName']) ? $_GET['lastName'] : '';?>"/>
   </div>
   <div class="flexSb gap-2">
     <h6 class="text-danger ml-2" id="vname"></h6>
     <h6 class="text-danger" id="vlastName"></h6>
   </div>
-  <input type="email" name="email" id="email"  placeholder="Email Address" />
+  <input type="email" name="email" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : '';?>"  placeholder="Email Address" />
   <h6 class="text-danger" id="vemail"></h6>
 
   <div class="flexSb password">
@@ -69,6 +83,9 @@ include('../../path.php')
   <p class="dont">
     Already a member? <a href="../login.php">Login</a>
   </p>
+  <div class='text-center'>
+   <span class="text-danger text-center h4" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+     </div>
 </form>
 
         </div>
