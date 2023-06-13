@@ -48,7 +48,6 @@
             <th>MobileNumber</th>
             <th>Email</th>
             <th>Birthday</th>
-            <th>Station</th>
             <th>Apply Date</th>
             <th>Licensedate</th>
             <th>LicenseEx</th>
@@ -74,7 +73,6 @@
               echo "<td>".$row['mobilenumber']."</td>";
               echo "<td>".$row['email']."</td>";
               echo "<td>".$row['birthdate']."</td>";
-              echo "<td>".$row['workstation']."</td>";
               echo "<td>".$row['applydate']."</td>";
               echo "<td>".$row['licensedate']."</td>";
               echo '<td class="' . strtolower($licenseClass) . '">' . $licenseClass . '</td>';

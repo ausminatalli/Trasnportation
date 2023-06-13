@@ -28,6 +28,7 @@ $data = [
   'role' => mysqli_real_escape_string($conn, '1'),
   'city' => mysqli_real_escape_string($conn, ''),
   'generatedID' => generateId(0),
+  'isaccepted' => mysqli_real_escape_string($conn, '1'),
   'hashedPassword' => password_hash( mysqli_real_escape_string($conn, stripcslashes($password)), PASSWORD_DEFAULT),
 ]; 
 
