@@ -25,6 +25,9 @@ function AddTrip($conn,$data)
         
         mysqli_stmt_close($stmt);
     }
+
+
+    
     
 
 

@@ -26,6 +26,7 @@
     ?>
     <h2 class="text-center text-primary mt-5 mb-5">Add Bus</h2>
     <div class="card-body content">
+    <form action="../api/admin/addform/newbus.php" method="POST" onsubmit="return validatebus()">
       <h5 class="text-primary">Add Bus Information Capacity and Mechanic</h5>
       <hr class="hr">
       <div class="row">
@@ -33,7 +34,7 @@
           <div class="form-group">
             <h5>Select Station</h5>
             <span id="vselectstation" class="vspan"></span>
-            <select  class="form-control " id="selectstation" style="width: 100%;">
+            <select name="selectstation"  class="form-control " id="selectstation" style="width: 100%;">
 
               <option selected="selected">Base Location</option>
               
@@ -113,7 +114,7 @@
     </div>
     <hr class="hr">
     <div class="bottom text-center">
-      <button onclick="validatebus()"  class="btn btn-primary " id="submit" >Submit</button>
-
+      <button type="submit" class="btn btn-primary " id="submit" >Submit</button>
+            </form>
   </body>
 </html>

@@ -25,7 +25,7 @@ vinsurance.innerHTML='';
 
 let isvalid=true;
 
-if(selectstation.value === 'Start Location'){
+if(selectstation.value === 'Base Location'){
     vselectstation.innerHTML="Please select the station";
     isvalid=false;
 }
