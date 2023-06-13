@@ -1,5 +1,27 @@
 <?php
-include('../path.php')
+// include('../path.php');
+
+include('../path.php');
+
+
+ 
+include_once('../config.php');
+session_start();
+
+$id = $_SESSION['id'];
+if(isset($_SESSION['id'])&& ($_SESSION['type']==0))
+{
+    $query = "select * from users WHERE userid = $id";
+    $result = mysqli_query($conn, $query) or die("Selecting user profile failed");
+    $row = mysqli_fetch_array($result);
+    $_SESSION['username']=$row['firstname'];
+    $_SESSION['user_id']=$row['userid'];
+}
+else
+{
+  header('location:../main/login.php?msg=please_login');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

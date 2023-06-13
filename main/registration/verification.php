@@ -1,5 +1,5 @@
 <?php
-include('../../path.php')
+// include('../../path.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,30 @@ include('../../path.php')
   <body>
   <?php   
    include('../../include/header.html');
+   include_once("../../config.php");
+
+   if(isset($_POST["verify_email"])){
+
+    $email=$_POST["email"];
+    $verification_code=$_POST["verification_code"];
+
+    $query="UPDATE users Set createAt=NOW(),emailapproved=1 where email='".$email."' AND verification_code='".$verification_code."'";
+    $result=mysqli_query($conn,$query);
+
+    if (mysqli_affected_rows($conn)==0){
+      echo"<script>alert('Verification code error')</script>";
+    }
+    else{
+      header('location:../login.php?msg=verification_success');
+      exit();
+    }
+
+   }
+
+
+
+
+
     ?>
   <div class="container">
     <div class="card" style="width: 35rem; height: 35rem">
@@ -34,9 +58,13 @@ include('../../path.php')
           We have sent to you an email to verify your email adress and activate
           your account.the link in the email will expire in 24 hours.
         </p>
-        <div class="flex">
-          <a href="http://www.gmail.com"><input type="submit" value="Verify your email" /></a>
-        </div>
+        <form method="POST">
+          <input type="hidden" name="email" value="<?php echo $_GET['email'];?>" required>
+          <input type="text" name="verification_code" placeholder="Enter verification code"class="form-control" required />
+          <div class="text-center">
+          <input type="submit" class="btn btn-primary mt-2 m-auto" name="verify_email" value="Verify Email">
+</div>
+        </form>
       </div>
     </div>
   </div>
