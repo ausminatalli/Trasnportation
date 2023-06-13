@@ -152,9 +152,6 @@ function addUser($conn, $data)
 }
 
 
-
-
-
 function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
 {
     $uploadUrl = 'https://api.cloudinary.com/v1_1/' . $cloudName . '/image/upload';
@@ -179,7 +176,23 @@ function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
     return $response;
 }
 
+function encryptData($data, $key)
+{
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+    $encryptedData = base64_encode($iv . $encryptedData);
+    return $encryptedData;
+}
 
+function decryptData($encryptedData, $key)
+{
+    $encryptedData = base64_decode($encryptedData);
+    $ivLength = openssl_cipher_iv_length('aes-256-cbc');
+    $iv = substr($encryptedData, 0, $ivLength);
+    $encryptedData = substr($encryptedData, $ivLength);
+    $decryptedData = openssl_decrypt($encryptedData, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+    return $decryptedData;
+}
 
 ?>
 

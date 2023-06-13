@@ -13,7 +13,6 @@ $email = isset($_POST["email"]) ? stripcslashes($_POST["email"]) : '';
 $address = isset($_POST["address"]) ? $_POST["address"] : '';
 $licenseDate = isset($_POST["licenseDate"]) ? $_POST["licenseDate"] : '';
 $password="Skyline2023";
-echo $licenseDate;
 
 $data = [
   'firstname' => mysqli_real_escape_string($conn, $firstname),
@@ -33,6 +32,7 @@ $data = [
 ]; 
 
 addUser($conn,$data);
+$conn->close();
 header('location:../../../admin?msg=newdriver');
 }
 ?>
