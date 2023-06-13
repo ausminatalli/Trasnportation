@@ -32,15 +32,23 @@ try {
         // Call the uploadFileToCloudinary function
         if(existingEmail($conn,$data['email']) && existingMobile($conn,$data['mobilenumber'])){
 
-        header('location:driverreigster.php?msg=failed');
+        header('location:driverregister.php?msg=failed'.
+        "&name=" . urlencode($data['firstname']) . 
+        "&lastName=" . urlencode($data['lastName']) . 
+        "&email=" . urlencode($data['email']));
 
         }
         else if(existingMobile($conn,$data['mobilenumber'])){
-            header('location:driverreigster.php?msg=Mobilefailed');
-
+            header('location:driverregister.php?msg=Mobilefailed'.
+            "&name=" . urlencode($data['firstname']) . 
+            "&lastName=" . urlencode($data['lastName']) . 
+            "&email=" . urlencode($data['email']));
         }
-        else if(existingMobile($conn,$data['email'])){
-            header('location:driverreigster.php?msg=emailfailed');
+        else if(existingEmail($conn,$data['email'])){
+            header('location:driverregister.php?msg=emailfailed'.
+            "&name=" . urlencode($data['firstname']) . 
+            "&lastName=" . urlencode($data['lastName']) . 
+            "&email=" . urlencode($data['email']));
 
         }
         $response = uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file);
@@ -59,6 +67,7 @@ try {
 
         $data['licenseUrl'] = $responseData['secure_url'];
         addUser($conn, $data);
+        header('location:driverwaiting.php');
     }
 } catch (Exception $e) {
     // Handle the exception

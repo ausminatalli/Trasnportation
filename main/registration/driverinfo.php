@@ -29,7 +29,12 @@ include('../../path.php')
     <title>DriverInfo page</title>
   </head>
   <body>
-    
+    <?php
+  if(isset($_GET['msg']) && ($_GET['msg'] == "Mobilefailed"))
+     {
+        $errorMessage = "Register Failed: Email Already Exists";
+     }
+     ?>
     <section class="register">
       <div class="container">
         <div class="login-content">
@@ -100,11 +105,14 @@ include('../../path.php')
               class="w-100"
             ></textarea>
             <h6 class="text-danger" id="vinfo"></h6>
-            <input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
-            <input type="hidden" name="email" value="<?php echo $_POST['email']; ?>">
-            <input type="hidden" name="lastName" value="<?php echo $_POST['lastName']; ?>">
-            <input type="hidden" name="password" value="<?php echo $_POST['password']; ?>">
+            <input type="hidden" name="name" value="<?php echo isset($_POST['name'])?$_POST['name']:''; ?>">
+            <input type="hidden" name="email" value="<?php echo isset($_POST['email'])?$_POST['email']:''; ?>">
+            <input type="hidden" name="lastName" value="<?php echo isset($_POST['lastName'])?$_POST['lastName']:''; ?>">
+            <input type="hidden" name="password" value="<?php echo isset($_POST['password'])?$_POST['password']:''; ?>">
             <button type="submit" class="btn-blue" style="display: block; text-align: center; line-height: 50px">Submit</button>
+            <div class='text-center'>
+            <span class="text-danger text-center h4" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+    </div>
           </form>
         </div>
       </div>
