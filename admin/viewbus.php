@@ -46,7 +46,7 @@
             echo "<td>".$row['busid']."</td>";
             echo "<td>".$row['firstname'].' '.$row['lastname']."</td>";
             echo "<td>".$row['capacity']."</td>";
-            echo "<td>".$row['station']."</td>";
+            echo "<td>".$row['province'].', '.$row['station']."</td>";
             echo "<td>".$row['mechanicdate']."</td>";
             echo "<td>".$row['insurancenb']."</td>";
             echo "<td>".$row['mechanicdue']."</td>";
