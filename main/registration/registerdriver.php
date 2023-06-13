@@ -67,6 +67,7 @@ try {
 
         $data['licenseUrl'] = $responseData['secure_url'];
         addUser($conn, $data);
+        header('location:driverwaiting.php');
     }
 } catch (Exception $e) {
     // Handle the exception
