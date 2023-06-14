@@ -83,6 +83,10 @@ function loadContent(url) {
     {
       loadScript('js/validation/drivervalidation.js');
     }
+    else if(url=== 'stats.php')
+    {
+      loadScript('js/validation/stats.js');
+    }
   };
   xhr.open('GET', url, true);
   xhr.send();
