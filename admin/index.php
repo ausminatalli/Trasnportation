@@ -40,8 +40,65 @@
       .gold-star {
         color: gold;
       }
+     
+  .content-wrapper {
+    position: relative;
+    
+  }
+
+  #err {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 30%;
+    padding: 10px;
+  }
+  @keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#err {
+  width:30%;
+  margin:0 auto;
+  animation: fadeOut 3s forwards;
+}
+
+
+</style>
+
       
     </style>
+    <?php
+    $alertClass = "alert-danger";
+    if (isset($_GET['msg']) && ($_GET['msg'] == "newbus")) {
+      $errorMessage = "New Bus Add";
+      $alertClass = "alert-success";
+     }
+     elseif (isset($_GET['msg']) && ($_GET['msg'] == "newdriver"))
+      {
+      $errorMessage = "New Driver Add";
+      $alertClass = "alert-success";
+     }
+     elseif (isset($_GET['msg']) && ($_GET['msg'] == "newtrip"))
+      {
+      $errorMessage = "New Trip Add";
+      $alertClass = "alert-success";
+     }
+     elseif(isset($_GET['msg']) && ($_GET['msg'] == "notavailable"))
+     {
+      $errorMessage = "Driver Already Assigned to a bus";
+     }
+     elseif(isset($_GET['msg']) && ($_GET['msg'] == "emailerr"))
+     {
+      $errorMessage = "Email Address Already Exists";
+     }
+     elseif(isset($_GET['msg']) && ($_GET['msg'] == "mobileerr"))
+     {
+      $errorMessage = "Mobile Number Already Exists";
+     }
+     ?>
     <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="menu">
         <div class="custom-menu">
@@ -131,14 +188,15 @@
 
       <!-- Page Content  -->
       
-       
-      <div id="content" class="p-4 p-md-5 pt-5">
-        
-      </div>
-       
       
-      
+    <div id="content" class="p-4 p-md-5 pt-5">
+      <!-- Existing content here -->
     </div>
+     
+    <span class="alert <?php echo $alertClass; ?>  text-center h4" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+  </div>
+</div>
+
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
