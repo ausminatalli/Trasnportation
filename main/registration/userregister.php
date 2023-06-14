@@ -45,22 +45,29 @@
                       <h6 class="text-danger ml-2" id="vname"></h6>
                       <h6 class="text-danger" id="vlastName"></h6>
                     </div>
-                    
-                    <input type="number" name='number'  placeholder="Your Phone Number" id="number" value="<?php echo isset($_GET['number']) ? $_GET['number'] : ''; ?>">
-                    <h6 class="text-danger" id="vnumber"></h6>
+                    <div class="flexSb gap-2">
+                        <input type="number" name='number'  placeholder="Your Phone Number" id="number" value="<?php echo isset($_GET['number']) ? $_GET['number'] : ''; ?>">
+                        <input type="date" name="birthdate"   id="birthdate" value="<?php echo isset($_GET['birthdate']) ? $_GET['birthdate'] : ''; ?>">
+                    </div>       
+                      <div class="flexSb gap-2">
+                        <h6 class="text-danger" id="vnumber"></h6>
+                        <h6 class="text-danger" id="vbirthdate"></h6>
+                        </div>
 
-                    <input type="email" name="email"  placeholder="Email Adress" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?>">
-                    <h6 class="text-danger" id="vemail"></h6>
-
-                    <input type="text" name="city"  placeholder="city" id="city" value="<?php echo isset($_GET['city']) ? $_GET['city'] : ''; ?>">
-                    <h6 class="text-danger" id="vcity"></h6>
-
-                    <input type="text" name="address"  placeholder="address" id="address" value="<?php echo isset($_GET['address']) ? $_GET['address'] : ''; ?>">
-                    <h6 class="text-danger" id="vaddress"></h6>
-
-                    <input type="date" name="birthdate"   id="birthdate" value="<?php echo isset($_GET['birthdate']) ? $_GET['birthdate'] : ''; ?>">
-                    <h6 class="text-danger" id="vbirthdate"></h6>
-
+                        <div class="flexSb gap-2">
+                            <input type="text" name="city"  placeholder="city" id="city" value="<?php echo isset($_GET['city']) ? $_GET['city'] : ''; ?>">
+                            <input type="text" name="address"  placeholder="address" id="address" value="<?php echo isset($_GET['address']) ? $_GET['address'] : ''; ?>">
+                            
+                        </div>
+                        <div class="flexSb gap-2">
+                            <h6 class="text-danger" id="vcity"></h6>
+                            <h6 class="text-danger" id="vaddress"></h6>
+                        </div>
+                        
+                        
+                        
+                        <input type="email" name="email"  placeholder="Email Adress" id="email" value="<?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?>">
+                        <h6 class="text-danger" id="vemail"></h6>
                     <div class="flexSb password">
                         <input type="password" name="password"  placeholder="password" id="password">
                          <i class="fa-solid fa-eye" onclick="showpassword(event)"></i>
@@ -92,5 +99,11 @@
       </section>
       <?php include('../../include/footer.html'); ?>
       <script src="../js/validation.js"></script>
+      <script>
+      err=document.getElementById("err");
+      setTimeout(function() {
+        document.getElementById("err").style.display = "none";
+      }, 4000);
+    </script>
 </body>
 </html>

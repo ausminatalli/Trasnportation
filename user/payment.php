@@ -1,5 +1,30 @@
 <?php
-include('../path.php')
+include('../path.php');
+include("../config.php");
+
+
+if(isset($_POST["payment"])){
+
+    $tripid=$_GET['t'];
+    $userid=$_GET['u'];
+    $paymentprice=$_GET['p'];
+
+    $sql="INSERT INTO PAYMENTS (userid, tripid, amountpaid) Values (?,?,?)";
+    $stmt=mysqli_prepare($conn,$sql);
+    mysqli_stmt_bind_param($stmt,"iis", $userid, $tripid, $paymentprice);
+
+    if(mysqli_stmt_execute($stmt)){
+        echo "payment successfully";
+        header('Location: userbooking.php?msg=pay_success');
+    }
+    else{
+        echo "('Error: " . mysqli_stmt_error($stmt) . "')";
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +68,7 @@ include('../path.php')
         </div>
       </div>
 
-      <form action="">
+      <form action="" method="POST">
         <div class="inputBox">
           <span>card number</span>
           <input type="text" maxlength="16" class="card-number-input" />
@@ -92,7 +117,7 @@ include('../path.php')
             <input type="text" maxlength="4" class="cvv-input" />
           </div>
         </div>
-        <input type="submit" value="submit" class="submit-btn" />
+        <input type="submit" name="payment" value="submit" class="submit-btn" />
         <p>you can exit the page by clicking <a href="./usermain.php">back</a></p>
       </form>
     </div>

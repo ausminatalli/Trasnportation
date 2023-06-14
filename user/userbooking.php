@@ -60,7 +60,7 @@ else
         <table class="table">
           <thead>
             <tr>
-              <th>PIN Number</th>
+              <th>#</th>
               <th>From</th>
               <th>To</th>
               <th>Date</th>
@@ -71,17 +71,19 @@ else
           </thead>
           <tbody>
             <?php
-            $data = file_get_contents('booking.json');
-            $bookings = json_decode($data, true);
+           $host = $_SERVER['HTTP_HOST'];
+           $jsonData = file_get_contents("http://$host/Transportation/api/admin/view/allpayments.php");
+           $data = json_decode($jsonData, true);
+          $i=1;
             
-            foreach ($bookings as $booking) {
+            foreach ($data as $row) {
               echo '<tr>';
-              echo '<td>' . $booking['pin'] . '</td>';
-              echo '<td>' . $booking['from'] . '</td>';
-              echo '<td>' . $booking['to'] . '</td>';
-              echo '<td>' . $booking['date'] . '</td>';
-              echo '<td>' . $booking['time'] . '</td>';
-              echo '<td>' . $booking['bus_number'] . '</td>';
+              echo '<td>' . $i. '</td>';
+              echo '<td>' . $row['tripfrom'] . '</td>';
+              echo '<td>' . $row['tripto'] . '</td>';
+              echo '<td>' . $row['schedule'] . '</td>';
+              echo '<td>' . $row['time'] . '</td>';
+              echo '<td>' . $row['busid'] . '</td>';
               echo '<td>
                       <button class="star-button me-2 btn-refund"><img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/></button>
                       <button class="star-button" data-toggle="modal" data-target="#form">
@@ -89,6 +91,7 @@ else
 </button>
                     </td>';
               echo '</tr>';
+              $i++;
             }
             ?>
           </tbody>

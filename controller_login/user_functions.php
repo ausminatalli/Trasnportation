@@ -21,8 +21,8 @@ function sendVerificationEmail($email, $verificationCode) {
 
 //generates Random ID for the role
 function generateId($role) {
-     $prefix;
-     $randomDigits;
+     $prefix='';
+     $randomDigits='';
     
     if ($role === 0) {
       $prefix = '1';
@@ -93,7 +93,7 @@ function addUser($conn, $data)
 
     if ($data['role'] == 0) {
 
-        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password, verefication_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password, verification_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "ssssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword, $verefication_code);
@@ -129,17 +129,10 @@ function addUser($conn, $data)
        mysqli_stmt_close($stmtUser);
 
       // Driver insertion
-      if(isset($data['isaccepted'])){
-      $isaccepted = $data['isaccepted']; 
-      $sqlDriver = "INSERT INTO driver (driverid, licensedate, licenseexpiry, LicenseUrl, about,accepted) VALUES (?, ?, ?, ?, ?,?)";
-      $stmtDriver = mysqli_prepare($conn, $sqlDriver);
-      mysqli_stmt_bind_param($stmtDriver, "ssssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about,$isaccepted);
-      }
-      else{
       $sqlDriver = "INSERT INTO driver (driverid, licensedate, licenseexpiry, LicenseUrl, about) VALUES (?, ?, ?, ?, ?)";
       $stmtDriver = mysqli_prepare($conn, $sqlDriver);
       mysqli_stmt_bind_param($stmtDriver, "sssss", $generatedId, $licensedate, $licenseexpiry, $licenseUrl, $about);
-      }
+
       if (mysqli_stmt_execute($stmtDriver)) {
       echo "Driver added successfully.";
       } else {
@@ -150,6 +143,33 @@ function addUser($conn, $data)
 
     }
 }
+
+
+function editprofile($conn, $data) {
+    session_start();
+    $id = $_SESSION['id'];
+
+    $firstname = $data['firstname'];
+    $lastname = $data['lastName'];
+    $mobilenumber = $data['mobilenumber'];
+    $hashedPassword = $data['hashedPassword'];
+
+    $sql = "UPDATE users SET firstname=?, lastname=?, mobilenumber=?, password=? WHERE userid=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ssssi", $firstname, $lastname, $mobilenumber, $hashedPassword, $id);
+
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Update Success";
+        header('Location: ../user/editprofile.php?msg=edit_success');
+    } else {
+        echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
+    }
+    mysqli_stmt_close($stmt);
+}
+
+
+
+
 
 
 function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
@@ -176,23 +196,7 @@ function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
     return $response;
 }
 
-function encryptData($data, $key)
-{
-    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-    $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
-    $encryptedData = base64_encode($iv . $encryptedData);
-    return $encryptedData;
-}
 
-function decryptData($encryptedData, $key)
-{
-    $encryptedData = base64_decode($encryptedData);
-    $ivLength = openssl_cipher_iv_length('aes-256-cbc');
-    $iv = substr($encryptedData, 0, $ivLength);
-    $encryptedData = substr($encryptedData, $ivLength);
-    $decryptedData = openssl_decrypt($encryptedData, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
-    return $decryptedData;
-}
 
 ?>
 
