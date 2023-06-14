@@ -1,3 +1,10 @@
+<?php
+ $host = $_SERVER['HTTP_HOST'];
+ $jsonData = file_get_contents("http://$host/transportation/api/admin/view/alltrips.php");
+          $data = json_decode($jsonData, true);
+ $apiUrl = "http://$host/transportation/api/admin/dropdown.php";
+        $apidata = file_get_contents($apiUrl);
+        $dropdown = json_decode($apidata, true); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,19 +43,15 @@
       </thead>
       <tbody>
         <?php
-        $host = $_SERVER['HTTP_HOST'];
-          $jsonData = file_get_contents("http://$host/transportation/api/admin/view/alltrips.php");
-          $data = json_decode($jsonData, true);
 
           foreach ($data as $row) {
             echo "<tr>";
-            echo "<td>".$row['origin']."</td>";
-            echo "<td>".$row['destination']."</td>";
-
+            echo "<td>".$row['provinaceorigin'].', '.$row['origin']."</td>";
+            echo "<td>".$row['provinacedestination'].', '.$row['destination']."</td>";
             echo "<td>".$row['schedule']."</td>";
             echo "<td>".$row['starttime']."</td>";
             echo "<td>".$row['arrivetime']."</td>";
-            echo "<td><h6>".$row['firstname'].' '.$row['lastname']."</h6></td>";
+            echo '<td  ><h6>'.$row['firstname'].' '.$row['lastname']."</h6></td>";
             echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Trip" class="icon-trash btn-delete1"><i class="fa-solid fa-trash"></i></button>
             </td>';
@@ -79,7 +82,7 @@
                 <button class="btn btn-cancel">Cancel</button>
               </div>
               <div class="delete-confirm-wrapper">
-                <button class="btn btn-confirm">
+                <button class="btn btn-confirm" onclick="deleteTrip()" >
                   <i class="fa-solid fa-trash"></i>
                   Confirm
                 </button>
@@ -104,24 +107,29 @@
         <div class="form-group">
             <label for="origin">Origin:</label>
             <select class="form-control" id="origin" name="origin">
-              <!-- Add dropdown options here -->
-              <option value="Beirut">Beirut</option>
-              <option value="Saida">Saida</option>
-              <option value="Tyre">Tyre</option>
-              <option value="Nabatieh">Nabatieh</option>
-              <option value="Baalbek">Baalbek</option>
-              <option value="Byblos">Byblos</option>
+            <?php
+        
+        foreach ($dropdown['station'] as $station) {
+          $stationid = $station['stationid'];
+          $stationname = $station['stationname'];
+          $provincename = $station['provincename'];
+          echo '<option value="' . $stationid . '">' . $provincename . ', ' . $stationname . '</option>';
+      }      
+      ?>
             </select>
           </div>
           <div class="form-group">
             <label for="destination">Destination:</label>
             <select class="form-control" id="destination" name="destination">
-              <!-- Add dropdown options here -->
-              <option value="Beirut">Beirut</option>
-              <option value="Saida">Saida</option>
-              <option value="Tyre">Tyre</option>
-              <option value="Nabatieh">Nabatieh</option>
-              <option value="Baalbek">Baalbek</option>
+            <?php
+        
+        foreach ($dropdown['station'] as $station) {
+          $stationid = $station['stationid'];
+          $stationname = $station['stationname'];
+          $provincename = $station['provincename'];
+          echo '<option value="' . $stationid . '">' . $provincename . ', ' . $stationname . '</option>';
+      }      
+      ?>
             </select>
           </div>
           <div class="form-group">
@@ -140,10 +148,13 @@
             <label for="driver">Driver:</label>
             <select class="form-control" id="driver" name="driver">
               <!-- Add dropdown options here -->
-              <option value="Ali Mantach">Ali Mantach</option>
-              <option value="Mohamad Yassin">Mohamad Yassin</option>
-              <option value="Khodor Hajj Hassan">Khodor Hajj Hassan</option>
-              <option value="Hassan Barada">Hassan Barada</option>
+              <?php
+            foreach ($dropdown['driver'] as $drivers) {
+              $drivername = $drivers['Drivers'];
+              $driverid = $drivers['driverid'];
+              echo '<option value="' . $drivername . '">' . $drivername . '</option>';
+            }
+            ?>
             </select>
           </div>
         </div>
@@ -155,8 +166,6 @@
     </div>
   </div>
 </div>
- 
-  
 </body>
 </html>
 
