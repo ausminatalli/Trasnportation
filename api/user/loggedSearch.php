@@ -1,6 +1,8 @@
 <?php
 include_once('../../config.php');
 include_once('../main/functions.php');
+session_start();
+$id=$_SESSION['id'];
 $origin;
 $destination;
 $currency;
@@ -89,9 +91,9 @@ foreach ($searchResults as $item) {
         </div>
         <div class="rightsection">
             <h5><?php echo $price ?></h5>
-            <a href="#">
-                Book
-            </a>
+            <a href="./payment.php?t=<?php echo $item['tripid'] ?>&u=<?php echo $id ?>&p=<?php echo $price ?>">
+    Book
+</a>
             <i class="fa-duotone fa-arrow-right fa-2xs"></i>
         </div>
         

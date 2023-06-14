@@ -1,6 +1,9 @@
 <?php
 include_once('../../config.php');
 require('../main/functions.php');
+session_start();
+$id=$_SESSION['id'];
+$tripid;
 $origin;
 $destination;
 $query;
@@ -14,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $triptime = $_POST['triptime'];
         $tripdate = $_POST['tripdate'];
         $data[] = array(
+            
             'origin' => $origin,
             'destination' => $destination,
             'triptime' => $triptime,
@@ -89,9 +93,10 @@ foreach ($searchResults as $item) {
         </div>
         <div class="rightsection">
             <h5><?php echo $item['ticketprice'].' L.L'; ?></h5>
-            <a href="#">
-                Book
-            </a>
+            <a href="./payment.php?t=<?php echo $item['tripid'] ?>&u=<?php echo $id ?>&p=<?php echo $item['ticketprice'] ?>">
+    Book
+</a>
+
             <i class="fa-duotone fa-arrow-right fa-2xs"></i>
         </div>
         

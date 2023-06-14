@@ -57,6 +57,7 @@ function getTrips($conn, $condition, $data)
     $result = mysqli_stmt_get_result($stmt);
     while ($row = mysqli_fetch_assoc($result)) {
         $searchResults[] = array(
+            'tripid' => $row['tripid'],
             'origin' => $row['origin'],
             'destination' => $row['destination'],
             'movetime' => $row['movetime'],

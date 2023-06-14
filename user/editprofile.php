@@ -19,6 +19,14 @@ else
   header('location:../main/login.php?msg=please_login');
 }
 
+if (isset($_GET['msg']) && ($_GET['msg'] == "Mobilefailed")) {
+    $errorMessage = "Register Failed: Mobile Number Already Exists";
+   }
+   else if(isset($_GET['msg']) && ($_GET['msg'] == "edit_success"))
+   {
+    $errorMessage = "Success Edit Profiel";
+   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,26 +51,26 @@ else
             <div class="login-content">
                 <h2>Edit your profile</h2>
                 <p>PLEASE ENTER YOUR NEW INFORMATION</p>
-                <form action="">
+                <form id="editform" action="edit.php" method='POST' onsubmit="return validation(event)">
                     <div class="flexSb gap-2">
-                        <input type="text" name="" placeholder="Name" id="name" value="hassan">
-                        <input type="text" name="" placeholder="Last Name" id="lastname" value="barada">
+                        <input type="text" name="firstname" placeholder="Name" id="name" value='<?php echo $row['firstname'] ?>'>
+                        <input type="text" name="lastName" placeholder="Last Name" id="lastname" value='<?php echo $row['lastname'] ?>'>
                     </div>
                     <div class="flexSb gap-2">
                       <h6 class="text-danger ml-2" id="vname"></h6>
                       <h6 class="text-danger" id="vlastName"></h6>
                     </div>
 
-                    <input type="number"  placeholder="Your Phone Number" id="number">
+                    <input type="number" name="number"  placeholder="Your Phone Number" value='<?php echo $row['mobilenumber'] ?>' id="number">
                     <h6 class="text-danger" id="vnumber"></h6>
 
                     <div class="flexSb password">
-                        <input type="password"  placeholder="password" id="password">
+                        <input type="password" name="password"  placeholder="password" id="password">
                         <i class="fa-solid fa-eye" onclick="showpassword(event)"></i>
                     </div>
                     <h6 class="text-danger" id="vpassword"></h6>
                     <div class="flexSb password">
-                        <input type="password"  placeholder="confirm password" id="cpassword">
+                        <input type="password" name="cpassword"  placeholder="confirm password" id="cpassword">
                         <i class="fa-solid confirmpass fa-eye" onclick="showcpassword(event)"></i>
                     </div>
                     <h6 class="text-danger" id="vcpassword"></h6>
@@ -73,7 +81,11 @@ else
                             <p>I agree to change my personal information</p>
                         </div>
                     </div>
-                    <button class="btn-blue" onclick="validation(event)" type="submit">Save</button>
+                    <button class="btn-blue" type="submit">Save</button>
+                    <div class="text-center mt-2">
+                        <span id='err' class="text-danger"><?php echo isset($errorMessage) ? $errorMessage :'' ?></span>
+
+                    </div>
                     
                 </form>
             </div>
@@ -82,5 +94,11 @@ else
       <?php include('../include/footer.html')   ?>
      
       <script src="js/editprofile.js"></script>
+      <script>
+      err=document.getElementById("err");
+      setTimeout(function() {
+        document.getElementById("err").style.display = "none";
+      }, 4000);
+    </script>
 </body>
 </html>

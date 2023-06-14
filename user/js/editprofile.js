@@ -48,7 +48,7 @@ function validation(event) {
     }
   
     if (isValid) {
-      alert("Registration successful");
+      document.getElementById("editform").submit();
     }
   }
   function validatePassword(password) {
