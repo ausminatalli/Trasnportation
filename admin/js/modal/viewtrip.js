@@ -1,35 +1,60 @@
-function EditTrip()
-{
-  
-  // Get all edit buttons
-const editButtons = document.querySelectorAll('.btn-edit');
+$(document).ready(function() {
+  $(document).on('click', '.btn-edit', function() {
+    var tripId = $(this).data('tripid');
+    var date = $(this).closest('tr').find('td:eq(3)').text();
+    var startTime = $(this).closest('tr').find('td:eq(4)').text();
+    var arriveTime = $(this).closest('tr').find('td:eq(5)').text();
+    var driver = $(this).closest('tr').find('td:eq(6) h6').text();
 
-// Add event listener to each edit button
-editButtons.forEach((button) => {
-  button.addEventListener('click', openEditModal);
+    $('#editModal').find('#date').val(date);
+    $('#editModal').find('#startTime').val(startTime);
+    $('#editModal').find('#arriveTime').val(arriveTime);
+    $('#editModal').find('#driver').val(driver);
+    $('#editModal').find('.btn-primary').attr('data-tripid', tripId);
+
+    $('#editModal').modal('show');
+  });
+
+  $('#editModal').on('hidden.bs.modal', function() {
+    // Clear the form fields when the modal is closed
+    $('#editModal').find('form')[0].reset();
+  });
+
+  $('#editModal').on('click', '.btn-primary', function(e) {
+    e.preventDefault();
+
+    var tripId = $(this).data('tripid');
+    var date = $('#editModal #date').val();
+    var startTime = $('#editModal #startTime').val();
+    var arriveTime = $('#editModal #arriveTime').val();
+    var driver = $('#editModal #driver').val();
+
+    // Perform AJAX request to save changes
+    $.ajax({
+      url: '../api/admin/editform/edittrip.php',
+      method: 'POST',
+      data: {
+        tripId: tripId,
+        date: date,
+        startTime: startTime,
+        arriveTime: arriveTime,
+        driver: driver
+      },
+      success: function(response) {
+        // Handle success
+        // ...
+        // Close the modal
+        $('#editModal').modal('hide');
+      },
+      error: function(xhr, status, error) {
+        // Handle error
+        // ...
+      }
+    });
+  });
 });
 
-// Function to handle the edit button click event
-function openEditModal(event) {
-  // Get the current row data
-  const row = event.target.closest('tr');
-  const cells = row.querySelectorAll('td');
-  const rowData = Array.from(cells).map((cell) => cell.textContent.trim());
 
-  // Set the modal input values with the row data
-  const modal = document.querySelector('#editModal');
-  const form = modal.querySelector('form');
-  const inputs = form.querySelectorAll('input, select'); // Include both inputs and selects
-  inputs.forEach((input, index) => {
-    input.value = rowData[index];
-  });
-  console.log(rowData);
-
-  // Show the modal
-  $(modal).modal('show');
-}
-
-}
 
 function TripDelete() {
     let modal = $(".modal-container");
@@ -41,7 +66,7 @@ function TripDelete() {
     
     // EventListener
     btn.on("click", function() {
-  
+    console.log('clicked')
       modal.addClass("show");
     });
     
@@ -59,5 +84,5 @@ function TripDelete() {
     
   }
 
-  EditTrip();
   TripDelete();
+console.log('lol')

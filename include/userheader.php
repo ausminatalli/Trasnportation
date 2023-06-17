@@ -1,3 +1,17 @@
+<?php
+// Check if the array element exists and is not null
+if (isset($_SESSION['id']) && isset($_SESSION['type']) && $_SESSION['type'] == 0) {
+    $query = "select * from users WHERE userid = $id";
+    $result = mysqli_query($conn, $query) or die("Selecting user profile failed");
+    $row = mysqli_fetch_array($result);
+    $_SESSION['username'] = $row['firstname'];
+    $_SESSION['user_id'] = $row['userid'];
+}
+else {
+    header('location:../main/login.php?msg=please_login');
+    exit(); // Add this line to prevent further execution of the code
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
