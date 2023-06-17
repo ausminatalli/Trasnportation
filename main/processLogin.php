@@ -26,6 +26,9 @@ if ($row && password_verify($password, $row['password'])) {
         session_start();
         $_SESSION["id"] = $row['userid'];
         $_SESSION["type"] = $row['role'];
+        $_SESSION["name"] = $row['firstname'];
+        $_SESSION["email"] = $row['email'];
+        $_SESSION["mobile"] = $row['mobilenumber'];
         header('location:../driver/driver.php?msg=success');
     } else if ($row['role'] == 2) {
         session_start();
