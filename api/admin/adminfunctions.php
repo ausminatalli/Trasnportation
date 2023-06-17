@@ -1,5 +1,5 @@
 <?php
-
+# Trip Functions
 function AddTrip($conn,$data)
  {
         $busNumber = $data['busNumber'];
@@ -25,6 +25,29 @@ function AddTrip($conn,$data)
         
         mysqli_stmt_close($stmt);
     }
+
+    function EditTrip($conn, $data)
+{
+    $tripid = $data['tripid'];
+    $schedule = $data['date'];
+    $movetime = $data['startTime'];
+    $arriveTime = $data['arriveTime'];
+    
+    // Prepare the update query
+    $query = "UPDATE trips SET schedule = ?, movetime = ?, arriveTime = ? WHERE tripid = ?";
+    $stmt = $conn->prepare($query);
+    
+    // Bind the parameters
+    $stmt->bind_param("sssi", $schedule, $movetime, $arriveTime, $tripid);
+    // Execute the query
+    if ($stmt->execute()) {
+        echo "Trip details updated successfully.";
+    } else {
+        echo "Error updating trip details.";
+    }
+    
+}
+
 
 
     function AddBus($conn,$data)

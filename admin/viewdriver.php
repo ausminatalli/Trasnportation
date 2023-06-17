@@ -80,47 +80,36 @@
               echo '<td>';
               echo '<div class="action-buttons">';
               echo '<button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | ';
-              echo '<button data-toggle="tooltip" data-placement="right" title="Delete Driver" class="icon-trash btn-delete"><i class="fa-solid fa-trash"></i></button>';
+              echo ' <button data-toggle="tooltip" data-placement="right" title="Delete Driver" data-driverid="' . $row['driverid'] . '" class="icon-trash btn-delete">
+              <i class="fa-solid fa-trash"></i>';
               echo '</div>';
               echo '</td>';
               echo "</tr>";
             }
           ?>
+          
         </tbody>
       </table>
     </div>
 
     <!-- Modal -->
-    <div class="modal-container" id="myModal">
-      <div class="modal-wrapper bg-white">
-        <div class="modall">
-          <header>
-            <h2>Confirmation</h2>
-          </header>
-          <main>
-            <div class="icon-wrapper">
-              <i class="fa-solid fa-circle-exclamation"></i>
-            </div>
-            <div class="text-wrapper">
-              <span>Are you sure you want to delete?</span>
-            </div>
-          </main>
-          <footer>
-            <div class="btn-container">
-              <div class="cancel-wrapper">
-                <button class="btn btn-cancel">Cancel</button>
-              </div>
-              <div class="delete-confirm-wrapper">
-                <button class="btn btn-confirm">
-                  <i class="fa-solid fa-trash"></i>
-                  Confirm
-                </button>
-              </div>
-            </div>
-          </footer>
-        </div>
+    <div id="deleteConfirmationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this Driver?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
       </div>
     </div>
+  </div>
+</div>
 
 
     

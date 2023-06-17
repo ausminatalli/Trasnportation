@@ -37,31 +37,45 @@ function EditBusModal()
 }
 
 
-function BusDelete() {
-    let modal = $(".modal-container");
-    let  btn = $(".btn-delete2");
+
+
+  
+  EditBusModal();
+ 
+  $(document).ready(function() {
    
-    let closeBtn = $(".btn");
-    
-    // EventListener
-    btn.on("click", function() {
-      modal.addClass("show");
-    });
-    
-    closeBtn.each(function() {
-      $(this).on("click", function() {
-        modal.removeClass("show");
+    $(document).on("click", ".btn-delete2", function() {
+      var busid = $(this).data("busid");
+  
+      
+      var deleteButton = $(this);
+  
+      
+      $("#deleteConfirmationModal").modal("show");
+  
+      $("#confirmDeleteBtn").on("click", function() {
+        $.ajax({
+          url: "../api/admin/deleteform/deleteBus.php",
+          method: "POST",
+          data: { busid: busid },
+          success: function(response) {
+            console.log(response);
+            if (response === "Bus Cannot be deleted") {
+              //window.location.href = "http://localhost/transportation/admin?msg=busfailed";
+            } else {
+              
+              deleteButton.closest('tr').remove();
+            }
+  
+            $("#deleteConfirmationModal").modal("hide");
+          },
+          error: function(xhr, status, error) {
+
+            console.log(error);
+          }
+        });
       });
     });
-    
-    $(window).on("click", function(event) {
-      if (event.target == modal[0]) {
-        modal.removeClass("show");
-      }
-    });
-    
-  }
-
-  BusDelete();
-  EditBusModal();
- console.log('lol')
+  });
+  
+  
