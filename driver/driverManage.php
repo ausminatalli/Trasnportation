@@ -1,5 +1,17 @@
 <?php
-include('../path.php')
+include_once('../config.php');
+session_start();
+$driverId = $_SESSION['id']; // Use 'user_id' instead of 'id'
+
+if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
+  $query = "SELECT vacationid, vacation_start, vacation_end, reason_of_vacation, vacation_approved 
+            FROM vacation_request 
+            WHERE driverid = $driverId"; // Use 'driverid' instead of 'userid'
+  $result = mysqli_query($conn, $query) or die("Selecting vacation request failed"); // Update the error message if needed
+  //$_SESSION['username'] = $_SESSION['firstname']; // Assuming you already stored 'firstname' in the session
+} else {
+  header('location: ../main/login.php?msg=please_login'); // Adjust the path if necessary
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,27 +53,37 @@ include('../path.php')
 
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>12/07/2023</td>
-                <td>30/07/2023</td>
-                <td>Death</td>
-                <td class="text-success font-weight-bold">Accept</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>05/05/2023</td>
-                <td>22/05/2023</td>
-                <td>Vacation</td>
-                <td class="text-danger font-weight-bold">Reject</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>16/09/2023</td>
-                <td>18/09/2023</td>
-                <td>Vacation</td>
-                <td class="text-warning font-weight-bold">In Progress</td>
-            </tr>
+        <?php
+            $i=1;
+            while ($row = mysqli_fetch_array($result)) {
+                echo '<tr>';
+                echo '<td>' . $i . '</td>';
+                echo '<td>' . $row['vacation_start'] . '</td>';
+                echo '<td>' . $row['vacation_end'] . '</td>';
+                echo '<td>' . $row['reason_of_vacation'] . '</td>';
+                $vacationApproved = $row['vacation_approved'];
+    $colorClass = '';
+    switch ($vacationApproved) {
+        case 0:
+            $colorClass = 'text-danger';
+            $status = 'Rejected';
+            break;
+        case 1:
+            $colorClass = 'text-success';
+            $status = 'Accepted';
+            break;
+        case 2:
+            $colorClass = 'text-warning';
+            $status = 'In Progress';
+            break;
+        default:
+            $status = 'Unknown';
+    }
+    echo '<td class="' . $colorClass . '">' . $status . '</td>';
+                echo '</tr>';
+                $i++;
+            }
+            ?>
         </tbody>
       </table>
       </section>
