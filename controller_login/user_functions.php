@@ -142,6 +142,22 @@ function addUser($conn, $data)
       mysqli_stmt_close($stmtDriver);
 
     }
+    else if($data['role']==2){
+        $role = $data['role'];
+        
+        // Admin insertion
+        $sqlAdmin = "INSERT INTO users (userid, firstname, lastname, mobilenumber, email, city, address, birthdate, password,role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        $stmtAdmin = mysqli_prepare($conn, $sqlAdmin);
+        mysqli_stmt_bind_param($stmtAdmin, "isssssssss", $generatedId, $firstname, $lastname, $mobilenumber, $email, $city, $useraddress, $birthdate, $hashedPassword,$role);
+ 
+        if (mysqli_stmt_execute($stmtAdmin)) {
+         echo "Admin added successfully.";
+        } else {
+         echo "Error: " . mysqli_stmt_error($stmtAdmin);
+       }
+ 
+       mysqli_stmt_close($stmtAdmin);
+     }
 }
 
 
