@@ -8,6 +8,9 @@
     text-decoration: none;
     text-transform: capitalize;
 }
+.vspan {
+    color: red !important;
+  }
 p{
     font-size: 13px;
     margin-top: 8px;
