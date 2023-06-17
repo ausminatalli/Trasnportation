@@ -64,3 +64,4 @@ function BusDelete() {
 
   BusDelete();
   EditBusModal();
+ console.log('lol')

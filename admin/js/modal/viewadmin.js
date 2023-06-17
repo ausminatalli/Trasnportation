@@ -25,3 +25,4 @@ function AdminDelete() {
   }
 
   AdminDelete();
+  console.log("lol")

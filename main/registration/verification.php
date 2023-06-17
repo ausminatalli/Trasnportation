@@ -59,7 +59,7 @@
           your account.the link in the email will expire in 24 hours.
         </p>
         <form method="POST">
-          <input type="hidden" name="email" value="<?php echo $_GET['email'];?>" required>
+          <input type="hidden" name="email" value='<?php echo $_GET['email'];?>' required/>
           <input type="text" name="verification_code" placeholder="Enter verification code"class="form-control" required />
           <div class="text-center">
           <input type="submit" class="btn btn-primary mt-2 m-auto" name="verify_email" value="Verify Email">
