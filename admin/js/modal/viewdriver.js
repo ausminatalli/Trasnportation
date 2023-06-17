@@ -1,27 +1,4 @@
-function DriverDelete() {
-    let modal = $(".modal-container");
-    let  btn = $(".btn-delete");
-   
-    let closeBtn = $(".btn");
-    
-    // EventListener
-    btn.on("click", function() {
-      modal.addClass("show");
-    });
-    
-    closeBtn.each(function() {
-      $(this).on("click", function() {
-        modal.removeClass("show");
-      });
-    });
-    
-    $(window).on("click", function(event) {
-      if (event.target == modal[0]) {
-        modal.removeClass("show");
-      }
-    });
-    
-  }
+
   function EditDriverModal()
 {
   
@@ -63,5 +40,44 @@ function DriverDelete() {
 }
 
 
-DriverDelete();
+
 EditDriverModal();
+
+
+
+
+$(document).ready(function() {
+   
+  $(document).on("click", ".btn-delete", function() {
+    var driverid = $(this).data("driverid");
+
+    
+    var deleteButton = $(this);
+
+    
+    $("#deleteConfirmationModal").modal("show");
+
+    $("#confirmDeleteBtn").on("click", function() {
+      $.ajax({
+        url: "../api/admin/deleteform/deletedriver.php",
+        method: "POST",
+        data: { driverid: driverid },
+        success: function(response) {
+          console.log(response);
+          if (response === "Driver Cannot be deleted") {
+            //window.location.href = "http://localhost/transportation/admin?msg=driverfailed";
+          } else {
+            
+            deleteButton.closest('tr').remove();
+          }
+
+          $("#deleteConfirmationModal").modal("hide");
+        },
+        error: function(xhr, status, error) {
+
+          console.log(error);
+        }
+      });
+    });
+  });
+});

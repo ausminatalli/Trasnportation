@@ -11,6 +11,7 @@ const payments = document.getElementById("payments");
 const addadmin = document.getElementById("addadmin");
 const viewadmin = document.getElementById("viewadmin");
 
+
 function initializeDataTable() {
   const myTable = document.getElementById("myTable");
   if (myTable) {
@@ -22,7 +23,6 @@ const loadedScripts = new Set(); // Track loaded scripts
 
 function loadScript(url) {
   if (loadedScripts.has(url)) {
-    // Script already loaded, skip loading
     return;
   }
 
@@ -51,40 +51,65 @@ function loadContent(url) {
       localStorage.setItem("lastVisitedUrl", url);
     }
 
-    if (url === "viewdriver.php") {
-      loadScript("js/modal/viewdriver.js");
-    } else if (url === "viewtrip.php") {
-      loadScript("js/modal/viewtrip.js");
-    } else if (url === "viewbus.php") {
-      loadScript("js/modal/viewbus.js");
-    } else if (url === "viewadmin.php") {
-      loadScript("js/modal/viewadmin.js");
-    } else if (url === "applications.php") {
-      loadScript("js/modal/viewapplication.js");
-    } else if (url === "payments.php") {
-      loadScript("js/modal/viewpayment.js");
-    } else if (url === "dashboard.php") {
-      loadScript("js/modal/dashboard.js");
-    } else if (url === "addbus.php") {
-      loadScript("js/validation/busvalidation.js");
-    } else if (url === "addtrip.php") {
-      loadScript("js/validation/tripvalidation.js");
-    } else if (url === "adddriver.php") {
-      loadScript("js/validation/drivervalidation.js");
-    } else if (url === "stats.php") {
-      loadScript("js/modal/stats.js");
+    switch (url) {
+      case "dashboard.php":
+        loadScript("js/modal/dashboard.js");
+        break;
+      case "viewdriver.php":
+        loadScript("js/modal/viewdriver.js");
+        break;
+      case "viewtrip.php":
+        loadScript("js/modal/viewtrip.js");
+        break;
+      case "viewbus.php":
+        loadScript("js/modal/viewbus.js");
+        break;
+      case "viewadmin.php":
+        loadScript("js/modal/viewadmin.js");
+        break;
+      case "applications.php":
+        loadScript("js/modal/viewapplication.js");
+        break;
+      case "payments.php":
+        loadScript("js/modal/viewpayment.js");
+        break;
+      case "dashboard.php":
+        loadScript("js/modal/dashboard.js");
+        break;
+      case "addbus.php":
+        loadScript("js/validation/busvalidation.js");
+        break;
+      case "addtrip.php":
+        loadScript("js/validation/tripvalidation.js");
+        break;
+      case "adddriver.php":
+        loadScript("js/validation/drivervalidation.js");
+        break;
+      case "stats.php":
+        loadScript("js/modal/stats.js");
+        break;
+      case "addadmin.php":
+        loadScript("js/validation/adminvalidation.js");
+        break;
     }
   };
+
   xhr.open("GET", url, true);
   xhr.send();
 }
 
+
+dashboard.addEventListener("click", function () {
+  loadContent('dashboard.php')
+ 
+});
 addtrip.addEventListener("click", function () {
   loadContent("addtrip.php");
 });
 
 viewtrip.addEventListener("click", function () {
   loadContent("viewtrip.php");
+  
 });
 
 adddriver.addEventListener("click", function () {
@@ -97,10 +122,12 @@ viewdriver.addEventListener("click", function () {
 
 addbus.addEventListener("click", function () {
   loadContent("addbus.php");
+  
 });
 
 viewbus.addEventListener("click", function () {
   loadContent("viewbus.php");
+  
 });
 
 applications.addEventListener("click", function () {
@@ -117,8 +144,125 @@ payments.addEventListener("click", function () {
 
 addadmin.addEventListener("click", function () {
   loadContent("addadmin.php");
+  
 });
 
 viewadmin.addEventListener("click", function () {
   loadContent("viewadmin.php");
+  
 });
+
+
+
+
+
+
+function DriverDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete");
+ 
+  let closeBtn = $(".btn");
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
+}
+
+
+
+
+
+function DashboardBlock()
+{
+  let modal = $(".modal-container");
+  let  btn = $(".blockuser");
+ 
+  let closeBtn = $(".btn");
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+
+}
+
+
+function BusDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete2");
+ 
+  let closeBtn = $(".btn");
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+
+
+}
+
+
+
+function AdminDelete() {
+  let modal = $(".modal-container");
+  let  btn = $(".btn-delete3");
+ 
+  let closeBtn = $(".btn");
+  
+  
+  // EventListener
+  btn.on("click", function() {
+    modal.addClass("show");
+  });
+  
+  closeBtn.each(function() {
+    $(this).on("click", function() {
+      modal.removeClass("show");
+    });
+  });
+  
+  $(window).on("click", function(event) {
+    if (event.target == modal[0]) {
+      modal.removeClass("show");
+    }
+  });
+  
+}

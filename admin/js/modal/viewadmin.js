@@ -1,28 +1,35 @@
-function AdminDelete() {
-    let modal = $(".modal-container");
-    let  btn = $(".btn-delete3");
+$(document).ready(function() {
    
-    let closeBtn = $(".btn");
+  $(document).on("click", ".btn-delete3", function() {
+    var userid = $(this).data("userid");
+
     
+    var deleteButton = $(this);
+
     
-    // EventListener
-    btn.on("click", function() {
-      modal.addClass("show");
-    });
-    
-    closeBtn.each(function() {
-      $(this).on("click", function() {
-        modal.removeClass("show");
+    $("#deleteConfirmationModal").modal("show");
+
+    $("#confirmDeleteBtn").on("click", function() {
+      $.ajax({
+        url: "../api/admin/deleteform/deleteadmin.php",
+        method: "POST",
+        data: { userid: userid },
+        success: function(response) {
+          console.log(response);
+          if (response === "User Cannot be deleted") {
+            //window.location.href = "http://localhost/transportation/admin?msg=blockfailed";
+          } else {
+            
+            deleteButton.closest('tr').remove();
+          }
+
+          $("#deleteConfirmationModal").modal("hide");
+        },
+        error: function(xhr, status, error) {
+
+          console.log(error);
+        }
       });
     });
-    
-    $(window).on("click", function(event) {
-      if (event.target == modal[0]) {
-        modal.removeClass("show");
-      }
-    });
-    
-  }
-
-  AdminDelete();
-  console.log("lol")
+  });
+});

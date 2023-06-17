@@ -98,6 +98,10 @@
      {
       $errorMessage = "Mobile Number Already Exists";
      }
+     elseif(isset($_GET['msg']) && ($_GET['msg'] == "tripfailed"))
+     {
+      $errorMessage = "Trips already Has clients";
+     }
      ?>
     <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="menu">
@@ -193,7 +197,10 @@
       <!-- Existing content here -->
     </div>
      
-    <span class="alert <?php echo $alertClass; ?>  text-center h4" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+    <?php if (!empty($errorMessage)): ?>
+    <span class="alert <?php echo $alertClass; ?> text-center h4" id="err"><?php echo $errorMessage; ?></span>
+   <?php endif; ?>
+
   </div>
 </div>
 
