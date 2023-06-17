@@ -31,6 +31,7 @@
     <table id="myTable" class="table table-striped" style="width: 100%">
       <thead>
         <tr>
+          <th>Trip ID</th>
           <th>Origin</th>
           <th>Destination</th>
           <th>Date</th>
@@ -46,14 +47,16 @@
 
           foreach ($data as $row) {
             echo "<tr>";
+            
+            echo "<td>".$row['tripid']."</td>";
             echo "<td>".$row['provinaceorigin'].', '.$row['origin']."</td>";
             echo "<td>".$row['provinacedestination'].', '.$row['destination']."</td>";
             echo "<td>".$row['schedule']."</td>";
             echo "<td>".$row['starttime']."</td>";
             echo "<td>".$row['arrivetime']."</td>";
             echo '<td  ><h6>'.$row['firstname'].' '.$row['lastname']."</h6></td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
-            <button data-toggle="tooltip" data-placement="right" title="Remove Trip" class="icon-trash btn-delete1"><i class="fa-solid fa-trash"></i></button>
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" data-tripid="' . $row['tripid'] . '" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
+            <button data-toggle="tooltip" data-placement="right" title="Remove Trip" data-tripid="' . $row['tripid'] . '" class="icon-trash btn-delete1"><i class="fa-solid fa-trash"></i></button>
             </td>';
             echo "</tr>";
           }
@@ -104,34 +107,7 @@
           </button>
         </div>
         <div class="modal-body">
-        <div class="form-group">
-            <label for="origin">Origin:</label>
-            <select class="form-control" id="origin" name="origin">
-            <?php
         
-        foreach ($dropdown['station'] as $station) {
-          $stationid = $station['stationid'];
-          $stationname = $station['stationname'];
-          $provincename = $station['provincename'];
-          echo '<option value="' . $stationid . '">' . $provincename . ', ' . $stationname . '</option>';
-      }      
-      ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="destination">Destination:</label>
-            <select class="form-control" id="destination" name="destination">
-            <?php
-        
-        foreach ($dropdown['station'] as $station) {
-          $stationid = $station['stationid'];
-          $stationname = $station['stationname'];
-          $provincename = $station['provincename'];
-          echo '<option value="' . $stationid . '">' . $provincename . ', ' . $stationname . '</option>';
-      }      
-      ?>
-            </select>
-          </div>
           <div class="form-group">
             <label for="date">Date:</label>
             <input type="date" class="form-control" id="date" name="date">
@@ -152,14 +128,14 @@
             foreach ($dropdown['driver'] as $drivers) {
               $drivername = $drivers['Drivers'];
               $driverid = $drivers['driverid'];
-              echo '<option value="' . $drivername . '">' . $drivername . '</option>';
+              echo '<option value="' . $driverid . '">' . $drivername . '</option>';
             }
             ?>
             </select>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="submit" class="btn btn-primary" data-tripid="">Save Changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </form>

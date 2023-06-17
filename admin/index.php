@@ -199,12 +199,13 @@
 
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/ajaxhandling.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/ajaxhandling.js"></script>
+    
     <script
       src="https://kit.fontawesome.com/c2e9579f75.js"
       crossorigin="anonymous"

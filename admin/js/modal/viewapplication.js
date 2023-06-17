@@ -24,3 +24,4 @@ function ApplicationDelete() {
     
   }
   ApplicationDelete();
+  console.log('lol')
