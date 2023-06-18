@@ -13,9 +13,17 @@ if(isset($_POST["payment"])){
     $stmt=mysqli_prepare($conn,$sql);
     mysqli_stmt_bind_param($stmt,"iis", $userid, $tripid, $paymentprice);
 
+
     if(mysqli_stmt_execute($stmt)){
         echo "payment successfully";
-        header('Location: userbooking.php?msg=pay_success');
+        $sql = "UPDATE trips SET seats = seats - 1 WHERE tripid = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $tripid);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+          echo "Seats decremented successfully.";
+      }
+      header('Location: userbooking.php?msg=pay_success');
     }
     else{
         echo "('Error: " . mysqli_stmt_error($stmt) . "')";
