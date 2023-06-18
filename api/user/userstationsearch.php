@@ -22,8 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'destination' => $destination,
             'triptime' => $triptime,
             'tripdate' => $tripdate,
+            'userid' => $id
         );
-        $searchResults = getTrips($conn,'triptime',$data);
+        $searchResults = getTripsLogged($conn,'triptime',$data);
     }
 
     else if(isset($_POST['origin']) && isset($_POST['destination']) && isset($_POST['triptime']))
@@ -32,9 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data[] = array(
             'origin' => $origin,
             'destination' => $destination,
-            'triptime' => $triptime
+            'triptime' => $triptime,
+            'userid' => $id
         );
-        $searchResults = getTrips($conn,'triptime',$data);
+        $searchResults = getTripsLogged($conn,'triptime',$data);
     }
     else if( isset($_POST['origin']) && isset($_POST['destination']) && isset($_POST['tripdate']))
     {
@@ -42,9 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data[] = array(
             'origin' => $origin,
             'destination' => $destination,
-            'tripdate' => $tripdate
+            'tripdate' => $tripdate,
+            'userid' => $id
         );
-        $searchResults = getTrips($conn,'tripdate',$data);
+        $searchResults = getTripsLogged($conn,'tripdate',$data);
     }
     
     else if($_POST['origin'] && $_POST['destination'] ){
@@ -53,12 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data[] = array(
             'origin' => $origin,
             'destination' => $destination,
+            'userid' => $id
         );
-        $searchResults = getTrips($conn,'validated',$data);
+        $searchResults = getTripsLogged($conn,'validated',$data);
     }
     
     if (empty($origin)) {
-        echo "currency not found";
+       
     } else {
         //print($currency);
     }
@@ -70,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php
+if(!empty($origin) && !empty($destination)) {
 if($searchResults){
 foreach ($searchResults as $item) {
   
@@ -88,7 +93,7 @@ foreach ($searchResults as $item) {
             </div>
             <div class="thirdrow">
                 <i class="fa-sharp fa-solid fa-bus fa-sm"></i>
-                <h5 class="totaltime"><?php echo $item['time_difference']; ?></h5>
+                <h5 class="totaltime"><?php echo $item['schedule'] ?><span1 class="text-danger m-3"><?php echo $item['seats']?> Seats</span1></h5>
             </div>
         </div>
         <div class="rightsection">
@@ -109,4 +114,13 @@ else
 <span value="<?php echo 0; ?>"></span>
     <h1 class="text-center mt-5">No Data Found</h1>
 <?php } 
+}
+else
+{ 
+   ?>
+<span value="<?php echo 'Not Data'; ?>"></span>
+   <h1 class="text-center mt-5">Please Choose Origin and Destination</h1>
+<?php
+   
+} 
 ?>
