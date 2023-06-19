@@ -1,40 +1,59 @@
-function EditBusModal()
-{
-  
-  const editButtons = document.querySelectorAll('.btn-edit');
+function EditBusModal() {
+  $(document).ready(function() {
+    $(document).on('click', '.btn-edit', function() {
+      const busId = $(this).data('busid');
+      const driverId = $(this).closest('tr').find('td:eq(1)').data('driverid');
+      const driverName = $(this).closest('tr').find('td:eq(1)').text().trim();
 
-  // Add event listener to each edit button
-  editButtons.forEach((button) => {
-    button.addEventListener('click', openEditModal);
-  });
+      const mechanicDueDate = $(this).closest('tr').find('td:eq(4)').text();
+      const insuranceNumber = $(this).closest('tr').find('td:eq(5)').text();
 
-  // Function to handle the edit button click event
-  function openEditModal(event) {
-    // Get the current row data
-    const row = event.target.closest('tr');
-    const cells = row.querySelectorAll('td');
-    const rowData = Array.from(cells).map((cell) => cell.textContent.trim());
+      $('#editModal').find('#Drivername').val(driverId);
+      $('#editModal').find('#Mechanicdue').val(mechanicDueDate);
+      $('#editModal').find('#Insurance').val(insuranceNumber);
+      $('#editModal').find('.btn-primary').data('busid', busId);
 
-    // Set the modal input values with the row data
-    const modal = document.querySelector('#editModal');
-    const form = modal.querySelector('form');
-    const inputs = form.querySelectorAll('input, select'); // Include both inputs and selects
-
-    inputs.forEach((input) => {
-      const name = input.getAttribute('name');
-      const value = rowData[getFieldIndex(name)];
-      input.value = value;
+      $('#editModal').modal('show');
     });
-    // Show the modal
-    $(modal).modal('show');
-  }
-  // Function to get the index of the field name in rowData array
-  function getFieldIndex(name) {
-    const fields = ['Bus ID', 'Driver name', 'capacity', 'Station', 'Mechanicdue Date', 'Insurance number', 'Accidents number','Action'];
-    return fields.indexOf(name);
-  }
 
+    $('#editModal').on('hidden.bs.modal', function() {
+      // Clear the form fields when the modal is closed
+      $('#editForm')[0].reset();
+    });
+
+    $('#editModal').on('click', '.btn-primary', function(e) {
+      e.preventDefault();
+
+      const busId = $(this).data('busid');
+      const driverName = $('#editModal #Drivername').val();
+      const mechanicDueDate = $('#editModal #Mechanicdue').val();
+      const insuranceNumber = $('#editModal #Insurance').val();
+      $('#editModal').modal('hide');
+
+      // Perform AJAX request to save changes
+      $.ajax({
+        url: '../api/admin/editform/editbus.php',
+        method: 'POST',
+        data: {
+          busId: busId,
+          driverName: driverName,
+          mechanicDueDate: mechanicDueDate,
+          insuranceNumber: insuranceNumber,
+        },
+        success: function(response) {
+          $('#editModal').modal('hide');
+          location.reload();
+        },
+        error: function(xhr, status, error) {
+          console.log("error =>", error);
+          // Handle error
+        }
+      });
+    });
+  });
 }
+
+
 
 
 

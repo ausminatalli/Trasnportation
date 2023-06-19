@@ -79,8 +79,8 @@
               echo '<td class="' . strtolower($onlineClass) . '">' . $onlineClass . '</td>';
               echo '<td>';
               echo '<div class="action-buttons">';
-              echo '<button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | ';
-              echo ' <button data-toggle="tooltip" data-placement="right" title="Delete Driver" data-driverid="' . $row['driverid'] . '" class="icon-trash btn-delete">
+              echo '<button data-toggle="tooltip" data-placement="right" data-driverid="' . $row['driverid'] . '" title="Edit" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | ';
+              echo ' <button data-toggle="tooltip" data-placement="right" data-driverid="' . $row['driverid'] . '" title="Delete Driver"  class="icon-trash btn-delete">
               <i class="fa-solid fa-trash"></i>';
               echo '</div>';
               echo '</td>';
@@ -116,7 +116,7 @@
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form id="editForm" method="post" action="edit.php">
+      <form id="editForm">
         <div class="modal-header">
           <h5 class="modal-title" id="editModalLabel">Edit driver</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -127,16 +127,6 @@
           <div class="form-group">
             <label for="Licensedate">LicenseDate:</label>
             <input type="date" class="form-control" id="Licensedate" name="Licensedate">
-          </div>
-          <div class="form-group">
-            <label for="Station">Station:</label>
-            <select class="form-control" id="Station" name="Station">
-              <!-- Add dropdown options here -->
-              <option value="Beirut">Beirut</option>
-              <option value="Saida">Saida</option>
-              <option value="Tyre">Tyre</option>
-              <option value="Tripoli">Tripoli</option>
-            </select>
           </div>
         </div>
         <div class="modal-footer">
