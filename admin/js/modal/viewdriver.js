@@ -1,42 +1,47 @@
-
-  function EditDriverModal()
-{
-  
-  const editButtons = document.querySelectorAll('.btn-edit');
-
-  // Add event listener to each edit button
-  editButtons.forEach((button) => {
-    button.addEventListener('click', openEditModal);
-  });
-
-  // Function to handle the edit button click event
-  function openEditModal(event) {
-    // Get the current row data
-    const row = event.target.closest('tr');
-    const cells = row.querySelectorAll('td');
-    const rowData = Array.from(cells).map((cell) => cell.textContent.trim());
-
-    // Set the modal input values with the row data
-    const modal = document.querySelector('#editModal');
-    const form = modal.querySelector('form');
-    const inputs = form.querySelectorAll('input, select'); // Include both inputs and selects
-
-    inputs.forEach((input) => {
-      const name = input.getAttribute('name');
-      const value = rowData[getFieldIndex(name)];
-      input.value = value;
+function EditDriverModal() {
+  $(document).ready(function() {
+    $(document).on('click', '.btn-edit', function() {
+      const Licensedate = $(this).closest('tr').find('td:eq(6)').text();
+      const  driverid = $(this).data('driverid');
+      $('#editModal').find('#Licensedate').val(Licensedate);
+      $('#editModal').find('.btn-primary').attr('data-driverid', driverid);
+      $('#editModal').modal('show');
     });
 
-    // Show the modal
-    $(modal).modal('show');
-  }
+    $('#editModal').on('hidden.bs.modal', function() {
+      // Clear the form fields when the modal is closed
+      $('#editForm')[0].reset();
+    });
 
-  // Function to get the index of the field name in rowData array
-  function getFieldIndex(name) {
-    const fields = ['Firstname', 'Lastname', 'MobileNumber', 'Email', 'Station', 'Licensedate', 'LicenseEx', 'Online', 'Action'];
-    return fields.indexOf(name);
-  }
+    $('#editModal').on('click', '.btn-primary', function(e) {
+      
+      e.preventDefault();
+      
+      
+      const  driverid = $(this).data('driverid');
+      const Licensedate = $('#editModal #Licensedate').val();
+    
+      $('#editModal').modal('hide');
 
+      // Perform AJAX request to save changes
+      $.ajax({
+        url: '../api/admin/editform/editdriver.php',
+        method: 'POST',
+        data: {
+          driverid: driverid,
+          Licensedate: Licensedate,
+        },
+        success: function(response) {
+          $('#editModal').modal('hide');
+          location.reload();
+        },
+        error: function(xhr, status, error) {
+          console.log("error =>", error);
+          // Handle error
+        }
+      });
+    });
+  });
 }
 
 
