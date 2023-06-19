@@ -18,7 +18,7 @@ include_once('../path.php')
     <title>Document</title>
 </head>
 <body>
-    <?php include('../include/driverheader.html')    ?>
+    <?php include('../include/driverheader.php')    ?>
 
       <section class="container p-5 ">
         <h2 class="mb-5">Upcoming Trips</h2>
