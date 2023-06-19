@@ -48,7 +48,7 @@
             echo "<td>".$row['nboftrips']."</td>";
             echo "<td>";
         
-            echo ($row['isblocked'] == 0) ? '<button data-toggle="tooltip" data-placement="right" title="Block User" data-userid="'.$row['userid'].'" class="icon-trash btn-blockuser"><i class="fa-solid fa-ban"></i></button>' : '<button data-toggle="tooltip" data-placement="right" title="Block User" data-userid="'.$row['userid'].'" class="icon-trash btn-unblock"><i class="fa-solid fa-unlock"></i></button>';
+            echo ($row['isblocked'] == 0) ? '<button data-toggle="tooltip" data-placement="right" title="Block User" data-userid="'.$row['userid'].'" class="icon-trash btn-blockuser"><i class="fa-solid fa-lock"></i></button>' : '<button data-toggle="tooltip" data-placement="right" title="Block User" data-userid="'.$row['userid'].'" class="icon-trash btn-unblock"><i class="fa-solid fa-unlock"></i></button>';
         
             echo "</td>";
             echo "</tr>";
