@@ -18,10 +18,10 @@ include('../path.php')
   </head>
   <body>
 
-  <?php include('../include/driverheader.html')  ?>
+  <?php include('../include/driverheader.php')  ?>
   <?php     
   
-  session_start();
+  
   if(isset($_SESSION['id']) && ($_SESSION['type']==1)){
     $name=$_SESSION['name'];
     $email=$_SESSION['email'];

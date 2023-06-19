@@ -15,6 +15,16 @@ $result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 if ($row && password_verify($password, $row['password'])) {
+
+   
+
+    if ($row['isblocked'] == 1) {
+        
+        header('location:../404.html?msg=blocked');
+        exit;
+    }
+
+
     // Password is correct
     if ($row['role'] == 0 && $row['emailapproved'] == 1) {
         session_start();
