@@ -40,7 +40,25 @@ if (isset($_POST["feedback"])) {
 
   mysqli_stmt_close($stmt);
 }
+if(isset($_POST["canceltrip"])){
+  $tripid = $_POST['tripid']; // Retrieve the tripid from the form data
 
+  $sql = "DELETE FROM payments WHERE userid=? and tripid= ? ";
+  $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii",$id, $tripid);
+    $stmt->execute();
+  if($stmt->affected_rows > 0) {
+    $sql = "UPDATE trips SET seats = seats + 1 WHERE tripid = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $tripid);
+    $stmt->execute();
+    exit(); // Add this line to prevent further execution of the code
+  }
+  else{
+    echo "('Error: " . mysqli_stmt_error($stmt) . "')";
+  }
+  mysqli_stmt_close($stmt);
+}
 $submittedFeedback = array();
 
 // Retrieve previously submitted feedback from the database
@@ -53,7 +71,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 $errorMessage ="";
 if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
   $errorMessage = "Thank You For Submit Your Feedback !!";
+ }else if (isset($_GET['msg']) && ($_GET['msg'] == "delete-success")) {
+  $errorMessage = "Success Trip Cancel !!";
  }
+
 
 ?>
 
@@ -110,31 +131,38 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
           </thead>
           <tbody>
             <?php
-            $host = $_SERVER['HTTP_HOST'];
-            $jsonData = file_get_contents("http://$host/Transportation/api/admin/view/allpayments.php");
-            $data = json_decode($jsonData, true);
-            $i=1;
-
-            foreach ($data as $row) {
-              $tripid = $row['tripid'];
-              $disableFeedback = in_array($tripid, $submittedFeedback) ? 'disabled' : ''; // Check if feedback has been submitted for the trip
-              echo '<tr>';
-              echo '<td>' . $i. '</td>';
-              echo '<td>' . $row['tripfrom'] . '</td>';
-              echo '<td>' . $row['tripto'] . '</td>';
-              echo '<td>' . $row['schedule'] . '</td>';
-              echo '<td>' . $row['time'] . '</td>';
-              echo '<td>' . $row['busid'] . '</td>';
-              echo '<td>
-                <button class="star-button me-2 btn-refund"><img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/></button>
-                <button class="star-button btn-feedback" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
-                  <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
-                </button>
-              </td>';
-              echo '</tr>';
-              $i++;
+            $sql="SELECT * FROM paymentsview where UserID=$id";
+            $res=mysqli_query($conn,$sql);
+            $payments=array();
+            $tripid="";
+            
+            if (mysqli_num_rows($res) > 0) {
+              $i=1;
+              while ($row = mysqli_fetch_assoc($res)) {
+                $payments[] = $row;
+                $tripid = $row['tripid'];
+                $disableFeedback = in_array($tripid, $submittedFeedback) ? 'disabled' : '';
+            
+                echo '<tr>';
+                echo '<td>' . $i. '</td>';
+                echo '<td>' . $row['tripfrom'] . '</td>';
+                echo '<td>' . $row['tripto'] . '</td>';
+                echo '<td>' . $row['schedule'] . '</td>';
+                echo '<td>' . $row['time'] . '</td>';
+                echo '<td>' . $row['busid'] . '</td>';
+                echo '<td>
+                  <button class="star-button me-2 btn-refund" data-tripid="' . $tripid . '">
+                    <img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/>
+                  </button>
+                  <button class="star-button btn-feedback" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+                    <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
+                  </button>
+                </td>';
+                echo '</tr>';
+                $i++;
+              }
             }
-            ?>
+              ?>
           </tbody>
         </table>
       </div>
@@ -175,36 +203,37 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
 
   <!-- Modal -->
   <div class="modal-container" id="myModal">
-    <!-- Modal content -->
-    <div class="modal-wrapper bg-white">
-      <div class="modall">
-        <header>
-          <h2>Confirmation</h2>
-        </header>
-        <main>
-          <div class="icon-wrapper">
-            <i class="fa-solid fa-circle-exclamation"></i>
-          </div>
-          <div class="text-wrapper">
-            <span>Are you sure you want to cancel the trip?</span>
-          </div>
-        </main>
-        <footer>
-          <div class="btn-container">
-            <div class="cancel-wrapper">
-              <button class="btn btn-cancel">Cancel</button>
-            </div>
-            <div class="delete-confirm-wrapper">
-              <button class="btn btn-confirm">
-                <i class="fa-solid fa-trash"></i>
-                Confirm
-              </button>
-            </div>
-          </div>
-        </footer>
-      </div>
+  <!-- Modal content -->
+  <div class="modal-wrapper bg-white">
+    <div class="modall">
+      <header>
+        <h2>Confirmation</h2>
+      </header>
+      <main>
+        <div class="icon-wrapper">
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </div>
+        <div class="text-wrapper">
+          <span>Are you sure you want to cancel the trip?</span>
+        </div>
+      </main>
+      <footer>
+      <div class="btn-container">
+    <div class="cancel-wrapper">
+      <button class="btn btn-cancel">Cancel</button>
+    </div>
+    <div class="delete-confirm-wrapper">
+      <button class="btn btn-confirm" name="canceltrip">
+        <i class="fa-solid fa-trash"></i>
+        Confirm
+      </button>
     </div>
   </div>
+      </footer>
+    </div>
+  </div>
+</div>
+
  
   
   <?php include('../include/footer.html'); ?>
@@ -218,12 +247,48 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
         $("#feedback-tripid").val(tripid);
       });
     });
-  </script>
-    <script>
+
+    $(document).ready(function() {
+    var tripIdToDelete = null;
+
+    // Open the cancellation confirmation modal
+    $(".btn-refund").click(function() {
+      tripIdToDelete = $(this).data("tripid");
+      $("#myModal").fadeIn();
+    });
+
+    // Close the cancellation confirmation modal
+    $(".btn-cancel").click(function() {
+      $("#myModal").fadeOut();
+    });
+
+    // Perform the trip cancellation
+    $(".btn-confirm").click(function() {
+      if (tripIdToDelete) {
+        $.ajax({
+          type: "POST",
+          url: "userbooking.php",
+          data: { canceltrip: true, tripid: tripIdToDelete },
+          success: function(response) {
+            window.location.href = "userbooking.php?msg=delete-success";
+          },
+          error: function() {
+            console.log("Error: Failed to cancel the trip.");
+          }
+        });
+      }
+    });
+  });
+
+
       err=document.getElementById("err");
       setTimeout(function() {
         document.getElementById("err").style.display = "none";
-      }, 4000);
-    </script>
+      }, 3000);
+
+
+
+
+</script>
 </body>
 </html>
