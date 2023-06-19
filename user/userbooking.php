@@ -162,6 +162,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                 $i++;
               }
             }
+            else{
+              echo '<h5 class=" text-center">No Result Found,You Have Not Book any trip.</h5>';
+            }
               ?>
           </tbody>
         </table>

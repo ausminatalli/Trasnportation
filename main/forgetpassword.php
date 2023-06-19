@@ -1,5 +1,25 @@
 <?php
-include('../path.php')
+include('../path.php');
+include('../config.php');
+function sendVerificationEmail($email, $newPassword) {
+  // Include the sendmail.php file
+  require('../sendmail.php');
+
+  // Prepare the email content
+  $to = $email;
+  $cc = "cc@example.com";
+  $subject = "Forget Password";
+  $message = "
+  <div style='width: 100%; background-color:#E5F6FF;padding:10px;border-radius:5px;'>
+      <h3 style='color: #0A3B5F;text-align: center;'>Password Reset:</h2>
+      <h1 style='color: black;text-align: center;'>" . $newPassword . "</h1>
+      <h4 style='color: #0A3B5F; text-align: center;'>There is your new Password use this password and for more secure change it in your mange profiel.</h4>
+  </div>
+  ";
+
+  // Send the email
+  sendEmailWithCC($to, $cc, $subject, $message);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,17 +50,73 @@ include('../path.php')
     <title>Forgot Password</title>
   </head>
   <body>
-  <?php include('../include/header.html')  ?>
+  <?php 
+  include('../include/header.html')?>
+  <?php
+if (isset($_GET['msg']) && ($_GET['msg'] == "err-email")) {
+  $errorMessage = "Email NOT Found!";
+ }
+function generatePassword() {
+  $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  $password = '';
+  $length = 8;
+
+  for ($i = 0; $i < $length; $i++) {
+      $index = random_int(0, strlen($characters) - 1);
+      $password .= $characters[$index];
+  }
+  return $password;
+}
+// Function to hash the password
+function hashPassword($password) {
+  return password_hash($password, PASSWORD_DEFAULT);
+}
+if (isset($_POST['forget_password'])) {
+  $email = $_POST['email'];
+
+  $query = "SELECT * FROM users WHERE email = ?";
+  $stmtCheckEmail = mysqli_prepare($conn, $query);
+  mysqli_stmt_bind_param($stmtCheckEmail, 's', $email);
+  mysqli_stmt_execute($stmtCheckEmail);
+  $result = mysqli_stmt_get_result($stmtCheckEmail);
+
+  if (mysqli_num_rows($result) > 0) {
+    
+      $newPassword = generatePassword();
+      $hashedPassword = hashPassword($newPassword);
+
+      $sql = "UPDATE users SET password = ? WHERE email = ?";
+      $stmt = mysqli_prepare($conn, $sql);
+      mysqli_stmt_bind_param($stmt, 'ss', $hashedPassword, $email);
+
+      if (mysqli_stmt_execute($stmt)) {
+          sendVerificationEmail($email, $newPassword);
+          header('Location: Login.php?forget_success');
+      } else {
+          echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
+      }
+      mysqli_stmt_close($stmt);
+  } else {
+      header('Location: forgetpassword.php?msg=err-email');
+  }
+
+  mysqli_stmt_close($stmtCheckEmail);
+}
+
+  ?>
     <section class="login">
       <div class="container">
         <div class="login-content">
           <h2>Forgot Password</h2>
           <p>PLEASE ENTER YOUR EMAIL ADDRESS TO RESET YOUR PASSWORD.</p>
-          <form id="forgetform" action="#">
+          <form id="forgetform" method='Post'>
           
-            <input oninput='handleEmailInput()' id='email' type="email"  placeholder="Email address" />
+            <input oninput='handleEmailInput()' id='email' type="email" name="email"  placeholder="Email address" />
             <div class="error text-danger" id="email-error"></div>
-            <button onclick='handleSubmit(event,"forget")' id='submit' class="btn-blue" type="submit">Reset Password</button>
+            <button  name="forget_password" id='submit' class="btn-blue" >Reset Password</button>
+            <div class="mt-2 mb-2 text-center">
+            <span class="text-danger text-center" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+            </div>
             <p class="dont">
               Remembered your password? <a href="./login.php">Login</a>
             </p>
@@ -50,5 +126,11 @@ include('../path.php')
     </section>
     <?php include('../include/footer.html') ?>
     <script src="js/validation.js"></script>
+    <script>
+      err=document.getElementById("err");
+      setTimeout(function() {
+        document.getElementById("err").style.display = "none";
+      }, 4000);
+    </script>
   </body>
 </html>
