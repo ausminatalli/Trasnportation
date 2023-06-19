@@ -31,4 +31,26 @@ $(document).ready(function() {
       });
     });
   });
+
+
+  $('.accept-driver').click(function() {
+    const driverId = $(this).data('driverid');
+    
+    $.ajax({
+      type: 'POST',
+      url: '../api/admin/editform/acceptdriver.php',
+      data: { driverId: driverId },
+      success: function(response) {
+        // Handle the response from the server
+        console.log(response);
+      },
+      error: function(xhr, status, error) {
+        // Handle errors
+        console.log(xhr.responseText);
+      }
+    });
+  });
+
 });
+
+

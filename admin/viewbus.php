@@ -1,3 +1,10 @@
+
+<?php
+$host = $_SERVER['HTTP_HOST'];
+$apiUrl = "http://$host/transportation/api/admin/dropdown.php";
+$data = file_get_contents($apiUrl);
+$dropdown = json_decode($data, true);
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -44,13 +51,13 @@
           foreach ($data as $row) {
             echo "<tr>";
             echo "<td>".$row['busid']."</td>";
-            echo "<td>".$row['firstname'].' '.$row['lastname']."</td>";
+            echo '<td data-driverid="' . $row['driverid'] . '">'.$row['firstname'].' '.$row['lastname']."</td>";
             echo "<td>".$row['capacity']."</td>";
             echo "<td>".$row['province'].', '.$row['station']."</td>";
             echo "<td>".$row['mechanicdate']."</td>";
             echo "<td>".$row['insurancenb']."</td>";
             echo "<td>".$row['mechanicdue']."</td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" data-busid="' . $row['busid'] . '" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Bus" data-busid="' . $row['busid'] . '" class="icon-trash btn-delete2">
             <i class="fa-solid fa-trash"></i>
             </td>';
@@ -82,43 +89,38 @@
   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form id="editForm" method="post" action="edit.php">
+      <form id="editForm">
         <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Edit driver</h5>
+          <h5 class="modal-title" id="editModalLabel">Edit Bus</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="Driver name">Driver name:</label>
-            <select class="form-control" id="Driver name" name="Driver name">
+            <label for="Drivername">Driver name:</label>
+            <select class="form-control" id="Drivername" name="Drivername">
               <!-- Add dropdown options here -->
-              <option value="Mohammad Yassine">Mohammad Yassine</option>
-              <option value="Ali Mantach">Ali Mantach</option>
-              <option value="Hassan Barada">Hassan Barada</option>
+              <?php
+            foreach ($dropdown['driver'] as $drivers) {
+              $drivername = $drivers['Drivers'];
+              $driverid = $drivers['driverid'];
+              echo '<option value="' . $driverid . '">' . $drivername . '</option>';
+            }
+            ?>
             </select>
           </div>
           <div class="form-group">
-            <label for="Station">Station:</label>
-            <select class="form-control" id="Station" name="Station">
-              <!-- Add dropdown options here -->
-              <option value="beirut">Beirut</option>
-              <option value="tyre">Tyre</option>
-              <option value="saida">Saida</option>
-            </select>
+            <label for="Mechanicdue">Mechanicdue date:</label>
+            <input type="date" class="form-control" id="Mechanicdue" name="Mechanicdue">
           </div>
           <div class="form-group">
-            <label for="Mechanicdue date">Mechanicdue date:</label>
-            <input type="date" class="form-control" id="Mechanicdue date" name="Mechanicdue date">
-          </div>
-          <div class="form-group">
-            <label for="Insurance number">Insurance number:</label>
-            <input type="text" class="form-control" id="Insurance number" name="Insurance number">
+            <label for="Insurance">Insurance number:</label>
+            <input type="text" class="form-control" id="Insurance" name="Insurance">
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="submit" class="btn btn-primary" data-busid="">Save Changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </form>

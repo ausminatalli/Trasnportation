@@ -86,3 +86,9 @@ input[type=number] {
    .btn-primary{
     padding: 10px 68px
    }
+
+   .icon-trash .fa-unlock:hover{
+    color: red;
+    transform: scale(1.5);
+    transition: all 0.3s;
+   }

@@ -2,16 +2,20 @@
 
 include_once '../config.php';
 
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$password = mysqli_real_escape_string($conn, $_POST['password']);
-$email = stripcslashes($email);
-$password = stripcslashes($password);
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-$query = "SELECT * FROM users WHERE email='$email'";
-$result = mysqli_query($conn, $query);
+// Prepare the SQL statement
+$query = "SELECT * FROM users WHERE email=?";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt, 's', $email);
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 if ($row && password_verify($password, $row['password'])) {
+
    
 
     if ($row['isblocked'] == 1) {
@@ -20,6 +24,8 @@ if ($row && password_verify($password, $row['password'])) {
         exit;
     }
 
+
+    // Password is correct
     if ($row['role'] == 0 && $row['emailapproved'] == 1) {
         session_start();
         $_SESSION["id"] = $row['userid'];

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css/contactstyle.css" />
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.jpg">
+    
   </head>
   
   <body>

@@ -64,7 +64,7 @@
             echo "<td>".$row['applydate']."</td>";
             echo '<td colspan="">
             <button data-toggle="tooltip" data-placement="right" title="Show License" class="icon-trash showlicense" onclick="window.open(\''.$row['LicenseUrl'].'\', \'_blank\')"><i class="fa-solid fa-id-card"></i></button><br>
-            <button data-toggle="tooltip" data-placement="right" title="Accept Driver" class="icon-trash"><i class="fa-solid fa-circle-check"></i></button><br>
+            <button data-toggle="tooltip" data-placement="right" title="Accept Driver" data-driverid="' . $row['driverid'] . '" class="icon-trash accept-driver"><i class="fa-solid fa-circle-check"></i></button><br>
             <button data-toggle="tooltip" data-placement="right" title="Reject Driver" data-driverid="' . $row['driverid'] . '" class="icon-trash btn-delete4">
           <i class="fa-solid fa-trash"></i>
             </td>';
