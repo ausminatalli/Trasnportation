@@ -43,5 +43,5 @@ $cc = "cc@example.com";
 $subject = "Test Email";
 $message = "This is a test email with CC.";
 
-sendEmailWithCC($to, $cc, $subject, $message);
+//sendEmailWithCC($to, $cc, $subject, $message);
 ?>
