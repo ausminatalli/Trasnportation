@@ -41,8 +41,11 @@ if(isset($_POST["payment"])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- custom css file link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/payment.css"/>
   <body>
+ 
     <div class="container">
       <div class="card-container">
         <div class="front">
@@ -76,20 +79,26 @@ if(isset($_POST["payment"])){
         </div>
       </div>
 
-      <form action="" method="POST">
-        <div class="inputBox">
+      <form  action="" method="POST" onsubmit="return paymentvalidate();" >   
+      <div class="ticket">
+        <h3 class="title">The price of trip selected:</h3>
+        <p class="price"><?php echo '<i class="fa-solid fa-money-check-dollar"></i>' . $_GET['p'] . ' L.L';?></p>
+      </div>     
+      <div class="inputBox">
           <span>card number</span>
-          <input type="text" maxlength="16" class="card-number-input" />
+          <input type="text" maxlength="16" class="card-number-input" id="cardnumber"/>
+          <span id="vcardnumber" class="vspan"></span>
         </div>
         <div class="inputBox">
           <span>card holder</span>
-          <input type="text" class="card-holder-input" />
+          <input type="text" class="card-holder-input" id="cardholder"/>
+          <span id="vcardholder" class="vspan"></span>
         </div>
         <div class="flexbox">
           <div class="inputBox">
             <span>expiration mm</span>
-            <select name="" id="" class="month-input">
-              <option value="month" selected disabled>month</option>
+            <select name="" class="month-input" id="month">
+              <option value="month" selected>month</option>
               <option value="01">01</option>
               <option value="02">02</option>
               <option value="03">03</option>
@@ -103,13 +112,12 @@ if(isset($_POST["payment"])){
               <option value="11">11</option>
               <option value="12">12</option>
             </select>
+            <span id="vmonth" class="vspan"></span>
           </div>
           <div class="inputBox">
             <span>expiration yy</span>
-            <select name="" id="" class="year-input">
-              <option value="year" selected disabled>year</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
+            <select name="" class="year-input" id="year">
+              <option value="year" selected>year</option>
               <option value="2023">2023</option>
               <option value="2024">2024</option>
               <option value="2025">2025</option>
@@ -119,10 +127,12 @@ if(isset($_POST["payment"])){
               <option value="2029">2029</option>
               <option value="2030">2030</option>
             </select>
+            <span id="vyear" class="vspan"></span>
           </div>
           <div class="inputBox">
             <span>cvv</span>
-            <input type="text" maxlength="4" class="cvv-input" />
+            <input type="text" maxlength="4" class="cvv-input" id="code"/>
+            <span id="vcode" class="vspan"></span>
           </div>
         </div>
         <input type="submit" name="payment" value="submit" class="submit-btn" />
@@ -131,5 +141,57 @@ if(isset($_POST["payment"])){
     </div>
 
    <script src="js/payment.js"></script>
+   <script>
+    function paymentvalidate(){
+    let cardnumber=document.getElementById('cardnumber');
+    let cardholder=document.getElementById('cardholder');
+    let code=document.querySelector('#code');
+    let month=document.querySelector('#month');
+    let year=document.querySelector('#year');
+    let vcardnumber=document.getElementById('vcardnumber');
+    let vcardholder=document.getElementById('vcardholder');
+    let vcode=document.querySelector('#vcode');
+    let vmonth=document.querySelector('#vmonth');
+    let vyear=document.querySelector('#vyear');
+    
+    console.log(vmonth);
+    let isvalid=true;
+       if(cardnumber.value===""){
+        vcardnumber.innerHTML="please enter the card number";
+        isvalid=false;
+       }
+       if(cardholder.value===""){
+        vcardholder.innerHTML="please enter the card number";
+        isvalid=false;
+       }
+       if(code.value===""){
+        vcode.innerHTML="please enter the card verification value";
+        isvalid=false;
+       }
+       if(year.value==="year"){
+        vyear.innerHTML="please select the date on year";
+        isvalid=false;
+       }
+       if(month.value==="month"){
+        vmonth.innerHTML="please select the date on month";
+        isvalid=false;
+       }
+       if(isvalid){
+          return true;
+       }
+        return false;
+    }
+    var currentDate = new Date();
+    var currentMonth = currentDate.getMonth() + 1;
+    document.getElementById('month').addEventListener('change', function() {
+    var selectedMonth = parseInt(this.value);
+
+    if (selectedMonth < currentMonth) {
+    vmonth.innerHTML = 'Error: Selected month is less than the current month.';
+    } else {
+      vmonth.innerHTML = '';
+    }
+  });
+   </script>
   </body>
 </html>
