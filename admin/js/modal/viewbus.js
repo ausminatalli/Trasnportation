@@ -42,7 +42,7 @@ function EditBusModal() {
         },
         success: function(response) {
           $('#editModal').modal('hide');
-          location.reload();
+          //location.reload();
         },
         error: function(xhr, status, error) {
           console.log("error =>", error);

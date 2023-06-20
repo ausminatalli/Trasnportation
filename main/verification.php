@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/verification.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/verification.css">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -19,8 +19,8 @@
   </head>
   <body>
   <?php   
-   include('../../include/header.html');
-   include_once("../../config.php");
+   include('../include/header.html');
+   include_once("../config.php");
 
    if(isset($_POST["verify_email"])){
 
@@ -34,7 +34,7 @@
       echo"<script>alert('Verification code error')</script>";
     }
     else{
-      header('location:../login.php?msg=verification_success');
+      header('location:login.php?msg=verification_success');
       exit();
     }
 
@@ -49,7 +49,7 @@
       echo"<script>alert('Verification code error')</script>";
     }
     else{
-      header('location:../login.php?msg=verification_success');
+      header('location:login.php?msg=verification_success');
       exit();
     }
    }
@@ -82,6 +82,6 @@
       </div>
     </div>
   </div>
-    <?php include('../../include/footer.html'); ?>
+    <?php include('../include/footer.html'); ?>
   </body>
 </html>

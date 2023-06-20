@@ -4,7 +4,7 @@ function sendVerificationEmail($email, $verificationCode) {
     require('../../sendmail.php');
 
     // Prepare the email content
-    $verificationLink = "http://localhost/transportation/main/registration/verification.php?v=" . $verificationCode;
+    $verificationLink = "http://localhost/transportation/main/verification.php?v=" . $verificationCode;
     $to = $email;
     $cc = "cc@example.com";
     $subject = "Skyline Email Verification";
@@ -107,7 +107,7 @@ function addUser($conn, $data)
        if (mysqli_stmt_execute($stmt)) {
     echo "<script>alert('User added successfully.');</script>";
     sendVerificationEmail($email, $verefication_code);
-    header('Location: ../main/registration/verification.php');
+    header('Location: ../main/verification.php');
 } else {
     echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
 }
