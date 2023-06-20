@@ -20,7 +20,7 @@ if ($row && password_verify($password, $row['password'])) {
 
     if ($row['isblocked'] == 1) {
         
-        header('location:../404.html?msg=blocked');
+        header('location:login.php?msg=blocked');
         exit;
     }
 
