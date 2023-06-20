@@ -272,9 +272,6 @@ include('include/footer.html')
   <script src="js/wow.min.js"></script>
   <script src="js/demo.js"></script>
   <script src="js/indexsearch.js"></script>
-  
-
- <script src="js/index.js"></script>
 
 </body>
 </html>
