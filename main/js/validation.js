@@ -199,7 +199,7 @@ function UserRegValid(event) {
   // Function to handle form submission
   function handleSubmit(page) {
      // Prevent form submission
-  
+    document.querySelector('.g-recaptcha').style.display="block";
     // Perform additional checks or actions before submitting the form
     const email = document.getElementById('email').value;
     var response = grecaptcha.getResponse();
