@@ -19,14 +19,24 @@
 }
 
 .error {
-  color: red
+  color: red;
+  
 }
+.g-recaptcha
+{
+  display:none;
+}
+
 </style>
 <body>
     <?php  include('../include/header.html')   ?>
     <?php 
      if (isset($_GET['msg']) && ($_GET['msg'] == "failed")) {
       $errorMessage = "Login Failed: Invalid Email or Password!";
+     }
+     else if(isset($_GET['msg']) && ($_GET['msg'] == "blocked"))
+     {
+      $errorMessage = "User Blocked: Please Contact Adminstration!";
      }
     ?>
       <section class="login ">
@@ -53,11 +63,11 @@
                   </div>
                   <div class="g-recaptcha p-2" data-sitekey="6LdrHHgmAAAAAHWg_T5C8-aQ4yMrm3e5iWFnpjXu" data-callback="verifyCaptcha"></div>
                   <div id="recaptcha-error" class="error"></div> <!-- reCAPTCHA v2 checkbox -->
-                  <button onsubmit="handleSubmit('login')" class="btn-blue" type="submit">Login</button>
+                  <button  class="btn-blue" type="submit">Login</button>
                   <p class="dont">Don't have an account? <a href="./signup.php">Sign up</a></p>
                 </form>
                 <div class="text-center" style="height:30px">
-                <span class="text-danger text-center" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
+                <span class="fs-4 text-danger text-center" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
             </div>
             </div>
         </div>

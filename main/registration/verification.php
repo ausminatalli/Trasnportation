@@ -39,6 +39,20 @@
     }
 
    }
+   else if(isset($_GET["v"]))
+   {
+    $verification_code=$_GET["v"];
+    $query="UPDATE users Set createAt=NOW(),emailapproved=1 where  verification_code='".$verification_code."'";
+    $result=mysqli_query($conn,$query);
+
+    if (mysqli_affected_rows($conn)==0){
+      echo"<script>alert('Verification code error')</script>";
+    }
+    else{
+      header('location:../login.php?msg=verification_success');
+      exit();
+    }
+   }
 
 
 

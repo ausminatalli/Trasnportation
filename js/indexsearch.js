@@ -1,13 +1,22 @@
+new WOW().init();
+
+let origin = document.getElementById('origin');
+let destination = document.getElementById('destination');
+let form = document.querySelector('.form1');
+let validateform = document.querySelector('#validateform');
+let valid = true;
+
+const IndexSearch = document.querySelector(".IndexSearch");
+
 
 function SearchInMain() {
-  let origin = document.getElementById('origin').value;
-  let destination = document.getElementById('destination').value;
+
   let tripdate = document.getElementById('tripdate').value;
   let triptime = document.getElementById('triptime').value;
 
   let url ;
   // Construct the URL with the values as query parameters
-   url = '/Transportation/main/mainsearch.php?origin=' + encodeURIComponent(origin) + '&destination=' + encodeURIComponent(destination);
+   url = '/Transportation/main/mainsearch.php?origin=' + encodeURIComponent(origin.value) + '&destination=' + encodeURIComponent(destination.value);
   
    if(tripdate && triptime)
    {
@@ -26,10 +35,27 @@ function SearchInMain() {
 }
 
 
-const IndexSearch = document.querySelector(".IndexSearch");
+IndexSearch.addEventListener('click',(event)=>{
+  event.preventDefault();
+  if(origin.value == '' || destination.value == '' ){
+    validateform.style.border='3px solid red';
+    valid = false;
+  }
+  else{
+    SearchInMain();
+    validateform.style.border='';
+    
+  }
+  
 
-IndexSearch.addEventListener('click',()=>{
+});
 
-  SearchInMain();
-})
 
+function toggleLocation(event){
+
+  event.preventDefault();
+
+  let swtich= origin.value;
+  origin.value=destination.value;
+  destination.value=swtich;
+  }
