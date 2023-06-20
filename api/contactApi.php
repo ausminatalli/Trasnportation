@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-    require('../../sendmail.php')  
+    require('../sendmail.php')  
      
     ?>
     <?php

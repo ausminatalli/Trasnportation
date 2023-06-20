@@ -15,18 +15,16 @@ $result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 
-if($row){
 
-    $query2 = "SELECT * FROM driver WHERE driverid=?";
+
+if ($row && password_verify($password, $row['password'])) {
+ $query2 = "SELECT * FROM driver WHERE driverid=?";
     $stmt2 = mysqli_prepare($conn, $query2);
     mysqli_stmt_bind_param($stmt2, 's', $row['userid']);
     mysqli_stmt_execute($stmt2);
     
     $result2 = mysqli_stmt_get_result($stmt2);
     $row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
-
-if ($row && password_verify($password, $row['password'])) {
-
    
 
     if ($row['isblocked'] == 1) {
@@ -71,5 +69,5 @@ if ($row && password_verify($password, $row['password'])) {
     // Password is incorrect or user doesn't exist
     header('location:login.php?msg=failed');
 }
-}
+
 ?>
