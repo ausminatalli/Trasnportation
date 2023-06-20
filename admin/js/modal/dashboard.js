@@ -21,7 +21,7 @@ $(document).ready(function() {
         data: { userid: userId },
         success: function(response) {
           console.log(response);
-          if (response === "User Cannot be deleted") {
+          if (response === "User Cannot be unblocked") {
             // Handle error condition if needed
           } else {
             blockButton.html('<i class="fa-solid fa-unlock"></i>');
@@ -50,14 +50,14 @@ $(document).ready(function() {
     confirmationModal.modal("show");
 
     $("#confirmDeleteBtn").on("click", function() {
-      // Make an AJAX request to unblock the user
+      // Make an AJAX request to block the user
       $.ajax({
         url: "../api/admin/deleteform/blockuser.php",
         method: "POST",
         data: { userid: userId },
         success: function(response) {
           console.log(response);
-          if (response === "User Cannot be deleted") {
+          if (response === "User Cannot be blocked") {
             // Handle error condition if needed
           } else {
             unblockButton.html('<i class="fa-solid fa-lock"></i>');
