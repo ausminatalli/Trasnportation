@@ -14,6 +14,17 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
+
+if($row){
+
+    $query2 = "SELECT * FROM driver WHERE driverid=?";
+    $stmt2 = mysqli_prepare($conn, $query2);
+    mysqli_stmt_bind_param($stmt2, 's', $row['userid']);
+    mysqli_stmt_execute($stmt2);
+    
+    $result2 = mysqli_stmt_get_result($stmt2);
+    $row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
+
 if ($row && password_verify($password, $row['password'])) {
 
    
@@ -33,7 +44,7 @@ if ($row && password_verify($password, $row['password'])) {
         header('location:../user/usermain.php?msg=success');
     } else if ($row['role'] == 0 && $row['emailapproved'] == 0) {
         header('location:registration/verification.php?msg=enter-your-verification-code');
-    } else if ($row['role'] == 1) {
+    } else if ($row['role'] == 1 && $row2['accepted'] == 1) {
         session_start();
         $_SESSION["id"] = $row['userid'];
         $_SESSION["type"] = $row['role'];
@@ -41,7 +52,11 @@ if ($row && password_verify($password, $row['password'])) {
         $_SESSION["email"] = $row['email'];
         $_SESSION["mobile"] = $row['mobilenumber'];
         header('location:../driver/driver.php?msg=success');
-    } else if ($row['role'] == 2) {
+    }
+    else if ($row['role'] == 1 && $row2['accepted'] == 0) {
+        header('location:registration/driverwaiting.php');
+    }
+     else if ($row['role'] == 2) {
         session_start();
         $_SESSION["id"] = $row['userid'];
         $_SESSION["type"] = $row['role'];
@@ -56,5 +71,5 @@ if ($row && password_verify($password, $row['password'])) {
     // Password is incorrect or user doesn't exist
     header('location:login.php?msg=failed');
 }
-
+}
 ?>
