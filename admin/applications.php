@@ -76,7 +76,7 @@
       </tbody>
     </table>
   </div>
-  <div id="deleteConfirmationModal" class="modal fade" role="dialog">
+  <div id="rejectConfirmationModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -88,7 +88,25 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        <button type="button" class="btn btn-danger" id="confirmRejectBtn">Reject</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="acceptConfirmationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to Accept this Application?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmAcceptBtn">Accept</button>
       </div>
     </div>
   </div>
