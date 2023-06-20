@@ -196,9 +196,9 @@ Thank you for choosing Skyline. We look forward to serving you and providing you
             </div>
             <h3>You Can Know Buy Our Ticket From Near Partner Market</h3>
             <div class="flexSb omt">
-                <img class="img1 wow bounceInUp" src="https://i.ibb.co/Lv4mCpM/bob.png" alt="">
-                <img class="img2 wow bounceInUp" src="https://i.ibb.co/f0XsB1J/wish.png" alt="">
-                <img class="img3 wow bounceInUp" src="https://i.ibb.co/FKP9Jfx/omt.png" alt="">
+            <img class="img1 wow bounceInUp" src="https://i.ibb.co/Lv4mCpM/bob.png" alt="Bob Finance" onclick="window.open('https://www.bob-finance.com/', '_blank')">
+            <img class="img2 wow bounceInUp" src="https://i.ibb.co/f0XsB1J/wish.png" alt="WHISH" onclick="window.open('https://whish.money/', '_blank')">
+            <img class="img3 wow bounceInUp" src="https://i.ibb.co/FKP9Jfx/omt.png" alt="OMT" onclick="window.open('https://www.omt.com.lb/en', '_blank')">
 
             </div>
         </div>
