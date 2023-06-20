@@ -9,6 +9,23 @@ if(isset($_POST["payment"])){
     $userid=$_GET['u'];
     $paymentprice=$_GET['p'];
 
+
+    $query = "SELECT * FROM payments WHERE userid = ? and tripid=?";
+    $stmtCheckEmail = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmtCheckEmail, 'ii', $userid, $tripid);
+    mysqli_stmt_execute($stmtCheckEmail);
+    $result = mysqli_stmt_get_result($stmtCheckEmail);
+  
+    if (mysqli_num_rows($result) > 0) {
+
+    header('Location: userbooking.php?msg=err-pay');
+
+
+    }else{
+
+    
+      
+
     $sql="INSERT INTO PAYMENTS (userid, tripid, amountpaid) Values (?,?,?)";
     $stmt=mysqli_prepare($conn,$sql);
     mysqli_stmt_bind_param($stmt,"iis", $userid, $tripid, $paymentprice);
@@ -30,6 +47,8 @@ if(isset($_POST["payment"])){
     }
 
     mysqli_stmt_close($stmt);
+}
+
 }
 
 
