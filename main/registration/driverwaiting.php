@@ -14,8 +14,8 @@
     
       <div class="container">
         <div class="content">
-            <h6 class="mg">Thank you for your interest to join our team,we will contact you in the upcoming days.</h6>
-            <button class="btn btn-sm btn-primary"> <a  href="../../index.php" class="text-white text-decoration-none" >Back to Homepage</a></button>
+            <h5 class="mg">Thank you for your interest to join our team,we will contact you in the upcoming days.</h5><br>
+            <button class="btn btn-md btn-primary"> <a  href="../../index.php" class="text-white text-decoration-none" >Back to Homepage</a></button>
         </div>
         
             <img class="image" src="../../img/Bus.gif"  alt="...">
