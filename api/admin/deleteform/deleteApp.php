@@ -7,9 +7,13 @@ if (isset($_POST['driverid'])) {
     $email = $_POST['email'];
     $subject = "Application Status Notification";
     $cc = "teamesamailer@gmail.com";
-    $message = "Dear Applicant,\n\nUnfortunately, you have been rejected.";
+    $message = "<p style='font-size: 16px; color: #333;'><strong>Dear Applicant,</strong></p>
+<p style='font-size: 14px; color: #555;'>We regret to inform you that your application has been <span style='font-weight: bold; color: red;'>rejected</span>.</p>
+<p style='font-size: 14px; color: #555;'>We appreciate your interest and effort in applying to our service. Although your application was not successful at this time, we encourage you to consider registering as a user on our website. As a registered user, you can still benefit from our services and stay connected with us.</p>
+<p style='font-size: 14px; color: #555;'>Thank you for your understanding.</p>
+<p style='font-size: 14px; color: #555; margin-top: 20px;'>Regards,</p>
+    <p style='font-size: 14px; color: #555;'>Team Skyline</p>";
 
-    // Delete the driver entry from the 'driver' table
     $sql = "DELETE FROM driver WHERE driverid = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $userId);
@@ -17,7 +21,7 @@ if (isset($_POST['driverid'])) {
     $response = array();
 
     if ($stmt->execute()) {
-        // Update the user's role in the 'users' table to 0 (assuming 0 represents a rejected status)
+        
         $sql = "UPDATE users SET role = 0 WHERE userid = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $userId);

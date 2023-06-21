@@ -1,3 +1,26 @@
+<?php
+// Check if the array element exists and is not null
+include_once('../config.php');
+session_start();
+$adminId = $_SESSION['id']; 
+if (isset($_SESSION['id']) && isset($_SESSION['type']) && $_SESSION['type'] == 2) {
+    $query = "SELECT u.firstname, u.lastname
+          FROM users AS u
+          WHERE u.userid = $adminId";
+
+    $result = mysqli_query($conn, $query) or die("Selecting user profile failed");
+    $row = mysqli_fetch_array($result);
+    $_SESSION['username'] = $row['firstname'];
+}
+else {
+    header('location:../main/login.php?msg=please_login');
+    exit();
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -184,8 +207,8 @@
         </ul>
         <div class="user">
           <div class="text-center d-flex flex-column align-items-center">
-            <p class="username">Mohammad Yassine</p>
-            <a href="#" class="btn btn-primary">Logout</a>
+            <p class="username"><?php echo $row['firstname'] ,' ', $row['lastname'] ?></p>
+            <a href="../index.php" class="btn btn-primary">Logout</a>
           </div>
         </div>
       </nav>
