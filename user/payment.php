@@ -2,6 +2,22 @@
 include('../path.php');
 include("../config.php");
 
+session_start();
+
+$id = $_SESSION['id'];
+if(isset($_SESSION['id'])&& ($_SESSION['type']==0))
+{
+    $query = "select * from users WHERE userid = $id";
+    $result = mysqli_query($conn, $query) or die("Selecting user profile failed");
+    $row = mysqli_fetch_array($result);
+    $_SESSION['username']=$row['firstname'];
+    $_SESSION['user_id']=$row['userid'];
+}
+else
+{
+  header('location:../main/login.php?msg=please_login');
+}
+
 
 if(isset($_POST["payment"])){
 
@@ -37,6 +53,10 @@ if(isset($_POST["payment"])){
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $tripid);
         $stmt->execute();
+        $sql2 = "UPDATE users SET nboftrips = nboftrips + 1 WHERE  userid= ?";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->bind_param("i", $userid);
+        $stmt2->execute();
         if ($stmt->affected_rows > 0) {
           echo "Seats decremented successfully.";
       }

@@ -5,7 +5,7 @@ require('../../../config.php')
 ?>
 <?php
 // Fetch data from MySQL table
-$sql = "SELECT * FROM users where role=0";
+$sql = "SELECT * FROM users where role=2";
 $result = $conn->query($sql);
 
 $users = array();
