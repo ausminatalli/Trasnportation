@@ -220,6 +220,23 @@ function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
 
 
 
+function isOnline($conn,$isOnline,$id){
+
+    $sql = "UPDATE driver SET isOnline=? WHERE driverid=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $isOnline, $id);
+
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Update Success";
+    } else {
+        echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
+    }
+    mysqli_stmt_close($stmt);
+
+}
+
+
+
 ?>
 
   
