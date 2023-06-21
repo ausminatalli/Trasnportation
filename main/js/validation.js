@@ -48,14 +48,14 @@ function UserRegValid(event) {
     if (name.value === '') {
       vname.innerHTML="Please Enter Your First Name";
       isValid=false;
-  }else if (name.value.length < 3 || /\d|\W/.test(name.value)){
+  }else if (name.value.length < 3 ||  /\d|\W|\s/.test(name.value.replace(/\s/g, ''))){
     vname.innerHTML="Please Enter a Valid Name";
     isValid=false;
   }
   if (lastName.value === '') {
     vlastName.innerHTML="Please Enter Your Last Name";
     isValid=false;
-}else if (lastName.value.length < 3 || /\d|\W/.test(lastName.value)){
+}else if (lastName.value.length < 3 || /\d|\W|\s/.test(lastName.value.replace(/\s/g, ''))){
   vlastName.innerHTML="Please Enter a Valid Name";
   isValid=false;
 }
@@ -267,14 +267,14 @@ return true;
     if (name.value === '') {
       vname.innerHTML="Please Enter Your First Name";
       isValid=false;
-  }else if (name.value.length < 3 || /\d|\W/.test(name.value)){
+  }else if (name.value.length < 3 ||  /\d|\W|\s/.test(name.value.replace(/\s/g, ''))){
     vname.innerHTML="Please Enter a Valid Name";
     isValid=false;
   }
   if (lastName.value === '') {
     vlastName.innerHTML="Please Enter Your Last Name";
     isValid=false;
-}else if (lastName.value.length < 3 || /\d|\W/.test(lastName.value)){
+}else if (lastName.value.length < 3 ||  /\d|\W|\s/.test(lastName.value.replace(/\s/g, ''))){
   vlastName.innerHTML="Please Enter  a Valid Name";
   isValid=false;
 }
