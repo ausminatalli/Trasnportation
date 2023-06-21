@@ -13,6 +13,13 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
 } else {
     header('location: ../main/login.php?msg=please_login'); 
 }
+$errorMessage="";
+
+if (isset($_GET['msg']) && ($_GET['msg'] == "request-send")) {
+    $errorMessage = "Vacation Request Sent !";
+   }else if (isset($_GET['msg']) && ($_GET['msg'] == "request-faild")) {
+    $errorMessage = "Faild Request for Vacation !";
+   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +48,8 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
         
       
     </div>
+    <h5 class="text-success text-center mt-4" id="err"><?php echo $errorMessage ?></h5>
+
 
     <table id="trip-table" class="table mt-5 ">
         <thead class="thead-dark">
@@ -55,6 +64,9 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
         </thead>
         <tbody>
         <?php
+        if (mysqli_num_rows($result) >0){
+
+        
         $i=1;
         while ($row = mysqli_fetch_array($result)) {
             echo '<tr>';
@@ -84,6 +96,10 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
             echo '</tr>';
             $i++;
         }
+    }else {
+        echo"<h5 class='text-center mt-4'>No Request For any Vacation yet !</h5>";
+
+    }
         ?>
         </tbody>
     </table>
@@ -113,7 +129,13 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
             }
         }
     });
+    err=document.getElementById("err");
+      setTimeout(function() {
+        document.getElementById("err").style.display = "none";
+      }, 3000);
+
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 </body>
