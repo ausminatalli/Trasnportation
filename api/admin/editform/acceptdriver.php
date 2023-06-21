@@ -10,7 +10,7 @@ if (isset($_POST['driverid'])) {
     $message = "Dear Applicant,\n\nCongratulations! Your application has been accepted.";
     $sql = "UPDATE driver SET accepted = 1 WHERE driverid = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $userId);
+    $stmt->bind_param("i", $userId);
 
 
     if ($stmt->execute()) {

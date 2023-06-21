@@ -48,7 +48,25 @@ function AddTrip($conn,$data)
     
 }
 
-
+function EditDriver($conn, $data)
+{
+    $driverid = $data['driverid'];
+    $Licensedate = $data['Licensedate'];
+    
+    // Prepare the update query
+    $query = "UPDATE driver SET Licensedate = ? WHERE driverid = ?";
+    $stmt = $conn->prepare($query);
+    
+    // Bind the parameters
+    $stmt->bind_param("si", $Licensedate, $driverid);
+    // Execute the query
+    if ($stmt->execute()) {
+        echo "Driver details updated successfully.";
+    } else {
+        echo "Error updating Driver details.";
+    }
+    
+}
 
     function AddBus($conn,$data)
  {
