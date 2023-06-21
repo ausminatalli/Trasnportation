@@ -74,6 +74,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
  }else if (isset($_GET['msg']) && ($_GET['msg'] == "delete-success")) {
   $errorMessage = "Success Trip Cancel !!";
  }
+ else if (isset($_GET['msg']) && ($_GET['msg'] == "err-pay")) {
+  $errorMessage = "You Have Already Pay For This Trip !!";
+ }
 
 
 ?>

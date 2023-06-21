@@ -39,6 +39,5 @@ if ($data['mobilenumber'] !== $currentMobileNumber) {
 editprofile($conn, $data);
 header('location:editprofile.php?msg=edit_success');
 
-// Close the database connection
 $conn->close();
 ?>

@@ -28,7 +28,8 @@ $dropdown = json_decode($data, true);
 </style>
 </head>
 <body>
-  <script src="js/wow.min.js"></script>
+  <script src="js/wow.min.js">;
+  </script>
   <script>
   new WOW().init();
   </script>
