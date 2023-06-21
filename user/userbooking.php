@@ -101,6 +101,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
   body {
     background-color: var(--backColor) !important;
   }
+  p{
+    font-size:16px;
+  }
 </style>
 
 <body>
