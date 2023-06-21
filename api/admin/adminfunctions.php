@@ -74,7 +74,27 @@ function AddTrip($conn,$data)
         
         mysqli_stmt_close($stmt);
     }
-
+    function EditBus($conn, $data)
+    {
+        $Busid = $data['Busid'];
+        $Drivername = $data['Drivername'];
+        $MechanicDueDate = $data['MechanicDueDate'];
+        $InsuranceNumber = $data['InsuranceNumber'];
+        // Prepare the update query
+        $query = "UPDATE bus SET driverid = ? ,mechanicdate = ?, insurancenb = ? WHERE busid = ?";
+        $stmt = $conn->prepare($query);
+        
+        // Bind the parameters
+        $stmt->bind_param("issi", $Drivername,$MechanicDueDate, $InsuranceNumber, $Busid);
+        // Execute the query
+        if ($stmt->execute()) {
+            echo "Bus details updated successfully.";
+        } else {
+            echo "Error updating bus details.";
+        }
+        
+    }
+    
     
 
 

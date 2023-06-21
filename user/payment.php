@@ -121,7 +121,7 @@ if(isset($_POST["payment"])){
       <form  action="" method="POST" onsubmit="return paymentvalidate();" >   
       <div class="ticket">
         <h3 class="title">The price of trip selected:</h3>
-        <p class="price"><?php echo '<i class="fa-solid fa-money-check-dollar"></i>' . $_GET['p'] . ' L.L';?></p>
+        <p class="price"><?php echo '<i class="fa-solid fa-money-check-dollar"></i>' . $_GET['p'] ;?></p>
       </div>     
       <div class="inputBox">
           <span>card number</span>
@@ -225,7 +225,7 @@ if(isset($_POST["payment"])){
     document.getElementById('month').addEventListener('change', function() {
     var selectedMonth = parseInt(this.value);
 
-    if (selectedMonth < currentMonth) {
+    if (year.value==='2023' && selectedMonth < currentMonth) {
     vmonth.innerHTML = 'Error: Selected month is less than the current month.';
     } else {
       vmonth.innerHTML = '';
