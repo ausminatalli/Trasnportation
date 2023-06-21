@@ -1,7 +1,7 @@
 <?php
 
-include_once '../config.php';
-
+require_once '../config.php';
+require_once '../controller_login/user_functions.php';
 $email = $_POST['email'];
 $password = $_POST['password'];
 
@@ -49,6 +49,9 @@ if ($row && password_verify($password, $row['password'])) {
         $_SESSION["name"] = $row['firstname'];
         $_SESSION["email"] = $row['email'];
         $_SESSION["mobile"] = $row['mobilenumber'];
+
+        isOnline($conn,1,$_SESSION["id"]);
+
         header('location:../driver/driver.php?msg=success');
     }
     else if ($row['role'] == 1 && $row2['accepted'] == 0) {

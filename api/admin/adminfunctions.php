@@ -48,7 +48,25 @@ function AddTrip($conn,$data)
     
 }
 
-
+function EditDriver($conn, $data)
+{
+    $driverid = $data['driverid'];
+    $Licensedate = $data['Licensedate'];
+    
+    // Prepare the update query
+    $query = "UPDATE driver SET Licensedate = ? WHERE driverid = ?";
+    $stmt = $conn->prepare($query);
+    
+    // Bind the parameters
+    $stmt->bind_param("si", $Licensedate, $driverid);
+    // Execute the query
+    if ($stmt->execute()) {
+        echo "Driver details updated successfully.";
+    } else {
+        echo "Error updating Driver details.";
+    }
+    
+}
 
     function AddBus($conn,$data)
  {
@@ -74,7 +92,27 @@ function AddTrip($conn,$data)
         
         mysqli_stmt_close($stmt);
     }
-
+    function EditBus($conn, $data)
+    {
+        $Busid = $data['Busid'];
+        $Drivername = $data['Drivername'];
+        $MechanicDueDate = $data['MechanicDueDate'];
+        $InsuranceNumber = $data['InsuranceNumber'];
+        // Prepare the update query
+        $query = "UPDATE bus SET driverid = ? ,mechanicdate = ?, insurancenb = ? WHERE busid = ?";
+        $stmt = $conn->prepare($query);
+        
+        // Bind the parameters
+        $stmt->bind_param("issi", $Drivername,$MechanicDueDate, $InsuranceNumber, $Busid);
+        // Execute the query
+        if ($stmt->execute()) {
+            echo "Bus details updated successfully.";
+        } else {
+            echo "Error updating bus details.";
+        }
+        
+    }
+    
     
 
 

@@ -25,7 +25,7 @@ else
 if (isset($_POST["feedback"])) {
   $rating = $_POST['rating'];
   $comment = $_POST['comment'];
-  $tripid = $_POST['tripid']; // Retrieve the tripid from the form data
+  $tripid = $_POST['tripid'];
 
   $sql = "INSERT INTO feedback (userid, tripid, rating, comments) VALUES (?, ?, ?, ?)";
   $stmt = mysqli_prepare($conn, $sql);
@@ -33,7 +33,7 @@ if (isset($_POST["feedback"])) {
 
   if (mysqli_stmt_execute($stmt)) {
     header('Location: userbooking.php?msg=feedback_success');
-    exit(); // Add this line to prevent further execution of the code
+    exit(); 
   } else {
     echo "('Error: " . mysqli_stmt_error($stmt) . "')";
   }
@@ -41,7 +41,7 @@ if (isset($_POST["feedback"])) {
   mysqli_stmt_close($stmt);
 }
 if(isset($_POST["canceltrip"])){
-  $tripid = $_POST['tripid']; // Retrieve the tripid from the form data
+  $tripid = $_POST['tripid'];
 
   $sql = "DELETE FROM payments WHERE userid=? and tripid= ? ";
   $stmt = $conn->prepare($sql);
@@ -51,7 +51,11 @@ if(isset($_POST["canceltrip"])){
     $sql = "UPDATE trips SET seats = seats + 1 WHERE tripid = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $tripid);
+    $sql2 = "UPDATE users SET nboftrips = nboftrips - 1 WHERE  userid= ?";
+    $stmt2 = $conn->prepare($sql2);
+    $stmt2->bind_param("i", $id);
     $stmt->execute();
+    $stmt2->execute();
     exit(); // Add this line to prevent further execution of the code
   }
   else{
@@ -74,6 +78,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
  }else if (isset($_GET['msg']) && ($_GET['msg'] == "delete-success")) {
   $errorMessage = "Success Trip Cancel !!";
  }
+ else if (isset($_GET['msg']) && ($_GET['msg'] == "err-pay")) {
+  $errorMessage = "You Have Already Pay For This Trip !!";
+ }
 
 
 ?>
@@ -93,6 +100,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
 <style>
   body {
     background-color: var(--backColor) !important;
+  }
+  p{
+    font-size:16px;
   }
 </style>
 
@@ -151,10 +161,10 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                 echo '<td>' . $row['time'] . '</td>';
                 echo '<td>' . $row['busid'] . '</td>';
                 echo '<td>
-                  <button class="star-button me-2 btn-refund" data-tripid="' . $tripid . '">
+                  <button data-toggle="tooltip" data-placement="right" title="Cancel Trip" class="star-button me-2 btn-refund" data-tripid="' . $tripid . '">
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/>
                   </button>
-                  <button class="star-button btn-feedback" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+                  <button data-toggle="tooltip" data-placement="right" title="Feedback" class="star-button btn-feedback" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
                   </button>
                 </td>';

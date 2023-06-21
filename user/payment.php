@@ -2,12 +2,45 @@
 include('../path.php');
 include("../config.php");
 
+session_start();
+
+$id = $_SESSION['id'];
+if(isset($_SESSION['id'])&& ($_SESSION['type']==0))
+{
+    $query = "select * from users WHERE userid = $id";
+    $result = mysqli_query($conn, $query) or die("Selecting user profile failed");
+    $row = mysqli_fetch_array($result);
+    $_SESSION['username']=$row['firstname'];
+    $_SESSION['user_id']=$row['userid'];
+}
+else
+{
+  header('location:../main/login.php?msg=please_login');
+}
+
 
 if(isset($_POST["payment"])){
 
     $tripid=$_GET['t'];
     $userid=$_GET['u'];
     $paymentprice=$_GET['p'];
+
+
+    $query = "SELECT * FROM payments WHERE userid = ? and tripid=?";
+    $stmtCheckEmail = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmtCheckEmail, 'ii', $userid, $tripid);
+    mysqli_stmt_execute($stmtCheckEmail);
+    $result = mysqli_stmt_get_result($stmtCheckEmail);
+  
+    if (mysqli_num_rows($result) > 0) {
+
+    header('Location: userbooking.php?msg=err-pay');
+
+
+    }else{
+
+    
+      
 
     $sql="INSERT INTO PAYMENTS (userid, tripid, amountpaid) Values (?,?,?)";
     $stmt=mysqli_prepare($conn,$sql);
@@ -20,6 +53,10 @@ if(isset($_POST["payment"])){
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $tripid);
         $stmt->execute();
+        $sql2 = "UPDATE users SET nboftrips = nboftrips + 1 WHERE  userid= ?";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->bind_param("i", $userid);
+        $stmt2->execute();
         if ($stmt->affected_rows > 0) {
           echo "Seats decremented successfully.";
       }
@@ -30,6 +67,8 @@ if(isset($_POST["payment"])){
     }
 
     mysqli_stmt_close($stmt);
+}
+
 }
 
 
@@ -82,7 +121,7 @@ if(isset($_POST["payment"])){
       <form  action="" method="POST" onsubmit="return paymentvalidate();" >   
       <div class="ticket">
         <h3 class="title">The price of trip selected:</h3>
-        <p class="price"><?php echo '<i class="fa-solid fa-money-check-dollar"></i>' . $_GET['p'] . ' L.L';?></p>
+        <p class="price"><?php echo '<i class="fa-solid fa-money-check-dollar"></i>' . $_GET['p'] ;?></p>
       </div>     
       <div class="inputBox">
           <span>card number</span>
@@ -186,7 +225,7 @@ if(isset($_POST["payment"])){
     document.getElementById('month').addEventListener('change', function() {
     var selectedMonth = parseInt(this.value);
 
-    if (selectedMonth < currentMonth) {
+    if (year.value==='2023' && selectedMonth < currentMonth) {
     vmonth.innerHTML = 'Error: Selected month is less than the current month.';
     } else {
       vmonth.innerHTML = '';

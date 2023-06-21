@@ -16,7 +16,7 @@ if (isset($_POST['driverid'])) {
     
     $sql = "UPDATE driver SET accepted = 1 WHERE driverid = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $userId);
+    $stmt->bind_param("i", $userId);
 
 
     if ($stmt->execute()) {

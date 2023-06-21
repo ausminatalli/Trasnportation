@@ -38,6 +38,7 @@
           <th>Start Time</th>
           <th>Arrive Time</th>
           <th>Bus</th>
+          <th>Status</th>
           <th>Action</th>
           <!-- Added column for the block button -->
         </tr>
@@ -55,6 +56,7 @@
             echo "<td>".$row['starttime']."</td>";
             echo "<td>".$row['arrivetime']."</td>";
             echo '<td  ><h6>'.$row['Bus'].' ,'.$row['firstname'].' '.$row['lastname']."</h6></td>";
+            echo "<td>".$row['status']."</td>";
             echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" data-tripid="' . $row['tripid'] . '" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Trip" data-tripid="' . $row['tripid'] . '" class="icon-trash btn-delete1">
             <i class="fa-solid fa-trash"></i>

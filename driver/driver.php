@@ -1,5 +1,34 @@
 <?php
-include_once('../path.php')
+include_once('../path.php');
+include('../include/driverheader.php');
+if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
+    $query = "SELECT * FROM tripview WHERE driverid = $driverId"; 
+    $result = mysqli_query($conn, $query) or die("Selecting vacation request failed"); 
+   
+} else {
+    header('location: ../main/login.php?msg=please_login'); 
+}
+
+if (isset($_POST['changestatus'])){
+
+    $statusvalue=$_POST['statusvalue'];
+    $tripid=$_POST['tripid'];
+
+    $sql = "UPDATE trips SET status = ? where tripid=?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "si", $statusvalue, $tripid);
+  
+    if (mysqli_stmt_execute($stmt)) {
+        header('Location:driver.php?msg:status_update');
+
+      
+      exit(); 
+    } else {
+      echo "('Error: " . mysqli_stmt_error($stmt) . "')";
+    }
+    }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +43,23 @@ include_once('../path.php')
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"> 
-    <title>Document</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">  
+<title>Document</title>
 </head>
 <body>
-    <?php include('../include/driverheader.php')    ?>
+    <style>
+        .icon{
+            border:none;
+            background-color:transparent;
+            font-size: 20px;
+            transition:all 0.4s;
+        }
+        .icon:hover{
+           cursor:pointer;
+           transform:scale(1.3);
+        }
 
+    </style>
       <section class="container p-5 ">
         <h2 class="mb-5">Upcoming Trips</h2>
         <div class="row">
@@ -32,50 +72,146 @@ include_once('../path.php')
       
     </div>
        
-      <table id="trip-table" class="table mt-5 ">
+    
+    <table id="trip-table" class="table mt-5 ">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">From</th>
+                <th scope="col">FROM</th>
                 <th scope="col">Destination</th>
                 <th scope="col">Date</th>
                 <th scope="col">Time</th>
                 <th scope="col">Status</th>
-                <th scope="col">Details</th>
+                <th scope="col">Action</th>
             </tr>
 
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Beirut</td>
-                <td>Saida</td>
-                <td>Mon,May 17</td>
-                <td>8:00 am -> 9:00 Pm</td>
-                <td class="text-danger font-weight-bold">Delay</td>
-                <td><button class="btn btn-primary">Details</button></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Baalbek</td>
-                <td>Saida</td>
-                <td>Mon,May 17</td>
-                <td>8:00 am -> 9:00 Pm</td>
-                <td class="text-success font-weight-bold">Done</td>
-                <td><button class="btn btn-primary">Details</button></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Beirut</td>
-                <td>Saida</td>
-                <td>Mon,May 17</td>
-                <td>8:00 am -> 9:00 Pm</td>
-                <td class="text-warning font-weight-bold ">On The Way</td>
-                <td><button class="btn btn-primary">Details</button></td>
-            </tr>
+        <?php
+        if (mysqli_num_rows($result) >0){
+
+        
+        $i=1;
+        while ($row = mysqli_fetch_array($result)) {
+            $tripid = $row['tripid'];
+            echo '<tr>';
+            echo '<td>' . $i . '</td>';
+            echo '<td>' . $row['origin'] . '</td>';
+            echo '<td>' . $row['destination'] . '</td>';
+            echo '<td>' . $row['schedule'] . '</td>';
+            echo '<td>' . $row['starttime'].'&nbsp->&nbsp;'.$row['arrivetime']. '</td>';
+            $Statuscolor = $row['status'];
+            $colorClass = '';
+            $status = '';
+            
+            if ($Statuscolor === 'Delay') {
+                $colorClass = 'text-warning';
+                $status='Cancel';
+            } elseif ($Statuscolor === 'Cancel') {
+                $colorClass = 'text-danger';
+                $status = 'Cancel';
+            } elseif ($Statuscolor === 'Arrived') {
+                $colorClass = 'text-success';
+                $status = 'Arrived';
+            } elseif ($Statuscolor === 'On the way') {
+                $colorClass = 'text-secondary';
+                $status = 'On the way';
+            } elseif ($Statuscolor === 'In progress') {
+                $colorClass = 'text-primary';
+                $status = 'In progress';
+            } else {
+                $status = 'Unknown';
+            }
+            
+            echo '<td class="' . $colorClass . '">' . $status . '</td>';
+            
+            echo '<td>';
+            echo '<div class="action-buttons">';
+            echo '<button data-toggle="tooltip" data-placement="right" data-tripid="' . $tripid . '" title="Edit Status" class="icon icon-trash text-primary btn-edit-status"><i class="fa-solid fa-pen-to-square"></i></button>';
+            echo ' <button data-toggle="tooltip" data-placement="right" data-driverid="' . $row['tripid'] . '" title="Show Users"  class="icon icon-trash btn-delete">
+            <a href="showusers.php?tid='.$tripid.'"><i class="fa-solid fa-users"></i></a>';
+            echo '</div>';
+            echo '</td>';
+
+            echo '</tr>';
+            $i++;
+        }
+    }else {
+        echo"<h5 class='text-center mt-4'>You don't have any Trip for now !</h5>";
+            
+        }
+            ?>
         </tbody>
-      </table>
+    </table>
+
       </section>
+       <!-- Modal for updating status -->
+    <div id="status-modal" class="modal">
+        <div class="modal-content">
+            <h5 class="text-center">Update Status</h5>
+            
+            <form id="status-form" method="POST" action="driver.php">
+            <input type="hidden" name="tripid" id="status-tripid" value="<?php echo $tripid; ?>">
+            <select name="statusvalue" id="status-select" class="form-control mt-4 mb-4">
+            <option value="Delay">Delay</option>
+            <option value="Cancel">Cancel</option>
+            <option value="Arrived">Arrived</option>
+            <option value="On the way">On the way</option>
+            <option value="In progress">In progress</option>
+        </select>
+    <button class="btn btn-primary close" name="changestatus" type="submit">Update</button>
+    <span id="close" class="btn btn-danger close">cancel</span>
+</form>
+
+        </div>
+    </div>
+
+    <!-- ...existing HTML content... -->
+
+    <!-- JavaScript to handle modal functionality -->
+    <script>
+
+  // Get the modal element
+var modal = document.getElementById("status-modal");
+
+// Get the buttons that open the modal
+var editButtons = document.querySelectorAll(".btn-edit-status");
+
+// Get the <span> element that closes the modal
+var closeBtn = document.getElementById("close");
+
+// Get the input field for tripid in the modal
+var tripIdInput = document.getElementById("status-tripid");
+
+// When the user clicks the button, open the modal and set the trip ID
+editButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+        var tripId = button.getAttribute("data-tripid");
+        tripIdInput.value = tripId;
+        modal.style.display = "block";
+    });
+});
+
+// When the user clicks on <span> (x), close the modal
+closeBtn.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+
+
+// When the user clicks the button, open the modal and set the trip ID
+
+ 
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
            <!-- Footer -->
@@ -83,8 +219,8 @@ include_once('../path.php')
   <!-- Footer -->
 
   
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-  <script src="js/driver.js"></script>
+
+
+
 </body>
 </html>

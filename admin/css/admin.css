@@ -78,7 +78,7 @@ input[type=number] {
     color: black;
    }
 
-   .icon-trash .fa-ban:hover{
+   .icon-trash .fa-lock:hover{
     color: red;
     transform: scale(1.5);
     transition: all 0.3s;

@@ -18,8 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if (mysqli_stmt_execute($stmtvacation)) {
       echo "vacation request added successfully.";
+      header('Location:driverManage.php?msg=request-send');
       } else {
        echo "Error: " . mysqli_stmt_error($stmtvacation);
+      header('Location:driverManage.php?msg=request-faild');
+
       }
 
       mysqli_stmt_close($stmtvacation);

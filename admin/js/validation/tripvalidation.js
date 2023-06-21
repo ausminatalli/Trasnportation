@@ -15,6 +15,9 @@ function validateTrip() {
   let vArriveTime = document.getElementById('vArriveTime');
   let vTicketprice = document.getElementById('vTicketprice');
   let vDetails = document.getElementById('vDetails');
+  var selectedDate = new Date(date.value);
+  var currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
   vStartLocation.innerHTML = '';
   vDestinationLocation.innerHTML = '';
   vDate.innerHTML = '';
@@ -25,8 +28,13 @@ function validateTrip() {
   vDetails.innerHTML = '';
   let isValid = true;
 
+  if (selectedDate < currentDate) {
+    vDate.textContent = 'Error:Selected date is less than the current date.';
+  } else {
+    vDate.textContent = '';
+  }
   if (startLocation.value === 'Start Location') {
-    vStartLocation.innerHTML = 'Please select the origin location.*';
+    vStartLocation.innerHTML = 'Please select the origin .*';
     isValid = false;
   }
 
@@ -55,6 +63,10 @@ function validateTrip() {
 
   if (arrivetime.value === '') {
     vArriveTime.innerHTML = 'Please select the Arrive Time.*';
+    isValid = false;
+  }
+  if(arrivetime.value < time.value){
+    vArriveTime.innerHTML = 'the arrive time should be greater than the start time*';
     isValid = false;
   }
   if (ticketprice.value === '') {
