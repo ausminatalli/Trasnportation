@@ -90,7 +90,7 @@ foreach ($searchResults as $item) {
         </div>
         <div class="rightsection">
             <h5><?php echo $item['ticketprice'].' L.L'; ?></h5>
-            <a href="#">
+            <a href="login.php">
                 Select
             </a>
             <i class="fa-duotone fa-arrow-right fa-2xs"></i>

@@ -95,10 +95,15 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "Mobilefailed")) {
      
       <script src="js/editprofile.js"></script>
       <script>
-      err=document.getElementById("err");
-      setTimeout(function() {
-        document.getElementById("err").style.display = "none";
-      }, 4000);
+   window.addEventListener('DOMContentLoaded', (event) => {
+    var err = document.getElementById("err");
+    if (err !== null) {
+        setTimeout(function() {
+            err.style.display = "none";
+        }, 4000);
+    }
+});
+
     </script>
 </body>
 </html>

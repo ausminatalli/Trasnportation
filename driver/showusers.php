@@ -83,7 +83,8 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
             $i++;
         }
     }else {
-        echo"<h5 class='text-center mt-4'>No users booked yet</h5>";
+      
+        echo"  <div class='text-center' style='height:30px'><h5 class='text-center mt-4'>No users booked yet</h5></div>";
     }
         ?>
         </tbody>
