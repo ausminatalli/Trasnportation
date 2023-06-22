@@ -20,7 +20,7 @@ try {
       
     ];
     EditDriver($conn, $data);
-    //header('location:../../../admin');
+    header('location:../../../admin');
     $conn->close();
   }
 } catch (Exception $e) {

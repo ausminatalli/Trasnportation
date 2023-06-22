@@ -2,6 +2,7 @@ $(document).ready(function() {
   // Event binding for .btn-editbus
   $(document).on('click', '.btn-editbus', function() {
     const $row = $(this).closest('tr');
+
     const busId = $(this).data('busid');
     const driverId = $row.find('td:eq(1)').data('driverid');
     const driverName = $row.find('td:eq(1)').text().trim();
@@ -11,13 +12,13 @@ $(document).ready(function() {
     $('#editModalbus').find('#Drivername').val(driverId);
     $('#editModalbus').find('#Mechanicdue').val(mechanicDueDate);
     $('#editModalbus').find('#Insurance').val(insuranceNumber);
-    $('#editModalbus').find('.editbus').data('busid', busId);
+    $('#editModalbus').find('.savebus').data('busid', busId);
 
     $('#editModalbus').modal('show');
   });
 
   // Event binding for .editbus
-  $('#editModalbus').off('click', '.editbus').on('click', '.editbus', function(e) {
+  $(document).on('click', '#editModalbus .savebus', function(e) {
     e.preventDefault();
 
     const busId = $(this).data('busid');
@@ -33,13 +34,14 @@ $(document).ready(function() {
         busId: busId,
         driverName: driverName,
         mechanicDueDate: mechanicDueDate,
-        insuranceNumber: insuranceNumber,
+        insuranceNumber: insuranceNumber
       },
       success: function(response) {
         const $tableRow = $('tr[data-busid="' + busId + '"]');
         $tableRow.find('td:eq(1)').text(driverName);
         $tableRow.find('td:eq(4)').text(mechanicDueDate);
         $tableRow.find('td:eq(5)').text(insuranceNumber);
+        
       },
       error: function(xhr, status, error) {
         console.log('error =>', error);
@@ -51,35 +53,43 @@ $(document).ready(function() {
   // Reset form on modal hide
   $('#editModalbus').on('hidden.bs.modal', function() {
     $('#editForm')[0].reset();
+    $('#editModalbus').find('.savebus').off('click');
   });
 
   // Event binding for .btn-delete2
   $(document).on('click', '.btn-delete2', function() {
     const busid = $(this).data('busid');
+    
     const deleteButton = $(this);
-
+  
     $('#deleteConfirmationModal').modal('show');
-
-    $('#confirmDeleteBtn').on('click', function() {
-      $.ajax({
-        url: '../api/admin/deleteform/deleteBus.php',
-        method: 'POST',
-        data: { busid: busid },
-        success: function(response) {
-          console.log(response);
-          if (response === 'Bus Cannot be deleted') {
-            //window.location.href = "http://localhost/transportation/admin?msg=busfailed";
-          } else {
-            deleteButton.closest('tr').remove();
-          }
-
-          $('#deleteConfirmationModal').modal('hide');
-        },
-        error: function(xhr, status, error) {
-          console.log(error);
+  
+    $('#confirmDeleteBtn').data('busid', busid);
+    $('#confirmDeleteBtn').data('deleteButton', deleteButton);
+    
+  });
+  
+  $('#confirmDeleteBtn').on('click', function() {
+    const busid = $(this).data('busid');
+    const deleteButton = $(this).data('deleteButton');
+  
+    $.ajax({
+      url: '../api/admin/deleteform/deleteBus.php',
+      method: 'POST',
+      data: { busid: busid },
+      success: function(response) {
+        if (response === 'Bus Cannot be deleted') {
+          //window.location.href = "http://localhost/transportation/admin?msg=busfailed";
+          alert(response);
+        } else if(response === 'Bus deleted successfully.'){
+          deleteButton.closest('tr').remove();
         }
-      });
+  
+        $('#deleteConfirmationModal').modal('hide');
+      },
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
     });
   });
-
 });

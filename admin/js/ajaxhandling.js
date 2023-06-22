@@ -10,7 +10,9 @@ const stats = document.getElementById("stats");
 const payments = document.getElementById("payments");
 const addadmin = document.getElementById("addadmin");
 const viewadmin = document.getElementById("viewadmin");
-
+const addstation = document.getElementById("addstation");
+const viewstation = document.getElementById("viewstation");
+const offrequest = document.getElementById("offrequest");
 
 function initializeDataTable() {
   const myTable = document.getElementById("myTable");
@@ -88,8 +90,14 @@ function loadContent(url) {
       case "stats.php":
         loadScript("js/modal/stats.js");
         break;
-      case "addadmin.php":
-        loadScript("js/validation/adminvalidation.js");
+      case "addstation.php":
+        loadScript("js/validation/stationvalidation.js");
+        break;
+      case "viewstation.php":
+        loadScript("js/modal/viewstation.js");
+        break;  
+      case "offrequest.php":
+        loadScript("js/modal/offrequest.js");
         break;
     }
   };
@@ -152,117 +160,17 @@ viewadmin.addEventListener("click", function () {
   
 });
 
-
-
-
-
-
-function DriverDelete() {
-  let modal = $(".modal-container");
-  let  btn = $(".btn-delete");
- 
-  let closeBtn = $(".btn");
+addstation.addEventListener("click", function () {
+  loadContent("addstation.php");
   
-  // EventListener
-  btn.on("click", function() {
-    modal.addClass("show");
-  });
-  
-  closeBtn.each(function() {
-    $(this).on("click", function() {
-      modal.removeClass("show");
-    });
-  });
-  
-  $(window).on("click", function(event) {
-    if (event.target == modal[0]) {
-      modal.removeClass("show");
-    }
-  });
-  
-}
+});
 
-
-
-
-
-function DashboardBlock()
-{
-  let modal = $(".modal-container");
-  let  btn = $(".blockuser");
- 
-  let closeBtn = $(".btn");
+viewstation.addEventListener("click", function () {
+  loadContent("viewstation.php");
   
-  // EventListener
-  btn.on("click", function() {
-    modal.addClass("show");
-  });
-  
-  closeBtn.each(function() {
-    $(this).on("click", function() {
-      modal.removeClass("show");
-    });
-  });
-  
-  $(window).on("click", function(event) {
-    if (event.target == modal[0]) {
-      modal.removeClass("show");
-    }
-  });
+});
 
-}
-
-
-function BusDelete() {
-  let modal = $(".modal-container");
-  let  btn = $(".btn-delete2");
- 
-  let closeBtn = $(".btn");
+offrequest.addEventListener("click", function () {
+  loadContent("offrequest.php");
   
-  // EventListener
-  btn.on("click", function() {
-    modal.addClass("show");
-  });
-  
-  closeBtn.each(function() {
-    $(this).on("click", function() {
-      modal.removeClass("show");
-    });
-  });
-  
-  $(window).on("click", function(event) {
-    if (event.target == modal[0]) {
-      modal.removeClass("show");
-    }
-  });
-
-
-}
-
-
-
-function AdminDelete() {
-  let modal = $(".modal-container");
-  let  btn = $(".btn-delete3");
- 
-  let closeBtn = $(".btn");
-  
-  
-  // EventListener
-  btn.on("click", function() {
-    modal.addClass("show");
-  });
-  
-  closeBtn.each(function() {
-    $(this).on("click", function() {
-      modal.removeClass("show");
-    });
-  });
-  
-  $(window).on("click", function(event) {
-    if (event.target == modal[0]) {
-      modal.removeClass("show");
-    }
-  });
-  
-}
+});

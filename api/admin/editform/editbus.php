@@ -20,7 +20,7 @@ try {
       'InsuranceNumber' => mysqli_real_escape_string($conn, $InsuranceNumber),
     ];
     EditBus($conn, $data);
-   // header('location:../../../admin?msg=Busedited');
+    header('location:../../../admin?msg=Busedited');
     $conn->close();
   }
 } catch (Exception $e) {

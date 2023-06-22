@@ -1,20 +1,20 @@
 $(document).ready(function() {
- 
   $(document).on('click', '.btn-editdriver', function() {
-    const Licensedate = $(this).closest('tr').find('td:eq(6)').text();
+    const licensedate = $(this).closest('tr').find('td:eq(6)').text();
     const driverid = $(this).data('driverid');
-    $('#editModaldriver').find('#Licensedate').val(Licensedate);
-    $('#editModaldriver').find('.savedriver').attr('data-driverid', driverid);
+
+    $('#editModaldriver').find('#Licensedate').val(licensedate);
+    $('#editModaldriver').find('.savedriver').data('driverid', driverid);
+
     $('#editModaldriver').modal('show');
   });
 
-  
-  $('#editModaldriver').on('click', '.savedriver', function(e) {
+  $(document).on('click', '#editModaldriver .savedriver', function(e) {
     e.preventDefault();
-    
+
     const driverid = $(this).data('driverid');
-    const Licensedate = $('#editModaldriver #Licensedate').val();
-  
+    const licensedate = $('#editModaldriver #Licensedate').val();
+
     $('#editModaldriver').modal('hide');
 
     $.ajax({
@@ -22,50 +22,59 @@ $(document).ready(function() {
       method: 'POST',
       data: {
         driverid: driverid,
-        Licensedate: Licensedate,
+        licensedate: licensedate
       },
       success: function(response) {
         const $tableRow = $('tr[data-driverid="' + driverid + '"]');
-        $tableRow.find('td:eq(6)').text(Licensedate);
+        $tableRow.find('td:eq(6)').text(licensedate);
       },
       error: function(xhr, status, error) {
-        console.log('error =>', error);
-        // Handle error
+        console.log('error=>', error);
       }
     });
   });
 
   $('#editModaldriver').on('hidden.bs.modal', function() {
-    $('#editForm')[0].reset();
+    $('#editModaldriver').find('form')[0].reset();
+    $('#editModaldriver').find('.savedriver').off('click');
   });
 
   
   $(document).on('click', '.btn-delete', function() {
     const driverid = $(this).data('driverid');
     const deleteButton = $(this);
-
+  
     $('#deleteConfirmationModal').modal('show');
-
-    $('#confirmDeleteBtn').on('click', function() {
-      $.ajax({
-        url: '../api/admin/deleteform/deletedriver.php',
-        method: 'POST',
-        data: { driverid: driverid },
-        success: function(response) {
-          console.log(response);
-          if (response === 'Driver Cannot be deleted') {
-            //window.location.href = "http://localhost/transportation/admin?msg=driverfailed";
-          } else {
-            deleteButton.closest('tr').remove();
-          }
-
-          $('#deleteConfirmationModal').modal('hide');
-        },
-        error: function(xhr, status, error) {
-          console.log(error);
+    $('#confirmDeleteBtn').data('driverid', driverid);
+    $('#confirmDeleteBtn').data('deleteButton', deleteButton);
+    console.log(deleteButton)
+  });
+  
+  $('#confirmDeleteBtn').on('click', function() {
+    const driverid = $(this).data('driverid');
+    const deleteButton = $(this).data('deleteButton');
+   console.log(driverid)
+   console.log(deleteButton)
+    $.ajax({
+      url: '../api/admin/deleteform/deletedriver.php',
+      method: 'POST',
+      data: { driverid: driverid },
+      success: function(response) {
+        
+        if (response === 'Driver Cannot be deleted') {
+          //window.location.href = "http://localhost/transportation/admin?msg=driverfailed";
+          alert(response);
+        } else if(response === 'Driver deleted successfully.'){
+          deleteButton.closest('tr').remove();
         }
-      });
+  
+        $('#deleteConfirmationModal').modal('hide');
+      },
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
     });
+    
   });
 });
 
