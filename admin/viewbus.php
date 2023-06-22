@@ -49,7 +49,7 @@ $dropdown = json_decode($data, true);
           $data = json_decode($jsonData, true);
 
           foreach ($data as $row) {
-            echo "<tr>";
+            echo '<tr data-busid="' . $row['busid'] . '">';
             echo "<td>".$row['busid']."</td>";
             echo '<td data-driverid="' . $row['driverid'] . '">'.$row['firstname'].' '.$row['lastname']."</td>";
             echo "<td>".$row['capacity']."</td>";
@@ -57,9 +57,10 @@ $dropdown = json_decode($data, true);
             echo "<td>".$row['mechanicdate']."</td>";
             echo "<td>".$row['insurancenb']."</td>";
             echo "<td>".$row['mechanicdue']."</td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" data-busid="' . $row['busid'] . '" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" data-busid="' . $row['busid'] . '" class="icon-trash btn-editbus"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Bus" data-busid="' . $row['busid'] . '" class="icon-trash btn-delete2">
             <i class="fa-solid fa-trash"></i>
+            </button>
             </td>';
             echo "</tr>";
           }
@@ -86,7 +87,7 @@ $dropdown = json_decode($data, true);
   </div>
 </div>
 
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editModalbus" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form id="editForm">
@@ -120,7 +121,7 @@ $dropdown = json_decode($data, true);
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-busid="">Save Changes</button>
+          <button type="submit" class="btn btn-primary editbus" data-busid="">Save Changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </form>

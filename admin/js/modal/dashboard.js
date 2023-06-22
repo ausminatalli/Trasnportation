@@ -13,8 +13,8 @@ $(document).ready(function() {
 
     confirmationModal.modal("show");
 
-    $("#confirmunblockBtn").on("click", function() {
-      // Make an AJAX request to block the user
+    $("#confirmunblockBtn").off("click").on("click", function() {
+      // Make an AJAX request to unblock the user
       $.ajax({
         url: "../api/admin/deleteform/unblockuser.php",
         method: "POST",
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
     confirmationModal.modal("show");
 
-    $("#confirmDeleteBtn").on("click", function() {
+    $("#confirmDeleteBtn").off("click").on("click", function() {
       // Make an AJAX request to block the user
       $.ajax({
         url: "../api/admin/deleteform/blockuser.php",

@@ -1,34 +1,31 @@
 $(document).ready(function() {
-  $(document).on('click', '.btn-edit', function() {
-    var tripId = $(this).data('tripid');
-    var date = $(this).closest('tr').find('td:eq(3)').text();
-    var startTime = $(this).closest('tr').find('td:eq(4)').text();
-    var arriveTime = $(this).closest('tr').find('td:eq(5)').text();
-    var driver = $(this).closest('tr').find('td:eq(6) h6').text();
+  $(document).on('click', '.btn-edittrip', function() {
+    const tripId = $(this).data('tripid');
+    const date = $(this).closest('tr').find('td:eq(3)').text();
+    const startTime = $(this).closest('tr').find('td:eq(4)').text();
+    const arriveTime = $(this).closest('tr').find('td:eq(5)').text();
+    const driver = $(this).closest('tr').find('td:eq(6) h6').text();
 
-    $('#editModal').find('#date').val(date);
-    $('#editModal').find('#startTime').val(startTime);
-    $('#editModal').find('#arriveTime').val(arriveTime);
-    $('#editModal').find('#driver').val(driver);
-    $('#editModal').find('.btn-primary').attr('data-tripid', tripId);
+    $('#editModaltrip').find('#date').val(date);
+    $('#editModaltrip').find('#startTime').val(startTime);
+    $('#editModaltrip').find('#arriveTime').val(arriveTime);
+    $('#editModaltrip').find('#driver').val(driver);
+    
+    
+    $('#editModaltrip').find('.savetrip').data('tripid', tripId);
 
-    $('#editModal').modal('show');
+    $('#editModaltrip').modal('show');
   });
 
-  $('#editModal').on('hidden.bs.modal', function() {
-    // Clear the form fields when the modal is closed
-    $('#editModal').find('form')[0].reset();
-  });
-
-  $(document).on('click', '.btn-primary', function(e) {
+  $(document).on('click', '#editModaltrip .savetrip', function(e) {
     e.preventDefault();
 
-    var tripId = $(this).data('tripid');
-    var date = $('#editModal #date').val();
-    var startTime = $('#editModal #startTime').val();
-    var arriveTime = $('#editModal #arriveTime').val();
-    $('#editModal').modal('hide');
-    // Perform AJAX request to save changes
+    const tripId = $(this).data('tripid');
+    const date = $('#editModaltrip #date').val();
+    const startTime = $('#editModaltrip #startTime').val();
+    const arriveTime = $('#editModaltrip #arriveTime').val();
+    $('#editModaltrip').modal('hide');
+    
     $.ajax({
       url: '../api/admin/editform/edittrip.php',
       method: 'POST',
@@ -39,19 +36,27 @@ $(document).ready(function() {
         arriveTime: arriveTime,
       },
       success: function(response) {
-        // $('#editModal').modal('hide');
-        location.reload();
+        const $tableRow = $('tr[data-tripid="' + tripId + '"]');
+        
+        $tableRow.find('td:eq(3)').text(date);
+        $tableRow.find('td:eq(4)').text(startTime);
+        $tableRow.find('td:eq(5)').text(arriveTime);
       },
       error: function(xhr, status, error) {
         console.log('error=>', error);
-        // ...
       }
     });
   });
 
+  $('#editModal').on('hidden.bs.modal', function() {
+    
+    $('#editModal').find('form')[0].reset();
+    $('#editModal').find('.savetrip').off('click');
+  });
+
   $(document).on('click', '.btn-delete1', function() {
-    var tripId = $(this).data('tripid');
-    var deleteButton = $(this);
+    const tripId = $(this).data('tripid');
+    const deleteButton = $(this);
     $('#deleteConfirmationModal').modal('show');
 
     $('#confirmDeleteBtn').off().on('click', function() {
@@ -60,7 +65,7 @@ $(document).ready(function() {
         method: 'POST',
         data: { tripid: tripId },
         success: function(response) {
-          console.log(response);
+     
           if (response === 'Trip Cannot be deleted') {
             window.location.href = 'http://localhost/transportation/admin?msg=tripfailed';
           } else {
@@ -75,5 +80,3 @@ $(document).ready(function() {
     });
   });
 });
-
-

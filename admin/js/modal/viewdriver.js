@@ -1,88 +1,71 @@
-function EditDriverModal() {
-  $(document).ready(function() {
-    $(document).on('click', '.btn-edit', function() {
-      const Licensedate = $(this).closest('tr').find('td:eq(6)').text();
-      const  driverid = $(this).data('driverid');
-      $('#editModal').find('#Licensedate').val(Licensedate);
-      $('#editModal').find('.btn-primary').attr('data-driverid', driverid);
-      $('#editModal').modal('show');
-    });
+$(document).ready(function() {
+ 
+  $(document).on('click', '.btn-editdriver', function() {
+    const Licensedate = $(this).closest('tr').find('td:eq(6)').text();
+    const driverid = $(this).data('driverid');
+    $('#editModaldriver').find('#Licensedate').val(Licensedate);
+    $('#editModaldriver').find('.savedriver').attr('data-driverid', driverid);
+    $('#editModaldriver').modal('show');
+  });
 
-    $('#editModal').on('hidden.bs.modal', function() {
-      // Clear the form fields when the modal is closed
-      $('#editForm')[0].reset();
-    });
-
-    $('#editModal').on('click', '.btn-primary', function(e) {
-      
-      e.preventDefault();
-      
-      
-      const  driverid = $(this).data('driverid');
-      const Licensedate = $('#editModal #Licensedate').val();
+  
+  $('#editModaldriver').on('click', '.savedriver', function(e) {
+    e.preventDefault();
     
-      $('#editModal').modal('hide');
+    const driverid = $(this).data('driverid');
+    const Licensedate = $('#editModaldriver #Licensedate').val();
+  
+    $('#editModaldriver').modal('hide');
 
-      // Perform AJAX request to save changes
-      $.ajax({
-        url: '../api/admin/editform/editdriver.php',
-        method: 'POST',
-        data: {
-          driverid: driverid,
-          Licensedate: Licensedate,
-        },
-        success: function(response) {
-          $('#editModal').modal('hide');
-          location.reload();
-        },
-        error: function(xhr, status, error) {
-          console.log("error =>", error);
-          // Handle error
-        }
-      });
+    $.ajax({
+      url: '../api/admin/editform/editdriver.php',
+      method: 'POST',
+      data: {
+        driverid: driverid,
+        Licensedate: Licensedate,
+      },
+      success: function(response) {
+        const $tableRow = $('tr[data-driverid="' + driverid + '"]');
+        $tableRow.find('td:eq(6)').text(Licensedate);
+      },
+      error: function(xhr, status, error) {
+        console.log('error =>', error);
+        // Handle error
+      }
     });
   });
-}
 
+  $('#editModaldriver').on('hidden.bs.modal', function() {
+    $('#editForm')[0].reset();
+  });
 
+  
+  $(document).on('click', '.btn-delete', function() {
+    const driverid = $(this).data('driverid');
+    const deleteButton = $(this);
 
-EditDriverModal();
+    $('#deleteConfirmationModal').modal('show');
 
-
-
-
-$(document).ready(function() {
-   
-  $(document).on("click", ".btn-delete", function() {
-    var driverid = $(this).data("driverid");
-
-    
-    var deleteButton = $(this);
-
-    
-    $("#deleteConfirmationModal").modal("show");
-
-    $("#confirmDeleteBtn").on("click", function() {
+    $('#confirmDeleteBtn').on('click', function() {
       $.ajax({
-        url: "../api/admin/deleteform/deletedriver.php",
-        method: "POST",
+        url: '../api/admin/deleteform/deletedriver.php',
+        method: 'POST',
         data: { driverid: driverid },
         success: function(response) {
           console.log(response);
-          if (response === "Driver Cannot be deleted") {
+          if (response === 'Driver Cannot be deleted') {
             //window.location.href = "http://localhost/transportation/admin?msg=driverfailed";
           } else {
-            
             deleteButton.closest('tr').remove();
           }
 
-          $("#deleteConfirmationModal").modal("hide");
+          $('#deleteConfirmationModal').modal('hide');
         },
         error: function(xhr, status, error) {
-
           console.log(error);
         }
       });
     });
   });
 });
+
