@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../../config.php');
+
 require('../adminfunctions.php');
 
 try {
@@ -25,4 +26,7 @@ try {
     // Handle the exception here
     echo 'Driver Cannot be deleted';
 }
+
+
+
 ?>
