@@ -142,6 +142,16 @@
             <ul class="dropdown-menu bg-secondary">
               <li id="adddriver"><a href="#">Add Driver</a></li>
               <li id="viewdriver"><a href="#">View Driver</a></li>
+              <li id="offrequest"><a href="#">View Vacations</a></li>
+            </ul>
+          </li>
+          <li id="station" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              ><span class="fa-solid fa-charging-station fa-beat mr-3"></span> Stations</a
+            >
+            <ul class="dropdown-menu bg-secondary">
+              <li id="addstation"><a href="#">Add Station</a></li>
+              <li id="viewstation"><a href="#">View Station</a></li>
             </ul>
           </li>
           <li id="bus" class="dropdown">

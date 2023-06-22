@@ -10,7 +10,9 @@ const stats = document.getElementById("stats");
 const payments = document.getElementById("payments");
 const addadmin = document.getElementById("addadmin");
 const viewadmin = document.getElementById("viewadmin");
-
+const addstation = document.getElementById("addstation");
+const viewstation = document.getElementById("viewstation");
+const offrequest = document.getElementById("offrequest");
 
 function initializeDataTable() {
   const myTable = document.getElementById("myTable");
@@ -88,8 +90,14 @@ function loadContent(url) {
       case "stats.php":
         loadScript("js/modal/stats.js");
         break;
-      case "addadmin.php":
-        loadScript("js/validation/adminvalidation.js");
+      case "addstation.php":
+        loadScript("js/validation/stationvalidation.js");
+        break;
+      case "viewstation.php":
+        loadScript("js/modal/viewstation.js");
+        break;  
+      case "offrequest.php":
+        loadScript("js/modal/offrequest.js");
         break;
     }
   };
@@ -149,5 +157,20 @@ addadmin.addEventListener("click", function () {
 
 viewadmin.addEventListener("click", function () {
   loadContent("viewadmin.php");
+  
+});
+
+addstation.addEventListener("click", function () {
+  loadContent("addstation.php");
+  
+});
+
+viewstation.addEventListener("click", function () {
+  loadContent("viewstation.php");
+  
+});
+
+offrequest.addEventListener("click", function () {
+  loadContent("offrequest.php");
   
 });
