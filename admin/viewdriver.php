@@ -93,7 +93,7 @@
     </div>
 
     <!-- Modal -->
-    <div id="deleteConfirmationModal" class="modal fade" role="dialog">
+    <div id="deleteConfirmationdrModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -105,7 +105,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteDriver">Delete</button>
       </div>
     </div>
   </div>

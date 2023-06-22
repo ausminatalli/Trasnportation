@@ -62,14 +62,15 @@ $(document).ready(function() {
     
     const deleteButton = $(this);
   
-    $('#deleteConfirmationModal').modal('show');
+    $('#deleteConfirmationbusModal').modal('show');
   
-    $('#confirmDeleteBtn').data('busid', busid);
-    $('#confirmDeleteBtn').data('deleteButton', deleteButton);
+    $('#confirmDeleteBus').data('busid', busid);
+    $('#confirmDeleteBus').data('deleteButton', deleteButton);
     
   });
   
-  $('#confirmDeleteBtn').on('click', function() {
+  
+    $(document).on('click', '#confirmDeleteBus', function() {
     const busid = $(this).data('busid');
     const deleteButton = $(this).data('deleteButton');
   
@@ -85,7 +86,7 @@ $(document).ready(function() {
           deleteButton.closest('tr').remove();
         }
   
-        $('#deleteConfirmationModal').modal('hide');
+        $('#deleteConfirmationbusModal').modal('hide');
       },
       error: function(xhr, status, error) {
         console.log(error);
