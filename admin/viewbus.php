@@ -69,7 +69,7 @@ $dropdown = json_decode($data, true);
       </tbody>
     </table>
 <!-- Modal -->
-    <div id="deleteConfirmationModal" class="modal fade" role="dialog">
+    <div id="deleteConfirmationbusModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -81,7 +81,7 @@ $dropdown = json_decode($data, true);
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBus">Delete</button>
       </div>
     </div>
   </div>

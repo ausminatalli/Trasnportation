@@ -44,13 +44,14 @@ $(document).ready(function() {
     const driverid = $(this).data('driverid');
     const deleteButton = $(this);
   
-    $('#deleteConfirmationModal').modal('show');
-    $('#confirmDeleteBtn').data('driverid', driverid);
-    $('#confirmDeleteBtn').data('deleteButton', deleteButton);
+    $('#deleteConfirmationdrModal').modal('show');
+    $('#confirmDeleteDriver').data('driverid', driverid);
+    $('#confirmDeleteDriver').data('deleteButton', deleteButton);
     console.log(deleteButton)
   });
   
-  $('#confirmDeleteBtn').on('click', function() {
+  
+    $(document).on('click', '#confirmDeleteDriver', function() {
     const driverid = $(this).data('driverid');
     const deleteButton = $(this).data('deleteButton');
    console.log(driverid)
@@ -61,14 +62,14 @@ $(document).ready(function() {
       data: { driverid: driverid },
       success: function(response) {
         
-        if (response === 'Driver Cannot be deleted') {
+        if (response === 'Driver cannot be deleted.') {
           //window.location.href = "http://localhost/transportation/admin?msg=driverfailed";
           alert(response);
         } else if(response === 'Driver deleted successfully.'){
           deleteButton.closest('tr').remove();
         }
   
-        $('#deleteConfirmationModal').modal('hide');
+        $('#deleteConfirmationdrModal').modal('hide');
       },
       error: function(xhr, status, error) {
         console.log(error);
