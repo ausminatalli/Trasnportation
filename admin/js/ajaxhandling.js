@@ -23,6 +23,7 @@ function initializeDataTable() {
 
 const loadedScripts = new Set(); // Track loaded scripts
 
+
 function loadScript(url) {
   if (loadedScripts.has(url)) {
     return;
@@ -37,11 +38,13 @@ function loadScript(url) {
 
 window.onload = function () {
   const lastVisitedUrl = localStorage.getItem("lastVisitedUrl");
+  
   if (lastVisitedUrl) {
     loadContent(lastVisitedUrl);
   } else {
     loadContent("dashboard.php");
   }
+  
 };
 
 function loadContent(url) {
@@ -88,7 +91,8 @@ function loadContent(url) {
         loadScript("js/validation/drivervalidation.js");
         break;
       case "stats.php":
-        loadScript("js/modal/stats.js");
+        loadStatsScript();
+        //loadScript("https://www.gstatic.com/charts/loader.js");
         break;
       case "addstation.php":
         loadScript("js/validation/stationvalidation.js");
@@ -100,10 +104,32 @@ function loadContent(url) {
         loadScript("js/modal/offrequest.js");
         break;
     }
+   
   };
 
   xhr.open("GET", url, true);
   xhr.send();
+}
+
+function loadStatsScript() {
+  const statsScript = document.createElement("script");
+  statsScript.type = "text/javascript";
+  statsScript.src = "js/modal/stats.js";
+
+  // Check if the script is already loaded
+  if (!isScriptLoaded(statsScript.src)) {
+    document.head.appendChild(statsScript);
+  }
+}
+
+function isScriptLoaded(url) {
+  const scripts = document.getElementsByTagName("script");
+  for (let i = 0; i < scripts.length; i++) {
+    if (scripts[i].src === url) {
+      return true;
+    }
+  }
+  return false;
 }
 
 
@@ -144,6 +170,8 @@ applications.addEventListener("click", function () {
 
 stats.addEventListener("click", function () {
   loadContent("stats.php");
+  loadScript("js/modal/stats.js");
+  
 });
 
 payments.addEventListener("click", function () {
