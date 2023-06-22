@@ -121,7 +121,7 @@ $dropdown = json_decode($data, true);
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary editbus" data-busid="">Save Changes</button>
+          <button type="submit" class="btn btn-primary savebus">Save Changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </form>

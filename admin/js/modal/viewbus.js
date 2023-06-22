@@ -2,6 +2,7 @@ $(document).ready(function() {
   // Event binding for .btn-editbus
   $(document).on('click', '.btn-editbus', function() {
     const $row = $(this).closest('tr');
+
     const busId = $(this).data('busid');
     const driverId = $row.find('td:eq(1)').data('driverid');
     const driverName = $row.find('td:eq(1)').text().trim();
@@ -11,13 +12,13 @@ $(document).ready(function() {
     $('#editModalbus').find('#Drivername').val(driverId);
     $('#editModalbus').find('#Mechanicdue').val(mechanicDueDate);
     $('#editModalbus').find('#Insurance').val(insuranceNumber);
-    $('#editModalbus').find('.editbus').data('busid', busId);
+    $('#editModalbus').find('.savebus').data('busid', busId);
 
     $('#editModalbus').modal('show');
   });
 
   // Event binding for .editbus
-  $('#editModalbus').off('click', '.editbus').on('click', '.editbus', function(e) {
+  $(document).on('click', '#editModalbus .savebus', function(e) {
     e.preventDefault();
 
     const busId = $(this).data('busid');
@@ -33,7 +34,7 @@ $(document).ready(function() {
         busId: busId,
         driverName: driverName,
         mechanicDueDate: mechanicDueDate,
-        insuranceNumber: insuranceNumber,
+        insuranceNumber: insuranceNumber
       },
       success: function(response) {
         const $tableRow = $('tr[data-busid="' + busId + '"]');
@@ -51,6 +52,7 @@ $(document).ready(function() {
   // Reset form on modal hide
   $('#editModalbus').on('hidden.bs.modal', function() {
     $('#editForm')[0].reset();
+    $('#editModalbus').find('.savebus').off('click');
   });
 
   // Event binding for .btn-delete2
@@ -81,5 +83,4 @@ $(document).ready(function() {
       });
     });
   });
-
 });

@@ -1,20 +1,20 @@
 $(document).ready(function() {
- 
   $(document).on('click', '.btn-editdriver', function() {
-    const Licensedate = $(this).closest('tr').find('td:eq(6)').text();
+    const licensedate = $(this).closest('tr').find('td:eq(6)').text();
     const driverid = $(this).data('driverid');
-    $('#editModaldriver').find('#Licensedate').val(Licensedate);
-    $('#editModaldriver').find('.savedriver').attr('data-driverid', driverid);
+
+    $('#editModaldriver').find('#Licensedate').val(licensedate);
+    $('#editModaldriver').find('.savedriver').data('driverid', driverid);
+
     $('#editModaldriver').modal('show');
   });
 
-  
-  $('#editModaldriver').on('click', '.savedriver', function(e) {
+  $(document).on('click', '#editModaldriver .savedriver', function(e) {
     e.preventDefault();
-    
+
     const driverid = $(this).data('driverid');
-    const Licensedate = $('#editModaldriver #Licensedate').val();
-  
+    const licensedate = $('#editModaldriver #Licensedate').val();
+
     $('#editModaldriver').modal('hide');
 
     $.ajax({
@@ -22,21 +22,21 @@ $(document).ready(function() {
       method: 'POST',
       data: {
         driverid: driverid,
-        Licensedate: Licensedate,
+        licensedate: licensedate
       },
       success: function(response) {
         const $tableRow = $('tr[data-driverid="' + driverid + '"]');
-        $tableRow.find('td:eq(6)').text(Licensedate);
+        $tableRow.find('td:eq(6)').text(licensedate);
       },
       error: function(xhr, status, error) {
-        console.log('error =>', error);
-        // Handle error
+        console.log('error=>', error);
       }
     });
   });
 
   $('#editModaldriver').on('hidden.bs.modal', function() {
-    $('#editForm')[0].reset();
+    $('#editModaldriver').find('form')[0].reset();
+    $('#editModaldriver').find('.savedriver').off('click');
   });
 
   
