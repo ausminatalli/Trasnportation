@@ -57,7 +57,7 @@
             echo "<td>".$row['arrivetime']."</td>";
             echo '<td  ><h6>'.$row['Bus'].' ,'.$row['firstname'].' '.$row['lastname']."</h6></td>";
             echo "<td>".$row['status']."</td>";
-            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" data-tripid="' . $row['tripid'] . '" class="icon-trash btn-edit"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
+            echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit Trip" data-tripid="' . $row['tripid'] . '" class="icon-trash btn-edittrip"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Trip" data-tripid="' . $row['tripid'] . '" class="icon-trash btn-delete1">
             <i class="fa-solid fa-trash"></i>
         </button>
@@ -88,7 +88,7 @@
   </div>
 </div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModaltrip" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form id="editForm">
@@ -115,7 +115,7 @@
           
         </div>
         <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" data-tripid="">Save Changes</button>
+        <button type="submit" class="btn btn-primary savetrip" data-tripid="">Save Changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </form>
