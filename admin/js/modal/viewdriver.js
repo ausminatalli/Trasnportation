@@ -43,29 +43,38 @@ $(document).ready(function() {
   $(document).on('click', '.btn-delete', function() {
     const driverid = $(this).data('driverid');
     const deleteButton = $(this);
-
+  
     $('#deleteConfirmationModal').modal('show');
-
-    $('#confirmDeleteBtn').on('click', function() {
-      $.ajax({
-        url: '../api/admin/deleteform/deletedriver.php',
-        method: 'POST',
-        data: { driverid: driverid },
-        success: function(response) {
-          console.log(response);
-          if (response === 'Driver Cannot be deleted') {
-            //window.location.href = "http://localhost/transportation/admin?msg=driverfailed";
-          } else {
-            deleteButton.closest('tr').remove();
-          }
-
-          $('#deleteConfirmationModal').modal('hide');
-        },
-        error: function(xhr, status, error) {
-          console.log(error);
+    $('#confirmDeleteBtn').data('driverid', driverid);
+    $('#confirmDeleteBtn').data('deleteButton', deleteButton);
+    console.log(deleteButton)
+  });
+  
+  $('#confirmDeleteBtn').on('click', function() {
+    const driverid = $(this).data('driverid');
+    const deleteButton = $(this).data('deleteButton');
+   console.log(driverid)
+   console.log(deleteButton)
+    $.ajax({
+      url: '../api/admin/deleteform/deletedriver.php',
+      method: 'POST',
+      data: { driverid: driverid },
+      success: function(response) {
+        
+        if (response === 'Driver Cannot be deleted') {
+          //window.location.href = "http://localhost/transportation/admin?msg=driverfailed";
+          alert(response);
+        } else if(response === 'Driver deleted successfully.'){
+          deleteButton.closest('tr').remove();
         }
-      });
+  
+        $('#deleteConfirmationModal').modal('hide');
+      },
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
     });
+    
   });
 });
 

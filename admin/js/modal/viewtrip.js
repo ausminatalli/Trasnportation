@@ -58,25 +58,32 @@ $(document).ready(function() {
     const tripId = $(this).data('tripid');
     const deleteButton = $(this);
     $('#deleteConfirmationModal').modal('show');
-
-    $('#confirmDeleteBtn').off().on('click', function() {
-      $.ajax({
+    $('#confirmDeleteBtn').data('tripId', tripId);
+    $('#confirmDeleteBtn').data('deleteButton', deleteButton);
+    console.log(deleteButton)
+  });
+  
+  $(document).on('click', '#confirmDeleteBtn', function() {
+    const tripid = $(this).data('tripId');
+    const deleteButton = $(this).data('deleteButton');
+    console.log(tripid);
+    console.log(deleteButton);
+    $.ajax({
         url: '../api/admin/deleteform/deletetrip.php',
         method: 'POST',
-        data: { tripid: tripId },
+        data: { tripid: tripid },
         success: function(response) {
-     
-          if (response === 'Trip Cannot be deleted') {
-            window.location.href = 'http://localhost/transportation/admin?msg=tripfailed';
-          } else {
-            deleteButton.closest('tr').remove();
-          }
-          $('#deleteConfirmationModal').modal('hide');
+            if (response === 'Trip Cannot be deleted') {
+                alert(response);
+            } else if (response === 'Trip deleted successfully.') {
+                deleteButton.closest('tr').remove();
+            }
+            $('#deleteConfirmationModal').modal('hide');
         },
         error: function(xhr, status, error) {
-          console.log(error);
+            console.log(error);
         }
-      });
-    });
-  });
+    });   
+});
+
 });
