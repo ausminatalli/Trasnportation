@@ -25,6 +25,7 @@ $(document).ready(function() {
             // Handle error condition if needed
           } else {
             blockButton.html('<i class="fa-solid fa-unlock"></i>');
+            blockButton.removeClass("btn-blockuser").addClass("btn-unblock");
           }
           confirmationModal.modal("hide");
         },
@@ -61,6 +62,7 @@ $(document).ready(function() {
             // Handle error condition if needed
           } else {
             unblockButton.html('<i class="fa-solid fa-lock"></i>');
+            unblockButton.removeClass("btn-unblock").addClass("btn-blockuser");
           }
           confirmationModal.modal("hide");
         },
