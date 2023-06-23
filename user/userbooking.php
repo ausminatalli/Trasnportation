@@ -123,7 +123,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
             <p>After your trip has ended, we welcome your feedback to help us improve our service.</p>
           </div>
           <div class="text-center mt-2 mb-2">
+            <div style="height:20px;" class="mt-4">
             <h5 class="text-success" id="err"><?php echo $errorMessage ?></h5>
+          </div>
           </div>
         </div>
         <table class="table">

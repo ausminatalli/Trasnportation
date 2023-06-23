@@ -96,8 +96,8 @@ if (isset($_POST['changestatus'])){
             $tripid = $row['tripid'];
             echo '<tr>';
             echo '<td>' . $i . '</td>';
-            echo '<td>' . $row['origin'] . '</td>';
-            echo '<td>' . $row['destination'] . '</td>';
+            echo '<td>' . $row['provinaceorigin'] . '</td>';
+            echo '<td>' . $row['provinacedestination'] . '</td>';
             echo '<td>' . $row['schedule'] . '</td>';
             echo '<td>' . $row['starttime'].'&nbsp->&nbsp;'.$row['arrivetime']. '</td>';
             $Statuscolor = $row['status'];
