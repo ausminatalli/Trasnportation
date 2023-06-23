@@ -63,7 +63,58 @@ $dropdown = json_decode($data, true);
         
       </tbody>
     </table>
-<!-- Modal -->
+<!-- Delete Modal -->
+<div id="deleteConfirmationstationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this Station?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteStation">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModalStation" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="editForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit Station</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="stationname">Station Name:</label>
+            <input type="text" class="form-control" id="stationname" name="stationname">
+          </div>
+          <div class="form-group">
+            <label for="provincename">Province Name:</label>
+            <input type="text" class="form-control" id="provincename" name="provincename">
+          </div>
+          <div class="form-group">
+            <label for="capacity"> Capacity:</label>
+            <input type="number" class="form-control" id="capacity" name="capacity">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary savestation">Save Changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
   </body>
