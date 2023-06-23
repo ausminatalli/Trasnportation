@@ -113,8 +113,49 @@ function EditDriver($conn, $data)
         
     }
     
-    
+    function AddStation($conn,$data){
+        $Stationname = $data['Stationname'];
+        $Provincename = $data['Provincename'];
+        $capacity = $data['capacity'];
 
+        $sql = "INSERT into station (stationname,provincename,capacity)  VALUES (?, ?, ?)";
+        
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "sss",$Stationname, $Provincename, $capacity);
+
+        if (mysqli_stmt_execute($stmt)) {
+            echo "Station added successfully.";
+            
+        } else {
+            echo "Error: " . mysqli_stmt_error($stmt);
+        }
+        
+        mysqli_stmt_close($stmt);
+
+    }
+
+    function EditStation($conn, $data)
+    {
+        $stationid = $data['stationid'];
+        $stationname = $data['stationname'];
+        $provincename = $data['provincename'];
+        $capacity = $data['capacity'];
+        
+
+        // Prepare the update query
+        $query = "UPDATE station SET stationname = ?, provincename = ?, capacity = ? WHERE stationid = ?";
+        $stmt = $conn->prepare($query);
+        
+        // Bind the parameters
+        $stmt->bind_param("ssii", $stationname, $provincename, $capacity, $stationid);
+        // Execute the query
+        if ($stmt->execute()) {
+            echo "Station details updated successfully.";
+        } else {
+            echo "Error updating station details.";
+        }
+        
+    }
 
 
 
