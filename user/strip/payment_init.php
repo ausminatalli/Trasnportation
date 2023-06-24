@@ -1,10 +1,10 @@
 <?php 
  
 // Include the configuration file 
-require_once 'config.php'; 
+require_once 'configstrip.php'; 
  
 // Include the database connection file 
-include_once 'dbConnect.php'; 
+include_once '../../config.php'; 
  
 // Include the Stripe PHP library 
 require_once 'stripe-php/init.php'; 
@@ -15,11 +15,17 @@ require_once 'stripe-php/init.php';
 // Retrieve JSON from POST body 
 $jsonStr = file_get_contents('php://input'); 
 $jsonObj = json_decode($jsonStr); 
- 
 if($jsonObj->request_type == 'create_payment_intent'){ 
-     
+    $paymentprice = $jsonObj->paymentprice; 
+    $tripid = intval($jsonObj->tripid);
+    $userid = intval($jsonObj->userid);  
+    $currency = $jsonObj->currency;
     // Define item price and convert to cents 
-    $itemPriceCents = round($itemPrice*100); 
+    $paymentprice = filter_var($paymentprice, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+   
+    
+
+    $itemPriceCents = round($paymentprice*100); 
      
     // Set content type to JSON 
     header('Content-Type: application/json'); 
@@ -29,7 +35,7 @@ if($jsonObj->request_type == 'create_payment_intent'){
         $paymentIntent = \Stripe\PaymentIntent::create([ 
             'amount' => $itemPriceCents, 
             'currency' => $currency, 
-            'description' => $itemName, 
+            'description' => $tripid, 
             'payment_method_types' => [ 
                 'card' 
             ] 
@@ -49,17 +55,17 @@ if($jsonObj->request_type == 'create_payment_intent'){
     $payment_intent_id = !empty($jsonObj->payment_intent_id)?$jsonObj->payment_intent_id:''; 
     $name = !empty($jsonObj->name)?$jsonObj->name:''; 
     $email = !empty($jsonObj->email)?$jsonObj->email:''; 
-     
+
     // Add customer to stripe 
     try {   
-        $customer = \Stripe\Customer::create(array(  
-            'name' => $name,  
-            'email' => $email 
+        $customer = \Stripe\Customer::create(array(
+            'name' => $name,
+            'email' => $email,
         ));  
     }catch(Exception $e) {   
         $api_error = $e->getMessage();   
     } 
-     
+ 
     if(empty($api_error) && $customer){ 
         try { 
             // Update PaymentIntent with the customer ID 
@@ -82,10 +88,14 @@ if($jsonObj->request_type == 'create_payment_intent'){
 }elseif($jsonObj->request_type == 'payment_insert'){ 
     $payment_intent = !empty($jsonObj->payment_intent)?$jsonObj->payment_intent:''; 
     $customer_id = !empty($jsonObj->customer_id)?$jsonObj->customer_id:''; 
+    $tripid = !empty($jsonObj->tripid)?intval($jsonObj->tripid):''; 
+    $userid = !empty($jsonObj->tripid)?intval($jsonObj->userid):''; 
      
     // Retrieve customer info 
     try {   
         $customer = \Stripe\Customer::retrieve($customer_id);  
+
+       
     }catch(Exception $e) {   
         $api_error = $e->getMessage();   
     } 
@@ -98,7 +108,9 @@ if($jsonObj->request_type == 'create_payment_intent'){
         $paid_amount = ($paid_amount/100); 
         $paid_currency = $payment_intent->currency; 
         $payment_status = $payment_intent->status; 
-         
+        
+        
+
         $customer_name = $customer_email = ''; 
         if(!empty($customer)){ 
             $customer_name = !empty($customer->name)?$customer->name:''; 
@@ -107,7 +119,7 @@ if($jsonObj->request_type == 'create_payment_intent'){
          
         // Check if any transaction data is exists already with the same TXN ID 
         $sqlQ = "SELECT id FROM transactions WHERE txn_id = ?"; 
-        $stmt = $db->prepare($sqlQ);  
+        $stmt = $conn->prepare($sqlQ);  
         $stmt->bind_param("s", $transaction_id); 
         $stmt->execute(); 
         $stmt->bind_result($row_id); 
@@ -117,10 +129,11 @@ if($jsonObj->request_type == 'create_payment_intent'){
         if(!empty($row_id)){ 
             $payment_id = $row_id; 
         }else{ 
+            
             // Insert transaction data into the database 
-            $sqlQ = "INSERT INTO transactions (customer_name,customer_email,item_name,item_price,item_price_currency,paid_amount,paid_amount_currency,txn_id,payment_status,created,modified) VALUES (?,?,?,?,?,?,?,?,?,NOW(),NOW())"; 
-            $stmt = $db->prepare($sqlQ); 
-            $stmt->bind_param("sssdsdsss", $customer_name, $customer_email, $itemName, $itemPrice, $currency, $paid_amount, $paid_currency, $transaction_id, $payment_status); 
+            $sqlQ = "INSERT INTO transactions (userid,customer_name,customer_email,tripid,item_price,item_price_currency,paid_amount,paid_amount_currency,txn_id,payment_status,created,modified) VALUES (?,?,?,?,?,?,?,?,?,?,NOW(),NOW())"; 
+            $stmt = $conn->prepare($sqlQ); 
+            $stmt->bind_param("issidsdsss", $userid,$customer_name, $customer_email, $tripid, $paid_amount, $paid_currency, $paid_amount, $paid_currency, $transaction_id, $payment_status); 
             $insert = $stmt->execute(); 
              
             if($insert){ 

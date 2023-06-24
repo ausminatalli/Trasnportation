@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
 <?php 
 // Include the configuration file  
-require_once 'config.php'; 
+require_once 'configstrip.php'; 
  
 // Include the database connection file  
-require_once 'dbConnect.php'; 
+require_once '../../config.php'; 
  
 $payment_ref_id = $statusMsg = ''; 
 $status = 'error'; 
@@ -14,15 +15,15 @@ if(!empty($_GET['pid'])){
     $payment_txn_id  = base64_decode($_GET['pid']); 
      
     // Fetch transaction data from the database 
-    $sqlQ = "SELECT id,txn_id,paid_amount,paid_amount_currency,payment_status,customer_name,customer_email FROM transactions WHERE txn_id = ?"; 
-    $stmt = $db->prepare($sqlQ);  
+    $sqlQ = "SELECT id,txn_id,tripid,userid,paid_amount,paid_amount_currency,payment_status,customer_name,customer_email FROM transactions WHERE txn_id = ?"; 
+    $stmt = $conn->prepare($sqlQ);  
     $stmt->bind_param("s", $payment_txn_id); 
     $stmt->execute(); 
     $stmt->store_result(); 
  
     if($stmt->num_rows > 0){ 
         // Get transaction details 
-        $stmt->bind_result($payment_ref_id, $txn_id, $paid_amount, $paid_amount_currency, $payment_status, $customer_name, $customer_email); 
+        $stmt->bind_result($payment_ref_id, $txn_id, $tripid,$userid,$paid_amount, $paid_amount_currency, $payment_status, $customer_name, $customer_email); 
         $stmt->fetch(); 
          
         $status = 'success'; 
@@ -35,6 +36,7 @@ if(!empty($_GET['pid'])){
     exit; 
 } 
 ?>
+<body style="background-color: #E5F6FF !important;">
 <div class="row mt-5">
     <div class="col-4"></div>
     <div class="col-4">
@@ -53,9 +55,11 @@ if(!empty($_GET['pid'])){
                     <p class="mb-2"><b>Name:</b> <?php echo $customer_name; ?></p>
                     <p class="mb-4"><b>Email:</b> <?php echo $customer_email; ?></p>
 
-                    <h4 class="mt-4">Product Information</h4>
-                    <p class="mb-2"><b>Name:</b> <?php echo $itemName; ?></p>
-                    <p class="mb-4"><b>Price:</b> <?php echo $itemPrice.' '.$currency; ?></p>
+                    <h4 class="mt-4">Trip Information</h4>
+                    <p class="mb-2"><b>Trip ID:</b> <?php echo $tripid; ?></p>
+                    <p class="mb-2"><b>User ID:</b> <?php echo $userid; ?></p>
+                    <p class="mb-4"><b>Price:</b> <?php echo $paid_amount.' '.$paid_amount_currency; ?></p>
+                    <button class="btn btn-primary" type="button" onclick="window.location.href='../userbooking.php'">Check Bookings</button>
                 <?php }else{ ?>
                     <h1 class="display-4 error">Your Payment has failed!</h1>
                     <p class="error"><?php echo $statusMsg; ?></p>
@@ -64,4 +68,20 @@ if(!empty($_GET['pid'])){
         </div>
     </div>
 </div>
+
+
+
+<?php
+
+$sql = "UPDATE trips SET seats = seats - 1 WHERE tripid = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $tripid);
+$stmt->execute();
+$sql2 = "UPDATE users SET nboftrips = nboftrips + 1 WHERE  userid= ?";
+$stmt2 = $conn->prepare($sql2);
+$stmt2->bind_param("i", $userid);
+$stmt2->execute();
+
+?>
+</body>
 
