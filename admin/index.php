@@ -218,7 +218,7 @@ else {
         <div class="user">
           <div class="text-center d-flex flex-column align-items-center">
             <p class="username"><?php echo $row['firstname'] ,' ', $row['lastname'] ?></p>
-            <a href="../index.php" class="btn btn-primary">Logout</a>
+            <a href="../user/logout.php" class="btn btn-primary">Logout</a>
           </div>
         </div>
       </nav>
