@@ -77,6 +77,7 @@ if($searchResults){
 foreach ($searchResults as $item) {
     $price = $currency === 'USD' ?'$' . number_format((int)$item['ticketprice'] / 94000,2 ): $item['ticketprice']. ' L.L';
     ?>
+    <?php $price   ?>
     <div class="box">
         <div class="leftsection">
             <div class="firstrow">

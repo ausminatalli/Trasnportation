@@ -43,7 +43,7 @@ if (isset($_POST["feedback"])) {
 if(isset($_POST["canceltrip"])){
   $tripid = $_POST['tripid'];
 
-  $sql = "DELETE FROM payments WHERE userid=? and tripid= ? ";
+  $sql = "DELETE FROM transactions WHERE userid=? and tripid= ? ";
   $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii",$id, $tripid);
     $stmt->execute();
@@ -143,7 +143,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
           </thead>
           <tbody>
             <?php
-            $sql="SELECT * FROM paymentsview where UserID=$id";
+            $sql="SELECT * FROM transactionsview where UserID=$id";
             $res=mysqli_query($conn,$sql);
             $payments=array();
             $tripid="";
@@ -166,7 +166,11 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                   <button data-toggle="tooltip" data-placement="right" title="Cancel Trip" class="star-button me-2 btn-refund" data-tripid="' . $tripid . '">
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/>
                   </button>
+
+                  <button data-toggle="tooltip" data-placement="right" title="Feedback" class="star-button btn-feedback" onclick="openFeedbackModal()" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+=======
                   <button data-toggle="tooltip" onclick="openFeedbackModal()" data-placement="right" title="Feedback" class="star-button btn-feedback" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
                   </button>
                 </td>';
@@ -255,5 +259,62 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   <script src="js/bookingmodal.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $(".btn-feedback").click(function() {
+        
+        var tripid = $(this).data("tripid");
+        console.log(tripid)
+        $("#feedback-tripid").val(tripid);
+      });
+    });
+
+    $(document).ready(function() {
+    var tripIdToDelete = null;
+
+    // Open the cancellation confirmation modal
+    $(".btn-refund").click(function() {
+      tripIdToDelete = $(this).data("tripid");
+      $("#myModal").fadeIn();
+    });
+
+    // Close the cancellation confirmation modal
+    $(".btn-cancel").click(function() {
+      $("#myModal").fadeOut();
+    });
+
+    // Perform the trip cancellation
+    $(".btn-confirm").click(function() {
+      if (tripIdToDelete) {
+        $.ajax({
+          type: "POST",
+          url: "userbooking.php",
+          data: { canceltrip: true, tripid: tripIdToDelete },
+          success: function(response) {
+            window.location.href = "userbooking.php?msg=delete-success";
+          },
+          error: function() {
+            console.log("Error: Failed to cancel the trip.");
+          }
+        });
+      }
+    });
+  });
+  function openFeedbackModal() {
+    $('#form').modal('show');
+  }
+
+      err=document.getElementById("err");
+      setTimeout(function() {
+        document.getElementById("err").style.display = "none";
+      }, 3000);
+
+
+
+
+</script>
+
+
 </body>
 </html>

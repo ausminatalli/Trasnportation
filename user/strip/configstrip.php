@@ -17,6 +17,6 @@ define('STRIPE_PUBLISHABLE_KEY', 'pk_test_51NME2wBC4rKOPGa9VCeuiyDmgVZyJJmiaIIbU
 define('DB_HOST', 'localhost');  
 define('DB_USERNAME', 'root');  
 define('DB_PASSWORD', 'root');  
-define('DB_NAME', 'codexworld'); 
+define('DB_NAME', 'skyline'); 
  
 ?>

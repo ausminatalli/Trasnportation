@@ -2,7 +2,8 @@ let STRIPE_PUBLISHABLE_KEY = document.currentScript.getAttribute('STRIPE_PUBLISH
 
 // Create an instance of the Stripe object and set your publishable API key
 const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-
+const loadingCircle = document.getElementById('loadingCircle');
+loadingCircle.style.display = "none";
 // Define card elements
 let elements;
 
@@ -32,17 +33,33 @@ paymentFrm.addEventListener("submit", handleSubmit);
 // Fetch a payment intent and capture the client secret
 let payment_intent_id;
 async function initialize() {
-    const { id, clientSecret } = await fetch("payment_init.php", {
+
+const paymentprice = document.getElementById('paymentprice');
+const tripid = document.getElementById('tripid').value;
+const userid = document.getElementById('userid').value;
+const currency = document.getElementById('currency').value;
+const payload = {
+    request_type: 'create_payment_intent',
+    paymentprice: paymentprice.value,
+    userid: userid,
+    tripid: tripid,
+    currency:currency,
+    
+};
+    const { id, clientSecret } = await fetch("strip/payment_init.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request_type:'create_payment_intent' }),
+        body: JSON.stringify(payload),
     }).then((r) => r.json());
     
     const appearance = {
         // If you are planning to extensively customize rules, use the "none"
         // theme. This theme provides a minimal number of rules by default to avoid
         // interfering with your custom rule definitions.
-        theme: 'none',
+        theme: 'flat',
+
+
+        
     
         rules: {
           '.Tab': {
@@ -79,21 +96,20 @@ async function initialize() {
 async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    
-    let customer_name = document.getElementById("name").value;
-    let customer_email = document.getElementById("email").value;
-    
-    const { id, customer_id } = await fetch("payment_init.php", {
+    loadingCircle.style.display = "block";
+    const customer_name = document.getElementById('name').value;
+    const customer_email = document.getElementById('email').value;
+    const userid = document.getElementById('userid').value;
+    const { id, customer_id } = await fetch("strip/payment_init.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request_type:'create_customer', payment_intent_id: payment_intent_id, name: customer_name, email: customer_email }),
+        body: JSON.stringify({ request_type:'create_customer', payment_intent_id: payment_intent_id, name: customer_name, email: customer_email,userid: userid }),
     }).then((r) => r.json());
-    
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
             // Make sure to change this to your payment completion page
-            return_url: window.location.href+'?customer_id='+customer_id,
+            return_url: window.location.href + '&customer_id=' + customer_id,
         },
     });
     
@@ -109,6 +125,7 @@ async function handleSubmit(e) {
     }
     
     setLoading(false);
+    loadingCircle.style.display = "none";
 }
 
 // Fetch the PaymentIntent status after payment submission
@@ -120,26 +137,27 @@ async function checkStatus() {
     const customerID = new URLSearchParams(window.location.search).get(
         "customer_id"
     );
-    
+   
     if (!clientSecret) {
         return;
     }
     
     const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-    
+    const tripid = document.getElementById('tripid');
+    const userid = document.getElementById('userid');
     if (paymentIntent) {
         switch (paymentIntent.status) { 
             case "succeeded":
                 // Post the transaction info to the server-side script and redirect to the payment status page
-                fetch("payment_init.php", {
+                fetch("strip/payment_init.php", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ request_type:'payment_insert', payment_intent: paymentIntent, customer_id: customerID }),
+                    body: JSON.stringify({ request_type:'payment_insert', payment_intent: paymentIntent, customer_id: customerID, tripid: tripid.value, userid: userid.value }),
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.payment_txn_id) {
-                        window.location.href = 'payment-status.php?pid='+data.payment_txn_id;
+                        window.location.href = 'strip/payment-status.php?pid='+data.payment_txn_id;
                     } else {
                         showMessage(data.error);
                         setReinit();

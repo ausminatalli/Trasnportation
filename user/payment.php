@@ -1,236 +1,108 @@
-<?php
-include('../path.php');
-include("../config.php");
 
+<?php 
+require_once 'strip/configstrip.php'; 
+$key = "pk_test_51NME2wBC4rKOPGa9VCeuiyDmgVZyJJmiaIIbUjnQ7gWDolvwWNlJXFaiQR07FKcdldGbbLGMA9CafzLyQKkxdk7V00Ow40ZIfp";
 session_start();
 
-$id = $_SESSION['id'];
-if(isset($_SESSION['id'])&& ($_SESSION['type']==0))
-{
-    $query = "select * from users WHERE userid = $id";
-    $result = mysqli_query($conn, $query) or die("Selecting user profile failed");
-    $row = mysqli_fetch_array($result);
-    $_SESSION['username']=$row['firstname'];
-    $_SESSION['user_id']=$row['userid'];
-}
-else
-{
-  header('location:../main/login.php?msg=please_login');
-}
 
-
-if(isset($_POST["payment"])){
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $tripid=$_GET['t'];
     $userid=$_GET['u'];
     $paymentprice=$_GET['p'];
-
-
-    $query = "SELECT * FROM payments WHERE userid = ? and tripid=?";
-    $stmtCheckEmail = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmtCheckEmail, 'ii', $userid, $tripid);
-    mysqli_stmt_execute($stmtCheckEmail);
-    $result = mysqli_stmt_get_result($stmtCheckEmail);
-  
-    if (mysqli_num_rows($result) > 0) {
-
-    header('Location: userbooking.php?msg=err-pay');
-
-
-    }else{
-
-    
-      
-
-    $sql="INSERT INTO PAYMENTS (userid, tripid, amountpaid) Values (?,?,?)";
-    $stmt=mysqli_prepare($conn,$sql);
-    mysqli_stmt_bind_param($stmt,"iis", $userid, $tripid, $paymentprice);
-
-
-    if(mysqli_stmt_execute($stmt)){
-        echo "payment successfully";
-        $sql = "UPDATE trips SET seats = seats - 1 WHERE tripid = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $tripid);
-        $stmt->execute();
-        $sql2 = "UPDATE users SET nboftrips = nboftrips + 1 WHERE  userid= ?";
-        $stmt2 = $conn->prepare($sql2);
-        $stmt2->bind_param("i", $userid);
-        $stmt2->execute();
-        if ($stmt->affected_rows > 0) {
-          echo "Seats decremented successfully.";
-      }
-      header('Location: userbooking.php?msg=pay_success');
-    }
-    else{
-        echo "('Error: " . mysqli_stmt_error($stmt) . "')";
-    }
-
-    mysqli_stmt_close($stmt);
+    $currency = (substr($paymentprice, 0, 1) === '$') ? 'USD' : 'LBP';
+   
 }
-
-}
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/payment.css"/>
-  <body>
- 
-    <div class="container">
-      <div class="card-container">
-        <div class="front">
-          <div class="image">
-            <img src="https://i.ibb.co/BPbrXHr/chip.png" alt="" />
-            <img src="https://i.ibb.co/k48rfHD/visa.png" alt="" />
-          </div>
-          <div class="card-number-box">################</div>
-          <div class="flexbox">
-            <div class="box">
-              <span>card holder</span>
-              <div class="card-holder-name">full name</div>
-            </div>
-            <div class="box">
-              <span>expires</span>
-              <div class="expiration">
-                <span class="exp-month">mm</span>
-                <span class="exp-year">yy</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="back">
-          <div class="stripe"></div>
-          <div class="box">
-            <span>cvv</span>
-            <div class="cvv-box"></div>
-            <img src="image/visa.png" alt="" />
-          </div>
-        </div>
-      </div>
-
-      <form  action="" method="POST" onsubmit="return paymentvalidate();" >   
-      <div class="ticket">
-        <h3 class="title">The price of trip selected:</h3>
-        <p class="price"><?php echo '<i class="fa-solid fa-money-check-dollar"></i>' . $_GET['p'] ;?></p>
-      </div>     
-      <div class="inputBox">
-          <span>card number</span>
-          <input type="text" maxlength="16" class="card-number-input" id="cardnumber"/>
-          <span id="vcardnumber" class="vspan"></span>
-        </div>
-        <div class="inputBox">
-          <span>card holder</span>
-          <input type="text" class="card-holder-input" id="cardholder"/>
-          <span id="vcardholder" class="vspan"></span>
-        </div>
-        <div class="flexbox">
-          <div class="inputBox">
-            <span>expiration mm</span>
-            <select name="" class="month-input" id="month">
-              <option value="month" selected>month</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-            <span id="vmonth" class="vspan"></span>
-          </div>
-          <div class="inputBox">
-            <span>expiration yy</span>
-            <select name="" class="year-input" id="year">
-              <option value="year" selected>year</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-            </select>
-            <span id="vyear" class="vspan"></span>
-          </div>
-          <div class="inputBox">
-            <span>cvv</span>
-            <input type="text" maxlength="4" class="cvv-input" id="code"/>
-            <span id="vcode" class="vspan"></span>
-          </div>
-        </div>
-        <input type="submit" name="payment" value="submit" class="submit-btn" />
-        <p>you can exit the page by clicking <a href="./usermain.php">back</a></p>
-      </form>
-    </div>
-
-   <script src="js/payment.js"></script>
-   <script>
-    function paymentvalidate(){
-    let cardnumber=document.getElementById('cardnumber');
-    let cardholder=document.getElementById('cardholder');
-    let code=document.querySelector('#code');
-    let month=document.querySelector('#month');
-    let year=document.querySelector('#year');
-    let vcardnumber=document.getElementById('vcardnumber');
-    let vcardholder=document.getElementById('vcardholder');
-    let vcode=document.querySelector('#vcode');
-    let vmonth=document.querySelector('#vmonth');
-    let vyear=document.querySelector('#vyear');
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     
-    console.log(vmonth);
-    let isvalid=true;
-       if(cardnumber.value===""){
-        vcardnumber.innerHTML="please enter the card number";
-        isvalid=false;
-       }
-       if(cardholder.value===""){
-        vcardholder.innerHTML="please enter the card number";
-        isvalid=false;
-       }
-       if(code.value===""){
-        vcode.innerHTML="please enter the card verification value";
-        isvalid=false;
-       }
-       if(year.value==="year"){
-        vyear.innerHTML="please select the date on year";
-        isvalid=false;
-       }
-       if(month.value==="month"){
-        vmonth.innerHTML="please select the date on month";
-        isvalid=false;
-       }
-       if(isvalid){
-          return true;
-       }
-        return false;
-    }
-    var currentDate = new Date();
-    var currentMonth = currentDate.getMonth() + 1;
-    document.getElementById('month').addEventListener('change', function() {
-    var selectedMonth = parseInt(this.value);
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
 
-    if (year.value==='2023' && selectedMonth < currentMonth) {
-    vmonth.innerHTML = 'Error: Selected month is less than the current month.';
-    } else {
-      vmonth.innerHTML = '';
-    }
-  });
-   </script>
-  </body>
+<body style="background-color: var(--backColor) !important;">
+<div id="loadingCircle" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="card mt-5">
+        <div class="card-header">
+            <h3 class="card-title font-weight-bold">Charge <?php /*echo '$'.$paymentprice;*/ ?> with SkyLine</h3>
+        </div>
+        <div class="card-body">
+            <!-- Product Info -->
+            <p class="small"><b>Trip ID:</b> <?php echo $tripid; ?></p>
+            <p class="small"><b>Price:</b> <?php echo (substr($paymentprice, 0, 1) === '$') ? $paymentprice.' '.'USD' : $paymentprice.' '.'LBP'; ?></p>
+
+        
+            <!-- Display status message -->
+            <div id="paymentResponse" class="alert alert-success d-none"></div>
+        
+            <!-- Display a payment form -->
+            <form id="paymentFrm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter name" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
+                </div>
+                
+                <div id="paymentElement">
+                    <!-- Stripe.js injects the Payment Element -->
+                </div>
+                
+                <!-- Form submit button -->
+                <!-- Form submit button -->
+<div class="d-flex justify-content-center m-3">
+    <button id="submitBtn" class="btn btn-success">
+        <div class="spinner-border spinner-border-sm d-none" id="spinner" role="status"></div>
+        <input type="hidden" id="tripid" name="tripid" value="<?php echo isset($_GET['t'])?$_GET['t']:''; ?>">
+        <input type="hidden" id="userid" name="userid" value="<?php echo isset($_GET['u'])?$_GET['u']:''; ?>">
+        <input type="hidden" id="paymentprice" name="paymentprice" value="<?php echo isset($_GET['p'])?$_GET['p']:''; ?>">
+        <input type="hidden" id="currency" name="currency" value="<?php echo $currency; ?>">
+        <span id="buttonText">Pay Now</span>
+    </button>
+</div>
+
+            </form>
+        
+            <!-- Display processing notification -->
+            <div id="frmProcess" class="alert alert-info d-none">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...
+            </div>
+        
+            <!-- Display re-initiate button -->
+            <div id="payReinit" class="alert alert-primary d-none">
+            <button class="btn btn-primary" onClick="window.location.href = window.location.href.split('&customer_id=')[0]">
+                    <i class="fas fa-redo-alt"></i> Re-initiate Payment
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php include('../include/footer.html')   ?>
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+<script src="js/checkout.js" STRIPE_PUBLISHABLE_KEY="<?php echo $key; ?>" defer></script>
+<script>
+window.addEventListener('load', function() {
+    var loadingCircle = document.getElementById('loadingCircle');
+    var container = document.querySelector('.container');
+    
+    container.classList.remove('d-none'); 
+    loadingCircle.style.display = 'none'; 
+});
+</script>
+</body>
 </html>

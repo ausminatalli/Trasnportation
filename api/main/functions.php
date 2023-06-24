@@ -104,10 +104,10 @@ WHERE `skyline`.`station`.`provincename` = ? AND `station2`.`provincename` = ? A
  `skyline`.`trips`.`schedule` >= CURDATE() AND
    NOT EXISTS (
         SELECT *
-        FROM `payments`
+        FROM `transactions`
         WHERE
-            `payments`.`tripid` = `skyline`.`trips`.`tripid`
-            AND `payments`.`userid` = ?
+            `transactions`.`tripid` = `skyline`.`trips`.`tripid`
+            AND `transactions`.`userid` = ?
     )";
         
     $params = array($data[0]['origin'], $data[0]['destination'],$data[0]['userid']);
