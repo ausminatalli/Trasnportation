@@ -50,7 +50,7 @@ $(document).ready(function(){
         },
         success: function(response) {
           if (response) {
-            $('#success').html('<h5 class="text-success text-center">Thank For Contact Us</h5>');
+            $('#success').html('<h5 class="text-success text-center">Thank you For Contacting Us</h5>');
           } else {
             $('#success').html('<h5 class="text-warning">' + response + '</h5>');
           }
@@ -79,6 +79,6 @@ function isValidPhone(phone) {
 }
 
 function isValidName(name) {
-  let nameRegex = /^[a-zA-Z]{4,}$/;
+  let nameRegex = /^[a-zA-Z\s]+$/;
   return nameRegex.test(name);
 }
