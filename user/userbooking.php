@@ -123,7 +123,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
             <p>After your trip has ended, we welcome your feedback to help us improve our service.</p>
           </div>
           <div class="text-center mt-2 mb-2">
+            <div style="height:20px;" class="mt-4">
             <h5 class="text-success" id="err"><?php echo $errorMessage ?></h5>
+          </div>
           </div>
         </div>
         <table class="table">
@@ -164,7 +166,11 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                   <button data-toggle="tooltip" data-placement="right" title="Cancel Trip" class="star-button me-2 btn-refund" data-tripid="' . $tripid . '">
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/>
                   </button>
+
                   <button data-toggle="tooltip" data-placement="right" title="Feedback" class="star-button btn-feedback" onclick="openFeedbackModal()" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+=======
+                  <button data-toggle="tooltip" onclick="openFeedbackModal()" data-placement="right" title="Feedback" class="star-button btn-feedback" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
                   </button>
                 </td>';
@@ -253,6 +259,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   <script src="js/bookingmodal.js"></script>
+
   <script>
     $(document).ready(function() {
       $(".btn-feedback").click(function() {
@@ -307,5 +314,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
 
 
 </script>
+
+
 </body>
 </html>

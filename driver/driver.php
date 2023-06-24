@@ -96,8 +96,8 @@ if (isset($_POST['changestatus'])){
             $tripid = $row['tripid'];
             echo '<tr>';
             echo '<td>' . $i . '</td>';
-            echo '<td>' . $row['origin'] . '</td>';
-            echo '<td>' . $row['destination'] . '</td>';
+            echo '<td>' . $row['provinaceorigin'] . '</td>';
+            echo '<td>' . $row['provinacedestination'] . '</td>';
             echo '<td>' . $row['schedule'] . '</td>';
             echo '<td>' . $row['starttime'].'&nbsp->&nbsp;'.$row['arrivetime']. '</td>';
             $Statuscolor = $row['status'];
@@ -106,10 +106,10 @@ if (isset($_POST['changestatus'])){
             
             if ($Statuscolor === 'Delay') {
                 $colorClass = 'text-warning';
-                $status='Cancel';
-            } elseif ($Statuscolor === 'Cancel') {
+                $status='Delay';
+            } elseif ($Statuscolor === 'Canceled') {
                 $colorClass = 'text-danger';
-                $status = 'Cancel';
+                $status = 'Canceled';
             } elseif ($Statuscolor === 'Arrived') {
                 $colorClass = 'text-success';
                 $status = 'Arrived';
@@ -127,7 +127,7 @@ if (isset($_POST['changestatus'])){
             
             echo '<td>';
             echo '<div class="action-buttons">';
-            echo '<button data-toggle="tooltip" data-placement="right" data-tripid="' . $tripid . '" title="Edit Status" class="icon icon-trash text-primary btn-edit-status"><i class="fa-solid fa-pen-to-square"></i></button>';
+            echo '<button data-toggle="tooltip" data-placement="right" data-tripid="' . $tripid . '" title="Edit Status" class="icon icon-trash text-primary btn-edit-status"><i class="fa-solid text-primary fa-pen-to-square"></i></button>';
             echo ' <button data-toggle="tooltip" data-placement="right" data-driverid="' . $row['tripid'] . '" title="Show Users"  class="icon icon-trash btn-delete">
             <a href="showusers.php?tid='.$tripid.'"><i class="fa-solid fa-users"></i></a>';
             echo '</div>';
@@ -153,11 +153,12 @@ if (isset($_POST['changestatus'])){
             <form id="status-form" method="POST" action="driver.php">
             <input type="hidden" name="tripid" id="status-tripid" value="<?php echo $tripid; ?>">
             <select name="statusvalue" id="status-select" class="form-control mt-4 mb-4">
-            <option value="Delay">Delay</option>
-            <option value="Cancel">Cancel</option>
-            <option value="Arrived">Arrived</option>
-            <option value="On the way">On the way</option>
-            <option value="In progress">In progress</option>
+                <option selected">Select Status</option>
+                <option value="In progress">In progress</option>
+                <option value="On the way">On the way</option>
+                <option value="Arrived">Arrived</option>
+                <option value="Delay">Delay</option>
+            <option value="Canceled">Canceled</option>
         </select>
     <button class="btn btn-primary close" name="changestatus" type="submit">Update</button>
     <span id="close" class="btn btn-danger close">cancel</span>

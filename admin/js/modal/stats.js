@@ -90,7 +90,7 @@ function updateStats(At) {
 
 async function fetchData() {
   try {
-    const response = await fetch('http://localhost/transportation/api/admin/view/allstats.php');
+    const response = await fetch('http://localhost:8080/transportation/api/admin/view/allstats.php');
     const data = await response.json();
     console.log(data);
 
@@ -125,7 +125,7 @@ let months;
 
 async function fetchData2() {
   try {
-    const response = await fetch('http://localhost/transportation/admin/statistics.php');
+    const response = await fetch('http://localhost:8080/transportation/admin/statistics.php');
     const result = await response.json();
     //console.log(result);
 
