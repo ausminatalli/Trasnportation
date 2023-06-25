@@ -168,8 +168,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                   </button>
 
                   <button data-toggle="tooltip" data-placement="right" title="Feedback" class="star-button btn-feedback" onclick="openFeedbackModal()" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
-=======
-                  <button data-toggle="tooltip" onclick="openFeedbackModal()" data-placement="right" title="Feedback" class="star-button btn-feedback" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+                  
 
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
                   </button>

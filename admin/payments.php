@@ -48,7 +48,7 @@
       <th>LastName</th>
       <th>AmountPaid</th>
       <th>Review</th>
-      <th>Refund</th>
+      
       <!-- Added column for the block button -->
     </tr>
   </thead>
@@ -60,16 +60,16 @@
 
       foreach ($data as $row) {
         echo "<tr>";
-        echo "<td>".$row['paymentid']."</td>";
+        echo "<td>".$row['txn_id']."</td>";
         echo "<td>".$row['UserID']."</td>";
         echo "<td>".$row['tripid']."</td>";
         echo "<td>".$row['firstname']."</td>";
         echo "<td>".$row['lastname']."</td>";
-        echo "<td>".$row['amountpaid']."</td>";
+        echo "<td>".$row['ticketprice'].$row['currency']."</td>";
         echo ($row['rating'] === null && $row['comments'] === null)
               ? '<td>No Review</td>'
               : '<td><i class="fa-solid fa-star fa-xl review" onclick="showReview('.$row['rating'].', \''.$row['comments'].'\')"></i></td>';
-        echo '<td><i class="fa-regular fa-credit-card fa-xl refund btn-delete5"></i></td>';
+        
         echo "</tr>";
       }
     ?>

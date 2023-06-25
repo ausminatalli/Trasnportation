@@ -2,7 +2,12 @@
 require('../../../config.php')
 ?>
 <?php 
-$query="SELECT * FROM paymentsview";
+$query="SELECT t.*,
+f.rating,
+f.comments
+FROM transactionsview t
+LEFT JOIN feedback f ON t.tripid = f.tripid
+              AND t.userid = f.userid";
 $result=mysqli_query($conn,$query);
 $payments=array();
 
