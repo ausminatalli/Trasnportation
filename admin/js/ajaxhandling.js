@@ -105,6 +105,9 @@ function loadContent(url) {
       case "offrequest.php":
         loadScript("js/modal/offrequest.js");
         break;
+      case "canceledusers.php":
+        loadScript("js/modal/cancelpayment.js");
+        break;
     }
    
   };

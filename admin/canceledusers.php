@@ -64,44 +64,30 @@
         echo "<td>".$row['userid']."</td>";
         echo "<td>".$row['tripid']."</td>";
         echo "<td>".$row['amountpaid']."</td>";
-        echo '<td><button data-toggle="tooltip" data-placement="right" title="Unblock User" data-canceledid="'.$row['canceledid'].'" class="icon-trash btn-blockuser"><i class="fa-solid '.($row['refunded'] == 1 ? 'fa-circle-check' : 'fa-circle-xmark'). ' fa-lg" style="color: '.($row['refunded'] == 1 ? '' : '#e71c0d').';"></i></button></td>';
+        echo '<td><button data-toggle="tooltip" data-placement="right" title="Refund" data-canceledid="'.$row['canceledid'].'" class="icon-trash btn-refunded"><i class="fa-solid '.($row['refunded'] == 1 ? 'fa-circle-check' : 'fa-circle-xmark'). ' fa-lg" style="color: '.($row['refunded'] == 1 ? '' : '#e71c0d').';"></i></button></td>';
         echo "</tr>";
       }
     ?>
   </tbody>
 </table>
   </div>
-  <div class="modal-container" id="myModal">
-      <div class="modal-wrapper bg-white">
-        <div class="modall">
-          <header>
-            <h2>Confirmation</h2>
-          </header>
-          <main>
-            <div class="icon-wrapper">
-              <i class="fa-solid fa-circle-exclamation"></i>
-            </div>
-            <div class="text-wrapper">
-              <span>Are you sure you want to Refund this Client?</span>
-            </div>
-          </main>
-          <footer>
-            <div class="btn-container">
-              <div class="cancel-wrapper">
-                <button class="btn btn-cancel">Cancel</button>
-              </div>
-              <div class="delete-confirm-wrapper">
-                <button class="btn btn-confirm">
-                  <i class="fa-solid fa-trash"></i>
-                  Confirm
-                </button>
-              </div>
-            </div>
-          </footer>
-        </div>
+  <div id="refundUser" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to Refund this User?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBus">Delete</button>
       </div>
     </div>
   </div>
+</div>
  
   <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

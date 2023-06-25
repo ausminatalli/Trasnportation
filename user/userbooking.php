@@ -57,7 +57,7 @@ $result = $transcationstmt->get_result();
 
 while ($row = $result->fetch_assoc()) {
   $txnId = $row['txn_id'];
-  $amountPaid = $row['paid_amount'];
+  $amountPaid = $row['paid_amount'].$row['paid_amount_currency'];
   $insertQuery = "INSERT INTO user_canceled_trips (txn_id, userid, tripid, amountpaid) VALUES (?, ?, ?, ?)";
 
   // Prepare and bind the parameters for insert query
