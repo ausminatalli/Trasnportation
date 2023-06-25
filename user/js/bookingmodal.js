@@ -57,7 +57,7 @@
             url: "userbooking.php",
             data: { canceltrip: true, tripid: tripIdToDelete },
             success: function(response) {
-              window.location.href = "userbooking.php?msg=delete-success";
+             window.location.href = "userbooking.php?msg=delete-success";
             },
             error: function() {
               console.log("Error: Failed to cancel the trip.");
