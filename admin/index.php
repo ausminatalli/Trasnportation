@@ -197,12 +197,17 @@ else {
               ><span class="fa-solid fa-chart-line fa-beat mr-3"></span>
               Statistics</a
             >
+            
           </li>
-          <li id="payments">
-            <a href="#"
+          <li id="payment" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
               ><span class="fa-solid fa-suitcase fa-beat mr-3"></span>
               Payments</a
             >
+            <ul class="dropdown-menu bg-secondary">
+            <li id="payments"><a href="#">View Payments</a></li>
+            <li id="canceleduser"><a href="#">Canceled Users</a></li>
+            </ul>
           </li>
           <li id="admin" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"

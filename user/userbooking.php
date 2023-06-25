@@ -43,6 +43,33 @@ if (isset($_POST["feedback"])) {
 if(isset($_POST["canceltrip"])){
   $tripid = $_POST['tripid'];
 
+  $query = "SELECT * FROM transactions WHERE userid = ? AND tripid = ?";
+$transcationstmt = $conn->prepare($query);
+
+// Bind the values to the placeholders
+$transcationstmt->bind_param("ii", $id, $tripid);
+
+// Execute the query
+$transcationstmt->execute();
+
+// Get the result
+$result = $transcationstmt->get_result();
+
+while ($row = $result->fetch_assoc()) {
+  $txnId = $row['txn_id'];
+  $amountPaid = $row['paid_amount'];
+  $insertQuery = "INSERT INTO user_canceled_trips (txn_id, userid, tripid, amountpaid) VALUES (?, ?, ?, ?)";
+
+  // Prepare and bind the parameters for insert query
+  $insertStmt = $conn->prepare($insertQuery);
+  $insertStmt->bind_param("siid", $txnId, $id, $tripid, $amountPaid);
+
+  // Execute the insert query
+  $insertStmt->execute();
+
+  $insertStmt->close();
+}
+  
   $sql = "DELETE FROM transactions WHERE userid=? and tripid= ? ";
   $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii",$id, $tripid);
@@ -56,8 +83,23 @@ if(isset($_POST["canceltrip"])){
     $stmt2->bind_param("i", $id);
     $stmt->execute();
     $stmt2->execute();
+    
+
+    
+
+// Check if a row was found
+
+
+  
+
+
+// Close the statement and connection
+$stmt->close();
+
+
     exit(); // Add this line to prevent further execution of the code
   }
+
   else{
     echo "('Error: " . mysqli_stmt_error($stmt) . "')";
   }
@@ -154,7 +196,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                 $payments[] = $row;
                 $tripid = $row['tripid'];
                 $disableFeedback = in_array($tripid, $submittedFeedback) ? 'disabled' : '';
-            
+                $cancelButtonCondition = (strtotime($row['schedule']) <= strtotime('0 day')) ? 'style="display:none;"' : '';
                 echo '<tr>';
                 echo '<td>' . $i. '</td>';
                 echo '<td>' . $row['tripfrom'] . '</td>';
@@ -163,9 +205,9 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                 echo '<td>' . $row['time'] . '</td>';
                 echo '<td>' . $row['busid'] . '</td>';
                 echo '<td>
-                  <button data-toggle="tooltip" data-placement="right" title="Cancel Trip" class="star-button me-2 btn-refund" data-tripid="' . $tripid . '">
-                    <img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/>
-                  </button>
+                <button data-toggle="tooltip" data-placement="right" title="Cancel Trip" class="star-button me-2 btn-refund" data-tripid="' . $tripid . '"' . $cancelButtonCondition . '>
+                <img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/>
+              </button>
 
                   <button data-toggle="tooltip" data-placement="right" title="Feedback" class="star-button btn-feedback" onclick="openFeedbackModal()" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
                   
@@ -253,67 +295,10 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
   </div>
 </div>
 
- 
-  
   <?php include('../include/footer.html'); ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   <script src="js/bookingmodal.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      $(".btn-feedback").click(function() {
-        
-        var tripid = $(this).data("tripid");
-        console.log(tripid)
-        $("#feedback-tripid").val(tripid);
-      });
-    });
-
-    $(document).ready(function() {
-    var tripIdToDelete = null;
-
-    // Open the cancellation confirmation modal
-    $(".btn-refund").click(function() {
-      tripIdToDelete = $(this).data("tripid");
-      $("#myModal").fadeIn();
-    });
-
-    // Close the cancellation confirmation modal
-    $(".btn-cancel").click(function() {
-      $("#myModal").fadeOut();
-    });
-
-    // Perform the trip cancellation
-    $(".btn-confirm").click(function() {
-      if (tripIdToDelete) {
-        $.ajax({
-          type: "POST",
-          url: "userbooking.php",
-          data: { canceltrip: true, tripid: tripIdToDelete },
-          success: function(response) {
-            window.location.href = "userbooking.php?msg=delete-success";
-          },
-          error: function() {
-            console.log("Error: Failed to cancel the trip.");
-          }
-        });
-      }
-    });
-  });
-  function openFeedbackModal() {
-    $('#form').modal('show');
-  }
-
-      err=document.getElementById("err");
-      setTimeout(function() {
-        document.getElementById("err").style.display = "none";
-      }, 3000);
-
-
-
-
-</script>
 
 
 </body>

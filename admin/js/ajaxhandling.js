@@ -13,6 +13,8 @@ const viewadmin = document.getElementById("viewadmin");
 const addstation = document.getElementById("addstation");
 const viewstation = document.getElementById("viewstation");
 const offrequest = document.getElementById("offrequest");
+const canceleduser = document.getElementById("canceleduser");
+
 
 function initializeDataTable() {
   const myTable = document.getElementById("myTable");
@@ -202,3 +204,11 @@ offrequest.addEventListener("click", function () {
   loadContent("offrequest.php");
   
 });
+
+canceleduser.addEventListener("click", function () {
+  
+  loadContent("canceledusers.php");
+  
+});
+
+
