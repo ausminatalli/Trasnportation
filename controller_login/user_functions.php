@@ -193,7 +193,7 @@ function editprofile($conn, $data) {
 
 
 
-
+//Uploads to cloud
 function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
 {
     $uploadUrl = 'https://api.cloudinary.com/v1_1/' . $cloudName . '/image/upload';
@@ -205,6 +205,35 @@ function uploadFileToCloudinary($cloudName, $apiKey, $apiSecret, $file)
         'api_key' => $apiKey,
         'timestamp' => $timestamp,
         'signature' => $signature
+    );
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $uploadUrl);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return $response;
+}
+
+//Converts pdf to image +Uploads
+function uploadimageFileToCloudinary($cloudName, $apiKey, $apiSecret,$file)
+{
+
+    $uploadUrl = 'https://api.cloudinary.com/v1_1/' . $cloudName . '/auto/upload';
+    $timestamp = time();
+    $stringToSign = 'format=png&timestamp=' . $timestamp . $apiSecret;
+    $signature = sha1($stringToSign);
+
+    $postData = array(
+        'file' => new \CURLFile($file['tmp_name']),
+        'api_key' => $apiKey,
+        'timestamp' => $timestamp,
+        'signature' => $signature,
+        'pages' => '1', // Convert only the first page to an image
+        'format' => 'png', // Output format (e.g., png, jpg)
     );
 
     $ch = curl_init();
