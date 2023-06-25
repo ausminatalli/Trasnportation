@@ -172,6 +172,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
 
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
                   </button>
+                  <a style="cursor:pointer;margin-left:5px" data-toggle="tooltip" data-placement="right" title="Show License"  onclick="window.open(\''.$row['receipt'].'\', \'_blank\')"><i class="fa-sharp fa-solid fa-receipt fa-2xl" style="color: #85bb65;"></i></a>
                 </td>';
                 echo '</tr>';
                 $i++;
