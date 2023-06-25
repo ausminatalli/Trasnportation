@@ -58,4 +58,36 @@ function toggleLocation(event){
   let swtich= origin.value;
   origin.value=destination.value;
   destination.value=swtich;
+  filterOptions(origin, swtich);
+  filterOptions(destination, origin.value);
   }
+
+
+
+  
+  origin.addEventListener('input', function() {
+  let selectedValue = origin.value;
+  filterOptions(destination, selectedValue);
+});
+
+destination.addEventListener('input', function() {
+  let selectedValue = destination.value;
+  filterOptions(origin, selectedValue);
+});
+
+  function filterOptions(dropdown, selectedValue) {
+    // Get all the options within the dropdown
+    let options = dropdown.options;
+  
+    for (let i = 0; i < options.length; i++) {
+      let option = options[i];
+  
+      // Check if the option's value matches the selected value
+      if (option.value === selectedValue) {
+        option.style.display = 'none'; // Hide the option
+      } else {
+        option.style.display = 'block'; // Show the option
+      }
+    }
+  }
+  
