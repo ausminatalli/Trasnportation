@@ -146,15 +146,43 @@ L.popup()
 
 /* <----> Map code end <----> */
 
-
+let origin = document.getElementById('origin');
+let destination = document.getElementById('destination');
 function toggleLocation(event){
 
   event.preventDefault();
+
+ 
+
+  let swich= origin.value;
+  origin.value=destination.value;
+  destination.value=swich;
+  filterOptions(origin, swich);
+  filterOptions(destination, origin.value);
+}
+
+ origin.addEventListener('input', function() {
+  let selectedValue = origin.value;
+  filterOptions(destination, selectedValue);
+});
+
+destination.addEventListener('input', function() {
+  let selectedValue = destination.value;
+  filterOptions(origin, selectedValue);
+});
+
+  function filterOptions(dropdown, selectedValue) {
+    
+    let options = dropdown.options;
   
-  let select1 = document.getElementById("origin");
-  let select2 = document.getElementById("destination");
+    for (let i = 0; i < options.length; i++) {
+      let option = options[i];
   
-  let switching= select1.value;
-  select1.value=select2.value;
-  select2.value=switching;
+     
+      if (option.value === selectedValue) {
+        option.style.display = 'none'; 
+      } else {
+        option.style.display = 'block'; 
+      }
+    }
   }
