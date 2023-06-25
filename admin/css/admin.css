@@ -92,3 +92,9 @@ input[type=number] {
     transform: scale(1.5);
     transition: all 0.3s;
    }
+
+   .fa-circle-xmark:hover{
+    color: red;
+    transform: scale(1.5);
+    transition: all 0.3s;
+   }
