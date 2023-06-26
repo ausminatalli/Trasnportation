@@ -36,8 +36,29 @@
       transform :scale(1.2)
     }
   </style>
+  <?php
+  include('../config.php');
+  $sql='select * from rate';
+  $result=mysqli_query($conn,$sql);
+  $row=mysqli_fetch_array($result);
+  mysqli_close($conn);
+  ?>
+ 
   <div>
-  <h2 class="text-center text-primary mt-5 mb-5">Payments</h2>
+    <h2 class="text-center text-primary mt-5 mb-5">Payments</h2>
+    <form action="rate.php" method="POST">
+    <div class="row mb-4">
+      <div class="col-2 d-flex justify-content-around gap-4">
+        <label>Dollar Rate is:</label>
+        <input type="number" value="<?php echo $row['rate']; ?>" class="form-control" name="rate"/>
+      </div>
+      <div class="col-2">
+      <button id="submit_rate"  type="submit" name="submit_rate" class="btn btn-primary">submit</button>
+      </div>
+      <div class="col-6">
+      </div>
+    </div>
+</form>
   <table id="myTable" class="table table-striped" style="width: 100%">
   <thead>
     <tr>
@@ -127,5 +148,6 @@
     </div>
   </div>
 </div>
+
   </body>
 </html>
