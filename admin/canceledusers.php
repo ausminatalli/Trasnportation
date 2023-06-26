@@ -64,7 +64,8 @@
         echo "<td>".$row['userid']."</td>";
         echo "<td>".$row['tripid']."</td>";
         echo "<td>".$row['amountpaid']."</td>";
-        echo '<td><button data-toggle="tooltip" data-placement="right" title="Refund" data-canceledid="'.$row['canceledid'].'" class="icon-trash btn-refunded"><i class="fa-solid '.($row['refunded'] == 1 ? 'fa-circle-check' : 'fa-circle-xmark'). ' fa-lg" style="color: '.($row['refunded'] == 1 ? '' : '#e71c0d').';"></i></button></td>';
+        $refunded = $row['refunded'] == 1;
+        echo '<td><button data-toggle="tooltip" data-placement="right" title="Refund" data-canceledid="'.$row['canceledid'].'" class="icon-trash btn-refunded"'.($refunded ? ' disabled' : '').'><i class="fa-solid '.($refunded ? 'fa-circle-check' : 'fa-circle-xmark'). ' fa-lg" style="color: '.($refunded ? '#2e64e5' : '#e71c0d').';"></i></button></td>';        
         echo "</tr>";
       }
     ?>
@@ -83,7 +84,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDeleteBus">Delete</button>
+        <button type="button" class="btn btn-danger" id="confirmDeletePayment">Delete</button>
       </div>
     </div>
   </div>

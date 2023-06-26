@@ -1,39 +1,39 @@
+$(document).ready(function() {
 
-  $(document).ready(function() {
+  $(document).on('click', '.icon-trash', function() {
+    const canceledid = $(this).data('canceledid');
 
-    $(document).on('click', '.fa-circle-xmark', function() {
-      //const busid = $(this).data('busid');
-      
-      //const deleteButton = $(this);
-    
-      $('#refundUser').modal('show');
-    
-      //$('#confirmDeleteBus').data('busid', busid);
-     // $('#confirmDeleteBus').data('deleteButton', deleteButton);
-      
-    });
+    const deleteButton = $(this);
 
-  $(document).on('click', '#confirmDeleteBus', function() {
-   // const busid = $(this).data('busid');
-   // const deleteButton = $(this).data('deleteButton');
-  
-   // $.ajax({
-    //  url: '../api/admin/deleteform/deleteBus.php',
-    //  method: 'POST',
-    //  data: { busid: busid },
-    //  success: function(response) {
-     //   if (response === 'Bus Cannot be deleted') {
-          //window.location.href = "http://localhost/transportation/admin?msg=busfailed";
-       //   alert(response);
-       // } else if(response === 'Bus deleted successfully.'){
-       //   deleteButton.closest('tr').remove();
-       // }
-  
+    $('#refundUser').modal('show');
+
+    $('#confirmDeletePayment').data('canceledid', canceledid);
+    $('#confirmDeletePayment').data('deleteButton', deleteButton);
+
+  });
+
+  $(document).on('click', '#confirmDeletePayment', function() {
+    const canceledid = $(this).data('canceledid');
+    const deleteButton = $(this).data('deleteButton');
+
+    $.ajax({
+      url: '../api/admin/deleteform/CancelPayment.php',
+      method: 'POST',
+      data: { canceledid: canceledid },
+      success: function(response) {
+        if (response.success) {
+          $(deleteButton).find('i').removeClass('fa-circle-xmark').addClass('fa-circle-check').css('color', '#2e64e5');
+          $(deleteButton).prop('disabled', true);
+        } else {
+          alert(response.message);
+        }
+        
         $('#refundUser').modal('hide');
-     // },
-     // error: function(xhr, status, error) {
-     //   console.log(error);
-     // }
-   // });
+      },
+      
+      error: function(xhr, status, error) {
+        console.log(error);
+      }
+    });
   });
 });
