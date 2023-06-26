@@ -94,6 +94,7 @@ function loadContent(url) {
         break;
       case "stats.php":
         loadStatsScript();
+        
         //loadScript("https://www.gstatic.com/charts/loader.js");
         break;
       case "addstation.php":
