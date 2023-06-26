@@ -3,7 +3,7 @@ include_once('../path.php');
 include('../include/driverheader.php');
 if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
     $tripid=$_GET['tid'];
-    $query = "SELECT * FROM paymentsview WHERE tripid = $tripid"; 
+    $query = "SELECT * FROM transactionsview WHERE tripid = $tripid"; 
     $result = mysqli_query($conn, $query) or die("Selecting vacation request failed"); 
    
 } else {
@@ -74,7 +74,7 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
             $tripid=$row['tripid'];
             echo '<tr>';
             echo '<td>' . $i . '</td>';
-            echo '<td>' . $row['paymentid'] . '</td>';
+            echo '<td>' . $row['txn_id'] . '</td>';
             echo '<td>' . $row['firstname'] . '</td>';
             echo '<td>' . $row['lastname'] . '</td>';
         
