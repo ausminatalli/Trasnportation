@@ -21,7 +21,8 @@ function getTrips($conn, $condition, $data)
     JOIN `skyline`.`station` `station2` ON (`station2`.`stationid` = `skyline`.`trips`.`tripto`)
     WHERE
         `skyline`.`station`.`provincename` = ? AND `station2`.`provincename` = ? AND seats!=0 AND
-        `skyline`.`trips`.`schedule` >= CURDATE()";
+        `skyline`.`trips`.`schedule` >= CURDATE() AND
+        CONCAT(`skyline`.`trips`.`schedule`, ' ', `skyline`.`trips`.`movetime`) >= NOW()";
         
     $params = array($data[0]['origin'], $data[0]['destination']);
 
@@ -102,6 +103,7 @@ JOIN `skyline`.`station` ON (`skyline`.`station`.`stationid` = `skyline`.`trips`
 JOIN `skyline`.`station` `station2` ON (`station2`.`stationid` = `skyline`.`trips`.`tripto`)
 WHERE `skyline`.`station`.`provincename` = ? AND `station2`.`provincename` = ? AND seats!=0 AND
  `skyline`.`trips`.`schedule` >= CURDATE() AND
+ CONCAT(`skyline`.`trips`.`schedule`, ' ', `skyline`.`trips`.`movetime`) >= NOW() AND
    NOT EXISTS (
         SELECT *
         FROM `transactions`
