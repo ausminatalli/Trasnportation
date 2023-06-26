@@ -28,10 +28,10 @@
 
     const submit_rate = document.getElementById('submit_rate');
   
-    submit_rate.addEventListener('click', () => {
-  
+    submit_rate.addEventListener('click', (e) => {
+      e.preventDefault();
       const ratevalue = document.querySelector('.ratevalue');
-     console.log(ratevalue.value);
+    
       if (ratevalue.value === '') {
         document.querySelector('.rateerror').innerHTML = 'Please Enter a Value';
       } else {
@@ -45,7 +45,7 @@
             if (response == 'Rate Changed Successully') {
               
               document.querySelector('.rateerror').innerHTML = `
-              <div class="alert alert-primary rateerror" role="alert" style="position: absolute; top: 0; left: 50%; width: 40%; padding: 1px; animation: fadeOut 3s forwards;">
+              <div class="alert alert-primary rateerror" role="alert" style="position: absolute; top: 40%; left: 60%; width: 40%; padding: 0px; animation: fadeOut 3s forwards;">
                 ${response}
               </div>
             `;
@@ -61,5 +61,5 @@
       }
     });
   });
-  
+
   

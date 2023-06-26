@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/modal.css">
     <title>Document</title>
   </head>
   <body>
@@ -35,24 +35,7 @@
       transition:.3s all ease;
       transform :scale(1.2)
     }
-    .rateerror {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 30%;
-    padding: 10px;
-  }
-  @keyframes fadeOut {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-.rateerror {
-  width:30%;
-  margin:0 auto;
-  animation: fadeOut 3s forwards;
-}
+    
   </style>
   <?php
   include('../config.php');
