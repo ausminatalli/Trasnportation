@@ -93,7 +93,7 @@ $html = '
     <div style="text-align: center;">';
 if (!empty($payment_ref_id)) {
     $html .= '
-                <h1 class="display-4 ' . $status . '">' . $statusMsg . '</h1>
+                
                 <h2 class="mt-4">Payment Information</h2>
                 <p class="mb-2"><b>Reference Number:</b> ' . $payment_ref_id . '</p>
                 <p class="mb-2"><b>Transaction ID:</b> ' . $txn_id . '</p>
