@@ -1,6 +1,12 @@
 <?php
 include_once('../../config.php');
 include_once('../main/functions.php');
+$sql='select * from rate';
+$result=mysqli_query($conn,$sql);
+$row=mysqli_fetch_array($result);
+
+$rate=$row['rate'];
+
 $origin;
 $destination;
 $currency;
@@ -68,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 if($searchResults){
 foreach ($searchResults as $item) {
-    $price = $currency === 'USD' ?'$' . number_format((int)$item['ticketprice'] / 94000,2 ): $item['ticketprice']. ' L.L';
+    $price = $currency === 'USD' ?'$' . number_format((int)$item['ticketprice'] / $rate,2 ): $item['ticketprice']. ' L.L';
     ?>
     <div class="box">
         <div class="leftsection">

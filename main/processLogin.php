@@ -41,7 +41,7 @@ if ($row && password_verify($password, $row['password'])) {
         $_SESSION["type"] = $row['role'];
         header('location:../user/usermain.php?msg=success');
     } else if ($row['role'] == 0 && $row['emailapproved'] == 0) {
-        header('location:registration/verification.php?msg=enter-your-verification-code');
+        header('location:verification.php?msg=enter-your-verification-code');
     } else if ($row['role'] == 1 && $row2['accepted'] == 1) {
         session_start();
         $_SESSION["id"] = $row['userid'];
