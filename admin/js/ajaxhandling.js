@@ -175,11 +175,12 @@ applications.addEventListener("click", function () {
 
 stats.addEventListener("click", function () {
   loadContent("stats.php");
-  loadScript("js/modal/stats.js");
+  
   
 });
 
 payments.addEventListener("click", function () {
+  
   loadContent("payments.php");
 });
 

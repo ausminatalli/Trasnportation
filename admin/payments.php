@@ -35,6 +35,24 @@
       transition:.3s all ease;
       transform :scale(1.2)
     }
+    .rateerror {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 30%;
+    padding: 10px;
+  }
+  @keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.rateerror {
+  width:30%;
+  margin:0 auto;
+  animation: fadeOut 3s forwards;
+}
   </style>
   <?php
   include('../config.php');
@@ -46,14 +64,15 @@
  
   <div>
     <h2 class="text-center text-primary mt-5 mb-5">Payments</h2>
-    <form action="rate.php" method="POST">
+    <form >
     <div class="row mb-4">
       <div class="col-2 d-flex justify-content-around gap-4">
         <label>Dollar Rate is:</label>
-        <input type="number" value="<?php echo $row['rate']; ?>" class="form-control" name="rate"/>
+        <input type="number" value="<?php echo $row['rate']; ?>" class="form-control ratevalue" name="rate"/>
+        <div class="rateerror text-danger"></div>
       </div>
       <div class="col-2">
-      <button id="submit_rate"  type="submit" name="submit_rate" class="btn btn-primary">submit</button>
+      <button id="submit_rate"  type="button" name="submit_rate" class="btn btn-primary">submit</button>
       </div>
       <div class="col-6">
       </div>
