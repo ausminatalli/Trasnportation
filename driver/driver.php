@@ -7,6 +7,7 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
    
 } else {
     header('location: ../main/login.php?msg=please_login'); 
+    mysqli_close($conn);
 }
 
 if (isset($_POST['changestatus'])){
@@ -19,9 +20,8 @@ if (isset($_POST['changestatus'])){
     mysqli_stmt_bind_param($stmt, "si", $statusvalue, $tripid);
   
     if (mysqli_stmt_execute($stmt)) {
+        mysqli_close($conn);
         header('Location:driver.php?msg:status_update');
-
-      
       exit(); 
     } else {
       echo "('Error: " . mysqli_stmt_error($stmt) . "')";
@@ -172,22 +172,17 @@ if (isset($_POST['changestatus'])){
     <!-- JavaScript to handle modal functionality -->
     <script>
 
-  // Get the modal element
-var modal = document.getElementById("status-modal");
+let modal = document.getElementById("status-modal");
 
-// Get the buttons that open the modal
-var editButtons = document.querySelectorAll(".btn-edit-status");
+let editButtons = document.querySelectorAll(".btn-edit-status");
 
-// Get the <span> element that closes the modal
-var closeBtn = document.getElementById("close");
+let closeBtn = document.getElementById("close");
 
-// Get the input field for tripid in the modal
-var tripIdInput = document.getElementById("status-tripid");
+let tripIdInput = document.getElementById("status-tripid");
 
-// When the user clicks the button, open the modal and set the trip ID
 editButtons.forEach(function(button) {
     button.addEventListener("click", function() {
-        var tripId = button.getAttribute("data-tripid");
+        let tripId = button.getAttribute("data-tripid");
         tripIdInput.value = tripId;
         modal.style.display = "block";
     });
@@ -198,7 +193,6 @@ closeBtn.addEventListener("click", function() {
     modal.style.display = "none";
 });
 
-// When the user clicks anywhere outside of the modal, close it
 window.addEventListener("click", function(event) {
     if (event.target === modal) {
         modal.style.display = "none";
@@ -207,7 +201,6 @@ window.addEventListener("click", function(event) {
 
 
 
-// When the user clicks the button, open the modal and set the trip ID
 
  
 </script>

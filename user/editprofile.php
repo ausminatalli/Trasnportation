@@ -17,6 +17,7 @@ if(isset($_SESSION['id'])&& ($_SESSION['type']==0))
 else
 {
   header('location:../main/login.php?msg=please_login');
+    mysqli_close($conn);
 }
 
 if (isset($_GET['msg']) && ($_GET['msg'] == "Mobilefailed")) {

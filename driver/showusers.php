@@ -7,7 +7,8 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
     $result = mysqli_query($conn, $query) or die("Selecting vacation request failed"); 
    
 } else {
-    header('location: ../main/login.php?msg=please_login'); 
+    header('location: ../main/login.php?msg=please_login');
+    mysqli_close($conn);
 }
 
 
