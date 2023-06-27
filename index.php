@@ -180,7 +180,7 @@ Thank you for choosing Skyline. We look forward to serving you and providing you
                     <li>Earn up to 6% of the value of your ticket in credits</li>
                     <li>Get access to all your transactions and credits history</li>
                     <li>Redeem your GO credits anytime during checkout!</li>
-                    <a class="mt-4" href="#">Create an account</a>
+                    <a class="mt-4" href="./main/registration/userregister.php">Create an account</a>
                 </ul>
             </div>
             <div class="why-right wow slideInRight" data-wow-duration="1s">
@@ -216,7 +216,7 @@ Thank you for choosing Skyline. We look forward to serving you and providing you
                     <li>Benefits and Perks: Outline any additional benefits and perks your company offers to drivers, such as health insurance, retirement plans, paid time off, or employee discounts. These can be valuable incentives for attracting and retaining talented drivers.</li>
                     <li>Job Stability: Mention the stability of your transport bus company, showcasing its track record and reputation as a reliable and established service provider. Assure drivers that they can rely on consistent work and job security.</li>
                     <li>Highlight the safety measures and training programs implemented to ensure the well-being of your drivers and passengers. This includes regular maintenance and inspection of vehicles, adherence to traffic regulations, and ongoing safety education for drivers. Emphasizing your commitment to safety will demonstrate your dedication to providing a secure and reliable working environment for your drivers.</li>
-                    <a class="mt-2" href="#">Create an account</a>
+                    <a class="mt-2" href="./main/registration/driverregister.php">Create an account</a>
                   </ul>
               
             </div>

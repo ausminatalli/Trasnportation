@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <button class="btn-blue"  type="submit">Sign up</button>
-                    <p class="dont">Already a member? <a href="../login.html">Login</a></p>
+                    <p class="dont">Already a member? <a href="../login.php">Login</a></p>
                     <div class='text-center'>
                     <span class="text-danger text-center h4" id="err"><?php echo isset($errorMessage) ? $errorMessage : ''; ?></span>
                     </div>
