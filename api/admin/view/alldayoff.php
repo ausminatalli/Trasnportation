@@ -1,10 +1,13 @@
 <?php
-// Connect to MySQL database
+
 require('../../../config.php')
 ?>
 <?php
 // Fetch data from MySQL table
-$sql = "SELECT * FROM vacation_request";
+$sql = "SELECT vacation_request.*, users.firstname, users.lastname 
+        FROM vacation_request
+        INNER JOIN users ON vacation_request.driverid = users.userid
+        WHERE users.role = 1";
 $result = $conn->query($sql);
 
 $vacation = array();
@@ -14,9 +17,10 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Close the database connection
+
+
 $conn->close();
-// Return the users as JSON
+
 header('Content-Type: application/json');
 echo json_encode($vacation);
 ?>

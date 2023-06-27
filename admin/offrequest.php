@@ -32,7 +32,7 @@
         <thead>
           <tr>
             <th>Vacation ID</th>
-            <th>Driver ID</th>
+            <th>Driver Name</th>
             <th>vacation_start</th>
             <th>vacation_end</th>
             <th>reason_of_vacation</th>
@@ -52,7 +52,7 @@
             $vacationApproved = $row['vacation_approved'] == 0 ? 'InProgress' : ($row['vacation_approved'] == 1 ? 'Rejected' : ($row['vacation_approved'] == 2 ? 'Accepted' : 'Unknown'));
             echo '<tr data-vacationid="' . $row['vacationid'] . '">';
             echo "<td>" . $row['vacationid'] . "</td>";
-            echo "<td>" . $row['driverid'] . "</td>";
+            echo "<td>" . $row['firstname'] . " " . $row['lastname'] . "</td>";
             echo "<td>" . $row['vacation_start'] . "</td>";
             echo "<td>" . $row['vacation_end'] . "</td>";
             echo "<td>" . $row['reason_of_vacation'] . "</td>";

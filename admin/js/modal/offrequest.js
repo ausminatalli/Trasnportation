@@ -14,9 +14,9 @@ $(document).ready(function() {
         success: function(response) {
           console.log(response);
           if (response === "Request Cannot be rejected") {
-            // Handle error message or redirect if needed
           } else {
             disableButtons(rejectButton, acceptButton);
+            window.location.reload(); 
           }
           $("#rejectConfirmationModal").modal("hide");
         },
@@ -43,6 +43,7 @@ $(document).ready(function() {
           console.log(response);
           if (response.success) {
             disableButtons(rejectButton, acceptButton);
+            window.location.reload(); 
           } else {
             console.log(response.message);
           }
