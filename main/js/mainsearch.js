@@ -88,7 +88,7 @@ function showMap(position) {
 
 getLocation();
 
-/*This function gets two textfield values(dropdown to be) and draw a market on each
+/*This function gets two textfield values(dropdown to be) and draw a marker on each
 location then a line between them also shows the distance and km difference
 */
 function calculateDistance() {
@@ -128,8 +128,8 @@ fetch(geocodeUrl1)
     
   })
   .then(function (response) {
-    /* Remove the comments and check the console in the browser to see the structure of the api's   */
-   // console.log('Location(Origin) from textfield origin ',geocodeUrl1)
+    // Remove the comments and check the console in the browser to see the structure of the api's   */
+    //console.log('Location(Origin) from textfield origin ',geocodeUrl1)
    // console.log('Location(Destination) from textfield origin ',geocodeUrl2)
     return response.json();
   })
@@ -238,3 +238,49 @@ const result_container= document.getElementById('result-container');
        
       });
       
+
+     
+        
+      let origin2 = document.getElementById("origin");
+      let destination2 = document.getElementById("destination");
+      origin2.addEventListener('input', function() {
+        let selectedValue = origin2.value;
+        filterOptions(destination2, selectedValue);
+      });
+      
+      destination2.addEventListener('input', function() {
+        let selectedValue = destination2.value;
+        filterOptions(origin2, selectedValue);
+      });
+    
+
+
+      function toggleLocation(event){
+
+        event.preventDefault();
+      
+       
+      
+        let swich= origin2.value;
+        origin2.value=destination2.value;
+        destination2.value=swich;
+        filterOptions(origin2, swich);
+        filterOptions(destination2, origin2.value);
+      }
+
+
+      function filterOptions(dropdown, selectedValue) {
+      
+        let options = dropdown.options;
+      
+        for (let i = 0; i < options.length; i++) {
+          let option = options[i];
+      
+         
+          if (option.value === selectedValue) {
+            option.style.display = 'none'; 
+          } else {
+            option.style.display = 'block'; 
+          }
+        }
+      }
