@@ -41,7 +41,7 @@ if ($row && password_verify($password, $row['password'])) {
         $_SESSION["type"] = $row['role'];
         header('location:../user/usermain.php?msg=success');
     } else if ($row['role'] == 0 && $row['emailapproved'] == 0) {
-        header('location:verification.php?msg=enter-your-verification-code');
+        header('location:verification.php?email='.$email.'&msg=enter-your-verification-code');
     } else if ($row['role'] == 1 && $row2['accepted'] == 1) {
         session_start();
         $_SESSION["id"] = $row['userid'];
@@ -70,7 +70,7 @@ if ($row && password_verify($password, $row['password'])) {
     }
 } else {
     // Password is incorrect or user doesn't exist
-    header('location:login.php?msg=failed');
+    header('location:login.php?msg=failed'."&email=" . urlencode($email) );
 }
 
 ?>

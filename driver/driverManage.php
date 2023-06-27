@@ -12,6 +12,8 @@ if(isset($_SESSION['id']) && ($_SESSION['type'] == 1)) {
    
 } else {
     header('location: ../main/login.php?msg=please_login'); 
+    mysqli_close($conn);
+
 }
 $errorMessage="";
 
@@ -38,7 +40,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "request-send")) {
 
 
 <section class="container p-5 ">
-    <h2 class="mb-5"></h2>
+    <h2 class="mb-5">Manage Your Days Off</h2>
     <div class="row">
         <div class="col">
             <form class="d-flex">

@@ -38,6 +38,9 @@
      {
       $errorMessage = "User Blocked: Please Contact Adminstration!";
      }
+
+
+
     ?>
       <section class="login ">
         <div class="container">
@@ -45,7 +48,7 @@
                 <h2>login</h2>
                 <p>PLEASE ENTER YOUR LOGIN DETAILS TO SIGN IN.</p>
                 <form id="loginform" action="processLogin.php" method="POST" onsubmit="return handleSubmit('login')">
-                  <input oninput="handleEmailInput()" name="email" id="email" type="text"  placeholder="Email address">
+                  <input oninput="handleEmailInput()" name="email" id="email" type="text" value="<?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?>"  placeholder="Email address">
                   <div class="error" id="email-error"></div> <!-- Error message for email -->
                   
                   <div class="flexSb password">
