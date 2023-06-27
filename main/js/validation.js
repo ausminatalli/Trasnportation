@@ -397,44 +397,4 @@ function userSearchValidation(e){
    }
    /* ---- end userSearch validation -----*/
 
-   let origin = document.getElementById("origin");
-   let destination = document.getElementById("destination");
-
-   function toggleLocation(event){
-
-    event.preventDefault();
-  
    
-  
-    let swich= origin.value;
-    origin.value=destination.value;
-    destination.value=swich;
-    filterOptions(origin, swich);
-    filterOptions(destination, origin.value);
-  }
-
-   origin.addEventListener('input', function() {
-    let selectedValue = origin.value;
-    filterOptions(destination, selectedValue);
-  });
-  
-  destination.addEventListener('input', function() {
-    let selectedValue = destination.value;
-    filterOptions(origin, selectedValue);
-  });
-  
-    function filterOptions(dropdown, selectedValue) {
-      
-      let options = dropdown.options;
-    
-      for (let i = 0; i < options.length; i++) {
-        let option = options[i];
-    
-       
-        if (option.value === selectedValue) {
-          option.style.display = 'none'; 
-        } else {
-          option.style.display = 'block'; 
-        }
-      }
-    }
