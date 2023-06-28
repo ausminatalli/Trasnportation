@@ -172,6 +172,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
           </div>
           </div>
         </div>
+        <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -207,16 +208,16 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                 echo '<td>' . $row['time'] . '</td>';
                 echo '<td>' . $row['busid'] . '</td>';
                 echo '<td>
-                <button data-toggle="tooltip" data-placement="right" title="Cancel Trip" class="star-button me-2 btn-refund" data-tripid="' . $tripid . '"' . $cancelButtonCondition . '>
+                <button data-toggle="tooltip" data-placement="right" title="Cancel Trip" class="star-button me-2 btn-refund scale" data-tripid="' . $tripid . '"' . $cancelButtonCondition . '>
                 <img width="32" height="32" src="https://img.icons8.com/flat-round/64/cancel--v3.png" alt="cancel--v3"/>
               </button>
 
-                  <button data-toggle="tooltip" data-placement="right" title="Feedback" class="star-button btn-feedback" onclick="openFeedbackModal()" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
+                  <button data-toggle="tooltip" data-placement="right" title="Feedback" class="star-button scale btn-feedback" onclick="openFeedbackModal()" type="button" data-toggle="modal" data-target="#form" data-tripid="' . $tripid . '"' . $disableFeedback . '>
                   
 
                     <img width="32" height="32" src="https://img.icons8.com/flat-round/64/star--v1.png" alt="star--v1"/>
                   </button>
-                  <a style="cursor:pointer;margin-left:5px" data-toggle="tooltip" data-placement="right" title="Show License"  onclick="window.open(\''.$row['receipt'].'\', \'_blank\')"><i class="fa-sharp fa-solid fa-receipt fa-2xl" style="color: #85bb65;"></i></a>
+                  <a class="scale" style="cursor:pointer;margin-left:5px" data-toggle="tooltip" data-placement="right" title="Show recite"  onclick="window.open(\''.$row['receipt'].'\', \'_blank\')"><i class="fa-sharp fa-solid fa-receipt fa-2xl" style="color: #85bb65;"></i></a>
                 </td>';
                 echo '</tr>';
                 $i++;
@@ -228,6 +229,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
               ?>
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   </div>

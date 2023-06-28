@@ -584,6 +584,9 @@ width: 100%;
   text-align: justify;
 
 }
+.about-inf ul{
+  padding: 0;
+}
 .about-inf ul li{
 
 margin-bottom: 20px;
@@ -623,6 +626,11 @@ cursor: pointer;
   font-size: 32px !important;
   font-weight: 400 !important;
 }
+.about-inf ul li{
+font-size: 12px;
+
+}
+
 .about-inf ul li a{
 margin: 0 auto;
 
@@ -660,13 +668,20 @@ margin-bottom: 20px;
 font-size: 16px;
 margin-bottom: 10px;
 }
-.why-left ul{
-list-style: disc;
-font-size: 12px;
-margin-bottom: 30px;
-margin-left: 10px;
-padding: 0;
-}
+.why-left.why ul{
+  list-style: disc;
+  font-size: 18px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  padding: 10px;
+  }
+  .why-left ul{
+    list-style: disc;
+    font-size: 12px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    padding: 0;
+    }
 .why-left a{
 display: block;
 width: 180px;
@@ -719,6 +734,8 @@ text-align: center;
 
 .why-left ul{
   list-style: none;
+}.why-left.why ul{
+  list-style: none;
 }
 .why-left a{
   margin: 20px auto;
@@ -727,6 +744,10 @@ text-align: center;
 .why-left h5 {
   text-align: center;
   font-weight: 700;
+}.why-left.why h5 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px !important;
 }
 .why-right{
   width: 100%;

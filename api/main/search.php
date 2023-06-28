@@ -99,10 +99,11 @@ foreach ($searchResults as $item) {
         </div>
         <div class="rightsection">
             <h5><?php echo $price ?></h5>
-            <a href="login.php">
+            <a class="selectnone" href="login.php">
                 Select
             </a>
-            <i class="fa-duotone fa-arrow-right fa-2xs"></i>
+            <a class="shownone" href="login.php"><i class="fa-solid fa-arrow-right"></i></a>
+
         </div>
         
     </div>

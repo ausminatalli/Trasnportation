@@ -22,10 +22,12 @@
   color: red;
   
 }
-.g-recaptcha
-{
+.g-recaptcha {
   display:none;
-}
+  }
+
+ 
+
 
 </style>
 <body>
@@ -64,7 +66,8 @@
                     </div>
                     <h5 class="forget"><a href="./forgetpassword.php">Forgot password?</a></h5>
                   </div>
-                  <div class="g-recaptcha p-2" data-sitekey="6LdrHHgmAAAAAHWg_T5C8-aQ4yMrm3e5iWFnpjXu" data-callback="verifyCaptcha"></div>
+                  <div class="g-recaptcha" data-sitekey="6LdrHHgmAAAAAHWg_T5C8-aQ4yMrm3e5iWFnpjXu" data-callback="verifyCaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+
                   <div id="recaptcha-error" class="error"></div> <!-- reCAPTCHA v2 checkbox -->
                   <button  class="btn-blue" type="submit">Login</button>
                   <p class="dont">Don't have an account? <a href="./signup.php">Sign up</a></p>

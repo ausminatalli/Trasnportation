@@ -60,7 +60,7 @@
 
     ?>
   <div class="container">
-    <div class="card" style="width: 35rem; height: 35rem">
+    <div class="card" style="width: 35rem;">
       <img
         src="https://i.ibb.co/3YpB4pH/veri.jpg"
         class="card-img-top"

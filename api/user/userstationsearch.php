@@ -98,11 +98,12 @@ foreach ($searchResults as $item) {
         </div>
         <div class="rightsection">
             <h5><?php echo $item['ticketprice'].' L.L'; ?></h5>
-            <a href="./payment.php?t=<?php echo $item['tripid'] ?>&u=<?php echo $id ?>&p=<?php echo $item['ticketprice'] ?>">
+            <a class="selectnone" href="./payment.php?t=<?php echo $item['tripid'] ?>&u=<?php echo $id ?>&p=<?php echo $item['ticketprice'] ?>">
     Book
 </a>
 
-            <i class="fa-duotone fa-arrow-right fa-2xs"></i>
+<a class="shownone" href="./payment.php?t=<?php echo $item['tripid'] ?>&u=<?php echo $id ?>&p=<?php echo $item['ticketprice'] ?>"><i class="fa-solid fa-arrow-right"></i></a>
+
         </div>
         
     </div>
