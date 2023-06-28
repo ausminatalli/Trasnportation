@@ -40,12 +40,14 @@ if(!empty($_GET['pid'])){
     exit; 
 } 
 ?>
+ 
+   
+
 <body style="background-color: #E5F6FF !important;">
 <div class="row mt-5">
-    <div class="col-4"></div>
-    <div class="col-4">
+    <div class="container m-auto">
         <div class="card shadow">
-            <div class="card-body text-center">
+            <div class="card-body text-center" >
                 <?php if(!empty($payment_ref_id)){ ?>
                     <h1 class="display-4 <?php echo $status; ?>"><?php echo $statusMsg; ?></h1>
 

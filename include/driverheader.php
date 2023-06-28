@@ -38,7 +38,7 @@ else {
         <div class='menu-button'></div>
       </label>
         <ul class="menu">
-            <li><a class="line" href="./driver.php"><h5 class="line text-danger"><?php echo $row['firstname'] ,' ', $row['lastname'] ?></h5></a></li>
+            <li><a class="line" href="./driver.php"><h6 class="line text-danger"><?php echo $row['firstname'] ,' ', $row['lastname'] ?></h6></a></li>
             <li><a class="line" href="./driverManage.php">Manage</a></li>
             <li><a class="line" href="./editprofile.php">Profile</a></li>
             <li><a class="signup" href="../user/logout.php">Logout</a></li>

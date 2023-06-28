@@ -167,7 +167,7 @@ Thank you for choosing Skyline. We look forward to serving you and providing you
       <section class="whySkyline">
      
         <div class="container why-content">
-            <div class="why-left wow slideInLeft" data-wow-duration="1s" data-wow-delay="">
+            <div class="why-left why wow slideInLeft" data-wow-duration="1s" data-wow-delay="">
                 <h3>why join Skyline?</h3>
                 <h5>Faster booking and checkout</h5>
                 <ul>

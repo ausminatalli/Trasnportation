@@ -72,7 +72,7 @@ if (isset($_POST['changestatus'])){
       
     </div>
        
-    
+    <div class="table-responsive">
     <table id="trip-table" class="table mt-5 ">
         <thead class="thead-dark">
             <tr>
@@ -143,6 +143,7 @@ if (isset($_POST['changestatus'])){
             ?>
         </tbody>
     </table>
+    </div>
 
       </section>
        <!-- Modal for updating status -->

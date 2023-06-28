@@ -52,7 +52,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "request-send")) {
     </div>
     <h5 class="text-success text-center mt-4" id="err"><?php echo $errorMessage ?></h5>
 
-
+    <div class="table-responsive">
     <table id="trip-table" class="table mt-5 ">
         <thead class="thead-dark">
             <tr>
@@ -105,6 +105,7 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "request-send")) {
         ?>
         </tbody>
     </table>
+</div>
 
     <div class="col text-end " >
             <a href="DayOff.php" class="btn" style="color:white;background-color:#0a3b5f;  border: 1px solid #0a3b5f; border-radius: 10px;">Day Off Request</a>
