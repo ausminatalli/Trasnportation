@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'triptime' => $triptime,
             'tripdate' => $tripdate,
         );
-        $searchResults = getTrips($conn,'triptime',$data);
+        $searchResults = getTrips($conn,'All',$data);
     }
 
     else if(isset($_POST['origin']) && isset($_POST['destination']) && isset($_POST['triptime']))
