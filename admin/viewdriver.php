@@ -66,7 +66,7 @@
 
             foreach ($data as $row) {
               $onlineClass = $row['isOnline'] == 1 ? 'Active' : 'Inactive';
-              $licenseClass = $row['licenseexpiry'] == 1 ? 'Valid' : 'Expired';
+              $licenseClass = $row['licenseexpiry'] == 1 ? 'Expired' : 'Valid';
               echo '<tr data-driverid="' . $row['driverid'] . '">';
               echo "<td>".$row['firstname'].' '.$row['lastname']."</td>";
               echo "<td>".$row['city'].' '.$row['address']."</td>";

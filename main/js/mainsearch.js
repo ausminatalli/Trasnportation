@@ -161,7 +161,7 @@ destinationMarker = L.marker(latlng2).addTo(map);
  line = L.polyline([latlng1, latlng2], {color: "red"}).addTo(map);
 
 // show the distance and duration between the two locations in kilometers and minutes
-var popupContent = "The distance between " + origin + " and " + destination + " is approximately " + distance.toFixed(2) + " km, and it will take about " + duration.toFixed(1)/60 + " hour to drive.";
+var popupContent = "The distance between " + origin + " and " + destination + " is approximately " + distance.toFixed(2) + " km, and it will take about " + parseFloat((duration.toFixed(1) / 60).toFixed(2)) + " hour to drive.";
 //L.popup pops the content
 //setLatLng sets where to pop the content
 //setContent sets the content

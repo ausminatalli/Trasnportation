@@ -56,7 +56,7 @@ $dropdown = json_decode($data, true);
             echo "<td>".$row['province'].', '.$row['station']."</td>";
             echo "<td>".$row['mechanicdate']."</td>";
             echo "<td>".$row['insurancenb']."</td>";
-            echo "<td>".$row['mechanicdue']."</td>";
+            echo "<td>" . ($row['mechanicdue'] == 1 ? '<span style="color: red;">Yes</span>' : '<span style="color: green;">No</span>') . "</td>";
             echo '<td colspan=""><button data-toggle="tooltip" data-placement="right" title="Edit" data-busid="' . $row['busid'] . '" class="icon-trash btn-editbus"><i class="fa-solid text-primary fa-user-pen"></i></button> | 
             <button data-toggle="tooltip" data-placement="right" title="Remove Bus" data-busid="' . $row['busid'] . '" class="icon-trash btn-delete2">
             <i class="fa-solid fa-trash"></i>

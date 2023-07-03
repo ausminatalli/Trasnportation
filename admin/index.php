@@ -125,6 +125,11 @@ else {
      {
       $errorMessage = "Trips already Has clients";
      }
+     elseif(isset($_GET['msg']) && ($_GET['msg'] == "newstation"))
+     {
+      $errorMessage = "New Station Added";
+      $alertClass = "alert-success";
+     }
      ?>
     <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar" class="menu">
