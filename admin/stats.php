@@ -124,7 +124,7 @@
                     </div>
                 <h3 class="card-title text-center">Trips</h3>
                 <div class=" d-flex justify-content-around align-items-center mt-4 mb-3">
-                <i class="fa-solid fa-money-bill-trend-up text-danger fa-2xl"></i>
+                <i class="fa-solid fa-suitcase-rolling text-danger fa-2xl"></i>
                 <h5 class="card-text text-center  tripscount"></h5>
             </div>
               </div>

@@ -202,8 +202,8 @@ if (isset($_GET['msg']) && ($_GET['msg'] == "feedback_success")) {
                 $cancelButtonCondition = (strtotime($row['schedule']) <= strtotime('0 day')) ? 'style="display:none;"' : '';
                 echo '<tr>';
                 echo '<td>' . $i. '</td>';
-                echo '<td>' . $row['tripfrom'] . '</td>';
-                echo '<td>' . $row['tripto'] . '</td>';
+                echo '<td>' .$row['originprovince'].', '. $row['tripfrom'] . '</td>';
+                echo '<td>' .$row['destinationprovince'].', '. $row['tripto'] . '</td>';
                 echo '<td>' . $row['schedule'] . '</td>';
                 echo '<td>' . $row['time'] . '</td>';
                 echo '<td>' . $row['busid'] . '</td>';

@@ -84,7 +84,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" id="confirmDeletePayment">Delete</button>
+        <button type="button" class="btn btn-danger" id="confirmDeletePayment">Refund</button>
       </div>
     </div>
   </div>
