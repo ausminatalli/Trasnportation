@@ -38,7 +38,8 @@ $(document).ready(function() {
       },
       success: function(response) {
         const $tableRow = $('tr[data-busid="' + busId + '"]');
-        $tableRow.find('td:eq(1)').text(driverName);
+        const driverName2 = $('#editModalbus #Drivername option:selected').text();
+        $tableRow.find('td:eq(1)').text(driverName2);
         $tableRow.find('td:eq(4)').text(mechanicDueDate);
         $tableRow.find('td:eq(5)').text(insuranceNumber);
         
