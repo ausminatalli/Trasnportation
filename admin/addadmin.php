@@ -15,7 +15,7 @@
   <body>
     <h2 class="text-center text-primary mt-5 mb-5">Add Admin</h2>
     <div class="card-body content">
-    <form action="../api/admin/addform/newadmin.php" method="POST">
+    <form action="../api/admin/addform/newadmin.php" method="POST" onsubmit="return validateadmin()">
       <h5 class="text-primary">Add Admin Information</h5>
       <hr class="hr">
       <div class="row">
@@ -69,13 +69,9 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-               <h5>Gender</h5>
-               <span id="vGender" class="vspan"></span>
-               <select  class="form-control" id="Gender" style="width: 100%;">
-                <option selected="selected">Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-                </select>
+               <h5>Password</h5>
+               <span id="vpassword" class="vspan"></span>
+               <input type="password" class="form-control" id="password" name="password" style="width: 100%;">
             </div>
            
 
@@ -102,10 +98,10 @@
       
     <hr class="hr">
     <div class="bottom text-center">
-      <button onclick="validateadmin()" class="btn btn-primary" >Submit</button>
+      <button class="btn btn-primary" type="submit" id="submit" >Submit</button>
     </form>
     </div>
 
-
+    <script src="./js/validation/adminvalidation.js"></script>
   </body>
 </html>
