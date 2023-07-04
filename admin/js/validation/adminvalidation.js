@@ -8,7 +8,7 @@ function validateadmin(){
     let phone=document.getElementById('phone');
     let email=document.getElementById('email');
     let birth=document.getElementById('birth');
-    let Gender=document.getElementById('Gender');
+    let password=document.getElementById('password');
     let city=document.getElementById('city');
     let address=document.getElementById('address');
     let vfirst=document.getElementById('vfirst');
@@ -16,16 +16,18 @@ function validateadmin(){
     let vphone=document.getElementById('vphone');
     let vemail=document.getElementById('vemail');
     let vbirth=document.getElementById('vbirth');
-    let vGender=document.getElementById('vGender');
+    let vpassword=document.getElementById('vpassword');
     let vcity=document.getElementById('vcity');
     let vaddress=document.getElementById('vaddress');
+
+    
 
     vfirst.innerHTML='';
     vlast.innerHTML='';
     vphone.innerHTML='';
     vemail.innerHTML='';
     vbirth.innerHTML='';
-    vGender.innerHTML='';
+    vpassword.innerHTML='';
     vcity.innerHTML='';
     vaddress.innerHTML='';
     
@@ -44,19 +46,19 @@ function validateadmin(){
         vphone.innerHTML="Please enter the phone number";
         isvalid=false;
     }
-    if (email.value === "") {
-        vemail.innerHTML = "Please Enter the Email Address";
+    if (email.value === '') {
+        vemail.innerHTML="Please enter the email address.*";
         isvalid = false;
-      } else if (!validateEmail(email.value)) {
-        vemail.innerHTML = "Please Enter a Valid Email Address";
+      } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+        vemail.innerHTML="Please enter a valid email address.*";
         isvalid = false;
       }
     if(birth.value === ''){
         vbirth.innerHTML="Please enter the date of birth";
         isvalid=false;
     }
-    if(Gender.value === 'Gender'){
-        vGender.innerHTML="Please select the gender";
+    if(password.value === ''){
+        vpassword.innerHTML="Please enter the password";
         isvalid=false;
     }
     if(city.value === ''){
@@ -68,11 +70,10 @@ function validateadmin(){
         isvalid=false;
     }
     if(isvalid){
-        alert('the admin has been added');
+        return true;
     }
+    else
+    return false;
 
-    function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
+   
     }

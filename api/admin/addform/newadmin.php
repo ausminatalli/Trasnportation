@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $birthdate = isset($_POST["birthdate"]) ? $_POST["birthdate"] : '';
     $city = isset($_POST["city"]) ? $_POST["city"] : '';
     $address = isset($_POST["address"]) ? $_POST["address"] : '';
-    $password = "Bigboss123";
+    $password = isset($_POST["password"]) ? $_POST["password"] : '';
      
    
     
